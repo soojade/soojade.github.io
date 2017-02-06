@@ -1,0 +1,1207 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="soojade" />
+
+
+
+<meta name="description" content="模板语法我们的 Angular 应用管理着用户之所见和所为，并通过 Component 类的实例（组件）和面向用户的模板来与用户交互。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="模板语法">
+<meta property="og:url" content="http://soojade.github.io/2016/12/16/模板语法/index.html">
+<meta property="og:site_name" content="soojade个人空间">
+<meta property="og:description" content="模板语法我们的 Angular 应用管理着用户之所见和所为，并通过 Component 类的实例（组件）和面向用户的模板来与用户交互。">
+<meta property="og:image" content="https://webdev.dartlang.org/resources/images/devguide/template-syntax/input-output.png">
+<meta property="og:updated_time" content="2016-12-18T06:42:47.578Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="模板语法">
+<meta name="twitter:description" content="模板语法我们的 Angular 应用管理着用户之所见和所为，并通过 Component 类的实例（组件）和面向用户的模板来与用户交互。">
+<meta name="twitter:image" content="https://webdev.dartlang.org/resources/images/devguide/template-syntax/input-output.png">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="soojade个人空间" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="img/favicon.ico">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/green/pace-theme-flash.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>模板语法 | soojade个人空间</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: true
+    }
+</script>
+
+
+    <script>
+        yiliaConfig.jquery_ui = [true, "//cdn.bootcss.com/jqueryui/1.10.4/jquery-ui.min.js", "//cdn.bootcss.com/jqueryui/1.10.4/css/jquery-ui.min.css"];
+    </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/avatar.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">soojade</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">博客</p>
+        
+
+        
+            <form id="search-form">
+            <input type="text" id="local-search-input" name="q" placeholder="search..." class="search form-control" autocomplete="off" autocorrect="off" searchonload="false" />
+            <i class="fa fa-times" onclick="resetSearch()"></i>
+            </form>
+            <div id="local-search-result"></div>
+            <p class='no-result'>No results found <i class='fa fa-spinner fa-pulse'></i></p>
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=2035030023@qq.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" href="https://github.com/soojade" title="GitHub"></a>
+                            
+                                <a class="fa 知乎" href="https://www.zhihu.com/people/soojade/activities" title="知乎"></a>
+                            
+                                <a class="fa 简书" href="http://www.jianshu.com/users/b2e1cf392d42/latest_articles" title="简书"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/angular-angular-点-线-面/">angular angular.点-线-面</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/angular-angular文档/">angular angular文档</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dart-dart命令行/">dart  dart命令行</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dart-angularDart-web-angular指南/">dart angularDart web angular指南</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dart-angularDart-web-angular教程/">dart angularDart web angular教程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dart-dart基础/">dart dart基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-javascript坑与技巧/">javascript javascript坑与技巧</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-javascript坑与技巧-DOM/">javascript javascript坑与技巧 DOM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-javascript坑与技巧-filter/">javascript javascript坑与技巧 filter()</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-javascript坑与技巧-map/">javascript javascript坑与技巧 map()</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-javascript坑与技巧-sort/">javascript javascript坑与技巧 sort()</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-javascript坑与技巧-this/">javascript javascript坑与技巧 this</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-javascript坑与技巧-变量作用域/">javascript javascript坑与技巧 变量作用域</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-javascript坑与技巧-异常/">javascript javascript坑与技巧 异常</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-javascript坑与技巧-箭头函数/">javascript javascript坑与技巧 箭头函数</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-javascript坑与技巧-表单/">javascript javascript坑与技巧 表单</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-javascript坑与技巧-闭包/">javascript javascript坑与技巧 闭包</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript忍者秘籍笔记/">javascript忍者秘籍笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/react文档-翻译/">react文档 翻译</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">专注于Web与游戏</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">soojade</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/avatar.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">soojade</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">博客</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=2035030023@qq.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/soojade" title="GitHub"></a>
+                            
+                                <a class="fa 知乎" target="_blank" href="https://www.zhihu.com/people/soojade/activities" title="知乎"></a>
+                            
+                                <a class="fa 简书" target="_blank" href="http://www.jianshu.com/users/b2e1cf392d42/latest_articles" title="简书"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-模板语法" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/12/16/模板语法/" class="article-date">
+      <time datetime="2016-12-16T08:26:07.000Z" itemprop="datePublished">2016-12-16</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      模板语法
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/dart/">dart</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dart-angularDart-web-angular指南/">dart angularDart web angular指南</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h2 id="模板语法"><a href="#模板语法" class="headerlink" title="模板语法"></a>模板语法</h2><p>我们的 Angular 应用管理着用户之所见和所为，并通过 <em>Component</em> 类的实例（组件）和面向用户的模板来与用户交互。<br><a id="more"></a><br>从使用模型-视图-控制器 (MVC) 或模型-视图-视图模型 (MVVM) 的经验中，很多开发人员都熟悉了组件和模板这两个概念。 在 Angular 中，组件扮演着控制器或视图模型的角色，模板则扮演视图的角色。</p>
+<p>来看看写视图的模板都需要什么。本章将覆盖模板语法中的下列基本元素：</p>
+<ul>
+<li><a href="#html">HTML</a></li>
+<li><a href="#inter">插值表达式</a></li>
+<li><a href="#tmpex">模板表达式</a></li>
+<li><a href="#tmpsm">模板语句</a></li>
+<li><a href="#bind">绑定语法</a></li>
+<li><a href="#prop">属性绑定</a></li>
+<li><a href="#attr">attribute、class和style绑定</a></li>
+<li><a href="#event">事件绑定</a></li>
+<li><a href="#two">双向数据绑定</a></li>
+<li><a href="#ngmodel">使用 NgModel 进行双向数据绑定</a></li>
+<li><a href="#direct">内置指令</a><ul>
+<li><a href="#class">NgClass</a></li>
+<li><a href="#style">NgStyle</a></li>
+<li><a href="#if">NgIf</a></li>
+<li><a href="#switch">NgSwitch</a></li>
+<li><a href="#for">NgFor</a></li>
+</ul>
+</li>
+<li><a href="#star">&#42; 与&lt;template&gt;</a></li>
+<li><a href="#var">模板引用变量</a></li>
+<li><a href="#ipt">输入输出属性</a></li>
+<li><a href="#opt">模板表达式操作符</a><ul>
+<li><a href="#pip">管道</a></li>
+<li><a href="#safe">安全导航操作符(<code>?.</code>)</a></li>
+</ul>
+</li>
+</ul>
+<p><a href="http://angular-examples.github.io/template-syntax" target="_blank" rel="external">在线例子</a>演示了本章中描述的所有语法和代码片段。</p>
+<h3 id="html">HTML</h3>
+
+<p>HTML 是 Angular 模板的语言。<em>快速起步</em>应用的模板是纯 HTML 的：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">h1</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">id</span>=<span class="string">"hello-angular"</span> <span class="attr">class</span>=<span class="string">"anchor"</span> <span class="attr">href</span>=<span class="string">"#hello-angular"</span> <span class="attr">aria-hidden</span>=<span class="string">"true"</span>&gt;</span><span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"octicon octicon-link"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span>Hello Angular<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>几乎所有的 HTML 语法都是有效的模板语法。但值得注意的例外是<code>&lt;script&gt;</code>元素，它被禁用了，以阻止脚本注入攻击的风险。（实际上，<code>&lt;script&gt;</code>只是被忽略了。）</p>
+<p>有些合法的 HTML 被用在模板中是没有意义的。<code>&lt;html&gt;</code>、<code>&lt;body&gt;</code>和<code>&lt;base&gt;</code>元素这个舞台上中并没有扮演有用的角色。基本上所有其它的元素都一样被使用。</p>
+<p>可以通过组件和指令来扩展模板中的 HTML 词汇。它们看上去就是新元素和属性。接下来将学习如何通过数据绑定来动态获取/设置 DOM（文档对象模型）的值。</p>
+<p>数据绑定的第一种形式 ——插值表达式—— 展示了模板的 HTML 可以有多丰富。</p>
+<h3 id="inter">插值表达式</h3>
+
+<p>在以前的 Angular 教程中，我们遇到过由双花括号<code></code>括起来的插值表达式。</p>
+<figure class="highlight django"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="xml"><span class="tag">&lt;<span class="name">p</span>&gt;</span>My current hero is </span><span class="template-variable">&#123;&#123;currentHero.firstName&#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></div></pre></td></tr></table></figure>
+<p>我们使用插值表达式把计算后的字符串插入到 HTML 元素标签内的文本或对标签的属性进行赋值。</p>
+<figure class="highlight django"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="xml"><span class="tag">&lt;<span class="name">h3</span>&gt;</span></span></div><div class="line">  <span class="template-variable">&#123;&#123;title&#125;&#125;</span><span class="xml"></span></div><div class="line">  <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"</span></span><span class="template-variable">&#123;&#123;heroImageUrl&#125;&#125;</span><span class="xml"><span class="tag"><span class="string">"</span> <span class="attr">style</span>=<span class="string">"height:30px"</span>&gt;</span></span></div><div class="line"><span class="tag">&lt;/<span class="name">h3</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>在括号之间的“素材”，通常是组件属性的名字。Angular 会用组件中相应属性的字符串值，替换这个名字。上例中，Angular 计算<code>title</code>和<code>heroImageUrl</code>属性的值，并把它们填在空白处。首先显示粗体的应用标题，然后显示英雄的图片。</p>
+<p>一般来说，括号间的素材是一个<strong>模板表达式</strong>，Angular 先对它求值，再把它<strong>转换成字符串</strong>。下列插值表达式通过把括号中的两个数字相加说明了这一点：</p>
+<figure class="highlight django"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="xml"><span class="comment">&lt;!-- "The sum of 1 + 1 is 2" --&gt;</span></span></div><div class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>The sum of 1 + 1 is <span class="template-variable">&#123;&#123;1 + 1&#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></div></pre></td></tr></table></figure>
+<p>这个表达式可以调用宿主组件的方法，就像下面用的<code>getVal()</code>：</p>
+<figure class="highlight dust"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="xml"><span class="comment">&lt;!-- "The sum of 1 + 1 is not 4" --&gt;</span></span></div><div class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>The sum of 1 + 1 is not <span class="template-variable">&#123; &#123;1 + 1 + getVal()&#125;</span><span class="xml"> &#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></div></pre></td></tr></table></figure>
+<p>Angular 对所有双花括号中的表达式求值，把求值的结果转换成字符串，并把它们跟相邻的字符串字面量连接起来。最后，把这个组合出来的插值结果赋给<strong>元素或指令的属性</strong>。</p>
+<p>表面上看，我们在元素标签之间插入了结果和对标签的属性进行了赋值。这样思考起来很方便，并且这个误解很少给我们带来麻烦。但严格来讲，这是不对的。插值表达式是一个特殊的语法，Angular 把它转换成了<em>属性绑定</em>，后面将会解释这一点。</p>
+<p>讲解属性绑定之前，先深入了解一下模板表达式和模板语句。</p>
+<h3 id="tmpex">模板表达式</h3>
+
+<p>模板<strong>表达式</strong>产生一个值。Angular 执行这个表达式，并把它赋值给绑定目标的属性，这个绑定目标可能是 HTML 元素、组件或指令。</p>
+<p>当我们写<code>2</code>时，是往插值表达式的括号中放进了一个模板表达式。在属性绑定中会再次看到模板表达式，它出现在<code>=</code>右侧的引号中，看起来像这样：<code>[property]=&quot;expression&quot;</code>。</p>
+<p>编写模板表达式所用的语言看起来很像 Dart。很多 Dart 表达式也是合法的模板表达式，但不是全部。</p>
+<p>Dart 中那些具有或可能引发副作用的表达式是被禁止的，包括：</p>
+<ul>
+<li>赋值 (<code>=</code>, <code>+=</code>, <code>-=</code>, …)</li>
+<li><code>new</code>或<code>const</code></li>
+<li>使用<code>;</code>的链式表达式</li>
+<li>自增或自减操作符 (<code>++</code>和<code>--</code>)</li>
+</ul>
+<p>其他和 Dart 语法显著的不同包括：</p>
+<ul>
+<li>不支持 Dart 字符串插值；例如，必须使用<code>&quot;&#39;the title is &#39;+ title&quot;</code>而不是<code>&quot;&#39;the title is $title&#39;&quot;</code>。</li>
+<li>不支持位运算符<code>|</code>和<code>&amp;</code></li>
+<li>具有新的模板表达式运算符，比如<code>|</code>和<code>&amp;</code></li>
+</ul>
+<h4 id="表达式上下文"><a href="#表达式上下文" class="headerlink" title="表达式上下文"></a>表达式上下文</h4><p>也许更让人吃惊的是，模板表达式不能引用静态属性。也不能引用顶级变量或函数，例如从<code>dart:html</code>引入的<code>window</code>或<code>document</code>。不能直接调用<code>print</code>或从<code>dart:math</code>导入的函数。它们被局限于只能访问来自表达式上下文中的成员。</p>
+<p>典型的<em>表达式上下文</em>就是这个<strong>组件实例</strong>，它是各种绑定值的来源。</p>
+<p>当看到包裹在双花括号中的 <code>title</code> (模板语法) 时，我们就知道<code>title</code>是这个数据绑定组件中的一个属性。当看到<code>[disabled]=&quot;isUnchanged&quot;</code>中的 <code>isUnchanged</code> 时，我们就知道正在引用该组件的<code>isUnchanged</code>属性。</p>
+<p>通常，组件本身就是表达式的上下文，这种情况下，模板表达式会引用那个组件。</p>
+<p>表达式的上下文可以包括组件之外的对象。<em>模板引用变量</em>就是备选的上下文对象之一。</p>
+<h4 id="表达式指南"><a href="#表达式指南" class="headerlink" title="表达式指南"></a>表达式指南</h4><p>模板表达式能成就或毁掉一个应用。请遵循下列指南：</p>
+<ul>
+<li>没有可见的副作用</li>
+<li>执行迅速</li>
+<li>非常简单</li>
+<li>幂等性</li>
+</ul>
+<p>超出上面指南外的情况应该只出现在那些你确信自己已经彻底理解的特定场景中。</p>
+<h5 id="没有可见的副作用"><a href="#没有可见的副作用" class="headerlink" title="没有可见的副作用"></a>没有可见的副作用</h5><p>模板表达式除了目标属性的值以外，不应该改变应用的任何状态。</p>
+<p>这条规则是 Angular “单向数据流”策略的基础。永远不用担心读取组件值可能改变另外的显示值。在一次单独的渲染过程中，视图应该总是稳定的。</p>
+<h5 id="执行迅速"><a href="#执行迅速" class="headerlink" title="执行迅速"></a>执行迅速</h5><p>Angular 执行模板表达式比我们想象的频繁。它们可能在每一次按键或鼠标移动后被调用。表达式应该快速结束，否则用户就会感到拖沓，特别是在较慢的设备上。当计算代价较高时，应该考虑缓存那些从其它值计算得出的值。</p>
+<h5 id="非常简单"><a href="#非常简单" class="headerlink" title="非常简单"></a>非常简单</h5><p>虽然可以写出相当复杂的模板表达式，但不要那么去写。</p>
+<p>常规是属性名或方法调用。偶尔的逻辑取反 (<code>!</code>) 也还凑合。其它情况下，应在组件中实现应用和业务逻辑，使开发和测试变得更容易。</p>
+<h5 id="幂等性"><a href="#幂等性" class="headerlink" title="幂等性"></a>幂等性</h5><p>最好使用幂等的表达式，因为它没有副作用，并且能提升 Angular 变更检测的性能。</p>
+<p>在 Angular 的术语中，幂等的表达式应该总是返回完全相同的东西，直到某个依赖值发生改变。</p>
+<p>在单独的一次事件循环中，被依赖的值不应该改变。如果幂等的表达式返回一个字符串或数字，连续调用它两次，也应该返回相同的字符串或数字。如果幂等的表达式返回一个对象（包括一个<code>List</code>），连续调用它两次，也应该返回同一个对象的<em>引用</em>。</p>
+<h3 id="tmpsm">模板语句</h3>
+
+<p>模板语句用来响应由绑定目标（如 HTML 元素、组件或指令）触发的事件。</p>
+<p>模板语句将在<em>事件绑定</em>一节看到，它出现在<code>=</code>号右侧的引号中，就像这样：<code>(event)=&quot;statement&quot;</code>。</p>
+<p>模板语句有<em>副作用</em>。这正是用户输入更新应用状态的方式。否则，响应事件就没有什么意义了。</p>
+<blockquote>
+<p>响应事件是 Angular 中“单向数据流”的另一面。在一次事件循环中，可以随意改变任何地方的任何东西。</p>
+</blockquote>
+<p>和模板表达式一样，模板语句使用的语言也像 Dart。模板语句解析器和模板表达式解析器有所不同，特别之处在于它支持基本赋值 (<code>=</code>) 和表达式链 (<code>;</code>)。</p>
+<p>然而，某些 Dart 语法仍然是不允许的：</p>
+<ul>
+<li><code>new</code>或<code>const</code></li>
+<li>自增和自减运算符：<code>++</code>和<code>--</code></li>
+<li>操作并赋值，例如<code>+=</code>和<code>-=</code></li>
+<li>位操作符<code>|</code>和<code>&amp;</code></li>
+<li>模板表达式运算符</li>
+</ul>
+<h5 id="语句上下文"><a href="#语句上下文" class="headerlink" title="语句上下文"></a>语句上下文</h5><p>和表达式中一样，语句只能引用语句上下文中——通常是正在绑定事件的那个<strong>组件实例</strong>。</p>
+<p>模板语句不能引用类的静态属性，也不能引用顶级变量或方法，例如从<code>dart:html</code>导入的<code>window</code>或者<code>document</code>。它们不能直接调用<code>print</code>或从<code>dart:math</code>导入的函数。</p>
+<p><code>(click)=&quot;onSave()&quot;</code>中的 <code>onSave</code> 就是数据绑定组件实例中的方法。</p>
+<p>语句上下文可以包含组件之外的对象。<em>模板引用变量</em>就是备选上下文对象之一。在事件绑定语句中，经常会看到被保留的<code>$event</code>符号，它代表触发事件的“消息”或“有效载荷”。</p>
+<h5 id="语句指南"><a href="#语句指南" class="headerlink" title="语句指南"></a>语句指南</h5><p>和表达式一样，避免写复杂的模板语句。常规是函数调用或者属性赋值。</p>
+<p>现在，对模板表达式和语句有了一点感觉了吧。除插值表达式外，还有各种各样的数据绑定语法，是学习它们的时候了。</p>
+<h3 id="bind">绑定语法：概览</h3>
+
+<p>数据绑定是一种机制，用来协调用户所见和应用数据。虽然我们能往 HTML 推送值或者从 HTML 拉取值，但如果把这些琐事交给数据绑定框架处理，应用会更容易编写、阅读和维护。 只要简单地在绑定源和目标 HTML 元素之间声明绑定，框架就会完成这项工作。</p>
+<p>Angular 提供了各种各样的数据绑定，本章将逐一讨论。首先，从高层视角来看看 Angular 数据绑定和它的语法。</p>
+<p>根据数据流的方向，可以把所有绑定归为三类。 每一类都有它独特的语法：</p>
+<table>
+<thead>
+<tr>
+<th>数据方向</th>
+<th>语法</th>
+<th>绑定类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>单向-从数据源流向视图目标</td>
+<td><code>{ {expression} }</code><br><code>[target] = &quot;expression&quot;</code><br><code>bind-target = &quot;expression&quot;</code></td>
+<td>插值表达式Property Attribute类样式</td>
+</tr>
+<tr>
+<td>单向-从视图目标到数据源</td>
+<td><code>(target) = &quot;statement&quot;</code><br><code>on-target = &quot;statement&quot;</code></td>
+<td>事件</td>
+</tr>
+<tr>
+<td>双向</td>
+<td><code>[(target)] = &quot;expression&quot;</code><br><code>bindon-target = &quot;expression&quot;</code></td>
+<td>双向</td>
+</tr>
+</tbody>
+</table>
+<p>除了插值表达式之外的绑定类型，在等号左边是<strong>目标名</strong>，无论是包在括号中(<code>[]</code>、<code>()</code>)还是用前缀形式 (<code>bind-</code>、<code>on-</code>、<code>bindon-</code>) 。</p>
+<p>什么是“目标”？在回答这个问题之前，我们必须先挑战下自我，尝试用另一种方式来审视模板中的 HTML。</p>
+<h4 id="新的思维模型"><a href="#新的思维模型" class="headerlink" title="新的思维模型"></a>新的思维模型</h4><p>数据绑定的威力和允许用自定义标记扩展 HTML 词汇的能力，容易误导我们把模板 HTML 当成 <em>HTML+</em>。</p>
+<p>也对，它是 HTML+。但它也跟我们熟悉的 HTML 有着显著的不同。我们需要一种新的思维模型。</p>
+<p>在正常的 HTML 开发过程中，我们使用 HTML 元素创建视觉结构，通过把字符串常量设置到元素的<code>attribute</code>来修改那些元素。</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;<span class="selector-tag">div</span> class=<span class="string">"special"</span>&gt;Mental Model&lt;/div&gt;</div><div class="line">&lt;<span class="selector-tag">img</span> src=<span class="string">"assets/images/hero.png"</span>&gt;</div><div class="line">&lt;<span class="selector-tag">button</span> disabled&gt;Save&lt;/button&gt;</div></pre></td></tr></table></figure>
+<p>在 Angular 模板中，我们仍使用同样的方式来创建结构和初始化<code>attribute</code>值。</p>
+<p>然后，用封装了 HTML 的组件创建新元素，并把它们当作原生 HTML 元素在模板中使用。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- Normal HTML --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"special"</span>&gt;</span>Mental Model<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="comment">&lt;!-- Wow! A new element! --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">hero-detail</span>&gt;</span><span class="tag">&lt;/<span class="name">hero-detail</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>这就是HTML+。</p>
+<p>现在开始学习数据绑定。我们碰到的第一种数据绑定看起来是这样的：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- Bind button disabled state to `isUnchanged` property --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">button</span> [<span class="attr">disabled</span>]=<span class="string">"isUnchanged"</span>&gt;</span>Save<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>过会儿再认识那个怪异的方括号记法。直觉告诉我们，我们正在绑定按钮的<code>disabled</code> attribute。并把它设置为组件的<code>isUnchanged</code>属性的当前值。</p>
+<p>但我们的直觉是错的！日常的 HTML 思维模式在误导我们。实际上，一旦开始数据绑定，就不再跟 HTML attribute 打交道了。这里不是设置 attribute，而是设置 DOM 元素、组件和指令的 property。</p>
+<blockquote>
+<h4 id="HTML-attribute-与-DOM-property-的对比"><a href="#HTML-attribute-与-DOM-property-的对比" class="headerlink" title="HTML attribute 与 DOM property 的对比"></a>HTML attribute 与 DOM property 的对比</h4><p>要想理解 Angular 绑定如何工作，重点是搞清 HTML attribute 和 DOM property 之间的区别。</p>
+<p><strong>attribute 是由 HTML 定义的。property 是由 DOM (Document Object Model) 定义的</strong>。</p>
+<ul>
+<li>少量 HTML attribute 和 property 之间有着 1:1 的映射，如<code>id</code>。</li>
+<li>有些 HTML attribute 没有对应的 property，如<code>colspan</code>。</li>
+<li>有些 DOM property 没有对应的 attribute，如<code>textContent</code>。</li>
+<li>大量 HTML attribute看起来映射到了property…… 但却不像我们想的那样！</li>
+</ul>
+<p>最后一类尤其让人困惑…… 除非我们能理解这个普遍原则：</p>
+<p><strong>attribute 初始化 DOM property，然后它们的任务就完成了。property 的值可以改变；attribute 的值不能改变</strong>。</p>
+<p>例如，当浏览器渲染<code>&lt;input type=&quot;text&quot; value=&quot;Bob&quot;&gt;</code>时，它将创建相应 DOM 节点，其<code>value</code> property 被初始化为 “Bob”。</p>
+<p>当用户在输入框中输入 “Sally” 时，DOM 元素的<code>value</code> property 变成了 “Sally”。 但是这个 HTML <code>value</code> attribute 保持不变。如果我们读取 input 元素的 attribute，就会发现确实没变：<code>input.getAttribute(&#39;value&#39;) // 返回 &quot;Bob&quot;</code>。</p>
+<p>HTML attribute <code>value</code>指定了初始值；DOM <code>value</code> property 是当前值。</p>
+<p><code>disabled</code> attribute 是另一个古怪的例子。按钮的<code>disabled</code> property 是<code>false</code>，因为默认情况下按钮是可用的。当我们添加<code>disabled</code> attribute 时，只要它出现了，按钮的<code>disabled</code> property 就初始化为<code>true</code>，于是按钮就被禁用了。</p>
+<p>添加或删除<code>disabled</code> attribute会禁用或启用这个按钮。但 attribute 的值无关紧要，这就是我们为什么没法通过 <code>&lt;button disabled=&quot;false&quot;&gt;仍被禁用&lt;/button&gt;</code>这种写法来启用按钮。</p>
+<p>设置按钮的<code>disabled</code> property（如，通过 Angular 绑定）可以禁用或启用这个按钮。这就是 property 的价值。</p>
+<p><strong>即使名字相同，HTML attribute 和 DOM property 也不是同样的东西</strong>。</p>
+</blockquote>
+<p>这句话很重要，我们再强调一次：</p>
+<p><strong>模板绑定是通过 property 和事件来工作的，而不是 attribute</strong>。</p>
+<blockquote>
+<p>在 Angular 的世界中，attribute 唯一的作用是用来初始化元素和指令的状态。当进行数据绑定时，只是在与元素和指令的 property 和事件打交道，而 attribute 就完全靠边站了。</p>
+</blockquote>
+<p>把这个思维模型牢牢的印在脑子里，接下来，学习什么是绑定目标。</p>
+<h4 id="绑定目标"><a href="#绑定目标" class="headerlink" title="绑定目标"></a>绑定目标</h4><p><strong>数据绑定的目标</strong>是 DOM 中的某些东西。根据绑定类型，这个目标可能是（元素 | 组件 | 指令的）property、（元素 | 组件 | 指令的）事件，或(极少数情况下) attribute 名。下面是的汇总表：</p>
+<table>
+<thead>
+<tr>
+<th>绑定类型</th>
+<th>目标</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>property</td>
+<td>元素属性<br>组件属性<br>指令属性</td>
+<td><code>&lt;img [src] = &quot;heroImageUrl&quot;&gt;</code><br><code>&lt;hero-detail [hero]=&quot;currentHero&quot;&gt;&lt;/hero-detail&gt;</code><br><code>&lt;div [ngClass] = &quot;{selected: isSelected}&quot;&gt;&lt;/div&gt;</code></td>
+</tr>
+<tr>
+<td>事件</td>
+<td>元素事件<br>组件事件<br>指令事件<br></td>
+<td><code>&lt;img [src] = &quot;heroImageUrl&quot;&gt;</code><br><code>&lt;hero-detail [hero]=&quot;currentHero&quot;&gt;&lt;/hero-detail&gt;</code><br><code>&lt;div [ngClass] = &quot;{selected: isSelected}&quot;&gt;&lt;/div&gt;</code></td>
+</tr>
+<tr>
+<td>双向</td>
+<td>事件和property</td>
+<td><code>&lt;input [(ngModel)]=&quot;heroName&quot;&gt;</code></td>
+</tr>
+<tr>
+<td>Attribute</td>
+<td><code>attribute</code>（例外情况）</td>
+<td><code>&lt;button [attr.aria-label]=&quot;help&quot;&gt;help&lt;/button&gt;</code></td>
+</tr>
+<tr>
+<td>CSS 类</td>
+<td><code>class</code>属性</td>
+<td><code>&lt;div [class.special]=&quot;isSpecial&quot;&gt;Special&lt;/div&gt;</code></td>
+</tr>
+<tr>
+<td>样式</td>
+<td><code>style</code>属性</td>
+<td><code>&lt;button [style.color] = &quot;isSpecial ? &#39;red&#39; : &#39;green&#39;&quot;&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<p>让我们从结构性云层中走出来，看看每种绑定类型的具体情况。</p>
+<h3 id="prop">属性绑定</h3>
+
+<p>当要把视图元素的属性 (property) 设置为模板表达式时，就要写模板的<strong>属性 (property) 绑定</strong>。</p>
+<p>最常用的属性绑定是把元素属性设置为组件属性的值。下面这个例子中，image 元素的<code>src</code>属性会被绑定到组件的<code>heroImageUrl</code>属性上：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;<span class="selector-tag">img</span> [src]=<span class="string">"heroImageUrl"</span>&gt;</div></pre></td></tr></table></figure>
+<p>另一个例子是当组件说它<code>isUnchanged</code>（未改变）时禁用按钮：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">button</span> [<span class="attr">disabled</span>]=<span class="string">"isUnchanged"</span>&gt;</span>Cancel is disabled<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>另一个例子是设置指令的属性：</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;<span class="keyword">div</span> [ngClass]=<span class="string">"classes"</span>&gt;[ngClass] binding <span class="keyword">to</span> <span class="keyword">the</span> classes <span class="keyword">property</span>&lt;/<span class="keyword">div</span>&gt;</div></pre></td></tr></table></figure>
+<p>还有另一个例子是设置自定义组件的模型属性（这是父子组件之间通讯的重要途径）：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">hero-detail</span> [<span class="attr">hero</span>]=<span class="string">"currentHero"</span>&gt;</span><span class="tag">&lt;/<span class="name">hero-detail</span>&gt;</span></div></pre></td></tr></table></figure>
+<h4 id="单向输入"><a href="#单向输入" class="headerlink" title="单向输入"></a>单向输入</h4><p>人们经常把属性绑定描述成<em>单向数据绑定</em>，因为值的流动是单向的，从组件的数据属性流向目标元素的属性。</p>
+<p>我们不能使用属性绑定从目标元素拉取值，也不能绑定到目标元素的属性来读取它。只能设置它。</p>
+<blockquote>
+<p>也不能使用属性绑定来调用目标元素上的方法。</p>
+<p>如果这个元素触发了事件，我们可以通过<em>事件绑定</em>来监听它们。</p>
+<p>如果必须读取目标元素上的属性或调用它的某个方法，得用另一种技术。参见 API 参考手册中的 <em>ViewChild</em> 和 <em>ContentChild</em>。</p>
+</blockquote>
+<h4 id="绑定目标-1"><a href="#绑定目标-1" class="headerlink" title="绑定目标"></a>绑定目标</h4><p>包裹在方括号中的元素属性名标记着目标属性。下列代码中的目标属性是 image 元素的<code>src</code>属性。</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;<span class="selector-tag">img</span> [src]=<span class="string">"heroImageUrl"</span>&gt;</div></pre></td></tr></table></figure>
+<p>有些人喜欢用<code>bind-</code>前缀的可选形式，并称之为<em>规范形式</em>：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;<span class="selector-tag">img</span> bind-src=<span class="string">"heroImageUrl"</span>&gt;</div></pre></td></tr></table></figure>
+<p>目标的名字总是 property 的名字。即使它看起来和别的名字一样。看到<code>src</code>时，可能会把它当做 attribute。不！它不是！它是 image 元素的 property 名。</p>
+<p>元素属性可能是最常见的绑定目标，但 Angular 会先去看这个名字是否是某个已知指令的属性名，就像下面的例子中一样：</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;<span class="keyword">div</span> [ngClass]=<span class="string">"classes"</span>&gt;[ngClass] binding <span class="keyword">to</span> <span class="keyword">the</span> classes <span class="keyword">property</span>&lt;/<span class="keyword">div</span>&gt;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>严格来说，Angular 正在匹配指令的输入属性的名字。这个名字是指令的<code>inputs</code>列表中所列的名字，或者是带有<code>@Input()</code>注解的属性。这些输入属性被映射为指令自己的属性。</p>
+</blockquote>
+<p>如果名字没有匹配上已知指令或元素的属性，Angular 就会报告“未知指令”的错误。</p>
+<h4 id="消除副作用"><a href="#消除副作用" class="headerlink" title="消除副作用"></a>消除副作用</h4><p>正如曾讨论过的，模板表达式的计算不能有可见的副作用。表达式语言本身可以提供一部分安全保障。不能在属性绑定表达式中对任何东西赋值，也不能使用自增、自减运算符。</p>
+<p>当然，表达式可能会调用具有副作用的属性或方法。但 Angular 没法知道这一点，也没法阻止我们。</p>
+<p>表达式中可以调用像<code>getFoo()</code>这样的方法。只有我们知道<code>getFoo()</code>干了什么。 如果<code>getFoo()</code>改变了某个东西，恰好又绑定到个这个东西，我们就可能把自己坑了。Angular 可能显示也可能不显示变化后的值。Angular 还可能检测到变化，并抛出警告型错误。一般建议是，只绑定数据属性和那些只返回值而不做其它事情的方法。</p>
+<h4 id="返回恰当的类型"><a href="#返回恰当的类型" class="headerlink" title="返回恰当的类型"></a>返回恰当的类型</h4><p>模板表达式应该返回目标属性所需类型的值。如果目标属性想要个字符串，就返回字符串。如果目标属性想要个数字，就返回数字。如果目标属性想要个对象，就返回对象。</p>
+<p><code>HeroDetail</code>组件的<code>hero</code>属性想要一个<code>Hero</code>对象，那就在属性绑定中精确地给它一个<code>Hero</code>对象：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">hero-detail</span> [<span class="attr">hero</span>]=<span class="string">"currentHero"</span>&gt;</span><span class="tag">&lt;/<span class="name">hero-detail</span>&gt;</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>在检查模式，如果模板表达式结果类型和目标属性类型不兼容，会抛出一个类型异常错误。</p>
+</blockquote>
+<h4 id="别忘了方括号"><a href="#别忘了方括号" class="headerlink" title="别忘了方括号"></a>别忘了方括号</h4><p>方括号告诉 Angular 要计算模板表达式。如果忘了加方括号，Angular 会把这个表达式当做字符串常量看待，并用该字符串来<em>初始化目标属性</em>。它不会计算这个字符串。</p>
+<p>不要出现这样的失误：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- ERROR: HeroDetailComponent.hero expects a</span></div><div class="line">     Hero object, not the string "currentHero" --&gt;</div><div class="line">  <span class="tag">&lt;<span class="name">hero-detail</span> <span class="attr">hero</span>=<span class="string">"currentHero"</span>&gt;</span><span class="tag">&lt;/<span class="name">hero-detail</span>&gt;</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>在检查模式，上面的代码返回一个类型异常:<code>String isn&#39;t a subtype of Hero</code>.</p>
+</blockquote>
+<h4 id="一次性字符串初始化"><a href="#一次性字符串初始化" class="headerlink" title="一次性字符串初始化"></a>一次性字符串初始化</h4><p>当下列条件满足时，应该省略括号：</p>
+<ul>
+<li>目标属性接受字符串值。</li>
+<li>字符串是个固定值，可以直接合并到模块中。</li>
+<li>这个初始值永不改变。</li>
+</ul>
+<p>我们经常这样在标准 HTML 中用这种方式初始化 attribute，这种方式也可以用在初始化指令和组件的属性。下面这个例子把<code>HeroDetailComponent</code>的<code>prefix</code>属性初始化为固定的字符串，而不是模板表达式。Angular 设置它，然后忘记它。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">hero-detail</span> <span class="attr">prefix</span>=<span class="string">"You are my"</span> [<span class="attr">hero</span>]=<span class="string">"currentHero"</span>&gt;</span><span class="tag">&lt;/<span class="name">hero-detail</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>作为对比，<code>[hero]</code>绑定是组件的<code>currentHero</code>属性的活绑定，它会一直随着更新。</p>
+<h4 id="属性绑定还是插值表达式？"><a href="#属性绑定还是插值表达式？" class="headerlink" title="属性绑定还是插值表达式？"></a>属性绑定还是插值表达式？</h4><p>我们通常得在插值表达式和属性绑定之间做出选择。下列这几对绑定做的事情完全相同：</p>
+<figure class="highlight django"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="xml"><span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"</span></span></span><span class="template-variable">&#123;&#123;heroImageUrl&#125;&#125;</span><span class="xml"><span class="tag"><span class="string">"</span>&gt;</span> is the <span class="tag">&lt;<span class="name">i</span>&gt;</span>interpolated<span class="tag">&lt;/<span class="name">i</span>&gt;</span> image.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></div><div class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;<span class="name">img</span> [<span class="attr">src</span>]=<span class="string">"heroImageUrl"</span>&gt;</span> is the <span class="tag">&lt;<span class="name">i</span>&gt;</span>property bound<span class="tag">&lt;/<span class="name">i</span>&gt;</span> image.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;<span class="name">span</span>&gt;</span>"<span class="template-variable">&#123;&#123;title&#125;&#125;</span><span class="xml">" is the <span class="tag">&lt;<span class="name">i</span>&gt;</span>interpolated<span class="tag">&lt;/<span class="name">i</span>&gt;</span> title.<span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></div><div class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>"<span class="tag">&lt;<span class="name">span</span> [<span class="attr">innerHTML</span>]=<span class="string">"title"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span>" is the <span class="tag">&lt;<span class="name">i</span>&gt;</span>property bound<span class="tag">&lt;/<span class="name">i</span>&gt;</span> title.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>在多数情况下，插值表达式是更方便的备选项。实际上，在渲染视图之前，Angular 把这些插值表达式翻译成相应的属性绑定。</p>
+<p>没有技术上的理由能决定哪种形式更好。我们倾向于可读性，所以倾向于插值表达式。建议建立代码风格规则，选择一种形式，这样，既遵循了规则，又能让手头的任务做起来更自然。</p>
+<h4 id="内容安全"><a href="#内容安全" class="headerlink" title="内容安全"></a>内容安全</h4><p>假设下面的恶意内容.</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">String evilTitle = 'Template <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="actionscript">alert(<span class="string">"evil never sleeps"</span>)</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span>Syntax';</div></pre></td></tr></table></figure>
+<p>幸运的是，Angular 数据绑定对危险 HTML 有防备。在显示它们之前，它对内容先进行<em>消毒</em>。不管是插值表达式还是属性绑定，都不会允许带有 <code>script</code> 标签的 HTML 泄漏到浏览器中。</p>
+<figure class="highlight django"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="xml"><span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;<span class="name">span</span>&gt;</span>"</span><span class="template-variable">&#123;&#123;evilTitle&#125;&#125;</span><span class="xml">" is the <span class="tag">&lt;<span class="name">i</span>&gt;</span>interpolated<span class="tag">&lt;/<span class="name">i</span>&gt;</span> evil title.<span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></div><div class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>"<span class="tag">&lt;<span class="name">span</span> [<span class="attr">innerHTML</span>]=<span class="string">"evilTitle"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span>" is the <span class="tag">&lt;<span class="name">i</span>&gt;</span>property bound<span class="tag">&lt;/<span class="name">i</span>&gt;</span> evil title.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>插值表达式处理 <code>script</code> 标签与属性绑定有所不同，但是二者都只渲染没有危害的内容。</p>
+<h3 id="attr">attribute、class 和 style 绑定</h3>
+
+<p>模板语法为那些不太适合使用属性绑定的场景提供了专门的单向数据绑定形式。</p>
+<h4 id="attribute-绑定"><a href="#attribute-绑定" class="headerlink" title="attribute 绑定"></a>attribute 绑定</h4><p>可以通过 <strong>attribute 绑定</strong>来直接设置 attribute 的值。</p>
+<blockquote>
+<p>这是“绑定到目标属性 (property)”这条规则中唯一的例外。这是唯一的能创建和设置 attribute 的绑定形式。</p>
+</blockquote>
+<p>本章中，通篇都在说通过属性绑定来设置元素的属性总是好于用字符串设置 attribute。为什么 Angular 还提供了 attribute 绑定呢？</p>
+<p><strong>因为当元素没有属性可绑的时候，就必须使用 attribute 绑定</strong>。</p>
+<p>考虑 <em>ARIA</em>，<em>SVG</em> 和 <em>table</em> 中的 <code>colspan/rowspan</code> 等 attribute。它们是纯粹的 attribute，没有对应的属性可供绑定。</p>
+<p>如果想写出类似下面这样的东西，现状会令我们痛苦：</p>
+<figure class="highlight django"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="xml"><span class="tag">&lt;<span class="name">tr</span>&gt;</span><span class="tag">&lt;<span class="name">td</span> <span class="attr">colspan</span>=<span class="string">"</span></span></span><span class="template-variable">&#123;&#123;1 + 1&#125;&#125;</span><span class="xml"><span class="tag"><span class="string">"</span>&gt;</span>Three-Four<span class="tag">&lt;/<span class="name">td</span>&gt;</span><span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span></div></pre></td></tr></table></figure>
+<p>会得到这个错误：</p>
+<figure class="highlight vhdl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">// 模板解析错误：不能绑定到 <span class="symbol">'colspan</span>'，因为它不是已知的原生属性</div><div class="line">Template parse errors:</div><div class="line">Can<span class="symbol">'t</span> bind <span class="keyword">to</span> <span class="symbol">'colspan</span>' since it isn<span class="symbol">'t</span> a known native <span class="keyword">property</span></div></pre></td></tr></table></figure>
+<p>正如提示中所说，<code>&lt;td&gt;</code>元素没有<code>colspan</code>属性。但是插值表达式和属性绑定只能设置属性，不能设置 <em>attribute</em>。</p>
+<p>我们需要 attribute 绑定来创建和绑定到这样的 attribute。</p>
+<p>attribute 绑定的语法与属性绑定类似。但方括号中的部分不是元素的属性名，而是由<code>attr</code>前缀，一个点 (<code>.</code>) 和 attribute 的名字组成。可以通过值为字符串的表达式来设置 attribute 的值。</p>
+<p>这里把<code>[attr.colspan]</code>绑定到一个计算值：</p>
+<figure class="highlight django"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="xml"><span class="tag">&lt;<span class="name">table</span> <span class="attr">border</span>=<span class="string">1</span>&gt;</span></span></div><div class="line">  <span class="comment">&lt;!--  expression calculates colspan=2 --&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">tr</span>&gt;</span><span class="tag">&lt;<span class="name">td</span> [<span class="attr">attr.colspan</span>]=<span class="string">"1 + 1"</span>&gt;</span>One-Two<span class="tag">&lt;/<span class="name">td</span>&gt;</span><span class="tag">&lt;/<span class="name">tr</span>&gt;</span></div><div class="line"></div><div class="line">  <span class="comment">&lt;!-- ERROR: There is no `colspan` property to set!</span></div><div class="line">    &lt;tr&gt;&lt;td colspan="<span class="template-variable">&#123;&#123;1 + 1&#125;&#125;</span><span class="xml"><span class="comment">"&gt;Three-Four&lt;/td&gt;&lt;/tr&gt;</span></span></div><div class="line">  --&gt;</div><div class="line"></div><div class="line">  <span class="tag">&lt;<span class="name">tr</span>&gt;</span><span class="tag">&lt;<span class="name">td</span>&gt;</span>Five<span class="tag">&lt;/<span class="name">td</span>&gt;</span><span class="tag">&lt;<span class="name">td</span>&gt;</span>Six<span class="tag">&lt;/<span class="name">td</span>&gt;</span><span class="tag">&lt;/<span class="name">tr</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">table</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>attribute 绑定的主要用例之一是设置 ARIA attribute（译注：ARIA指可访问性，用于给残障人士访问互联网提供便利），就像这个例子中一样：</p>
+<figure class="highlight django"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="xml"><span class="comment">&lt;!-- create and set an aria attribute for assistive technology --&gt;</span></span></div><div class="line"><span class="tag">&lt;<span class="name">button</span> [<span class="attr">attr.aria-label</span>]=<span class="string">"actionName"</span>&gt;</span><span class="template-variable">&#123;&#123;actionName&#125;&#125;</span><span class="xml"> with Aria<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></div></pre></td></tr></table></figure>
+<h4 id="CSS-类绑定"><a href="#CSS-类绑定" class="headerlink" title="CSS 类绑定"></a>CSS 类绑定</h4><p>借助 CSS <strong>类绑定</strong>，可以从元素的<code>class</code> attribute 上添加和移除 CSS 类名。</p>
+<p>CSS 类绑定绑定的语法与属性绑定类似。但方括号中的部分不是元素的属性名，而是由<code>class</code>前缀，一个点 (<code>.</code>)和 CSS 类的名字组成，其中后两部分是可选的。形如：<code>[class.class-name]</code>。</p>
+<p>下列例子示范了如何通过 CSS 类绑定来添加和移除应用的 “special” 类。不用绑定直接设置 attribute 时是这样的：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- standard class attribute setting  --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"bad curly special"</span>&gt;</span>Bad curly special<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>可以把它改写为绑定到所需 CSS 类名的绑定；这是一个或者全有或者全无的替换型绑定。 （译注：即当 badCurly 有值时 class 这个 attribute 设置的内容会被完全覆盖）</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;!-- reset/<span class="keyword">override</span> all <span class="class"><span class="keyword">class</span> <span class="title">names</span> <span class="keyword">with</span> <span class="title">a</span> <span class="title">binding</span>  <span class="title">--&gt;</span></span></div><div class="line">&lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"bad curly special"</span></div><div class="line">     [<span class="class"><span class="keyword">class</span>]</span>=<span class="string">"badCurly"</span>&gt;<span class="type">Bad</span> curly&lt;/div&gt;</div></pre></td></tr></table></figure>
+<p>最后，可以绑定到特定的类名。当模板表达式的求值结果是真值时，Angular 会添加这个类，反之则移除它。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- toggle the "special" class on/off with a property --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> [<span class="attr">class.special</span>]=<span class="string">"isSpecial"</span>&gt;</span>The class binding is special<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!-- binding to `class.special` trumps the class attribute --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"special"</span></span></div><div class="line">     [<span class="attr">class.special</span>]=<span class="string">"!isSpecial"</span>&gt;This one is not so special<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>虽然这是切换单一类名的好办法，但我们通常更喜欢使用 <em>NgClass</em>指令 来同时管理多个类名。</p>
+</blockquote>
+<h4 id="样式绑定"><a href="#样式绑定" class="headerlink" title="样式绑定"></a>样式绑定</h4><p>通过样式绑定，可以设置内联样式。</p>
+<p>样式绑定的语法与属性绑定类似。但方括号中的部分不是元素的属性名，而由<code>style</code>前缀，一个点 (<code>.</code>)和 CSS 样式的属性名组成。形如：<code>[style.style-property]</code>。</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&lt;<span class="selector-tag">button</span> [style.<span class="attribute">color</span>] = <span class="string">"isSpecial ? 'red': 'green'"</span>&gt;Red&lt;/button&gt;</div><div class="line">&lt;<span class="selector-tag">button</span> [style.<span class="attribute">background-color</span>]=<span class="string">"canSave ? 'cyan': 'grey'"</span> &gt;Save&lt;/button&gt;</div></pre></td></tr></table></figure>
+<p>有些样式绑定中的样式带有单位。在这里，我们根据条件用 “em” 和 “%” 来设置字体大小的单位。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">button</span> [<span class="attr">style.font-size.em</span>]=<span class="string">"isSpecial ? 3 : 1"</span> &gt;</span>Big<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">button</span> [<span class="attr">style.font-size.</span>%]=<span class="string">"!isSpecial ? 150 : 50"</span> &gt;</span>Small<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>虽然这是设置单一样式的好办法，但我们通常更喜欢使用<em>NgStyle</em> 指令 来同时设置多个内联样式。</p>
+<p>注意，样式属性命名方法可以用<em>中划线命名法</em>，像上面的一样，也可以用<em>驼峰式命名法</em>，如<code>fontSize</code>。</p>
+<p>在Angular Ddart 中,命名样式属性名使用驼峰和中划线风格是相等的，只有中划线命名是被<code>dart:html</code>的<a href="https://api.dartlang.org/stable/dart-html/CssStyleDeclaration-class.html" target="_blank" rel="external">CssStyleDeclaration</a>方法<code>getPropertyValue()</code>和<code>setProperty()</code>公认的。因此，我们推荐仅使用中划线方式为样式属性命名。</p>
+</blockquote>
+<h3 id="event">事件绑定</h3>
+
+<p>到目前为止我们遇到的绑定的数据流都是单向的：<strong>从组件到元素</strong>。</p>
+<p>用户不会只盯着屏幕看。他们会在输入框中输入文本。他们会从列表中选取条目。他们会点击按钮。这类用户动作可能导致反向的数据流：<strong>从元素到组件</strong>。</p>
+<p>知道用户动作的唯一方式是监听某些事件，如按键、鼠标移动、点击和触摸屏幕。可以通过 Angular 事件绑定来声明对哪些用户动作感兴趣。</p>
+<p>事件绑定语法由等号左侧带圆括号的<strong>目标事件</strong>和右侧引号中的模板语句组成。下面事件绑定监听按钮的点击事件。每当点击发生时，都会调用组件的<code>onSave()</code>方法。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">button</span> (<span class="attr">click</span>)=<span class="string">"onSave()"</span>&gt;</span>Save<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div></pre></td></tr></table></figure>
+<h4 id="目标事件"><a href="#目标事件" class="headerlink" title="目标事件"></a>目标事件</h4><p><strong>圆括号中的名称</strong>——比如(<code>click</code>)——标记出目标事件。在下面例子中，目标是按钮的 <code>click</code> 事件。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">button</span> (<span class="attr">click</span>)=<span class="string">"onSave()"</span>&gt;</span>Save<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>有些人更喜欢带<code>on-</code>前缀的备选形式，称之为<strong>规范形式</strong>：</p>
+<figure class="highlight hsp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;<span class="keyword">button</span> <span class="keyword">on</span>-click=<span class="string">"onSave()"</span>&gt;<span class="keyword">On</span> Save&lt;/<span class="keyword">button</span>&gt;</div></pre></td></tr></table></figure>
+<p>元素事件可能是更常见的目标，但 Angular 会先看这个名字是否能匹配上已知指令的事件属性，就像下面这个例子：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- `myClick` is an event on the custom `MyClickDirective` --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> (<span class="attr">myClick</span>)=<span class="string">"clickMessage=$event"</span>&gt;</span>click with myClick<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>如果这个名字没能匹配到元素事件或已知指令的输出属性，Angular 就会报“未知指令”错误。</p>
+<h4 id="event-和事件处理语句"><a href="#event-和事件处理语句" class="headerlink" title="$event 和事件处理语句"></a>$event 和事件处理语句</h4><p>在事件绑定中，Angular 会为目标事件设置事件处理器。</p>
+<p>当事件发生时，这个处理器会执行模板语句。典型的模板语句通常涉及到响应事件执行动作的接收器，例如从 HTML 控件中取得值，并存入模型。</p>
+<p>绑定会通过名叫<strong><code>$event</code>的事件对象</strong>传递关于此事件的信息（包括数据值）。</p>
+<p>事件对象的形态取决于目标事件。如果目标事件是原生 DOM 元素事件，<code>$event</code>就是 <em>DOM事件对象</em>，它有像<code>target</code>和<code>target.value</code>这样的属性。</p>
+<p>考虑这个范例：</p>
+<figure class="highlight hsp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&lt;<span class="keyword">input</span> [value]=<span class="string">"currentHero.firstName"</span></div><div class="line">       (<span class="keyword">input</span>)=<span class="string">"currentHero.firstName=$event.target.value"</span> &gt;</div></pre></td></tr></table></figure>
+<p>上面的代码通过绑定到<code>firstName</code>属性来设置输入框的<code>value</code>属性。要监听对值的修改，代码绑定到输入框的<code>input</code>事件。当用户造成更改时，<code>input</code>事件被触发，并在包含了 DOM 事件对象 (<code>$event</code>) 的上下文中绑定执行这条语句。</p>
+<p>要更新<code>firstName</code>属性，就要通过路径<code>$event.target.value</code>来获取更改后的值。</p>
+<p>如果事件属于指令（回想一下，组件是指令的一种），那么<code>$event</code>具体是什么由指令决定。</p>
+<h4 id="使用-EventEmitter-实现自定义事件"><a href="#使用-EventEmitter-实现自定义事件" class="headerlink" title="使用 EventEmitter 实现自定义事件"></a>使用 EventEmitter 实现自定义事件</h4><p>通常，指令使用 Angular <em>EventEmitter</em> 来触发自定义事件。指令创建一个<code>EventEmitter</code>实例，并且把它作为属性暴露出来。指令调用<code>EventEmitter.emit(payload)</code>来触发事件，可以传入任何东西作为消息载荷。 父指令通过绑定到这个属性来监听事件，并通过<code>$event</code>对象来访问载荷。</p>
+<p>考虑<code>HeroDetailComponent</code>用于显示英雄的信息，并响应用户的动作。虽然<code>HeroDetailComponent</code>包含删除按钮，但它自己并不知道该如何删除这个英雄。 最好的做法是触发事件来报告“删除用户”的请求。</p>
+<p>下面的代码节选自<code>HeroDetailComponent</code>：</p>
+<figure class="highlight dts"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="symbol">template:</span> <span class="string">'''</span></div><div class="line">  <span class="params">&lt;div&gt;</span></div><div class="line">    <span class="params">&lt;img src="&#123;&#123;heroImageUrl&#125;&#125;"&gt;</span></div><div class="line">    <span class="params">&lt;span [style.text-decoration]="lineThrough"&gt;</span></div><div class="line">      &#123;&#123;prefix&#125;&#125; &#123;&#123;hero?.fullName&#125;&#125;</div><div class="line">    <span class="params">&lt;/span&gt;</span></div><div class="line">    <span class="params">&lt;button (click)="delete()"&gt;</span>Delete<span class="params">&lt;/button&gt;</span></div><div class="line">  <span class="params">&lt;/div&gt;</span><span class="string">'''</span></div><div class="line"></div><div class="line">  <span class="comment">// This component make a request but it can't actually delete a hero.</span></div><div class="line">final deleteRequest = new EventEmitter<span class="params">&lt;Hero&gt;</span>();</div><div class="line"></div><div class="line">void delete() &#123;</div><div class="line">  deleteRequest.emit(hero);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>组件定义了<code>deleteRequest</code>属性，它是<code>EventEmitter</code>实例。当用户点击删除时，组件会调用<code>delete()</code>方法，让<code>EventEmitter</code>发出一个<code>Hero</code>对象。</p>
+<p>现在，假设有个宿主的父组件，它绑定了<code>HeroDetailComponent</code>的<code>deleteRequest</code>事件。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">hero-detail</span> (<span class="attr">deleteRequest</span>)=<span class="string">"deleteHero($event)"</span> [<span class="attr">hero</span>]=<span class="string">"currentHero"</span>&gt;</span><span class="tag">&lt;/<span class="name">hero-detail</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>当<code>deleteRequest</code>事件触发时，Angular 调用父组件的<code>deleteHero</code>方法， 在<code>$event</code>变量中传入要删除的英雄（来自<code>HeroDetail</code>）。</p>
+<h4 id="模板语句有副作用"><a href="#模板语句有副作用" class="headerlink" title="模板语句有副作用"></a>模板语句有副作用</h4><p><code>deleteHero</code>方法有副作用：它删除了一个英雄。模板语句的副作用不仅没问题，反而正是所期望的。</p>
+<p>删除这个英雄会更新模型，还可能触发其它修改，包括向远端服务器的查询和保存。 这些变更通过系统进行扩散，并最终显示到当前以及其它视图中。</p>
+<h3 id="two">双向数据绑定</h3>
+
+<p>我们经常需要显示数据属性，并在用户作出更改时更新该属性。</p>
+<p>在元素层面上，既要设置元素属性，又要监听元素事件变化。</p>
+<p>Angular 为此提供一种特殊的双向数据绑定语法：[(x)]。<code>[(x)]</code>语法结合了属性绑定的方括号<code>[x]</code>和事件绑定的圆括号<code>(x)</code>。</p>
+<p>当一个元素拥有可以设置的属性<code>x</code>和对应的事件<code>xChange</code>时，解释<code>[(x)]</code>语法就容易多了。下面的<code>SizerComponent</code>符合这个模式。它有<code>size</code>属性和伴随的<code>sizeChange</code>事件：</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> <span class="string">'dart:math'</span>;</div><div class="line"><span class="keyword">import</span> <span class="string">'package:angular2/core.dart'</span>;</div><div class="line"></div><div class="line"><span class="meta">@Component</span>(</div><div class="line">    selector: <span class="string">'my-sizer'</span>,</div><div class="line">    template: <span class="string">'''</span></div><div class="line">      &lt;div&gt;</div><div class="line">        &lt;button (click)="dec()" title="smaller"&gt;-&lt;/button&gt;</div><div class="line">        &lt;button (click)="inc()" title="bigger"&gt;+&lt;/button&gt;</div><div class="line">        &lt;label [style.font-size.px]="size"&gt;FontSize: &#123;&#123;size&#125;&#125;px&lt;/label&gt;</div><div class="line">      &lt;/div&gt;''')</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MySizerComponent</span> </span>&#123;</div><div class="line">  <span class="keyword">static</span> <span class="keyword">final</span> defaultPxSize = <span class="number">14</span>;</div><div class="line"></div><div class="line">  <span class="meta">@Input</span>()</div><div class="line">  <span class="built_in">String</span> size;</div><div class="line"></div><div class="line">  <span class="meta">@Output</span>()</div><div class="line">  <span class="keyword">var</span> sizeChange = <span class="keyword">new</span> EventEmitter&lt;<span class="built_in">String</span>&gt;();</div><div class="line"></div><div class="line">  <span class="keyword">void</span> dec() =&gt; resize(<span class="number">-1</span>);</div><div class="line">  <span class="keyword">void</span> inc() =&gt; resize(<span class="number">1</span>);</div><div class="line"></div><div class="line">  <span class="keyword">void</span> resize(<span class="built_in">num</span> delta) &#123;</div><div class="line">    <span class="keyword">final</span> numSize = <span class="built_in">num</span>.parse(size, (_) =&gt; defaultPxSize);</div><div class="line">    size = min(<span class="number">40</span>, max(<span class="number">8</span>, numSize + delta)).toString();</div><div class="line">    sizeChange.emit(size);</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><code>size</code>的初始值是一个输入值，来自属性绑定。（译注：注意size前面的<code>@Input</code>）点击按钮，在最小/最大值范围限制内增加或者减少size。然后用调整后的<code>size</code>触发<code>sizeChange</code>事件。</p>
+<p>下面的例子中，<code>AppComponent.fontSize</code>被双向绑定到<code>SizerComponent</code>：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&lt;my-sizer [(size)]=<span class="string">"fontSizePx"</span>&gt;&lt;/my-sizer&gt;</div><div class="line">&lt;<span class="selector-tag">div</span> [style<span class="selector-class">.font-size</span><span class="selector-class">.px</span>]=<span class="string">"fontSizePx"</span>&gt;Resizable Text&lt;/div&gt;</div></pre></td></tr></table></figure>
+<p><code>SizerComponent.size</code>初始值是<code>AppComponent.fontSizePx</code>。点击按钮时，通过双向绑定更新<code>AppComponent.fontSizePx</code>。被修改的<code>AppComponent.fontSizePx</code>通过样式绑定，改变文本的显示大小。试一下<a href="http://angular-examples.github.io/template-syntax" target="_blank" rel="external">在线例子</a>。</p>
+<p>双向绑定语法实际上是属性绑定和事件绑定的语法糖。Angular将<code>SizerComponent</code>的绑定分解成这样：</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;<span class="keyword">my</span>-sizer [size]=<span class="string">"fontSizePx"</span> (sizeChange)=<span class="string">"fontSizePx=$event"</span>&gt;&lt;/<span class="keyword">my</span>-sizer&gt;</div></pre></td></tr></table></figure>
+<p><code>$event</code>变量包含了<code>SizerComponent.sizeChange</code>事件的荷载。当用户点击按钮时，Angular 将<code>$event</code>赋值给<code>AppComponent.fontSizePx</code>。</p>
+<p>显然，比起单独绑定属性和事件，双向数据绑定语法显得非常方便。</p>
+<p>我们希望能在像<code>&lt;input&gt;</code>和<code>&lt;select&gt;</code>这样的 HTML 元素上使用双向数据绑定。 可惜，原生 HTML 元素不遵循<code>x</code>值和<code>xChange</code>事件的模式。</p>
+<p>幸运的是，Angular 以 <em>NgModel</em> 指令为桥梁，允许在表单元素上使用双向数据绑定。</p>
+<h3 id="ngmodel">使用 NgModel 进行双向数据绑定</h3>
+
+<p>当开发数据输入表单时，我们经常希望能显示数据属性，并在用户做出变更时更新该属性。</p>
+<p>使用<code>NgModel</code>指令进行双向数据绑定让它变得更加容易。请看下例：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;<span class="selector-tag">input</span> [(ngModel)]=<span class="string">"currentHero.firstName"</span>&gt;</div></pre></td></tr></table></figure>
+<h4 id="ngModel-内幕"><a href="#ngModel-内幕" class="headerlink" title="[(ngModel)]内幕"></a>[(ngModel)]内幕</h4><p>回顾一下<code>firstName</code>的绑定，值得注意的是，可以通过分别绑定<code>&lt;input&gt;</code>元素的<code>value</code>属性和<code>input</code>事件来实现同样的效果。</p>
+<figure class="highlight hsp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&lt;<span class="keyword">input</span> [value]=<span class="string">"currentHero.firstName"</span></div><div class="line">       (<span class="keyword">input</span>)=<span class="string">"currentHero.firstName=$event.target.value"</span> &gt;</div></pre></td></tr></table></figure>
+<p>这样很笨拙。谁能记住哪个元素属性用于设置，哪个用于发出用户更改？如何从输入框中提取出当前显示的文本，以便更新数据属性？谁想每次都去查一遍？</p>
+<p><code>ngModel</code>指令通过它自己的<code>ngModel</code>输入属性和<code>ngModelChange</code>输出属性隐藏了这些繁琐的细节。</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;<span class="selector-tag">input</span></div><div class="line">  [ngModel]=<span class="string">"currentHero.firstName"</span></div><div class="line">  (ngModelChange)=<span class="string">"currentHero.firstName=$event"</span>&gt;</div></pre></td></tr></table></figure>
+<blockquote>
+<p><code>ngModel</code>数据属性设置元素的 value 属性，<code>ngModelChange</code>事件属性监听元素 value 的变化。</p>
+<p>每种元素的特点各不相同，所以<code>NgModel</code>指令只能在一些特定表单元素上使用，例如输入文本框，因为它们支持 <a href="https://webdev.dartlang.org/angular/api/forms/index/ControlValueAccessor-interface.html" target="_blank" rel="external">ControlValueAccessor</a>。</p>
+<p>除非写一个合适的值访问器，否则不能把<code>[(ngModel)]</code>用在自定义组件上。但值访问器技术超出了本章的范围。对于不能控制其 API 的 Angular 组件或者 Web 组件，可能需要为其添加 <em>value accessor</em>。</p>
+<p>但是对于我们能控制的 Angular 组件来说，这么做就完全没有必要了。因为可以指定值和事件属性名字来进行基本的 Angular 双向绑定语法，完全不用NgModel。</p>
+</blockquote>
+<p>独立的<code>ngModel</code>绑定相比直接绑定元素的原生属性是个改进，但还能做得更好。</p>
+<p>我们不应该提及数据属性两次。Angular 应该能捕捉组件的数据属性，并用一条声明来设置它——依靠<code>[(ngModel)]</code>语法：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;<span class="selector-tag">input</span> [(ngModel)]=<span class="string">"currentHero.firstName"</span>&gt;</div></pre></td></tr></table></figure>
+<p><code>[(ngModel)]</code>就是我们所需的一切吗？有没有什么理由需要回退到它的展开形式？</p>
+<p><code>[(ngModel)]</code>语法只能设置一个数据绑定属性。如果需要做更多或不同的事情，就得自己用它的展开形式。</p>
+<p>来做点淘气的事吧，比如强制让输入值变成大写形式：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;<span class="selector-tag">input</span></div><div class="line">  [ngModel]=<span class="string">"currentHero.firstName"</span></div><div class="line">  (ngModelChange)=<span class="string">"setUpperCaseFirstName($event)"</span>&gt;</div></pre></td></tr></table></figure>
+<h3 id="direct">内置指令</h3>
+
+<p>上一版本的 Angular 中包含了超过 70 个内置指令。社区贡献了更多，这还没算为内部应用而创建的无数私有指令。</p>
+<p>在新版的 Angular 中不需要那么多指令。使用更强大、更富有表现力的 Angular 绑定系统，其实可以达到同样的效果。如果能用简单的绑定达到目的，为什么还要创建指令来处理点击事件呢？</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">button</span> (<span class="attr">click</span>)=<span class="string">"onSave()"</span>&gt;</span>Save<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>我们仍然可以从简化复杂任务的指令中获益。Angular 发布时仍然带有内置指令，只是没那么多了。我们仍会写自己的指令，只是没那么多了。</p>
+<p>下面来看一下那些最常用的内置指令。</p>
+<h4 id="class">NgClass</h4>
+
+<p>我们经常用动态添加或删除 CSS 类的方式来控制元素如何显示。通过绑定到<code>NgClass</code>，可以同时添加或移除多个类。</p>
+<p><em>CSS 类绑定</em>是添加或删除单个类的最佳途径。</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&lt;!-- toggle the <span class="string">"special"</span> <span class="class"><span class="keyword">class</span> <span class="title">on/off</span> <span class="keyword">with</span> <span class="title">a</span> <span class="title">property</span> <span class="title">--&gt;</span></span></div><div class="line">&lt;div [<span class="class"><span class="keyword">class</span>.<span class="title">special</span>]</span>=<span class="string">"isSpecial"</span>&gt;<span class="type">The</span> <span class="class"><span class="keyword">class</span> <span class="title">binding</span> <span class="title">is</span> <span class="title">special&lt;/div&gt;</span></span></div></pre></td></tr></table></figure>
+<p>当想要同时添加或移除多个 CSS 类时，<code>NgClass</code>指令可能是更好的选择。</p>
+<p>绑定到一个 <code>key:value</code> 形式的控制Map，是应用<code>NgClass</code>的好方式。这个对象中的每个 <code>key</code> 都是一个 CSS 类名，如果它的 value 是<code>true</code>，这个类就会被加上，否则就会被移除。</p>
+<p>下面的组件方法<code>setClasses</code>管理了三个 CSS 类的状态：</p>
+<figure class="highlight qml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">Map</span>&lt;<span class="built_in">String</span>, <span class="built_in">bool</span>&gt; setClasses() &#123;</div><div class="line">  final classes = &#123;</div><div class="line">    <span class="string">'saveable'</span>: canSave, <span class="comment">// true</span></div><div class="line">    <span class="string">'modified'</span>: !isUnchanged, <span class="comment">// false</span></div><div class="line">    <span class="string">'special'</span>: isSpecial <span class="comment">// true</span></div><div class="line">  &#125;;</div><div class="line">  <span class="comment">// compensate for DevMode (sigh)</span></div><div class="line">  <span class="keyword">if</span> (<span class="built_in">JSON</span>.encode(_previousClasses) == <span class="built_in">JSON</span>.encode(classes))</div><div class="line">    <span class="keyword">return</span> _previousClasses;</div><div class="line">  _previousClasses = classes;</div><div class="line">  <span class="keyword">return</span> classes;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>现在，可以添加<code>NgClass</code>属性绑定，它会调用<code>setClasses</code>，并相应地设置元素的类：</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;<span class="keyword">div</span> [ngClass]=<span class="string">"setClasses()"</span>&gt;This <span class="keyword">div</span> <span class="keyword">is</span> saveable <span class="keyword">and</span> special&lt;/<span class="keyword">div</span>&gt;</div></pre></td></tr></table></figure>
+<h4 id="style">NgStyle</h4>
+
+<p>我们可以根据组件的状态动态设置内联样式。<code>NgStyle</code>绑定可以同时设置多个内联样式。</p>
+<p>样式绑定是设置单一样式值的简单方式。</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;<span class="selector-tag">div</span> [style.<span class="attribute">font-size</span>]=<span class="string">"isSpecial ? 'x-large' : 'smaller'"</span> &gt;</div><div class="line">  This <span class="selector-tag">div</span> is x-large.</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure>
+<p>如果要同时设置多个内联样式，<code>NgStyle</code>指令可能是更好的选择。</p>
+<p>我们应用<code>NgStyle</code>通过绑定到一个 <code>key:value</code> 控制Map。对象的每个<code>key</code> 是样式名，它的 value 是能用于这个样式的任何值。</p>
+<p>考虑组件方法比如<code>setStyles</code>，返回一个定义了三种样式的对象：</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">Map</span>&lt;<span class="built_in">String</span>, <span class="built_in">String</span>&gt; setStyles() &#123;</div><div class="line">  <span class="keyword">return</span> &lt;<span class="built_in">String</span>, <span class="built_in">String</span>&gt;&#123;</div><div class="line">    <span class="string">'font-style'</span>: canSave ? <span class="string">'italic'</span> : <span class="string">'normal'</span>, <span class="comment">// italic</span></div><div class="line">    <span class="string">'font-weight'</span>: !isUnchanged ? <span class="string">'bold'</span> : <span class="string">'normal'</span>, <span class="comment">// normal</span></div><div class="line">    <span class="string">'font-size'</span>: isSpecial ? <span class="string">'24px'</span> : <span class="string">'8px'</span> <span class="comment">// 24px</span></div><div class="line">  &#125;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>现在添加<code>NgStyle</code>属性绑定，让它调用<code>setStyles</code>，并相应地设置元素的样式：</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;<span class="keyword">div</span> [ngStyle]=<span class="string">"setStyles()"</span>&gt;</div><div class="line">  This <span class="keyword">div</span> <span class="keyword">is</span> italic, normal weight, <span class="keyword">and</span> extra large (<span class="number">24</span>px).</div><div class="line">&lt;/<span class="keyword">div</span>&gt;</div></pre></td></tr></table></figure>
+<h4 id="if">NgIf</h4>
+
+<p>通过绑定<code>NgIf</code>指令到真值表达式，可以把元素子树（元素及其子元素）添加到 DOM 上。</p>
+<figure class="highlight django"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="xml"><span class="tag">&lt;<span class="name">div</span> *<span class="attr">ngIf</span>=<span class="string">"currentHero != null"</span>&gt;</span>Hello, </span><span class="template-variable">&#123;&#123;currentHero.firstName&#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>别忘了ngIf前面的星号(*)。</p>
+</blockquote>
+<p>绑定到假值表达式将从 DOM 中移除元素子树。</p>
+<figure class="highlight django"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="xml"><span class="comment">&lt;!-- because of the ngIf guard</span></span></div><div class="line">    `nullHero.firstName` never has a chance to fail --&gt;</div><div class="line"><span class="tag">&lt;<span class="name">div</span> *<span class="attr">ngIf</span>=<span class="string">"nullHero != null"</span>&gt;</span>Hello, <span class="template-variable">&#123;&#123;nullHero.firstName&#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></div><div class="line"></div><div class="line"><span class="comment">&lt;!-- Hero Detail is not in the DOM because isActive is false--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">hero-detail</span> *<span class="attr">ngIf</span>=<span class="string">"isActive"</span>&gt;</span><span class="tag">&lt;/<span class="name">hero-detail</span>&gt;</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>在检查模式，Dart 期望Boolean值不是<code>true</code>就是<code>false</code>。即使在生产模式，只有值是<code>true</code>才当作<code>true</code>；所有其他的值都是<code>false</code>。typescript和javascript，与之不同，把多个值（包括非空对象）作为true。例如，在TS版的 Angular 代码中，<code>*ngIf=&quot;currentHero&quot;</code>，而在Dart 中<code>*ngIf=&quot;currentHero!=null&quot;</code>。</p>
+</blockquote>
+<h5 id="可见性和NGIF不是一回事"><a href="#可见性和NGIF不是一回事" class="headerlink" title="可见性和NGIF不是一回事"></a>可见性和NGIF不是一回事</h5><p>我们可以通过类绑定或样式绑定来显示和隐藏元素子树（元素及其子元素）。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- isSpecial is true --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> [<span class="attr">class.hidden</span>]=<span class="string">"!isSpecial"</span>&gt;</span>Show with class<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> [<span class="attr">class.hidden</span>]=<span class="string">"isSpecial"</span>&gt;</span>Hide with class<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!-- HeroDetail is in the DOM but hidden --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">hero-detail</span> [<span class="attr">class.hidden</span>]=<span class="string">"isSpecial"</span>&gt;</span><span class="tag">&lt;/<span class="name">hero-detail</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">div</span> [<span class="attr">style.display</span>]=<span class="string">"isSpecial ? 'block' : 'none'"</span>&gt;</span>Show with style<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> [<span class="attr">style.display</span>]=<span class="string">"isSpecial ? 'none'  : 'block'"</span>&gt;</span>Hide with style<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>隐藏子树和用<code>NgIf</code>排除子树是截然不同的。</p>
+<p>当隐藏子树时，它仍然留在 DOM 中。子树中的组件及其状态仍然保留着。即使对于不可见属性，Angular 也会继续检查变更。子树可能占用相当可观的内存和运算资源。</p>
+<p>当<code>NgIf</code>为<code>false</code>时，Angular 从 DOM 中物理地移除了这个元素子树。 它销毁了子树中的组件及其状态，也潜在释放了可观的资源，最终让用户体验到更好的性能。</p>
+<p>显示 / 隐藏技术用在小型元素树上可能还不错。但在隐藏大树时我们得小心；<code>NgIf</code>可能是更安全的选择。但要记住：永远得先测量，再下结论。</p>
+<h4 id="switch">NgSwitch</h4>
+
+<p>当需要从一组可能的元素树中根据条件显示一个时，我们就把它绑定到<code>NgSwitch</code>。 Angular 将只把选中的元素树放进 DOM 中。</p>
+<p>下面是例子：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">span</span> [<span class="attr">ngSwitch</span>]=<span class="string">"toeChoice"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">span</span> *<span class="attr">ngSwitchWhen</span>=<span class="string">"'Eenie'"</span>&gt;</span>Eenie<span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">span</span> *<span class="attr">ngSwitchWhen</span>=<span class="string">"'Meanie'"</span>&gt;</span>Meanie<span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">span</span> *<span class="attr">ngSwitchWhen</span>=<span class="string">"'Miney'"</span>&gt;</span>Miney<span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">span</span> *<span class="attr">ngSwitchWhen</span>=<span class="string">"'Moe'"</span>&gt;</span>Moe<span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">span</span> *<span class="attr">ngSwitchDefault</span>&gt;</span>other<span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">span</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>我们把作为父指令的<code>NgSwitch</code>绑定到能返回开关值的表达式。本例中，这个值是字符串，但它也可以是任何类型的值。</p>
+<p>这个例子中，父指令<code>NgSwitch</code>控制一组<code>&lt;span&gt;</code>子元素。每个<code>&lt;span&gt;</code>或者挂在匹配值表达式上，或者被标记为默认情况。</p>
+<p><strong>任何时候，这些 span 中最多只有一个会出现在 DOM 中</strong>。</p>
+<p>如果这个 span 的匹配值等于开关值，Angular 就把这个<code>&lt;span&gt;</code>添加到 DOM 中。 如果没有任何 span 匹配上，Angular 就把默认的 span 添加到 DOM 中。 Angular 会移除并销毁所有其它的 span。</p>
+<blockquote>
+<p>可以用任何其它元素代替本例中的 span。那个元素可以是带有巨大子树的<code>&lt;div&gt;</code>。只有匹配的<code>&lt;div&gt;</code>和它的子树会显示在 DOM 中，其它的则会被移除。</p>
+</blockquote>
+<p>这里有三个相互合作的指令：</p>
+<ol>
+<li>ngSwitch：绑定到返回开关值的表达式</li>
+<li>ngSwitchCase：绑定到返回匹配值的表达式</li>
+<li>ngSwitchDefault：用于标记出默认元素的 attribute</li>
+</ol>
+<blockquote>
+<p><strong>不要在<code>ngSwitch</code>的前面加星号 (<code>*</code>)，而应该用属性绑定</strong>。<br><strong>要把星号 (<code>*</code>) 放在<code>ngSwitchCase</code>和<code>ngSwitchDefault</code>的前面</strong>。</p>
+</blockquote>
+<h4 id="for">NgFor</h4>
+
+<p><code>NgFor</code>是一个重复器指令——自定义数据显示的一种方式。</p>
+<p>我们的目标是展示一个由多个条目组成的列表。首先定义了一个 HTML 块，它规定了单个条目应该如何显示。再告诉 Angular 把这个块当做模板，渲染列表中的每个条目。</p>
+<p>下例中，<code>NgFor</code>应用在一个简单的<code>&lt;div&gt;</code>上：</p>
+<figure class="highlight django"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="xml"><span class="tag">&lt;<span class="name">div</span> *<span class="attr">ngFor</span>=<span class="string">"let hero of heroes"</span>&gt;</span></span><span class="template-variable">&#123;&#123;hero.fullName&#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></div></pre></td></tr></table></figure>
+<p>也可以把<code>NgFor</code>应用在一个组件元素上，就下例这样：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">hero-detail</span> *<span class="attr">ngFor</span>=<span class="string">"let hero of heroes"</span> [<span class="attr">hero</span>]=<span class="string">"hero"</span>&gt;</span><span class="tag">&lt;/<span class="name">hero-detail</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>赋值给<code>*ngFor</code>的文本是用于指导重复器如何工作的指令。</p>
+<h4 id="NgFor-微语法"><a href="#NgFor-微语法" class="headerlink" title="NgFor 微语法"></a>NgFor 微语法</h4><p>赋值给<code>*ngFor</code>的字符串不是<em>模板表达式</em>。它是一个微语法 —— 由 Angular 自己解释的小型语言。在这个例子中，字符串<code>&quot;let hero of heroes&quot;</code>的含义是：</p>
+<p><strong>取出<code>heroes</code>列表中的每个英雄，把它存入局部变量<code>hero</code>中，并在每次迭代时对模板 HTML 可用</strong></p>
+<p>Angular 把这个指令翻译成一组元素和绑定。</p>
+<p>在前面的两个例子中，<code>ngFor</code>指令在<code>heroes</code>列表上进行迭代（它是由父组件的<code>heroes</code>属性返回的），以其所在的元素为模板“冲压”出很多实例。Angular 为数组中的每个英雄创建了此模板的一个全新实例。</p>
+<p><code>hero</code>前面的<code>let</code>关键字创建了名叫<code>hero</code>的模板输入变量。</p>
+<blockquote>
+<p><strong>模板输入变量和模板引用变量不是一回事！</strong></p>
+</blockquote>
+<p>在模板中使用这个变量来访问英雄的属性，就像在插值表达式中所做的那样。也可以把这个变量传给组件元素上的绑定，就像对<code>hero-detail</code>所做的那样。</p>
+<h4 id="带索引的-NgFor"><a href="#带索引的-NgFor" class="headerlink" title="带索引的 NgFor"></a>带索引的 NgFor</h4><p><code>ngFor</code>指令支持可选的<code>index</code>，它在迭代过程中会从 0 增长到“数组的长度”。可以通过模板输入变量来捕获这个 <code>index</code>，并在模板中使用。</p>
+<p>下例把 index 捕获到名叫<code>i</code>的变量中，使用它“冲压出”像 “1 - Hercules Son of Zeus” 这样的条目。</p>
+<figure class="highlight django"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="xml"><span class="tag">&lt;<span class="name">div</span> *<span class="attr">ngFor</span>=<span class="string">"let hero of heroes; let i=index"</span>&gt;</span></span><span class="template-variable">&#123;&#123;i + 1&#125;&#125;</span><span class="xml"> - </span><span class="template-variable">&#123;&#123;hero.fullName&#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>要学习更多的类似 index 的值，例如<code>last</code>、<code>even</code>和<code>odd</code>，请参阅 <a href="https://webdev.dartlang.org/angular/api/common/index/NgFor-directive.html" target="_blank" rel="external">NgFor API 参考</a></p>
+</blockquote>
+<h4 id="NgForTrackBy"><a href="#NgForTrackBy" class="headerlink" title="NgForTrackBy"></a>NgForTrackBy</h4><p><code>ngFor</code>指令有时候会性能较差，特别是在大型列表中。对一个条目的一丁点改动、移除或添加，都会导致级联的 DOM 操作。</p>
+<p>例如，我们可以通过重新从服务器查询来刷新英雄列表。刷新后的列表可能包含很多（如果不是全部的话）以前显示过的英雄。</p>
+<p>我们知道这一点，是因为每个英雄的<code>id</code>没有变化。但在 Angular 看来，它只是一个由新的对象引用构成的新列表，它没有选择，只能清理旧列表、舍弃那些 DOM 元素，并且用新的 DOM 元素来重建一个新列表。</p>
+<p>如果给它一个追踪函数，Angular 就可以避免这种折腾。追踪函数告诉 Angular：我们知道两个具有相同<code>hero.id</code>的对象其实是同一个英雄。 下面就是这样一个函数：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">trackByHeroes</span><span class="params">(<span class="keyword">int</span> index, Hero hero)</span> </span>=&gt; hero.id;</div></pre></td></tr></table></figure>
+<p>现在，把<code>NgForTrackBy</code>指令设置为那个追踪函数。</p>
+<figure class="highlight django"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="xml"><span class="tag">&lt;<span class="name">div</span> *<span class="attr">ngFor</span>=<span class="string">"let hero of heroes; trackBy:trackByHeroes"</span>&gt;</span>(</span><span class="template-variable">&#123;&#123;hero.id&#125;&#125;</span><span class="xml">) </span><span class="template-variable">&#123;&#123;hero.fullName&#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> *<span class="attr">ngFor</span>=<span class="string">"let hero of heroes"</span> *<span class="attr">ngForTrackBy</span>=<span class="string">"trackByHeroes"</span>&gt;</span>(<span class="template-variable">&#123;&#123;hero.id&#125;&#125;</span><span class="xml">) </span><span class="template-variable">&#123;&#123;hero.fullName&#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></div></pre></td></tr></table></figure>
+<p>追踪函数不会阻止所有 DOM 更改。如果同一个英雄的属性变化了，Angular 就可能不得不更新DOM元素。但是如果这个属性没有变化——而且大多数时候它们不会变化——Angular 就能留下这些 DOM 元素。列表界面就会更加平滑，提供更好的响应。</p>
+<h3 id="star">&#42; 与 &lt;template&gt;</h3>
+
+<p>当审视<code>NgFor</code>、<code>NgIf</code>和<code>NgSwitch</code>这些内置指令时，我们使用了一种古怪的语法：出现在指令名称前面的星号 (<code>*</code>)。</p>
+<p><code>*</code>是一种语法糖，它让那些需要借助模板来修改 HTML 布局的指令更易于读写。 <code>NgFo</code>r、<code>NgIf</code>和<code>NgSwitch</code>都会添加或移除元素子树，这些元素子树被包裹在<code>&lt;template&gt;</code>标签中。</p>
+<p>我们没有看到<code>&lt;template&gt;</code>标签，那是因为这种<code>*</code>前缀语法让我们忽略了这个标签，而把注意力直接聚焦在所要包含、排除或重复的那些 HTML 元素上。</p>
+<p>这一节，将深入研究一下，看看 Angular 是怎样扒掉这个<code>*</code>，把这段 HTML 展开到<code>&lt;template&gt;</code>标签中的。</p>
+<h4 id="展开-ngIf"><a href="#展开-ngIf" class="headerlink" title="展开*ngIf"></a>展开<code>*ngIf</code></h4><p>我们可以像 Angular 一样，自己把<code>*</code>前缀语法展开成 template 语法，这里是<code>*ngIf</code>的一些代码：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">hero-detail</span> *<span class="attr">ngIf</span>=<span class="string">"currentHero != null"</span> [<span class="attr">hero</span>]=<span class="string">"currentHero"</span>&gt;</span><span class="tag">&lt;/<span class="name">hero-detail</span>&gt;</span></div></pre></td></tr></table></figure>
+<p><code>currentHero</code>被引用了两次，第一次是作为<code>NgIf</code>的真/假条件，第二次把实际的 <code>hero</code> 值传给了<code>HeroDetailComponent</code>。</p>
+<p>展开的第一步是把<code>ngIf</code>（没有<code>*</code>前缀）和它的内容传给表达式，再赋值给<code>template</code>指令。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">hero-detail</span> <span class="attr">template</span>=<span class="string">"ngIf:currentHero != null"</span> [<span class="attr">hero</span>]=<span class="string">"currentHero"</span>&gt;</span><span class="tag">&lt;/<span class="name">hero-detail</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>下一步，也是最后一步，是把 HTML 包裹进<code>&lt;template&gt;</code>标签和<code>[ngIf]</code>属性绑定中：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">template</span> [<span class="attr">ngIf</span>]=<span class="string">"currentHero != null"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">hero-detail</span> [<span class="attr">hero</span>]=<span class="string">"currentHero"</span>&gt;</span><span class="tag">&lt;/<span class="name">hero-detail</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>注意，<code>[hero]=&quot;currengHero&quot;</code>绑定留在了 template 中的子元素<code>&lt;hero-detail&gt;</code>上。</p>
+<blockquote>
+<p>不要误写为<code>ngIf=&quot;currentHero&quot;</code>！这种语法会把一个字符串<code>&quot;currentHero&quot;</code>赋值给<code>ngIf</code>。因为<code>ngIf</code>期望一个<code>bool</code>，所以它不会工作。</p>
+</blockquote>
+<h4 id="展开-ngSwitch"><a href="#展开-ngSwitch" class="headerlink" title="展开*ngSwitch"></a>展开<code>*ngSwitch</code></h4><p>类似的转换也适用于<code>*ngSwitch</code>。我们可以自己解开这个语法糖。下例中，首先是<code>*ngSwitchCase</code>和<code>*ngSwitchDefault</code>，然后再解出<code>&lt;template&gt;</code>标签：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">span</span> [<span class="attr">ngSwitch</span>]=<span class="string">"toeChoice"</span>&gt;</span></div><div class="line"></div><div class="line">  <span class="comment">&lt;!-- with *NgSwitch --&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">span</span> *<span class="attr">ngSwitchWhen</span>=<span class="string">"'Eenie'"</span>&gt;</span>Eenie<span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">span</span> *<span class="attr">ngSwitchWhen</span>=<span class="string">"'Meanie'"</span>&gt;</span>Meanie<span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">span</span> *<span class="attr">ngSwitchWhen</span>=<span class="string">"'Miney'"</span>&gt;</span>Miney<span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">span</span> *<span class="attr">ngSwitchWhen</span>=<span class="string">"'Moe'"</span>&gt;</span>Moe<span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">span</span> *<span class="attr">ngSwitchDefault</span>&gt;</span>other<span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line"></div><div class="line">  <span class="comment">&lt;!-- with &lt;template&gt; --&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">template</span> [<span class="attr">ngSwitchWhen</span>]=<span class="string">"'Eenie'"</span>&gt;</span><span class="tag">&lt;<span class="name">span</span>&gt;</span>Eenie<span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">template</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">template</span> [<span class="attr">ngSwitchWhen</span>]=<span class="string">"'Meanie'"</span>&gt;</span><span class="tag">&lt;<span class="name">span</span>&gt;</span>Meanie<span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">template</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">template</span> [<span class="attr">ngSwitchWhen</span>]=<span class="string">"'Miney'"</span>&gt;</span><span class="tag">&lt;<span class="name">span</span>&gt;</span>Miney<span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">template</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">template</span> [<span class="attr">ngSwitchWhen</span>]=<span class="string">"'Moe'"</span>&gt;</span><span class="tag">&lt;<span class="name">span</span>&gt;</span>Moe<span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">template</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">template</span> <span class="attr">ngSwitchDefault</span>&gt;</span><span class="tag">&lt;<span class="name">span</span>&gt;</span>other<span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">template</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">span</span>&gt;</span></div></pre></td></tr></table></figure>
+<p><code>*ngSwitchCase</code> 和<code>*ngSwitchDefault</code>用和<code>*ngIf</code>完全相同的方式展开，把它们以前的元素包裹在<code>&lt;template&gt;</code>标签中。</p>
+<p>现在，应该明白为什么<code>ngSwitch</code>本身不能用星号 (<code>*</code>) 前缀了吧？它没有定义内容，它的工作是控制一组模板。</p>
+<p>上面这种情况下，它管理两组<code>NgSwitchCase</code>和<code>NgSwitchDefault</code>指令。我们也期待它显示所选模板的值两次，一次是 (<code>*</code>) 前缀的版本，一次是展开模板后的版本。这正是在这个例子中看到的.</p>
+<h4 id="展开-ngFor"><a href="#展开-ngFor" class="headerlink" title="展开*ngFor"></a>展开<code>*ngFor</code></h4><p><code>*ngFor</code>也经历类似的转换。从一个<code>*ngFor</code>的例子开始：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">hero-detail</span> *<span class="attr">ngFor</span>=<span class="string">"let hero of heroes; trackBy:trackByHeroes"</span> [<span class="attr">hero</span>]=<span class="string">"hero"</span>&gt;</span><span class="tag">&lt;/<span class="name">hero-detail</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>这里是在把<code>ngFor</code>传进<code>template</code>指令后的同一个例子：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">hero-detail</span> <span class="attr">template</span>=<span class="string">"ngFor let hero of heroes; trackBy:trackByHeroes"</span> [<span class="attr">hero</span>]=<span class="string">"hero"</span>&gt;</span><span class="tag">&lt;/<span class="name">hero-detail</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>下面，它被进一步扩展成了包裹着原始<code>&lt;hero-detail&gt;</code>元素的<code>&lt;template&gt;</code>标签：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;template ngFor <span class="keyword">let</span>-hero [ngForOf]=<span class="string">"heroes"</span> [ngForTrackBy]=<span class="string">"trackByHeroes"</span>&gt;</div><div class="line">  <span class="xml"><span class="tag">&lt;<span class="name">hero-detail</span> [<span class="attr">hero</span>]=<span class="string">"hero"</span>&gt;</span><span class="tag">&lt;/<span class="name">hero-detail</span>&gt;</span></span></div><div class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></div></pre></td></tr></table></figure>
+<p><code>NgFor</code>的代码相对<code>NgIf</code>更复杂一点，因为重复器有更多活动部分需要配置。这种情况下，我们就得记住添加<code>NgForOf</code>指令和<code>NgForTrackBy</code>指令，并对它们赋值。使用<code>*ngFor</code>语法比直接写这些展开后的 HTML 本身要简单多了。</p>
+<h3 id="var">模板引用变量</h3>
+
+<p><strong>模板引用变量</strong>是模板中对 DOM 元素或指令的引用。</p>
+<p>它能在原生 DOM 元素中使用，也能用于 Angular 组件——实际上，它可以和任何自定义 Web 组件协同工作。</p>
+<h4 id="引用模板引用变量"><a href="#引用模板引用变量" class="headerlink" title="引用模板引用变量"></a>引用模板引用变量</h4><p>我们可以在当前模板的任何地方引用模板引用变量。</p>
+<blockquote>
+<p>不要在同一个模版中多次定义相同变量名，否则运行时的值将会不可预测。</p>
+</blockquote>
+<p>这里是关于创建和使用模板引用变量的另外两个例子：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- phone refers to the input element; pass its `value` to an event handler --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">input</span> #<span class="attr">phone</span> <span class="attr">placeholder</span>=<span class="string">"phone number"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">button</span> (<span class="attr">click</span>)=<span class="string">"callPhone(phone.value)"</span>&gt;</span>Call<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!-- fax refers to the input element; pass its `value` to an event handler --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">ref-fax</span> <span class="attr">placeholder</span>=<span class="string">"fax number"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">button</span> (<span class="attr">click</span>)=<span class="string">"callFax(fax.value)"</span>&gt;</span>Fax<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>“phone” 的 (<code>#</code>) 前缀表示定义了一个<code>phone</code>变量。</p>
+<blockquote>
+<p>有些人不喜欢使用<code>#</code>字符，而是使用它的规范形式：<code>ref-</code>前缀。例如，既能用<code>#phone</code>，也能用<code>ref-phone</code>来定义<code>phone</code>变量。</p>
+</blockquote>
+<h4 id="如何获取变量的值"><a href="#如何获取变量的值" class="headerlink" title="如何获取变量的值"></a>如何获取变量的值</h4><p>Angular 把这种变量的值设置为它所在的那个元素。在这个<code>input</code>元素上定义了这些变量。把那些<code>input</code>元素对象传给 button 元素，在事件绑定中，它们作为参数传给了<code>call</code>方法。</p>
+<h4 id="NgForm-和模板引用变量"><a href="#NgForm-和模板引用变量" class="headerlink" title="NgForm 和模板引用变量"></a>NgForm 和模板引用变量</h4><p>让我们看看最后一个例子：表单，使用模板引用变量的典范。</p>
+<p>正如在表单一章中所见过的，表单的 HTML 可以做得相当复杂。 下面是简化过的范例——虽然仍算不上多简单。</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&lt;<span class="selector-tag">form</span> (ngSubmit)=<span class="string">"onSubmit(theForm)"</span> #theForm=<span class="string">"ngForm"</span>&gt;</div><div class="line">  &lt;<span class="selector-tag">div</span> class=<span class="string">"form-group"</span>&gt;</div><div class="line">    &lt;<span class="selector-tag">label</span> <span class="keyword">for</span>=<span class="string">"name"</span>&gt;Name&lt;/label&gt;</div><div class="line">    &lt;<span class="selector-tag">input</span> class=<span class="string">"form-control"</span> required ngControl=<span class="string">"firstName"</span></div><div class="line">      [(ngModel)]=<span class="string">"currentHero.firstName"</span>&gt;</div><div class="line">  &lt;/div&gt;</div><div class="line">  &lt;<span class="selector-tag">button</span> type=<span class="string">"submit"</span> [disabled]=<span class="string">"!theForm.form.valid"</span>&gt;Submit&lt;/button&gt;</div><div class="line">&lt;/form&gt;</div></pre></td></tr></table></figure>
+<p>模板引用变量<code>theForm</code>在这个例子中出现了三次，中间隔着一大段 HTML。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">form</span> (<span class="attr">ngSubmit</span>)=<span class="string">"onSubmit(theForm)"</span> #<span class="attr">theForm</span>=<span class="string">"ngForm"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">"submit"</span> [<span class="attr">disabled</span>]=<span class="string">"!theForm.form.valid"</span>&gt;</span>Submit<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></div></pre></td></tr></table></figure>
+<p><code>theForm</code>变量的值是什么？</p>
+<p>如果 Angular 没有接管它，那它可能是个HTMLFormElement。实际上它是个<code>ngForm</code>，对 Angular 内置指令<code>NgForm</code>的引用。它包装了原生的<code>HTMLFormElement</code>并赋予它更多超能力，比如跟踪用户输入的有效性。</p>
+<p>这解释了该如何通过检查<code>theForm.form.valid</code>来禁用提交按钮，以及如何把一个信息量略大的对象传给父组件的<code>onSubmit</code>方法。（译注：onSubmit方法可能会出发事件，被父组件监听，参见下面的输入和输出属性和父组件监听子组件的事件。）</p>
+<h3 id="ipt">输入与输出属性</h3>
+
+<p>迄今为止，我们主要聚焦在绑定声明的右侧，学习如何在模板表达式和模板语句中绑定到组件成员。当成员出现在这个位置上，则称之为数据绑定的<strong>源</strong>。</p>
+<p>本节则专注于绑定到的<strong>目标</strong>，它位于绑定声明中的左侧。这些指令的属性必须被声明成<strong>输入</strong>或<strong>输出</strong>。</p>
+<blockquote>
+<p>记住：<strong>所有组件皆为指令</strong>。</p>
+<p>我们要重点突出下绑定<strong>目标</strong>和绑定<strong>源</strong>的区别。</p>
+<p>绑定的目标是在<code>=</code>左侧的部分，源则是在<code>=</code>右侧的部分。</p>
+<p>绑定的目标是绑定符：<code>[]</code>、<code>()</code>或<code>[()]</code>中的属性或事件名，源则是引号 (<code>&quot; &quot;</code>) 中的部分或插值符号 (<code>{ {} }</code>) 中的部分。</p>
+<p><strong>源</strong>指令中的每个成员都会自动在绑定中可用。不需要特别做什么，就能在模板表达式或语句中访问指令的成员。</p>
+<p>访问<strong>目标</strong>指令中的成员则受到限制。只能绑定到那些显式标记为<em>输入</em>或<em>输出</em>的属性。</p>
+</blockquote>
+<p>在下面的例子中，<code>iconUrl</code>和<code>onSave</code>是组件的成员，它们在<code>=</code>右侧引号语法中被引用了。</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&lt;<span class="selector-tag">img</span> [src]=<span class="string">"iconUrl"</span>/&gt;</div><div class="line">&lt;<span class="selector-tag">button</span> (click)=<span class="string">"onSave()"</span>&gt;Save&lt;/button&gt;</div></pre></td></tr></table></figure>
+<p>它们既不是组件的输入也不是输出。它们是绑定的数据源。</p>
+<p>现在，看看<code>HeroDetailComponent</code>，它是<strong>绑定的目标</strong>。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">hero-detail</span> [<span class="attr">hero</span>]=<span class="string">"currentHero"</span> (<span class="attr">deleteRequest</span>)=<span class="string">"deleteHero($event)"</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">hero-detail</span>&gt;</span></div></pre></td></tr></table></figure>
+<p><code>HeroDetailComponent.hero</code>和<code>HeroDetailComponent.deleteRequest</code>都在绑定声明的<strong>左侧</strong>。</p>
+<p><code>HeroDetailComponent.hero</code>在方括号中，它是属性绑定的目标。<code>HeroDetailComponent.deleteRequest</code>在圆括号中，它是事件绑定的目标。</p>
+<h4 id="声明输入和输出属性"><a href="#声明输入和输出属性" class="headerlink" title="声明输入和输出属性"></a>声明输入和输出属性</h4><p>目标属性必须被显式的标记为输入或输出。</p>
+<p>当我们深入<code>HeroDetailComponent</code>内部时，就会看到这些属性被注解标记成了输入和输出属性。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Input()</span> Hero hero;</div><div class="line"><span class="meta">@Output()</span> <span class="keyword">final</span> deleteRequest = new EventEmitter&lt;Hero&gt;();</div></pre></td></tr></table></figure>
+<blockquote>
+<p>另外，还可以在指令元数据的<code>inputs</code>或<code>outputs</code>列表中标记出这些成员。比如这个例子：</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&gt;  <span class="meta">@Component</span>(</div><div class="line">&gt;    <span class="comment">// ...</span></div><div class="line">&gt;    inputs: <span class="keyword">const</span> [<span class="string">'hero'</span>],</div><div class="line">&gt;    outputs: <span class="keyword">const</span> [<span class="string">'deleteRequest'</span>],</div><div class="line">&gt;   )</div><div class="line">&gt;</div></pre></td></tr></table></figure>
+</blockquote>
+<p>&gt;</p>
+<blockquote>
+<p>既可以通过注解，也可以通过元数据列表来指定输入/输出属性。但别同时用！</p>
+</blockquote>
+<h4 id="输入还是输出？"><a href="#输入还是输出？" class="headerlink" title="输入还是输出？"></a>输入还是输出？</h4><p><em>输入</em>属性通常接收数据值。<em>输出</em>属性暴露事件生产者，如·EventEmitter·对象。</p>
+<p>输入和输出这两个词是从目标指令的角度来说的。</p>
+<p><img src="https://webdev.dartlang.org/resources/images/devguide/template-syntax/input-output.png" alt=""></p>
+<p>从<code>HeroDetailComponent</code>角度来看，<code>HeroDetailComponent.hero</code>是个<strong>输入</strong>属性，因为数据流从模板绑定表达式流入那个属性。</p>
+<p>从<code>HeroDetailComponent</code>角度来看，<code>HeroDetailComponent.deleteRequest</code>是个<strong>输出</strong>属性，因为事件从那个属性流出，流向模板绑定语句中的处理器。</p>
+<h4 id="给输入-输出属性起别名"><a href="#给输入-输出属性起别名" class="headerlink" title="给输入/输出属性起别名"></a>给输入/输出属性起别名</h4><p>有时需要让输入/输出属性的公开名字不同于内部名字。</p>
+<p>这是使用 attribute 指令时的常见情况。指令的使用者期望绑定到指令名。例如，在<code>&lt;div&gt;</code>上用<code>myClick</code>选择器应用指令时，希望绑定的事件属性也叫<code>myClick</code>。</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;<span class="keyword">div</span> (myClick)=<span class="string">"clickMessage=$event"</span>&gt;click <span class="keyword">with</span> myClick&lt;/<span class="keyword">div</span>&gt;</div></pre></td></tr></table></figure>
+<p>然而，在指令类中，直接用指令名作为自己的属性名通常都不是好的选择。指令名很少能描述这个属性是干嘛的。<code>myClick</code>这个指令名对于用来发出 click 消息的属性就算不上一个好名字。</p>
+<p>幸运的是，可以使用约定俗成的公开名字，同时在内部使用不同的名字。 在上面例子中，实际上是把<code>myClick</code>这个别名指向了指令自己的<code>clicks</code>属性。</p>
+<p>把别名传进<code>@Input/@Output</code>注解，就可以为属性指定别名，就像这样：</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// @Output(alias) [type info] propertyName = ...</span></div><div class="line"><span class="meta">@Output</span>(<span class="string">'myClick'</span>) <span class="keyword">final</span> EventEmitter clicks = <span class="keyword">new</span> EventEmitter&lt;<span class="built_in">String</span>&gt;();</div></pre></td></tr></table></figure>
+<blockquote>
+<p>也可在<code>inputs</code>和<code>outputs</code>列表中为属性指定别名。可以写一个冒号 (<code>:</code>) 分隔的字符串，左侧是指令中的属性名，右侧则是公开的别名。</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&gt; <span class="meta">@Directive</span>(</div><div class="line">&gt;     <span class="comment">// ...</span></div><div class="line">&gt;     outputs: <span class="keyword">const</span> [<span class="string">'clicks:myClick'</span>]) <span class="comment">// propertyName:alias</span></div><div class="line">&gt;</div></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="opt">模板表达式操作符</h3>
+
+<p>模板表达式语言使用了 Dart 语法的子集，并补充了几个用于特定场景的特殊操作符。下面介绍其中的两个：<em>管道</em>和<em>安全导航操作符</em>。</p>
+<h4 id="pip">管道操作符 (<code>|</code>)</h4>
+
+<p>在绑定之前，表达式的结果可能需要一些转换。例如，可能希望把数字显示成金额、强制文本变成大写，或者过滤列表以及进行排序。</p>
+<p>Angular 管道对像这样的小型转换来说是个明智的选择。管道是一个简单的函数，它接受一个输入值，并返回转换结果。它们很容易用于模板表达式中，只要使用<strong>管道操作符 (|)</strong> 就行了。</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;<span class="keyword">div</span>&gt;Title <span class="keyword">through</span> uppercase pipe: &#123; &#123;title | uppercase&#125; &#125;&lt;/<span class="keyword">div</span>&gt;</div></pre></td></tr></table></figure>
+<p>管道操作符会把它左侧的表达式结果传给它右侧的管道函数。</p>
+<p>还可以通过多个管道串联表达式：</p>
+<figure class="highlight dust"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="xml"><span class="comment">&lt;!-- Pipe chaining: convert title to uppercase, then to lowercase --&gt;</span></span></div><div class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></div><div class="line">  Title through a pipe chain:</div><div class="line">  <span class="template-variable">&#123; &#123;title | uppercase | lowercase&#125;</span><span class="xml"> &#125;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>还能对它们使用参数：</p>
+<figure class="highlight dust"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="xml"><span class="comment">&lt;!-- pipe with configuration argument =&gt; "February 25, 1970" --&gt;</span></span></div><div class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span>Birthdate: <span class="template-variable">&#123; &#123;currentHero?.birthdate | date:'longDate'&#125;</span><span class="xml"> &#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></div></pre></td></tr></table></figure>
+<h4 id="safe">安全导航操作符 (<code>?.</code>) 和空属性路径</h4>
+
+<p>Angular <strong>的安全导航操作符 (?.)</strong> 是一种流畅而便利的方式，用来保护出现在属性路径中 null 和 undefined 值。 下例中，当<code>currentHero</code>为空时，保护视图渲染器，让它免于失败。</p>
+<figure class="highlight ada"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">The current hero<span class="symbol">'s</span> name <span class="keyword">is</span> &#123;&#123;currentHero?.firstName&#125;&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>安全导航操作符(<code>?.</code>)是 Dart 语言的一部分。它被认为是一个模板表达式操作符，因为 Angular 支持 <code>?.</code> 即使是在Typescript和javascript应用。</p>
+</blockquote>
+<p>我们来详细阐述一下这个问题和解决方案：</p>
+<p>如果下列数据绑定中<code>title</code>属性为空，会发生什么？</p>
+<figure class="highlight maxima"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">The <span class="built_in">title</span> <span class="built_in">is</span> &#123;&#123;<span class="built_in">title</span>&#125;&#125;</div></pre></td></tr></table></figure>
+<p>这个视图仍然被渲染出来，但是显示的值是空；只能看到 “The title is”，它后面却没有任何东西。这是合理的行为。至少应用没有崩溃。</p>
+<p>假设模板表达式涉及属性路径，在下例中，显示一个空 (null) 英雄的<code>firstName</code>。</p>
+<figure class="highlight ada"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">The null hero<span class="symbol">'s</span> name <span class="keyword">is</span> &#123;&#123;nullHero.firstName&#125;&#125;</div></pre></td></tr></table></figure>
+<p>Dart 抛出了空引用错误，Angular 也是如此：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">EXCEPTION: The null <span class="selector-tag">object</span> does not have <span class="selector-tag">a</span> getter <span class="string">'firstName'</span>.</div></pre></td></tr></table></figure>
+<p>更糟糕的是，整个视图都不见了。</p>
+<p>如果确信<code>hero</code>属性永远不可能为空，可以声称这是合理的行为。如果它必须不能为空，但它仍然是空值，实际上是制造了一个编程错误，它应该被捕获和修复。这种情况应该抛出异常。</p>
+<p>另一方面，属性路径中的空值可能会时常发生，特别是当我们知道数据最终会出现。</p>
+<p>当等待数据的时候，视图渲染器不应该抱怨，而应该把这个空属性路径显示为空白，就像上面<code>title</code>属性那样。</p>
+<p>不幸的是，当<code>currentHero</code>为空的时候，应用崩溃了。</p>
+<p>可以通过写<code>NgIf</code>代码来解决这个问题。</p>
+<figure class="highlight django"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="xml"><span class="comment">&lt;!--No hero, div not displayed, no error --&gt;</span></span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> *<span class="attr">ngIf</span>=<span class="string">"nullHero != null"</span>&gt;</span>The null hero's name is <span class="template-variable">&#123;&#123;nullHero.firstName&#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></div></pre></td></tr></table></figure>
+<p>这些方法都有价值，但是会显得笨重，特别是当这个属性路径非常长的时候。想象一下在一个很长的属性路径（如a.b.c.d）中对空值提供保护。</p>
+<p>Angular 安全导航操作符 (<code>?.</code>) 是在属性路径中保护空值的更加流畅、便利的方式。 表达式会在它遇到第一个空值的时候跳出。显示是空的，但应用正常工作，而没有发生错误。</p>
+<figure class="highlight django"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="xml"><span class="comment">&lt;!-- No hero, no problem! --&gt;</span></span></div><div class="line">The null hero's name is <span class="template-variable">&#123;&#123;nullHero?.firstName&#125;&#125;</span><span class="xml"></span></div></pre></td></tr></table></figure>
+<p>在像<code>a?.b?.c?.d</code>这样的长属性路径中，它工作得很完美。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>我们完成了模板语法的概述。现在，该把如何写组件和指令的知识投入到实际工作当中了。</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2016/12/16/模板语法/">模板语法</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">soojade</a></p>
+        <p><span>发布时间:</span>2016-12-16, 16:26:07</p>
+        <p><span>最后更新:</span>2016-12-18, 14:42:47</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2016/12/16/模板语法/" title="模板语法">http://soojade.github.io/2016/12/16/模板语法/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://soojade.github.io/2016/12/16/模板语法/　　作者: soojade" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2016/12/18/简介/">
+                    简介
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2016/12/14/依赖注入/">
+                    依赖注入
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#模板语法"><span class="toc-number">1.</span> <span class="toc-text">模板语法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#html"><span class="toc-number">1.1.</span> <span class="toc-text">HTML</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#inter"><span class="toc-number">1.2.</span> <span class="toc-text">插值表达式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#tmpex"><span class="toc-number">1.3.</span> <span class="toc-text">模板表达式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#表达式上下文"><span class="toc-number">1.3.1.</span> <span class="toc-text">表达式上下文</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#表达式指南"><span class="toc-number">1.3.2.</span> <span class="toc-text">表达式指南</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#没有可见的副作用"><span class="toc-number">1.3.2.1.</span> <span class="toc-text">没有可见的副作用</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#执行迅速"><span class="toc-number">1.3.2.2.</span> <span class="toc-text">执行迅速</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#非常简单"><span class="toc-number">1.3.2.3.</span> <span class="toc-text">非常简单</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#幂等性"><span class="toc-number">1.3.2.4.</span> <span class="toc-text">幂等性</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#tmpsm"><span class="toc-number">1.4.</span> <span class="toc-text">模板语句</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#语句上下文"><span class="toc-number">1.4.0.1.</span> <span class="toc-text">语句上下文</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#语句指南"><span class="toc-number">1.4.0.2.</span> <span class="toc-text">语句指南</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#bind"><span class="toc-number">1.5.</span> <span class="toc-text">绑定语法：概览</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#新的思维模型"><span class="toc-number">1.5.1.</span> <span class="toc-text">新的思维模型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#HTML-attribute-与-DOM-property-的对比"><span class="toc-number">1.5.2.</span> <span class="toc-text">HTML attribute 与 DOM property 的对比</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#绑定目标"><span class="toc-number">1.5.3.</span> <span class="toc-text">绑定目标</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#prop"><span class="toc-number">1.6.</span> <span class="toc-text">属性绑定</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#单向输入"><span class="toc-number">1.6.1.</span> <span class="toc-text">单向输入</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#绑定目标-1"><span class="toc-number">1.6.2.</span> <span class="toc-text">绑定目标</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#消除副作用"><span class="toc-number">1.6.3.</span> <span class="toc-text">消除副作用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#返回恰当的类型"><span class="toc-number">1.6.4.</span> <span class="toc-text">返回恰当的类型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#别忘了方括号"><span class="toc-number">1.6.5.</span> <span class="toc-text">别忘了方括号</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#一次性字符串初始化"><span class="toc-number">1.6.6.</span> <span class="toc-text">一次性字符串初始化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#属性绑定还是插值表达式？"><span class="toc-number">1.6.7.</span> <span class="toc-text">属性绑定还是插值表达式？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#内容安全"><span class="toc-number">1.6.8.</span> <span class="toc-text">内容安全</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#attr"><span class="toc-number">1.7.</span> <span class="toc-text">attribute、class 和 style 绑定</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#attribute-绑定"><span class="toc-number">1.7.1.</span> <span class="toc-text">attribute 绑定</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#CSS-类绑定"><span class="toc-number">1.7.2.</span> <span class="toc-text">CSS 类绑定</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#样式绑定"><span class="toc-number">1.7.3.</span> <span class="toc-text">样式绑定</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#event"><span class="toc-number">1.8.</span> <span class="toc-text">事件绑定</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#目标事件"><span class="toc-number">1.8.1.</span> <span class="toc-text">目标事件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#event-和事件处理语句"><span class="toc-number">1.8.2.</span> <span class="toc-text">$event 和事件处理语句</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#使用-EventEmitter-实现自定义事件"><span class="toc-number">1.8.3.</span> <span class="toc-text">使用 EventEmitter 实现自定义事件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#模板语句有副作用"><span class="toc-number">1.8.4.</span> <span class="toc-text">模板语句有副作用</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#two"><span class="toc-number">1.9.</span> <span class="toc-text">双向数据绑定</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ngmodel"><span class="toc-number">1.10.</span> <span class="toc-text">使用 NgModel 进行双向数据绑定</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#ngModel-内幕"><span class="toc-number">1.10.1.</span> <span class="toc-text">[(ngModel)]内幕</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#direct"><span class="toc-number">1.11.</span> <span class="toc-text">内置指令</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#class"><span class="toc-number">1.11.1.</span> <span class="toc-text">NgClass</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#style"><span class="toc-number">1.11.2.</span> <span class="toc-text">NgStyle</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#if"><span class="toc-number">1.11.3.</span> <span class="toc-text">NgIf</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#可见性和NGIF不是一回事"><span class="toc-number">1.11.3.1.</span> <span class="toc-text">可见性和NGIF不是一回事</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#switch"><span class="toc-number">1.11.4.</span> <span class="toc-text">NgSwitch</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#for"><span class="toc-number">1.11.5.</span> <span class="toc-text">NgFor</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#NgFor-微语法"><span class="toc-number">1.11.6.</span> <span class="toc-text">NgFor 微语法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#带索引的-NgFor"><span class="toc-number">1.11.7.</span> <span class="toc-text">带索引的 NgFor</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#NgForTrackBy"><span class="toc-number">1.11.8.</span> <span class="toc-text">NgForTrackBy</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#star"><span class="toc-number">1.12.</span> <span class="toc-text">* 与 <template></span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#展开-ngIf"><span class="toc-number">1.12.1.</span> <span class="toc-text">展开*ngIf</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#展开-ngSwitch"><span class="toc-number">1.12.2.</span> <span class="toc-text">展开*ngSwitch</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#展开-ngFor"><span class="toc-number">1.12.3.</span> <span class="toc-text">展开*ngFor</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#var"><span class="toc-number">1.13.</span> <span class="toc-text">模板引用变量</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#引用模板引用变量"><span class="toc-number">1.13.1.</span> <span class="toc-text">引用模板引用变量</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#如何获取变量的值"><span class="toc-number">1.13.2.</span> <span class="toc-text">如何获取变量的值</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#NgForm-和模板引用变量"><span class="toc-number">1.13.3.</span> <span class="toc-text">NgForm 和模板引用变量</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ipt"><span class="toc-number">1.14.</span> <span class="toc-text">输入与输出属性</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#声明输入和输出属性"><span class="toc-number">1.14.1.</span> <span class="toc-text">声明输入和输出属性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#输入还是输出？"><span class="toc-number">1.14.2.</span> <span class="toc-text">输入还是输出？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#给输入-输出属性起别名"><span class="toc-number">1.14.3.</span> <span class="toc-text">给输入/输出属性起别名</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#opt"><span class="toc-number">1.15.</span> <span class="toc-text">模板表达式操作符</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#pip"><span class="toc-number">1.15.1.</span> <span class="toc-text">管道操作符 (|)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#safe"><span class="toc-number">1.15.2.</span> <span class="toc-text">安全导航操作符 (?.) 和空属性路径</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#总结"><span class="toc-number">1.16.</span> <span class="toc-text">总结</span></a></li></ol></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-4 i,
+        .toc-level-4 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"模板语法　| soojade个人空间　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+      <div class="duoshuo" id="comments">
+    <div id="comment-box" ></div>
+    <div class="ds-thread" id="ds-thread" data-thread-key="2016/12/16/模板语法/" data-title="模板语法" data-url="http://soojade.github.io/2016/12/16/模板语法/"></div>
+    <script>
+        var duoshuoQuery = {short_name:"soojade"};
+        var loadComment = function(){
+            var d = document, s = d.createElement('script');
+            s.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+            s.async = true; s.charset = 'UTF-8';
+            (d.head || d.body).appendChild(s);
+        }
+
+        
+    </script>
+    
+    <script> loadComment(); </script>
+
+</div>
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2016/12/18/简介/" title="上一篇: 简介">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2016/12/14/依赖注入/" title="下一篇: 依赖注入">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/02/06/javascript忍者秘籍笔记————函数是根基/">javascript 忍者秘籍————函数是根基</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/05/javascript忍者秘籍笔记————利用测试和调试武装自己/">javascript 忍者秘籍笔记————利用测试和调试武装自己</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/05/javascript忍者秘籍笔记————进入忍者世界/">javascript 忍者秘籍笔记————进入忍者世界</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/01/angular文档——CLI-快速起步/">angular文档——CLI-快速起步</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/15/angular点-线-面：模板引用变量/">angular.点-线-面：模板引用变量</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/15/javascript坑与技巧：花式交换两个数值/">javascript坑与技巧：花式交换两个数值</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/04/javascript坑与技巧：异常/">javascript坑与技巧：异常</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/03/javascript坑与技巧：表单/">javascript坑与技巧：表单</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/03/javascript坑与技巧：DOM/">javascript坑与技巧：DOM</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/02/javascript坑与技巧：this/">javascript坑与技巧：this</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/02/javascript坑与技巧：变量作用域/">javascript坑与技巧：变量作用域</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/02/javascript坑与技巧：箭头函数/">javascript坑与技巧：箭头函数</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/02/javascript坑与技巧：闭包/">javascript坑与技巧：闭包</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/02/javascript坑与技巧：sort/">javascript坑与技巧：sort</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/01/javascript坑与技巧：filter/">javascript坑与技巧：filter</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/01/javascript坑与技巧：map/">javascript坑与技巧：map</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/react文档-表单/">react文档--表单</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/react文档-列表和键/">react文档--列表和键</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/react文档-条件渲染/">react文档--条件渲染</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/react文档-事件处理/">react文档--事件处理</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/react文档-state和生命周期/">react文档--state和生命周期</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/react文档-组件和props/">react文档--组件和props</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/react文档-渲染元素/">react文档--渲染元素</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/react文档-介绍JSX/">react文档--介绍JSX</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/react文档-HelloWorld/">react文档--HelloWorld</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/react文档-安装/">react文档--安装</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/20/dart开发命令行工具/">dart开发命令行工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/19/dart语言基础/">dart语言基础</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/19/HTTP/">HTTP</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/19/路由/">路由</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/18/服务/">服务</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/18/多组件/">多组件</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/18/主从结构/">主从结构</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/18/英雄编辑器/">英雄编辑器</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/18/简介/">简介</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/16/模板语法/">模板语法</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/14/依赖注入/">依赖注入</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/13/表单/">表单</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/13/用户输入/">用户输入</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/11/显示数据/">显示数据</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/10/架构/">架构</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/10/学习angular/">学习angular</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/10/搭建开发环境/">搭建开发环境</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/10/概览/">概览</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/10/快速开始/">快速开始</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+  <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i>
+                2016-2017 soojade
+            </div>
+            <div class="footer-right">
+                 Made by soojade <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                Total <span id="busuanzi_value_site_pv"></span> views.
+                欢迎第<span id="busuanzi_value_site_uv"></span>个小伙伴
+                <span id="busuanzi_value_page_pv"></span> Hits
+            </div>
+        
+    </div>
+</footer>
+
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 15;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+    <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+             tags: ".article-tag a", 
+            
+             articleNav: "#article-nav a, #post-nav-button a", 
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>

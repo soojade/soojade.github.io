@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="soojade" />
+
+
+
+<meta name="description" content="表单在 React 中，HTML 表单元素和其它的 DOM 元素有一点不同，因为表单元素天生的保持一些内部状态。例如，这个普通的 HTML 表单接收一个单一的 name：
+1234567&amp;lt;form&amp;gt;  &amp;lt;label&amp;gt;    Name:    &amp;lt;input type=&quot;text&quot; name=&quot;name&quot; /&amp;gt;  &amp;lt;/label&amp;gt;  &amp;lt;input">
+<meta property="og:type" content="article">
+<meta property="og:title" content="react文档--表单">
+<meta property="og:url" content="http://soojade.github.io/2016/12/28/react文档-表单/index.html">
+<meta property="og:site_name" content="soojade个人空间">
+<meta property="og:description" content="表单在 React 中，HTML 表单元素和其它的 DOM 元素有一点不同，因为表单元素天生的保持一些内部状态。例如，这个普通的 HTML 表单接收一个单一的 name：
+1234567&amp;lt;form&amp;gt;  &amp;lt;label&amp;gt;    Name:    &amp;lt;input type=&quot;text&quot; name=&quot;name&quot; /&amp;gt;  &amp;lt;/label&amp;gt;  &amp;lt;input">
+<meta property="og:updated_time" content="2016-12-30T08:47:06.549Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="react文档--表单">
+<meta name="twitter:description" content="表单在 React 中，HTML 表单元素和其它的 DOM 元素有一点不同，因为表单元素天生的保持一些内部状态。例如，这个普通的 HTML 表单接收一个单一的 name：
+1234567&amp;lt;form&amp;gt;  &amp;lt;label&amp;gt;    Name:    &amp;lt;input type=&quot;text&quot; name=&quot;name&quot; /&amp;gt;  &amp;lt;/label&amp;gt;  &amp;lt;input">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="soojade个人空间" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="img/favicon.ico">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/green/pace-theme-flash.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>react文档--表单 | soojade个人空间</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: true
+    }
+</script>
+
+
+    <script>
+        yiliaConfig.jquery_ui = [true, "//cdn.bootcss.com/jqueryui/1.10.4/jquery-ui.min.js", "//cdn.bootcss.com/jqueryui/1.10.4/css/jquery-ui.min.css"];
+    </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/avatar.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">soojade</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">博客</p>
+        
+
+        
+            <form id="search-form">
+            <input type="text" id="local-search-input" name="q" placeholder="search..." class="search form-control" autocomplete="off" autocorrect="off" searchonload="false" />
+            <i class="fa fa-times" onclick="resetSearch()"></i>
+            </form>
+            <div id="local-search-result"></div>
+            <p class='no-result'>No results found <i class='fa fa-spinner fa-pulse'></i></p>
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=2035030023@qq.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" href="https://github.com/soojade" title="GitHub"></a>
+                            
+                                <a class="fa 知乎" href="https://www.zhihu.com/people/soojade/activities" title="知乎"></a>
+                            
+                                <a class="fa 简书" href="http://www.jianshu.com/users/b2e1cf392d42/latest_articles" title="简书"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/angular-angular-点-线-面/">angular angular.点-线-面</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/angular-angular文档/">angular angular文档</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dart-dart命令行/">dart  dart命令行</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dart-angularDart-web-angular指南/">dart angularDart web angular指南</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dart-angularDart-web-angular教程/">dart angularDart web angular教程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dart-dart基础/">dart dart基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-javascript坑与技巧/">javascript javascript坑与技巧</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-javascript坑与技巧-DOM/">javascript javascript坑与技巧 DOM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-javascript坑与技巧-filter/">javascript javascript坑与技巧 filter()</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-javascript坑与技巧-map/">javascript javascript坑与技巧 map()</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-javascript坑与技巧-sort/">javascript javascript坑与技巧 sort()</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-javascript坑与技巧-this/">javascript javascript坑与技巧 this</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-javascript坑与技巧-变量作用域/">javascript javascript坑与技巧 变量作用域</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-javascript坑与技巧-异常/">javascript javascript坑与技巧 异常</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-javascript坑与技巧-箭头函数/">javascript javascript坑与技巧 箭头函数</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-javascript坑与技巧-表单/">javascript javascript坑与技巧 表单</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-javascript坑与技巧-闭包/">javascript javascript坑与技巧 闭包</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript忍者秘籍笔记/">javascript忍者秘籍笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/react文档-翻译/">react文档 翻译</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">专注于Web与游戏</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">soojade</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/avatar.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">soojade</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">博客</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=2035030023@qq.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/soojade" title="GitHub"></a>
+                            
+                                <a class="fa 知乎" target="_blank" href="https://www.zhihu.com/people/soojade/activities" title="知乎"></a>
+                            
+                                <a class="fa 简书" target="_blank" href="http://www.jianshu.com/users/b2e1cf392d42/latest_articles" title="简书"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-react文档-表单" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/12/28/react文档-表单/" class="article-date">
+      <time datetime="2016-12-28T02:15:17.000Z" itemprop="datePublished">2016-12-28</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      react文档--表单
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/react/">react</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/react文档-翻译/">react文档 翻译</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h1 id="表单"><a href="#表单" class="headerlink" title="表单"></a>表单</h1><p>在 React 中，HTML 表单元素和其它的 DOM 元素有一点不同，因为表单元素天生的保持一些内部状态。例如，这个普通的 HTML 表单接收一个单一的 name：</p>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;<span class="keyword">form</span>&gt;</div><div class="line">  &lt;<span class="keyword">label</span>&gt;</div><div class="line">    Name:</div><div class="line">    &lt;<span class="keyword">input</span> <span class="keyword">type</span>=<span class="string">"text"</span> name=<span class="string">"name"</span> /&gt;</div><div class="line">  &lt;/<span class="keyword">label</span>&gt;</div><div class="line">  &lt;<span class="keyword">input</span> <span class="keyword">type</span>=<span class="string">"submit"</span> value=<span class="string">"Submit"</span> /&gt;</div><div class="line">&lt;/<span class="keyword">form</span>&gt;</div></pre></td></tr></table></figure>
+<a id="more"></a>
+<p>这个表单有默认的 HTML 表单行为，当用户提交表单时，会跳转到新的页面。如果你想在 React 中有这个行为，它也是有效的。但是大多数情况下，让一个 JavaScript 函数来处理表单的提交和访问用户输入的数据是比较方便的。实现这个效果的标准方式是使用称为“受控组件”的技术。</p>
+<h2 id="受控组件"><a href="#受控组件" class="headerlink" title="受控组件"></a>受控组件</h2><p>在 HTML 中，表单元素如<code>&lt;input&gt;</code>、<code>&lt;textarea&gt;</code>和<code>&lt;select&gt;</code>通常基于用户的输入维护或更新自身的状态。在 React 中，可变的状态通常保存在组件的 state 属性，并且只能使用<code>setState()</code>来更新。</p>
+<p>我们可以通过使 React state 成为“单一数据源”来使两者结合。然后 React 组件渲染一个表单并控制这个表单在随后的用户输入中发生了什么。用这种方法被 React 控制 value 的 input 表单元素被称为“受控组件”。</p>
+<p>例如，我们想使之前的例子在提交的时候显示输入的 name，我们把这个表单写成受控组件：</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">NameForm</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</div><div class="line">  constructor(props) &#123;</div><div class="line">    <span class="keyword">super</span>(props);</div><div class="line">    <span class="keyword">this</span>.state = &#123;value: <span class="string">''</span>&#125;;</div><div class="line"><span class="comment"><span class="markdown">/<span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span>/</span></span></div><div class="line">    <span class="keyword">this</span>.handleChange = <span class="keyword">this</span>.handleChange.bind(<span class="keyword">this</span>);</div><div class="line">    <span class="keyword">this</span>.handleSubmit = <span class="keyword">this</span>.handleSubmit.bind(<span class="keyword">this</span>);</div><div class="line">  &#125;</div><div class="line"><span class="comment"><span class="markdown">/<span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span>/</span></span></div><div class="line">  handleChange(event) &#123;</div><div class="line">    <span class="keyword">this</span>.setState(&#123;value: event.target.value&#125;);</div><div class="line">  &#125;</div><div class="line"><span class="comment"><span class="markdown">/<span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span>/</span></span></div><div class="line">  handleSubmit(event) &#123;</div><div class="line">    alert(<span class="string">'A name was submitted: '</span> + <span class="keyword">this</span>.state.value);</div><div class="line">    event.preventDefault();</div><div class="line">  &#125;</div><div class="line"><span class="comment"><span class="markdown">/<span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span>/</span></span></div><div class="line">  render() &#123;</div><div class="line">    <span class="keyword">return</span> (</div><div class="line">      &lt;form onSubmit=&#123;<span class="keyword">this</span>.handleSubmit&#125;&gt;</div><div class="line">        &lt;label&gt;</div><div class="line">          Name:</div><div class="line">          &lt;input type=<span class="string">"text"</span> value=&#123;<span class="keyword">this</span>.state.value&#125; onChange=&#123;<span class="keyword">this</span>.handleChange&#125; /&gt;</div><div class="line">        &lt;/label&gt;</div><div class="line">        &lt;input type=<span class="string">"submit"</span> value=<span class="string">"Submit"</span> /&gt;</div><div class="line">      &lt;/form&gt;</div><div class="line">    );</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在<a href="https://codepen.io/gaearon/pen/VmmPgp?editors=0011" target="_blank" rel="external">CodePen</a>上试试。</p>
+<p>由于我们的表单设置了<code>value</code>属性，value 的显示一直会是<code>this.state.value</code>的值，使 React state 成为单一数据源。由于每次输入都会运行<code>handleChange</code>来更新 React state，用户的输入会作为 value 的更新显示。</p>
+<p>使用一个受控组件，每一个 state 的变化都会有一个与之相关联的处理函数。这使得修改或验证用户的输入变得更简单明确。例如，我们想让用户的输入强制变成大写，我们可以把<code>handleChange</code>写成这样：</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">handleChange(<span class="keyword">event</span>) &#123;</div><div class="line">  <span class="keyword">this</span>.setState(&#123;<span class="keyword">value</span>: <span class="keyword">event</span>.target.<span class="keyword">value</span>.toUpperCase()&#125;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="textarea-标签"><a href="#textarea-标签" class="headerlink" title="textarea 标签"></a>textarea 标签</h2><p>在 HTML 中，<code>&lt;textarea&gt;</code>元素通过它的子元素定义它的文本：</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;textarea&gt;</div><div class="line">  Hello there, this <span class="keyword">is</span> <span class="keyword">some</span> <span class="built_in">text</span> <span class="keyword">in</span> a <span class="built_in">text</span> area</div><div class="line">&lt;/textarea&gt;</div></pre></td></tr></table></figure>
+<p>在 React 中<code>&lt;textarea&gt;</code>使用一个<code>value</code>属性代替。这种方式，<code>textarea</code>表单的编写和编写单行 input 表单非常类似：</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">EssayForm</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</div><div class="line">  constructor(props) &#123;</div><div class="line">    <span class="keyword">super</span>(props);</div><div class="line">    <span class="keyword">this</span>.state = &#123;</div><div class="line">      value: <span class="string">'Please write an essay about your favorite DOM element.'</span></div><div class="line">    &#125;;</div><div class="line"><span class="comment"><span class="markdown">/<span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span>/</span></span></div><div class="line">    <span class="keyword">this</span>.handleChange = <span class="keyword">this</span>.handleChange.bind(<span class="keyword">this</span>);</div><div class="line">    <span class="keyword">this</span>.handleSubmit = <span class="keyword">this</span>.handleSubmit.bind(<span class="keyword">this</span>);</div><div class="line">  &#125;</div><div class="line"><span class="comment"><span class="markdown">/<span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span>/</span></span></div><div class="line">  handleChange(event) &#123;</div><div class="line">    <span class="keyword">this</span>.setState(&#123;value: event.target.value&#125;);</div><div class="line">  &#125;</div><div class="line"><span class="comment"><span class="markdown">/<span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span>/</span></span></div><div class="line">  handleSubmit(event) &#123;</div><div class="line">    alert(<span class="string">'An essay was submitted: '</span> + <span class="keyword">this</span>.state.value);</div><div class="line">    event.preventDefault();</div><div class="line">  &#125;</div><div class="line"><span class="comment"><span class="markdown">/<span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span>/</span></span></div><div class="line">  render() &#123;</div><div class="line">    <span class="keyword">return</span> (</div><div class="line">      &lt;form onSubmit=&#123;<span class="keyword">this</span>.handleSubmit&#125;&gt;</div><div class="line">        &lt;label&gt;</div><div class="line">          Name:</div><div class="line">          &lt;textarea value=&#123;<span class="keyword">this</span>.state.value&#125; onChange=&#123;<span class="keyword">this</span>.handleChange&#125; /&gt;</div><div class="line">        &lt;/label&gt;</div><div class="line">        &lt;input type=<span class="string">"submit"</span> value=<span class="string">"Submit"</span> /&gt;</div><div class="line">      &lt;/form&gt;</div><div class="line">    );</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>注意，<code>this.state.value</code>是在构造函数中初始化的，所以文本域一开始就有一些文本在里面。</p>
+<h2 id="select-标签"><a href="#select-标签" class="headerlink" title="select 标签"></a>select 标签</h2><p>在 HTML 中，<code>&lt;select&gt;</code>创建一个下拉列表。例如，这段 HTML 代码创建了一个关于风味的下拉列表：</p>
+<figure class="highlight xquery"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;select&gt;</div><div class="line">  &lt;<span class="keyword">option</span> <span class="keyword">value</span>=<span class="string">"grapefruit"</span>&gt;Grapefruit&lt;/<span class="keyword">option</span>&gt;</div><div class="line">  &lt;<span class="keyword">option</span> <span class="keyword">value</span>=<span class="string">"lime"</span>&gt;Lime&lt;/<span class="keyword">option</span>&gt;</div><div class="line">  &lt;<span class="keyword">option</span> selected <span class="keyword">value</span>=<span class="string">"coconut"</span>&gt;Coconut&lt;/<span class="keyword">option</span>&gt;</div><div class="line">  &lt;<span class="keyword">option</span> <span class="keyword">value</span>=<span class="string">"mango"</span>&gt;Mango&lt;/<span class="keyword">option</span>&gt;</div><div class="line">&lt;/select&gt;</div></pre></td></tr></table></figure>
+<p>注意，由于<code>selected</code>属性，Coconut 选项是被默认选择的。React 不使用<code>selected</code>属性，而是在<code>select</code>标签根上使用<code>value</code>属性。这在一个受控组件中更方便，因为你仅需在一个地方更新它。例如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">FlavorForm</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</div><div class="line">  <span class="keyword">constructor</span>(props) &#123;</div><div class="line">    <span class="keyword">super</span>(props);</div><div class="line">    <span class="keyword">this</span>.state = &#123;<span class="attr">value</span>: <span class="string">'coconut'</span>&#125;;</div><div class="line"><span class="comment">/***************/</span></div><div class="line">    <span class="keyword">this</span>.handleChange = <span class="keyword">this</span>.handleChange.bind(<span class="keyword">this</span>);</div><div class="line">    <span class="keyword">this</span>.handleSubmit = <span class="keyword">this</span>.handleSubmit.bind(<span class="keyword">this</span>);</div><div class="line">  &#125;</div><div class="line"><span class="comment">/***************/</span></div><div class="line">  handleChange(event) &#123;</div><div class="line">    <span class="keyword">this</span>.setState(&#123;<span class="attr">value</span>: event.target.value&#125;);</div><div class="line">  &#125;</div><div class="line"><span class="comment">/***************/</span></div><div class="line">  handleSubmit(event) &#123;</div><div class="line">    alert(<span class="string">'Your favorite flavor is: '</span> + <span class="keyword">this</span>.state.value);</div><div class="line">    event.preventDefault();</div><div class="line">  &#125;</div><div class="line"><span class="comment">/***************/</span></div><div class="line">  render() &#123;</div><div class="line">    <span class="keyword">return</span> (</div><div class="line">      <span class="xml"><span class="tag">&lt;<span class="name">form</span> <span class="attr">onSubmit</span>=<span class="string">&#123;this.handleSubmit&#125;</span>&gt;</span></span></div><div class="line">        <span class="tag">&lt;<span class="name">label</span>&gt;</span></div><div class="line">          Pick your favorite La Croix flavor:</div><div class="line">          <span class="tag">&lt;<span class="name">select</span> <span class="attr">value</span>=<span class="string">&#123;this.state.value&#125;</span> <span class="attr">onChange</span>=<span class="string">&#123;this.handleChange&#125;</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">"grapefruit"</span>&gt;</span>Grapefruit<span class="tag">&lt;/<span class="name">option</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">"lime"</span>&gt;</span>Lime<span class="tag">&lt;/<span class="name">option</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">"coconut"</span>&gt;</span>Coconut<span class="tag">&lt;/<span class="name">option</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">"mango"</span>&gt;</span>Mango<span class="tag">&lt;/<span class="name">option</span>&gt;</span></div><div class="line">          <span class="tag">&lt;/<span class="name">select</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">label</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">value</span>=<span class="string">"Submit"</span> /&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">form</span>&gt;</span></div><div class="line">    );</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在<a href="https://codepen.io/gaearon/pen/JbbEzX?editors=0010" target="_blank" rel="external">CodePen</a>上试试。</p>
+<p>总的来说，这使得<code>&lt;input type=&quot;text&quot;&gt;</code>、<code>&lt;textarea&gt;</code>和<code>&lt;select&gt;</code>工作方式非常相似——它们都接收一个<code>value</code>属性，你可以使用它来实现一个受控组件。</p>
+<h2 id="替代受控组件"><a href="#替代受控组件" class="headerlink" title="替代受控组件"></a>替代受控组件</h2><p>有时使用受控组件是乏味的，因为你需要通过一个组件为所有的数据变化的方式和管道处理所有的输入 state 编写事件处理器。当你转换一个已存在的代码库到 React，或使用非 React 库整合一个 React 应用时，这一点尤为恼人。在这种情况下，你可能想查看<a href="https://facebook.github.io/react/docs/uncontrolled-components.html" target="_blank" rel="external">非受控组件</a>，一个实现 input 表单的另类技术。</p>
+<blockquote>
+<p>下一步</p>
+<p>提升 State</p>
+</blockquote>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2016/12/28/react文档-表单/">react文档--表单</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">soojade</a></p>
+        <p><span>发布时间:</span>2016-12-28, 10:15:17</p>
+        <p><span>最后更新:</span>2016-12-30, 16:47:06</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2016/12/28/react文档-表单/" title="react文档--表单">http://soojade.github.io/2016/12/28/react文档-表单/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://soojade.github.io/2016/12/28/react文档-表单/　　作者: soojade" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2017/01/01/javascript坑与技巧：map/">
+                    javascript坑与技巧：map
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2016/12/28/react文档-列表和键/">
+                    react文档--列表和键
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#表单"><span class="toc-number">1.</span> <span class="toc-text">表单</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#受控组件"><span class="toc-number">1.1.</span> <span class="toc-text">受控组件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#textarea-标签"><span class="toc-number">1.2.</span> <span class="toc-text">textarea 标签</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#select-标签"><span class="toc-number">1.3.</span> <span class="toc-text">select 标签</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#替代受控组件"><span class="toc-number">1.4.</span> <span class="toc-text">替代受控组件</span></a></li></ol></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-4 i,
+        .toc-level-4 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"react文档--表单　| soojade个人空间　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+      <div class="duoshuo" id="comments">
+    <div id="comment-box" ></div>
+    <div class="ds-thread" id="ds-thread" data-thread-key="2016/12/28/react文档-表单/" data-title="react文档--表单" data-url="http://soojade.github.io/2016/12/28/react文档-表单/"></div>
+    <script>
+        var duoshuoQuery = {short_name:"soojade"};
+        var loadComment = function(){
+            var d = document, s = d.createElement('script');
+            s.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+            s.async = true; s.charset = 'UTF-8';
+            (d.head || d.body).appendChild(s);
+        }
+
+        
+    </script>
+    
+    <script> loadComment(); </script>
+
+</div>
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2017/01/01/javascript坑与技巧：map/" title="上一篇: javascript坑与技巧：map">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2016/12/28/react文档-列表和键/" title="下一篇: react文档--列表和键">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/02/06/javascript忍者秘籍笔记————函数是根基/">javascript 忍者秘籍————函数是根基</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/05/javascript忍者秘籍笔记————利用测试和调试武装自己/">javascript 忍者秘籍笔记————利用测试和调试武装自己</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/05/javascript忍者秘籍笔记————进入忍者世界/">javascript 忍者秘籍笔记————进入忍者世界</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/01/angular文档——CLI-快速起步/">angular文档——CLI-快速起步</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/15/angular点-线-面：模板引用变量/">angular.点-线-面：模板引用变量</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/15/javascript坑与技巧：花式交换两个数值/">javascript坑与技巧：花式交换两个数值</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/04/javascript坑与技巧：异常/">javascript坑与技巧：异常</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/03/javascript坑与技巧：表单/">javascript坑与技巧：表单</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/03/javascript坑与技巧：DOM/">javascript坑与技巧：DOM</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/02/javascript坑与技巧：this/">javascript坑与技巧：this</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/02/javascript坑与技巧：变量作用域/">javascript坑与技巧：变量作用域</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/02/javascript坑与技巧：箭头函数/">javascript坑与技巧：箭头函数</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/02/javascript坑与技巧：闭包/">javascript坑与技巧：闭包</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/02/javascript坑与技巧：sort/">javascript坑与技巧：sort</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/01/javascript坑与技巧：filter/">javascript坑与技巧：filter</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/01/javascript坑与技巧：map/">javascript坑与技巧：map</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/react文档-表单/">react文档--表单</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/react文档-列表和键/">react文档--列表和键</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/react文档-条件渲染/">react文档--条件渲染</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/react文档-事件处理/">react文档--事件处理</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/react文档-state和生命周期/">react文档--state和生命周期</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/react文档-组件和props/">react文档--组件和props</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/react文档-渲染元素/">react文档--渲染元素</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/react文档-介绍JSX/">react文档--介绍JSX</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/react文档-HelloWorld/">react文档--HelloWorld</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/react文档-安装/">react文档--安装</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/20/dart开发命令行工具/">dart开发命令行工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/19/dart语言基础/">dart语言基础</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/19/HTTP/">HTTP</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/19/路由/">路由</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/18/服务/">服务</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/18/多组件/">多组件</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/18/主从结构/">主从结构</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/18/英雄编辑器/">英雄编辑器</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/18/简介/">简介</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/16/模板语法/">模板语法</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/14/依赖注入/">依赖注入</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/13/表单/">表单</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/13/用户输入/">用户输入</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/11/显示数据/">显示数据</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/10/架构/">架构</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/10/学习angular/">学习angular</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/10/搭建开发环境/">搭建开发环境</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/10/概览/">概览</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/10/快速开始/">快速开始</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+  <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i>
+                2016-2017 soojade
+            </div>
+            <div class="footer-right">
+                 Made by soojade <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                Total <span id="busuanzi_value_site_pv"></span> views.
+                欢迎第<span id="busuanzi_value_site_uv"></span>个小伙伴
+                <span id="busuanzi_value_page_pv"></span> Hits
+            </div>
+        
+    </div>
+</footer>
+
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 15;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+    <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+             tags: ".article-tag a", 
+            
+             articleNav: "#article-nav a, #post-nav-button a", 
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>

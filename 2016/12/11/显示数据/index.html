@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="soojade" />
+
+
+
+<meta name="description" content="显示数据在 Angular 中最典型的数据显示方式，就是把 HTML 模板中的控件绑定到 Angular 组件的属性。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="显示数据">
+<meta property="og:url" content="http://soojade.github.io/2016/12/11/显示数据/index.html">
+<meta property="og:site_name" content="soojade个人空间">
+<meta property="og:description" content="显示数据在 Angular 中最典型的数据显示方式，就是把 HTML 模板中的控件绑定到 Angular 组件的属性。">
+<meta property="og:image" content="https://webdev.dartlang.org/resources/images/devguide/displaying-data/final.png">
+<meta property="og:image" content="https://webdev.dartlang.org/resources/images/devguide/displaying-data/title-and-hero.png">
+<meta property="og:updated_time" content="2016-12-18T06:42:37.197Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="显示数据">
+<meta name="twitter:description" content="显示数据在 Angular 中最典型的数据显示方式，就是把 HTML 模板中的控件绑定到 Angular 组件的属性。">
+<meta name="twitter:image" content="https://webdev.dartlang.org/resources/images/devguide/displaying-data/final.png">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="soojade个人空间" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="img/favicon.ico">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/green/pace-theme-flash.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>显示数据 | soojade个人空间</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: true
+    }
+</script>
+
+
+    <script>
+        yiliaConfig.jquery_ui = [true, "//cdn.bootcss.com/jqueryui/1.10.4/jquery-ui.min.js", "//cdn.bootcss.com/jqueryui/1.10.4/css/jquery-ui.min.css"];
+    </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/avatar.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">soojade</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">博客</p>
+        
+
+        
+            <form id="search-form">
+            <input type="text" id="local-search-input" name="q" placeholder="search..." class="search form-control" autocomplete="off" autocorrect="off" searchonload="false" />
+            <i class="fa fa-times" onclick="resetSearch()"></i>
+            </form>
+            <div id="local-search-result"></div>
+            <p class='no-result'>No results found <i class='fa fa-spinner fa-pulse'></i></p>
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=2035030023@qq.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" href="https://github.com/soojade" title="GitHub"></a>
+                            
+                                <a class="fa 知乎" href="https://www.zhihu.com/people/soojade/activities" title="知乎"></a>
+                            
+                                <a class="fa 简书" href="http://www.jianshu.com/users/b2e1cf392d42/latest_articles" title="简书"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/angular-angular-点-线-面/">angular angular.点-线-面</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/angular-angular文档/">angular angular文档</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dart-dart命令行/">dart  dart命令行</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dart-angularDart-web-angular指南/">dart angularDart web angular指南</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dart-angularDart-web-angular教程/">dart angularDart web angular教程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dart-dart基础/">dart dart基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-javascript坑与技巧/">javascript javascript坑与技巧</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-javascript坑与技巧-DOM/">javascript javascript坑与技巧 DOM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-javascript坑与技巧-filter/">javascript javascript坑与技巧 filter()</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-javascript坑与技巧-map/">javascript javascript坑与技巧 map()</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-javascript坑与技巧-sort/">javascript javascript坑与技巧 sort()</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-javascript坑与技巧-this/">javascript javascript坑与技巧 this</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-javascript坑与技巧-变量作用域/">javascript javascript坑与技巧 变量作用域</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-javascript坑与技巧-异常/">javascript javascript坑与技巧 异常</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-javascript坑与技巧-箭头函数/">javascript javascript坑与技巧 箭头函数</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-javascript坑与技巧-表单/">javascript javascript坑与技巧 表单</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-javascript坑与技巧-闭包/">javascript javascript坑与技巧 闭包</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript忍者秘籍笔记/">javascript忍者秘籍笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/react文档-翻译/">react文档 翻译</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">专注于Web与游戏</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">soojade</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/avatar.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">soojade</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">博客</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=2035030023@qq.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/soojade" title="GitHub"></a>
+                            
+                                <a class="fa 知乎" target="_blank" href="https://www.zhihu.com/people/soojade/activities" title="知乎"></a>
+                            
+                                <a class="fa 简书" target="_blank" href="http://www.jianshu.com/users/b2e1cf392d42/latest_articles" title="简书"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-显示数据" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/12/11/显示数据/" class="article-date">
+      <time datetime="2016-12-11T07:11:41.000Z" itemprop="datePublished">2016-12-11</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      显示数据
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/dart/">dart</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dart-angularDart-web-angular指南/">dart angularDart web angular指南</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h2 id="显示数据"><a href="#显示数据" class="headerlink" title="显示数据"></a>显示数据</h2><p>在 Angular 中最典型的数据显示方式，就是把 HTML 模板中的控件绑定到 Angular 组件的属性。<br><a id="more"></a><br>本章中，我们将创建一个英雄列表组件。 显示英雄名字的列表，并根据条件在列表下方显示一条消息。</p>
+<p>最终的用户界面是这样的：<br><img src="https://webdev.dartlang.org/resources/images/devguide/displaying-data/final.png" alt="英雄列表界面" title="英雄列表界面"></p>
+<h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><ul>
+<li><a href="#interpolation">通过插值表达式显示组件的属性</a></li>
+<li><a href="#ngFor">通过 NgFor 显示数组型属性</a></li>
+<li><a href="#ngIf">通过 NgIf 实现按条件显示</a></li>
+</ul>
+<blockquote>
+<p><a href="http://angular-examples.github.io/displaying-data" target="_blank" rel="external">在线例子</a>演示了本章中描述的所有语法和代码片段。</p>
+</blockquote>
+<h3 id="interpolation">使用插值表达式显示组件属性</h3>
+
+<p>要显示组件的属性，最简单的方式就是通过插值表达式 (interpolation) 来绑定属性名。 要使用插值表达式，就把属性名包裹在双花括号里放进视图模板，如<code>{ {myHero}}</code>。</p>
+<p>让我们一起构建一个小型的说明性的例子。</p>
+<p>创建一个新的项目目录（displaying_data），按照【快速开始】的步骤，创建文件。</p>
+<p>到<code>app_component.dart</code>文件，修改组件的模板和代码。修改完成后，像下面这样：</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// lib/app_component.dart</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> <span class="string">'package:angular2/core.dart'</span>;</div><div class="line"><span class="meta">@Component</span>(</div><div class="line">    selector: <span class="string">'my-app'</span>,</div><div class="line">    template: <span class="string">'''</span></div><div class="line">      &lt;h1&gt;&#123;&#123;title&#125;&#125;&lt;/h1&gt;</div><div class="line">      &lt;h2&gt;My favorite hero is: &#123;&#123;myHero&#125;&#125;&lt;/h2&gt;</div><div class="line">    '''</div><div class="line">)</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">AppComponent</span> </span>&#123;</div><div class="line">  <span class="built_in">String</span> title = <span class="string">'Tour of Heroes'</span>;</div><div class="line">  <span class="built_in">String</span> myHero = <span class="string">'Windstorm'</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>再把两个属性<code>title</code>和<code>myHero</code>添加到之前空白的组件中。<br>修改完的模板会使用双花括号形式的插值表达式来显示这两个模板属性：</p>
+<figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">template: '''</div><div class="line">  &lt;h1&gt;&#123;&#123;title&#125;&#125;&lt;/h1&gt;</div><div class="line">  &lt;h2&gt;My favorite hero is: &#123;&#123;myHero&#125;&#125;&lt;/h2&gt;</div><div class="line">'''</div></pre></td></tr></table></figure>
+<p>Angular 自动从组件中提取<code>title</code>和<code>myHero</code>属性的值，并且把这些值插入浏览器中。当这些属性发生变化时，Angular 就会自动刷新显示。</p>
+<blockquote>
+<p>严格来说，“重新显示”是在某些与视图有关的异步事件之后发生的，例如，按键、定时器完成或一个异步的XHR响应。</p>
+</blockquote>
+<p>注意，我们没有调用 <code>new</code> 来创建<code>AppComponent</code>类的实例，是 Angular 替我们创建了它。那么它是如何创建的呢？</p>
+<p>我们看到在<code>@Component</code>注解中的 CSS 选择器，指定一个名为<code>my-app</code>的元素。记得在 <em>快速开始</em> 里我们添加<code>&lt;my-app&gt;</code>元素到<code>index.html</code>的 body 中：</p>
+<figure class="highlight dts"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// web/index.html(body)</span></div><div class="line"></div><div class="line"><span class="params">&lt;body&gt;</span></div><div class="line">  <span class="params">&lt;my-app&gt;</span>Loading...<span class="params">&lt;/my-app&gt;</span></div><div class="line"><span class="params">&lt;/body&gt;</span></div></pre></td></tr></table></figure>
+<p>当我们通过<code>main.ts</code>中的<code>AppComponent</code>类启动时，Angular 在<code>index.html</code>中查找一个<code>&lt;my-app&gt;</code>元素， 然后实例化一个<code>AppComponent</code>，并将其渲染到<code>&lt;my-app&gt;</code>标签中。</p>
+<p>试着运行应用。它应该显示出标题和英雄名：<br><img src="https://webdev.dartlang.org/resources/images/devguide/displaying-data/title-and-hero.png" alt=""></p>
+<h3 id="内联-inline-模板还是模板文件？"><a href="#内联-inline-模板还是模板文件？" class="headerlink" title="内联 (inline) 模板还是模板文件？"></a>内联 (inline) 模板还是模板文件？</h3><p>我们可以在两种地方存放组件模板。 使用<code>template</code>属性把它定义为内联的，或者把模板定义在一个独立的 HTML 文件中， 再通过<code>@Component</code>注解中的<code>templateUrl</code>属性， 把它链接到组件元数据。</p>
+<p>到底选择内联 HTML 还是独立 HTML 取决于个人喜好、具体状况和组织级策略。 上面的应用选择内联 HTML ，是因为模板很小，而且没有额外的 HTML 文件显得这个演示简单些。</p>
+<p>无论用哪种风格，模板数据绑定在访问组件属性方面都是完全一样的</p>
+<h3 id="ngFor">使用 &#42;ngFor显示列表属性</h3>
+
+<p>要显示一个英雄列表，先向组件中添加一个英雄名字数组，然后把myHero重定义为数组中的第一个名字。</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// lib/app_component.dart (class)</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">AppComponent</span> </span>&#123;</div><div class="line">  <span class="built_in">String</span> title = <span class="string">'Tour of Heroes'</span>;</div><div class="line">  <span class="built_in">List</span>&lt;<span class="built_in">String</span>&gt; heroes = [<span class="string">'Windstorm'</span>, <span class="string">'Bombasto'</span>, <span class="string">'Magneta'</span>, <span class="string">'Tornado'</span>];</div><div class="line"></div><div class="line">  <span class="built_in">String</span> <span class="keyword">get</span> myHero =&gt; heroes.first;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>接着，在模板中使用 Angular 的<code>ngFor</code>指令来显示heroes列表中的每一项。</p>
+<figure class="highlight django"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="xml">template: '''</span></div><div class="line">  <span class="tag">&lt;<span class="name">h1</span>&gt;</span><span class="template-variable">&#123;&#123;title&#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></div><div class="line">  <span class="tag">&lt;<span class="name">h2</span>&gt;</span>My favorite hero is: <span class="template-variable">&#123;&#123;myHero&#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span></div><div class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>Heroes:<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">ul</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">li</span> *<span class="attr">ngFor</span>=<span class="string">"let hero of heroes"</span>&gt;</span></div><div class="line">      <span class="template-variable">&#123;&#123; hero &#125;&#125;</span><span class="xml"></span></div><div class="line">    <span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div><div class="line">'''</div></pre></td></tr></table></figure>
+<p>上面的演示是我们熟悉的由<code>&lt;ul&gt;</code>和<code>&lt;li&gt;</code>标签组成的HTML无序列表。让我们仔细看<code>&lt;li&gt;</code>标签：</p>
+<figure class="highlight django"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="xml"><span class="tag">&lt;<span class="name">li</span> *<span class="attr">ngFor</span>=<span class="string">"let hero of heroes"</span>&gt;</span></span></div><div class="line">  <span class="template-variable">&#123;&#123; hero &#125;&#125;</span><span class="xml"></span></div><div class="line"><span class="tag">&lt;/<span class="name">li</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>我们给<code>&lt;li&gt;</code>元素添加了一个有点神秘的<code>*ngFor</code>。那是 Angular 的“迭代”指令。它存在于<code>&lt;li&gt;</code>标签上，标志着<code>&lt;li&gt;</code>元素及其子类都将作为“迭代模板”。</p>
+<blockquote>
+<p>不要忘记<code>*ngFor</code>中的前导星号 <code>*</code>。它是语法中不可或缺的一部分。 学习更多关于 <code>*</code> 和 <code>ngFor</code>信息，见模板语法。</p>
+</blockquote>
+<p>注意看<code>ngFor</code>双引号表达式中的<code>hero</code>，它是一个模板输入变量。</p>
+<p>Angular 为列表中的每个条目复制一个<code>&lt;li&gt;</code>元素，在每个迭代中，把<code>hero</code>变量设置为当前条目（英雄）。 Angular 把<code>hero</code>变量作为双花括号插值表达式的上下文。</p>
+<blockquote>
+<p>我们恰好给 <code>ngFor</code> 一个列表来显示。事实上，<code>ngFor</code>可以为任何可迭代对象重复渲染条目。</p>
+</blockquote>
+<h3 id="为数据创建一个类"><a href="#为数据创建一个类" class="headerlink" title="为数据创建一个类"></a>为数据创建一个类</h3><p>我们直接在组件内部定义了数据。这对于演示来说还可以，但必然不是最佳实践。甚至不是一个好的实践。尽管我们在这一章节不做任何其他的事情，我们将集中精力解决这个问题。</p>
+<p>现在，我们把数据绑定到了一个字符串列表。在真实的应用中，我们偶尔会这样做，但大多数时候，我们绑定到专门的对象。</p>
+<p>让我们将包含英雄名字的列表转换成<code>Hero</code>对象的列表。因此，我们需要一个<code>Hero</code>类。</p>
+<p>在<code>lib</code>目录创建一个名为<code>hero.dart</code>的新文件，内容如下：</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Hero</span> </span>&#123;</div><div class="line">  <span class="keyword">final</span> <span class="built_in">int</span> id;</div><div class="line">  <span class="built_in">String</span> name;</div><div class="line"></div><div class="line">  Hero(<span class="keyword">this</span>.id, <span class="keyword">this</span>.name);</div><div class="line"></div><div class="line">  <span class="built_in">String</span> toString() =&gt; <span class="string">'$id: $name'</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>我们定义了一个包含一个构造函数，两个属性（<code>id</code>和<code>name</code>）和一个<code>toString()</code>方法的类。</p>
+<h3 id="使用-Hero-类"><a href="#使用-Hero-类" class="headerlink" title="使用 Hero 类"></a>使用 Hero 类</h3><p>修改组件(<code>AppComponent</code>)中的<code>heroes</code>属性，返回一个包含这些<code>Hero</code>对象的列表。</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// lib/app_component.dart</span></div><div class="line"></div><div class="line"><span class="built_in">List</span>&lt;Hero&gt; heroes = [</div><div class="line">  <span class="keyword">new</span> Hero(<span class="number">1</span>, <span class="string">'Windstorm'</span>),</div><div class="line">  <span class="keyword">new</span> Hero(<span class="number">13</span>, <span class="string">'Bombasto'</span>),</div><div class="line">  <span class="keyword">new</span> Hero(<span class="number">15</span>, <span class="string">'Magneta'</span>),</div><div class="line">  <span class="keyword">new</span> Hero(<span class="number">20</span>, <span class="string">'Tornado'</span>)</div><div class="line">];</div><div class="line">Hero <span class="keyword">get</span> myHero =&gt; heroes.first;</div></pre></td></tr></table></figure>
+<p>我们必须更新模板，现在它显示的是英雄的 <code>id</code> 和 <code>name</code>。让我们修复它，只显示英雄的 <code>name</code> 属性。</p>
+<figure class="highlight django"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="xml">template: '''</span></div><div class="line">  <span class="tag">&lt;<span class="name">h1</span>&gt;</span><span class="template-variable">&#123;&#123;title&#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></div><div class="line">  <span class="tag">&lt;<span class="name">h2</span>&gt;</span>My favorite hero is: <span class="template-variable">&#123;&#123;myHero.name&#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span></div><div class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>Heroes:<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">ul</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">li</span> *<span class="attr">ngFor</span>=<span class="string">"let hero of heroes"</span>&gt;</span></div><div class="line">      <span class="template-variable">&#123;&#123; hero.name &#125;&#125;</span><span class="xml"></span></div><div class="line">    <span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div><div class="line">'''</div></pre></td></tr></table></figure>
+<p>从显示上看还是一样，但现在我们知道了更多英雄信息。</p>
+<h3 id="ngIf">通过 NgIf 进行条件显示</h3>
+
+<p>有时，应用需要只在特定情况下显示视图或视图的一部分。</p>
+<p>在我们的例子中，如果我们有大量的英雄，多于3个，我们就显示一条信息。</p>
+<p>Angular 的 <code>ngIf</code> 指令会根据一个布尔条件，插入或移除元素。通过把下面的段落添加到模板的底部，我们可以看到实际效果。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">p</span> *<span class="attr">ngIf</span>=<span class="string">"heroes.length &gt; 3"</span>&gt;</span>There are many heroes!<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>不要忘了<code>*ngIf</code>中的前导星号 (<code>*</code>)。它是本语法中不可或缺的一部分。 更多<code>*</code>和<code>ngIf</code>的内容，见模板语法章节。</p>
+</blockquote>
+<p>双引号中的模板表达式，看起来就像是 Dart。当组件中的英雄列表有三个以上时，Angular 把这个段落添加到 DOM 中，于是消息显示了出来。如果有3个或少于3个，Angular 会忽略这个段落，所以就没有信息显示。</p>
+<blockquote>
+<p>Angular 并不是在显示和隐藏这条消息，它是在从 DOM 中添加和移除这个段落元素。 这会提高性能，特别是在一些大的项目中有条件地包含或排除一大堆带着很多数据绑定的 HTML 时。</p>
+</blockquote>
+<p>试一下。因为列表中有四个条目，所以消息显示了出来。回到<code>app_component.dart</code>，从英雄列表中删除或注释掉一个元素。浏览器刷新后，信息应该会消失。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ul>
+<li>带有双花括号的<strong>差值表达式</strong>来显示一个组件属性</li>
+<li><strong>ngFor</strong> 来显示一个列表</li>
+<li>用一个 Dart 类来为组件描述<strong>模型数据</strong>并显示模型的属性</li>
+<li><strong>ngIf</strong> 来根据一个布尔表达式有条件的显示一段HTML</li>
+</ul>
+<blockquote>
+<p>下一步</p>
+<p>用户输入</p>
+</blockquote>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2016/12/11/显示数据/">显示数据</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">soojade</a></p>
+        <p><span>发布时间:</span>2016-12-11, 15:11:41</p>
+        <p><span>最后更新:</span>2016-12-18, 14:42:37</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2016/12/11/显示数据/" title="显示数据">http://soojade.github.io/2016/12/11/显示数据/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://soojade.github.io/2016/12/11/显示数据/　　作者: soojade" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2016/12/13/用户输入/">
+                    用户输入
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2016/12/10/架构/">
+                    架构
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#显示数据"><span class="toc-number">1.</span> <span class="toc-text">显示数据</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#目录"><span class="toc-number">2.</span> <span class="toc-text">目录</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#interpolation"><span class="toc-number">2.1.</span> <span class="toc-text">使用插值表达式显示组件属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#内联-inline-模板还是模板文件？"><span class="toc-number">2.2.</span> <span class="toc-text">内联 (inline) 模板还是模板文件？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ngFor"><span class="toc-number">2.3.</span> <span class="toc-text">使用 *ngFor显示列表属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#为数据创建一个类"><span class="toc-number">2.4.</span> <span class="toc-text">为数据创建一个类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用-Hero-类"><span class="toc-number">2.5.</span> <span class="toc-text">使用 Hero 类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ngIf"><span class="toc-number">2.6.</span> <span class="toc-text">通过 NgIf 进行条件显示</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#总结"><span class="toc-number">2.7.</span> <span class="toc-text">总结</span></a></li></ol></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-4 i,
+        .toc-level-4 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"显示数据　| soojade个人空间　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+      <div class="duoshuo" id="comments">
+    <div id="comment-box" ></div>
+    <div class="ds-thread" id="ds-thread" data-thread-key="2016/12/11/显示数据/" data-title="显示数据" data-url="http://soojade.github.io/2016/12/11/显示数据/"></div>
+    <script>
+        var duoshuoQuery = {short_name:"soojade"};
+        var loadComment = function(){
+            var d = document, s = d.createElement('script');
+            s.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+            s.async = true; s.charset = 'UTF-8';
+            (d.head || d.body).appendChild(s);
+        }
+
+        
+    </script>
+    
+    <script> loadComment(); </script>
+
+</div>
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2016/12/13/用户输入/" title="上一篇: 用户输入">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2016/12/10/架构/" title="下一篇: 架构">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/02/06/javascript忍者秘籍笔记————函数是根基/">javascript 忍者秘籍————函数是根基</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/05/javascript忍者秘籍笔记————利用测试和调试武装自己/">javascript 忍者秘籍笔记————利用测试和调试武装自己</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/05/javascript忍者秘籍笔记————进入忍者世界/">javascript 忍者秘籍笔记————进入忍者世界</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/01/angular文档——CLI-快速起步/">angular文档——CLI-快速起步</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/15/angular点-线-面：模板引用变量/">angular.点-线-面：模板引用变量</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/15/javascript坑与技巧：花式交换两个数值/">javascript坑与技巧：花式交换两个数值</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/04/javascript坑与技巧：异常/">javascript坑与技巧：异常</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/03/javascript坑与技巧：表单/">javascript坑与技巧：表单</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/03/javascript坑与技巧：DOM/">javascript坑与技巧：DOM</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/02/javascript坑与技巧：this/">javascript坑与技巧：this</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/02/javascript坑与技巧：变量作用域/">javascript坑与技巧：变量作用域</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/02/javascript坑与技巧：箭头函数/">javascript坑与技巧：箭头函数</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/02/javascript坑与技巧：闭包/">javascript坑与技巧：闭包</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/02/javascript坑与技巧：sort/">javascript坑与技巧：sort</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/01/javascript坑与技巧：filter/">javascript坑与技巧：filter</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/01/javascript坑与技巧：map/">javascript坑与技巧：map</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/react文档-表单/">react文档--表单</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/react文档-列表和键/">react文档--列表和键</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/react文档-条件渲染/">react文档--条件渲染</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/react文档-事件处理/">react文档--事件处理</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/react文档-state和生命周期/">react文档--state和生命周期</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/react文档-组件和props/">react文档--组件和props</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/react文档-渲染元素/">react文档--渲染元素</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/react文档-介绍JSX/">react文档--介绍JSX</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/react文档-HelloWorld/">react文档--HelloWorld</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/react文档-安装/">react文档--安装</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/20/dart开发命令行工具/">dart开发命令行工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/19/dart语言基础/">dart语言基础</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/19/HTTP/">HTTP</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/19/路由/">路由</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/18/服务/">服务</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/18/多组件/">多组件</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/18/主从结构/">主从结构</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/18/英雄编辑器/">英雄编辑器</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/18/简介/">简介</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/16/模板语法/">模板语法</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/14/依赖注入/">依赖注入</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/13/表单/">表单</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/13/用户输入/">用户输入</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/11/显示数据/">显示数据</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/10/架构/">架构</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/10/学习angular/">学习angular</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/10/搭建开发环境/">搭建开发环境</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/10/概览/">概览</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/10/快速开始/">快速开始</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+  <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i>
+                2016-2017 soojade
+            </div>
+            <div class="footer-right">
+                 Made by soojade <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                Total <span id="busuanzi_value_site_pv"></span> views.
+                欢迎第<span id="busuanzi_value_site_uv"></span>个小伙伴
+                <span id="busuanzi_value_page_pv"></span> Hits
+            </div>
+        
+    </div>
+</footer>
+
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 15;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+    <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+             tags: ".article-tag a", 
+            
+             articleNav: "#article-nav a, #post-nav-button a", 
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>

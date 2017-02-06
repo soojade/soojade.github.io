@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="soojade" />
+
+
+
+<meta name="description" content="列表和键首先，让我们先回顾一下在 JavaScript 中如何改变列表。
+在下面给出的代码中，我们对numbers数组调用map()函数使它们的值变成双倍。我们把通过map()返回的新数组赋值给变量doubled并打印它。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="react文档--列表和键">
+<meta property="og:url" content="http://soojade.github.io/2016/12/28/react文档-列表和键/index.html">
+<meta property="og:site_name" content="soojade个人空间">
+<meta property="og:description" content="列表和键首先，让我们先回顾一下在 JavaScript 中如何改变列表。
+在下面给出的代码中，我们对numbers数组调用map()函数使它们的值变成双倍。我们把通过map()返回的新数组赋值给变量doubled并打印它。">
+<meta property="og:updated_time" content="2016-12-30T08:45:07.017Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="react文档--列表和键">
+<meta name="twitter:description" content="列表和键首先，让我们先回顾一下在 JavaScript 中如何改变列表。
+在下面给出的代码中，我们对numbers数组调用map()函数使它们的值变成双倍。我们把通过map()返回的新数组赋值给变量doubled并打印它。">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="soojade个人空间" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="img/favicon.ico">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/green/pace-theme-flash.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>react文档--列表和键 | soojade个人空间</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: true
+    }
+</script>
+
+
+    <script>
+        yiliaConfig.jquery_ui = [true, "//cdn.bootcss.com/jqueryui/1.10.4/jquery-ui.min.js", "//cdn.bootcss.com/jqueryui/1.10.4/css/jquery-ui.min.css"];
+    </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/avatar.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">soojade</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">博客</p>
+        
+
+        
+            <form id="search-form">
+            <input type="text" id="local-search-input" name="q" placeholder="search..." class="search form-control" autocomplete="off" autocorrect="off" searchonload="false" />
+            <i class="fa fa-times" onclick="resetSearch()"></i>
+            </form>
+            <div id="local-search-result"></div>
+            <p class='no-result'>No results found <i class='fa fa-spinner fa-pulse'></i></p>
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=2035030023@qq.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" href="https://github.com/soojade" title="GitHub"></a>
+                            
+                                <a class="fa 知乎" href="https://www.zhihu.com/people/soojade/activities" title="知乎"></a>
+                            
+                                <a class="fa 简书" href="http://www.jianshu.com/users/b2e1cf392d42/latest_articles" title="简书"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/angular-angular-点-线-面/">angular angular.点-线-面</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/angular-angular文档/">angular angular文档</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dart-dart命令行/">dart  dart命令行</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dart-angularDart-web-angular指南/">dart angularDart web angular指南</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dart-angularDart-web-angular教程/">dart angularDart web angular教程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dart-dart基础/">dart dart基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-javascript坑与技巧/">javascript javascript坑与技巧</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-javascript坑与技巧-DOM/">javascript javascript坑与技巧 DOM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-javascript坑与技巧-filter/">javascript javascript坑与技巧 filter()</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-javascript坑与技巧-map/">javascript javascript坑与技巧 map()</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-javascript坑与技巧-sort/">javascript javascript坑与技巧 sort()</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-javascript坑与技巧-this/">javascript javascript坑与技巧 this</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-javascript坑与技巧-变量作用域/">javascript javascript坑与技巧 变量作用域</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-javascript坑与技巧-异常/">javascript javascript坑与技巧 异常</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-javascript坑与技巧-箭头函数/">javascript javascript坑与技巧 箭头函数</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-javascript坑与技巧-表单/">javascript javascript坑与技巧 表单</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-javascript坑与技巧-闭包/">javascript javascript坑与技巧 闭包</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript忍者秘籍笔记/">javascript忍者秘籍笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/react文档-翻译/">react文档 翻译</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">专注于Web与游戏</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">soojade</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/avatar.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">soojade</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">博客</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=2035030023@qq.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/soojade" title="GitHub"></a>
+                            
+                                <a class="fa 知乎" target="_blank" href="https://www.zhihu.com/people/soojade/activities" title="知乎"></a>
+                            
+                                <a class="fa 简书" target="_blank" href="http://www.jianshu.com/users/b2e1cf392d42/latest_articles" title="简书"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-react文档-列表和键" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/12/28/react文档-列表和键/" class="article-date">
+      <time datetime="2016-12-28T02:14:16.000Z" itemprop="datePublished">2016-12-28</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      react文档--列表和键
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/react/">react</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/react文档-翻译/">react文档 翻译</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h1 id="列表和键"><a href="#列表和键" class="headerlink" title="列表和键"></a>列表和键</h1><p>首先，让我们先回顾一下在 JavaScript 中如何改变列表。</p>
+<p>在下面给出的代码中，我们对<code>numbers</code>数组调用<code>map()</code>函数使它们的值变成双倍。我们把通过<code>map()</code>返回的新数组赋值给变量<code>doubled</code>并打印它。<br><a id="more"></a></p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">const numbers = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</div><div class="line">const doubled = numbers.map((number) =&gt; number * <span class="number">2</span>);</div><div class="line">console.log(doubled);</div></pre></td></tr></table></figure>
+<p>这段代码在控制台打印<code>[2, 4, 6, 8, 10]</code>。</p>
+<p>在 React 中，将数组转换成元素列表的方法几乎相同。</p>
+<h3 id="渲染多个组件"><a href="#渲染多个组件" class="headerlink" title="渲染多个组件"></a>渲染多个组件</h3><p>你可以构建元素的集合并使用大括号<code>{}</code>把它们插入到 JSX 中。</p>
+<p>下面，我们通过对<code>numbers</code>数组调用<code>map()</code>函数进行迭代。我们对每一项返回一个<code>li</code>元素。最后，我们把元素数组的结果赋值给<code>listItems</code>：</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">const numbers = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</div><div class="line">const listItems = numbers.map((number) =&gt;</div><div class="line">  &lt;li&gt;&#123;number&#125;&lt;/li&gt;</div><div class="line">);</div></pre></td></tr></table></figure>
+<p>我们把全部的<code>listItems</code>数组包裹在一个<code>ul</code>元素中并渲染到 DOM。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">ReactDOM.render(</div><div class="line">  <span class="xml"><span class="tag">&lt;<span class="name">ul</span>&gt;</span>&#123;listItems&#125;<span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span>,</div><div class="line">  <span class="built_in">document</span>.getElementById(<span class="string">'root'</span>)</div><div class="line">);</div></pre></td></tr></table></figure>
+<p>在<a href="https://codepen.io/gaearon/pen/GjPyQr?editors=0011" target="_blank" rel="external">CodePen</a>上试试。</p>
+<p>这段代码显示从<code>numbers</code>迭代出来 1 到 5 之间的列表。</p>
+<h3 id="基础的列表组件"><a href="#基础的列表组件" class="headerlink" title="基础的列表组件"></a>基础的列表组件</h3><p>通常你会在一个组件内部渲染列表。</p>
+<p>我们将之前的例子重构为一个组件，使其接收一个<code>numbers</code>数组并输出一个无序列表的元素。</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">function NumberList(props) &#123;</div><div class="line">  <span class="keyword">const</span> numbers = props.numbers;</div><div class="line">  <span class="keyword">const</span> listItems = numbers.map((number) =&gt;</div><div class="line">    &lt;li&gt;&#123;number&#125;&lt;/li&gt;</div><div class="line">  );</div><div class="line">  <span class="keyword">return</span> (</div><div class="line">    &lt;ul&gt;&#123;listItems&#125;&lt;/ul&gt;</div><div class="line">  );</div><div class="line">&#125;</div><div class="line"><span class="comment"><span class="markdown">/<span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span>/</span></span></div><div class="line"><span class="keyword">const</span> numbers = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</div><div class="line">ReactDOM.render(</div><div class="line">  &lt;NumberList numbers=&#123;numbers&#125; /&gt;,</div><div class="line">  <span class="built_in">document</span>.getElementById(<span class="string">'root'</span>)</div><div class="line">);</div></pre></td></tr></table></figure>
+<p>当你运行这段代码时，你会得到一个警告：应该为列表项提供一个 key。“key”是一个特殊的字符串属性，当你创建一个元素列表时，你需要包含它。我们会在接下来的部分讨论问什么它这么重要。</p>
+<p>让我们给<code>numbers.map()</code>内部的列表项分配一个<code>key</code>来修复缺少 key 的问题。</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">function NumberList(props) &#123;</div><div class="line">  <span class="keyword">const</span> numbers = props.numbers;</div><div class="line">  <span class="keyword">const</span> listItems = numbers.map((number) =&gt;</div><div class="line">    &lt;li key=&#123;number.toString()&#125;&gt;</div><div class="line">      &#123;number&#125;</div><div class="line">    &lt;/li&gt;</div><div class="line">  );</div><div class="line">  <span class="keyword">return</span> (</div><div class="line">    &lt;ul&gt;&#123;listItems&#125;&lt;/ul&gt;</div><div class="line">  );</div><div class="line">&#125;</div><div class="line"><span class="comment"><span class="markdown">/<span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span>/</span></span></div><div class="line"><span class="keyword">const</span> numbers = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</div><div class="line">ReactDOM.render(</div><div class="line">  &lt;NumberList numbers=&#123;numbers&#125; /&gt;,</div><div class="line">  <span class="built_in">document</span>.getElementById(<span class="string">'root'</span>)</div><div class="line">);</div></pre></td></tr></table></figure>
+<p>在<a href="https://codepen.io/gaearon/pen/jrXYRR?editors=0011" target="_blank" rel="external">CodePen</a>上试试。</p>
+<h2 id="键"><a href="#键" class="headerlink" title="键"></a>键</h2><p>键帮助 React 识别哪个项发生了改变，被添加还是被移除。键应该被赋予数组内部的元素，以给元素一个固定的标识：</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">const numbers = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</div><div class="line">const listItems = numbers.map((number) =&gt;</div><div class="line">  &lt;li <span class="type">key</span>=&#123;number.toString()&#125;&gt;</div><div class="line">    &#123;number&#125;</div><div class="line">  &lt;/li&gt;</div><div class="line">);</div></pre></td></tr></table></figure>
+<p>选择一个 key 的最好的方式是使用一个在兄弟姐妹之间唯一标识一个列表项的字符串。很多时候你可能会从你的数据中使用 IDs 作为键：</p>
+<figure class="highlight dust"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="xml">const todoItems = todos.map((todo) =&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">li</span> <span class="attr">key</span>=</span><span class="template-variable">&#123;todo.id&#125;</span><span class="xml"><span class="tag">&gt;</span></span></div><div class="line">    <span class="template-variable">&#123;todo.text&#125;</span><span class="xml"></span></div><div class="line">  <span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">);</div></pre></td></tr></table></figure>
+<p>当你对渲染的项没有固定的 IDs 时，作为最后的手段，你可以使用项的索引作为一个 key：</p>
+<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">const todoItems = todos.map(<span class="function"><span class="params">(todo, index)</span> =&gt;</span></div><div class="line">  <span class="regexp">//</span> Only <span class="keyword">do</span> <span class="keyword">this</span> <span class="keyword">if</span> items have <span class="literal">no</span> stable IDs</div><div class="line">  &lt;li key=&#123;index&#125;&gt;</div><div class="line">    &#123;todo.text&#125;</div><div class="line">  &lt;/li&gt;</div><div class="line">);</div></pre></td></tr></table></figure>
+<p>我们不建议使用索引作为键，如果列表项重新排序，那将是缓慢的。如果你感兴趣的话可以阅读<a href="https://facebook.github.io/react/docs/reconciliation.html#recursing-on-children" target="_blank" rel="external">深入讲解为什么键是必需的</a>。</p>
+<h3 id="提取带键的组件"><a href="#提取带键的组件" class="headerlink" title="提取带键的组件"></a>提取带键的组件</h3><p>键只有在数组的上下文环境中有意义。</p>
+<p>例如，你提取一个<code>ListItem</code>组件，你应该在数组的<code>&lt;ListItem /&gt;</code>元素上使用 key，而不是在<code>ListItem</code>本身的根元素<code>&lt;li&gt;</code>上。</p>
+<p><strong>例子：错误的 key 用法</strong></p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">function ListItem(props) &#123;</div><div class="line">  <span class="keyword">const</span> value = props.value;</div><div class="line">  <span class="keyword">return</span> (</div><div class="line">    <span class="comment">// Wrong! There is no need to specify the key here:</span></div><div class="line">    &lt;li key=&#123;value.toString()&#125;&gt;</div><div class="line">      &#123;value&#125;</div><div class="line">    &lt;/li&gt;</div><div class="line">  );</div><div class="line">&#125;</div><div class="line"><span class="comment"><span class="markdown">/<span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span>/</span></span></div><div class="line">function NumberList(props) &#123;</div><div class="line">  <span class="keyword">const</span> numbers = props.numbers;</div><div class="line">  <span class="keyword">const</span> listItems = numbers.map((number) =&gt;</div><div class="line">    <span class="comment">// Wrong! The key should have been specified here:</span></div><div class="line">    &lt;ListItem value=&#123;number&#125; /&gt;</div><div class="line">  );</div><div class="line">  <span class="keyword">return</span> (</div><div class="line">    &lt;ul&gt;</div><div class="line">      &#123;listItems&#125;</div><div class="line">    &lt;/ul&gt;</div><div class="line">  );</div><div class="line">&#125;</div><div class="line"><span class="comment"><span class="markdown">/<span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span>/</span></span></div><div class="line"><span class="keyword">const</span> numbers = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</div><div class="line">ReactDOM.render(</div><div class="line">  &lt;NumberList numbers=&#123;numbers&#125; /&gt;,</div><div class="line">  <span class="built_in">document</span>.getElementById(<span class="string">'root'</span>)</div><div class="line">);</div></pre></td></tr></table></figure>
+<p><strong>例子：改正后的 key 用法</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">ListItem</span>(<span class="params">props</span>) </span>&#123;</div><div class="line">  <span class="comment">// Correct! There is no need to specify the key here:</span></div><div class="line">  <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">li</span>&gt;</span>&#123;props.value&#125;<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span>;</div><div class="line">&#125;</div><div class="line"><span class="comment">/***************/</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">NumberList</span>(<span class="params">props</span>) </span>&#123;</div><div class="line">  <span class="keyword">const</span> numbers = props.numbers;</div><div class="line">  <span class="keyword">const</span> listItems = numbers.map(<span class="function">(<span class="params">number</span>) =&gt;</span></div><div class="line">    <span class="comment">// Correct! Key should be specified inside the array.</span></div><div class="line">    &lt;ListItem key=&#123;number.toString()&#125;</div><div class="line">              value=&#123;number&#125; /&gt;</div><div class="line">  );</div><div class="line">  <span class="keyword">return</span> (</div><div class="line">    <span class="xml"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span></div><div class="line">      &#123;listItems&#125;</div><div class="line">    <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div><div class="line">  );</div><div class="line">&#125;</div><div class="line"><span class="comment">/***************/</span></div><div class="line"><span class="keyword">const</span> numbers = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</div><div class="line">ReactDOM.render(</div><div class="line">  <span class="xml"><span class="tag">&lt;<span class="name">NumberList</span> <span class="attr">numbers</span>=<span class="string">&#123;numbers&#125;</span> /&gt;</span>,</span></div><div class="line">  document.getElementById('root')</div><div class="line">);</div></pre></td></tr></table></figure>
+<p>在<a href="https://codepen.io/rthor/pen/QKzJKG?editors=0010" target="_blank" rel="external">CodePen</a>上试试。</p>
+<p>一个好的经验法则是：<code>map()</code>调用内部的元素需要键。</p>
+<h3 id="在兄弟姐妹之间的键必须是唯一的"><a href="#在兄弟姐妹之间的键必须是唯一的" class="headerlink" title="在兄弟姐妹之间的键必须是唯一的"></a>在兄弟姐妹之间的键必须是唯一的</h3><p>数组内使用的键在它们的兄弟姐妹之间必须是唯一的。然而它们不需要在全局唯一。当我们生成两个不同的数组时可以使用相同的键。</p>
+<figure class="highlight dust"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"><span class="xml">function Blog(props) </span><span class="template-variable">&#123;</span></div><div class="line">  const sidebar = (</div><div class="line">    &lt;ul&gt;</div><div class="line">      &#123;props.posts.map((post) =&gt;</div><div class="line">        &lt;li key=&#123;post.id&#125;<span class="xml">&gt;</span></div><div class="line">          <span class="template-variable">&#123;post.title&#125;</span><span class="xml"></span></div><div class="line">        <span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">      )&#125;</div><div class="line">    <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div><div class="line">  );</div><div class="line">  const content = props.posts.map((post) =&gt;</div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">key</span>=</span><span class="template-variable">&#123;post.id&#125;</span><span class="xml"><span class="tag">&gt;</span></span></div><div class="line">      <span class="tag">&lt;<span class="name">h3</span>&gt;</span><span class="template-variable">&#123;post.title&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span></div><div class="line">      <span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="template-variable">&#123;post.content&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></div><div class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">  );</div><div class="line">  return (</div><div class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></div><div class="line">      <span class="template-variable">&#123;sidebar&#125;</span><span class="xml"></span></div><div class="line">      <span class="tag">&lt;<span class="name">hr</span> /&gt;</span></div><div class="line">      <span class="template-variable">&#123;content&#125;</span><span class="xml"></span></div><div class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">  );</div><div class="line">&#125;</div><div class="line">/***************/</div><div class="line">const posts = [</div><div class="line">  <span class="template-variable">&#123;id: 1, title: 'Hello World', content: 'Welcome to learning React!'&#125;</span><span class="xml">,</span></div><div class="line">  <span class="template-variable">&#123;id: 2, title: 'Installation', content: 'You can install React from npm.'&#125;</span><span class="xml"></span></div><div class="line">];</div><div class="line">/***************/</div><div class="line">ReactDOM.render(</div><div class="line">  <span class="tag">&lt;<span class="name">Blog</span> <span class="attr">posts</span>=</span><span class="template-variable">&#123;posts&#125;</span><span class="xml"><span class="tag"> /&gt;</span>,</span></div><div class="line">  document.getElementById('root')</div><div class="line">);</div></pre></td></tr></table></figure>
+<p>在<a href="https://codepen.io/gaearon/pen/NRZYGN?editors=0010" target="_blank" rel="external">CodePen</a>上试试。</p>
+<p>键的作用是给 React 提示，但它们不会传递给你的组件。如果在你的组件中需要相同的值，使用不同的名字明确的作为 prop 传递它。</p>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> content = posts.map((<span class="keyword">post</span>) =&gt;</div><div class="line">  &lt;<span class="keyword">Post</span></div><div class="line">    key=&#123;<span class="keyword">post</span>.id&#125;</div><div class="line">    id=&#123;<span class="keyword">post</span>.id&#125;</div><div class="line">    title=&#123;<span class="keyword">post</span>.title&#125; /&gt;</div><div class="line">);</div></pre></td></tr></table></figure>
+<p>上面的例子中，<code>Post</code>组件可以读取<code>props.id</code>，但不能读取<code>props.key</code>。</p>
+<h3 id="在-JSX-中插入-map"><a href="#在-JSX-中插入-map" class="headerlink" title="在 JSX 中插入 map()"></a>在 JSX 中插入 map()</h3><p>在上述例子中，我们声明了一个独立的<code>listItems</code>变量并包含在 JSX 中。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">NumberList</span>(<span class="params">props</span>) </span>&#123;</div><div class="line">  <span class="keyword">const</span> numbers = props.numbers;</div><div class="line">  <span class="keyword">const</span> listItems = numbers.map(<span class="function">(<span class="params">number</span>) =&gt;</span></div><div class="line">    &lt;ListItem key=&#123;number.toString()&#125;</div><div class="line">              value=&#123;number&#125; /&gt;</div><div class="line">  );</div><div class="line">  <span class="keyword">return</span> (</div><div class="line">    <span class="xml"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span></div><div class="line">      &#123;listItems&#125;</div><div class="line">    <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div><div class="line">  );</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>JSX 允许在大括号中插入任意表达式，所以我们可以内联<code>map()</code>的结果：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">NumberList</span>(<span class="params">props</span>) </span>&#123;</div><div class="line">  <span class="keyword">const</span> numbers = props.numbers;</div><div class="line">  <span class="keyword">return</span> (</div><div class="line">    <span class="xml"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span></div><div class="line">      &#123;numbers.map((number) =&gt;</div><div class="line">        <span class="tag">&lt;<span class="name">ListItem</span> <span class="attr">key</span>=<span class="string">&#123;number.toString()&#125;</span></span></div><div class="line">                  <span class="attr">value</span>=<span class="string">&#123;number&#125;</span> /&gt;</div><div class="line">      )&#125;</div><div class="line">    <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div><div class="line">  );</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在<a href="https://codepen.io/gaearon/pen/BLvYrB?editors=0010" target="_blank" rel="external">CodePen</a>上试试。</p>
+<p>有时这会产生清晰的代码，但这种风格也会被滥用。就像在 JavaScript 中，它由你决定是否值得为了可读性提取一个变量。记住，如果<code>map()</code>体有太多的嵌套，这是提取组件的好时机。</p>
+<blockquote>
+<p>下一步</p>
+<p>表单</p>
+</blockquote>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2016/12/28/react文档-列表和键/">react文档--列表和键</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">soojade</a></p>
+        <p><span>发布时间:</span>2016-12-28, 10:14:16</p>
+        <p><span>最后更新:</span>2016-12-30, 16:45:07</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2016/12/28/react文档-列表和键/" title="react文档--列表和键">http://soojade.github.io/2016/12/28/react文档-列表和键/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://soojade.github.io/2016/12/28/react文档-列表和键/　　作者: soojade" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2016/12/28/react文档-表单/">
+                    react文档--表单
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2016/12/28/react文档-条件渲染/">
+                    react文档--条件渲染
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#列表和键"><span class="toc-number">1.</span> <span class="toc-text">列表和键</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#渲染多个组件"><span class="toc-number">1.0.1.</span> <span class="toc-text">渲染多个组件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#基础的列表组件"><span class="toc-number">1.0.2.</span> <span class="toc-text">基础的列表组件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#键"><span class="toc-number">1.1.</span> <span class="toc-text">键</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#提取带键的组件"><span class="toc-number">1.1.1.</span> <span class="toc-text">提取带键的组件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#在兄弟姐妹之间的键必须是唯一的"><span class="toc-number">1.1.2.</span> <span class="toc-text">在兄弟姐妹之间的键必须是唯一的</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#在-JSX-中插入-map"><span class="toc-number">1.1.3.</span> <span class="toc-text">在 JSX 中插入 map()</span></a></li></ol></li></ol></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-4 i,
+        .toc-level-4 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"react文档--列表和键　| soojade个人空间　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+      <div class="duoshuo" id="comments">
+    <div id="comment-box" ></div>
+    <div class="ds-thread" id="ds-thread" data-thread-key="2016/12/28/react文档-列表和键/" data-title="react文档--列表和键" data-url="http://soojade.github.io/2016/12/28/react文档-列表和键/"></div>
+    <script>
+        var duoshuoQuery = {short_name:"soojade"};
+        var loadComment = function(){
+            var d = document, s = d.createElement('script');
+            s.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+            s.async = true; s.charset = 'UTF-8';
+            (d.head || d.body).appendChild(s);
+        }
+
+        
+    </script>
+    
+    <script> loadComment(); </script>
+
+</div>
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2016/12/28/react文档-表单/" title="上一篇: react文档--表单">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2016/12/28/react文档-条件渲染/" title="下一篇: react文档--条件渲染">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/02/06/javascript忍者秘籍笔记————函数是根基/">javascript 忍者秘籍————函数是根基</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/05/javascript忍者秘籍笔记————利用测试和调试武装自己/">javascript 忍者秘籍笔记————利用测试和调试武装自己</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/05/javascript忍者秘籍笔记————进入忍者世界/">javascript 忍者秘籍笔记————进入忍者世界</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/01/angular文档——CLI-快速起步/">angular文档——CLI-快速起步</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/15/angular点-线-面：模板引用变量/">angular.点-线-面：模板引用变量</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/15/javascript坑与技巧：花式交换两个数值/">javascript坑与技巧：花式交换两个数值</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/04/javascript坑与技巧：异常/">javascript坑与技巧：异常</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/03/javascript坑与技巧：表单/">javascript坑与技巧：表单</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/03/javascript坑与技巧：DOM/">javascript坑与技巧：DOM</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/02/javascript坑与技巧：this/">javascript坑与技巧：this</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/02/javascript坑与技巧：变量作用域/">javascript坑与技巧：变量作用域</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/02/javascript坑与技巧：箭头函数/">javascript坑与技巧：箭头函数</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/02/javascript坑与技巧：闭包/">javascript坑与技巧：闭包</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/02/javascript坑与技巧：sort/">javascript坑与技巧：sort</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/01/javascript坑与技巧：filter/">javascript坑与技巧：filter</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/01/javascript坑与技巧：map/">javascript坑与技巧：map</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/react文档-表单/">react文档--表单</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/react文档-列表和键/">react文档--列表和键</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/react文档-条件渲染/">react文档--条件渲染</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/react文档-事件处理/">react文档--事件处理</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/react文档-state和生命周期/">react文档--state和生命周期</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/react文档-组件和props/">react文档--组件和props</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/react文档-渲染元素/">react文档--渲染元素</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/react文档-介绍JSX/">react文档--介绍JSX</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/react文档-HelloWorld/">react文档--HelloWorld</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/react文档-安装/">react文档--安装</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/20/dart开发命令行工具/">dart开发命令行工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/19/dart语言基础/">dart语言基础</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/19/HTTP/">HTTP</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/19/路由/">路由</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/18/服务/">服务</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/18/多组件/">多组件</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/18/主从结构/">主从结构</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/18/英雄编辑器/">英雄编辑器</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/18/简介/">简介</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/16/模板语法/">模板语法</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/14/依赖注入/">依赖注入</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/13/表单/">表单</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/13/用户输入/">用户输入</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/11/显示数据/">显示数据</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/10/架构/">架构</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/10/学习angular/">学习angular</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/10/搭建开发环境/">搭建开发环境</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/10/概览/">概览</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/10/快速开始/">快速开始</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+  <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i>
+                2016-2017 soojade
+            </div>
+            <div class="footer-right">
+                 Made by soojade <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                Total <span id="busuanzi_value_site_pv"></span> views.
+                欢迎第<span id="busuanzi_value_site_uv"></span>个小伙伴
+                <span id="busuanzi_value_page_pv"></span> Hits
+            </div>
+        
+    </div>
+</footer>
+
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 15;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+    <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+             tags: ".article-tag a", 
+            
+             articleNav: "#article-nav a, #post-nav-button a", 
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>

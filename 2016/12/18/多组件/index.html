@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="soojade" />
+
+
+
+<meta name="description" content="多组件我们的应用正在成长中。现在又有新的用例：重复使用组件，传递数据给组件并创建更多可复用的资源。让我们把英雄详情从英雄列表中分离出来，使英雄详情组件可以被复用。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="多组件">
+<meta property="og:url" content="http://soojade.github.io/2016/12/18/多组件/index.html">
+<meta property="og:site_name" content="soojade个人空间">
+<meta property="og:description" content="多组件我们的应用正在成长中。现在又有新的用例：重复使用组件，传递数据给组件并创建更多可复用的资源。让我们把英雄详情从英雄列表中分离出来，使英雄详情组件可以被复用。">
+<meta property="og:updated_time" content="2016-12-18T13:26:36.141Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="多组件">
+<meta name="twitter:description" content="多组件我们的应用正在成长中。现在又有新的用例：重复使用组件，传递数据给组件并创建更多可复用的资源。让我们把英雄详情从英雄列表中分离出来，使英雄详情组件可以被复用。">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="soojade个人空间" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="img/favicon.ico">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/green/pace-theme-flash.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>多组件 | soojade个人空间</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: true
+    }
+</script>
+
+
+    <script>
+        yiliaConfig.jquery_ui = [true, "//cdn.bootcss.com/jqueryui/1.10.4/jquery-ui.min.js", "//cdn.bootcss.com/jqueryui/1.10.4/css/jquery-ui.min.css"];
+    </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/avatar.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">soojade</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">博客</p>
+        
+
+        
+            <form id="search-form">
+            <input type="text" id="local-search-input" name="q" placeholder="search..." class="search form-control" autocomplete="off" autocorrect="off" searchonload="false" />
+            <i class="fa fa-times" onclick="resetSearch()"></i>
+            </form>
+            <div id="local-search-result"></div>
+            <p class='no-result'>No results found <i class='fa fa-spinner fa-pulse'></i></p>
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=2035030023@qq.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" href="https://github.com/soojade" title="GitHub"></a>
+                            
+                                <a class="fa 知乎" href="https://www.zhihu.com/people/soojade/activities" title="知乎"></a>
+                            
+                                <a class="fa 简书" href="http://www.jianshu.com/users/b2e1cf392d42/latest_articles" title="简书"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/angular-angular-点-线-面/">angular angular.点-线-面</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/angular-angular文档/">angular angular文档</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dart-dart命令行/">dart  dart命令行</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dart-angularDart-web-angular指南/">dart angularDart web angular指南</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dart-angularDart-web-angular教程/">dart angularDart web angular教程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dart-dart基础/">dart dart基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-javascript坑与技巧/">javascript javascript坑与技巧</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-javascript坑与技巧-DOM/">javascript javascript坑与技巧 DOM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-javascript坑与技巧-filter/">javascript javascript坑与技巧 filter()</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-javascript坑与技巧-map/">javascript javascript坑与技巧 map()</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-javascript坑与技巧-sort/">javascript javascript坑与技巧 sort()</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-javascript坑与技巧-this/">javascript javascript坑与技巧 this</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-javascript坑与技巧-变量作用域/">javascript javascript坑与技巧 变量作用域</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-javascript坑与技巧-异常/">javascript javascript坑与技巧 异常</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-javascript坑与技巧-箭头函数/">javascript javascript坑与技巧 箭头函数</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-javascript坑与技巧-表单/">javascript javascript坑与技巧 表单</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-javascript坑与技巧-闭包/">javascript javascript坑与技巧 闭包</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript忍者秘籍笔记/">javascript忍者秘籍笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/react文档-翻译/">react文档 翻译</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">专注于Web与游戏</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">soojade</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/avatar.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">soojade</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">博客</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=2035030023@qq.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/soojade" title="GitHub"></a>
+                            
+                                <a class="fa 知乎" target="_blank" href="https://www.zhihu.com/people/soojade/activities" title="知乎"></a>
+                            
+                                <a class="fa 简书" target="_blank" href="http://www.jianshu.com/users/b2e1cf392d42/latest_articles" title="简书"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-多组件" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/12/18/多组件/" class="article-date">
+      <time datetime="2016-12-18T06:47:52.000Z" itemprop="datePublished">2016-12-18</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      多组件
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/dart/">dart</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dart-angularDart-web-angular教程/">dart angularDart web angular教程</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h2 id="多组件"><a href="#多组件" class="headerlink" title="多组件"></a>多组件</h2><p>我们的应用正在成长中。现在又有新的用例：重复使用组件，传递数据给组件并创建更多可复用的资源。让我们把英雄详情从英雄列表中分离出来，使英雄详情组件可以被复用。<br><a id="more"></a></p>
+<p>运行这部分的<a href="http://angular-examples.github.io/toh-3" target="_blank" rel="external">在线例子</a>。</p>
+<h3 id="我们离开的地方"><a href="#我们离开的地方" class="headerlink" title="我们离开的地方"></a>我们离开的地方</h3><p>在继续《英雄之旅》之前，先检查一下，是否已经有了如下目录结构。如果没有，回上一章，看看错过了哪里。</p>
+<figure class="highlight gherkin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">angular_tour_of_heroes/</div><div class="line">|<span class="string">___lib/</span></div><div class="line">|<span class="string">    </span>|<span class="string">___app_component.dart</span></div><div class="line">|<span class="string">___web/</span></div><div class="line">|<span class="string">    </span>|<span class="string">___index.html</span></div><div class="line">|<span class="string">    </span>|<span class="string">___main.dart</span></div><div class="line">|<span class="string">    </span>|<span class="string">___styles.css</span></div><div class="line">|<span class="string">___pubspec.yaml</span></div></pre></td></tr></table></figure>
+<h4 id="保持应用的编译和运行"><a href="#保持应用的编译和运行" class="headerlink" title="保持应用的编译和运行"></a>保持应用的编译和运行</h4><p>我们需要启动Dart编译器，它会监视文件变化，并且启动服务器。我们只要敲入：</p>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">pub serve</span></div></pre></td></tr></table></figure>
+<p>这个命令会在我们构建《英雄之旅》的时候让应用保持运行。</p>
+<h3 id="制作英雄详情组件"><a href="#制作英雄详情组件" class="headerlink" title="制作英雄详情组件"></a>制作英雄详情组件</h3><p>我们的英雄列表和英雄详情目前位于同一个文件的同一个组件中。现在它们还很小，但很快它们都会变大。我们将来肯定会收到新需求：针对这一个，却不能影响另一个。然而，每一个更改都会给这两个组件带来风险和双倍的测试负担，却没有任何好处。 如果我们需要在应用的其它地方复用英雄详情组件，英雄列表组件也会跟着混进去。</p>
+<p>我们当前的组件违反了<em>单一职责原则</em>。虽然这只是一个教程，但我们还是得坚持做正确的事——况且，做正确的事这么容易，在此过程中，我们又能学习如何构建 Angular 应用。</p>
+<p>让我们把英雄详情拆分成一个独立的组件。</p>
+<h4 id="拆分英雄详情组件"><a href="#拆分英雄详情组件" class="headerlink" title="拆分英雄详情组件"></a>拆分英雄详情组件</h4><p>在<code>lib</code>目录下添加一个名为<code>hero_detail_component.dart</code>的文件，并且创建 <code>HeroDetailComponent</code>。代码如下：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> <span class="string">'package:angular2/core.dart'</span>;</div><div class="line"></div><div class="line"><span class="meta">@Component(</span></div><div class="line">    selector: <span class="meta-string">'my-hero-detail'</span>,</div><div class="line">    )</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">HeroDetailComponent</span> </span>&#123;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<h4 id="命名约定"><a href="#命名约定" class="headerlink" title="命名约定"></a>命名约定</h4><p>我们希望一眼就能看出哪些类是组件，哪些文件包含组件。</p>
+<p>注意我们在<code>app_component.dart</code>的文件中有一个<code>AppComponent</code>组件。我们新的<code>HeroDetailComponent</code>组件在<code>hero_detail_component.dart</code>文件中。</p>
+<p>我们的所有组件名都以”Component”结尾。所有组件的文件名都以”_component”结尾。</p>
+<p>我们统一使用小写的<strong>下划线命名法</strong>(也叫<em>snake_case</em>)拼写文件名。这样在服务器或源代码控制系统中，就不必担心大小写问题了。</p>
+</blockquote>
+<p>当我们创建组件的时候，一开始要导入 Angular 的<code>core.dart</code>文件，以便能使用<code>@Component</code>等通用类型。</p>
+<p>我们使用<code>@Component</code>注解创建元数据，在其中指定选择器名称，用以标识此组件的元素。</p>
+<p>做完这些，我们把它导入<code>AppComponent</code>组件，并创建相应的<code>&lt;my-hero-detail&gt;</code>元素。</p>
+<h4 id="英雄详情模板"><a href="#英雄详情模板" class="headerlink" title="英雄详情模板"></a>英雄详情模板</h4><p>此时，<code>AppComponent</code>的<em>英雄列表</em>和<em>英雄详情</em>视图被组合进同一个模板中。让我们从<code>AppComponent</code>中<strong>剪切</strong>出英雄详情的内容，并且<strong>粘贴</strong>到<code>HeroDetailComponent</code>组件的<code>template</code>属性中。</p>
+<p>我们之前绑定了<code>AppComponent</code>的<code>selectedHero.name</code>属性。<code>HeroDetailComponent</code>组件将会有一个<code>hero</code>属性，而不是<code>selectedHero</code>属性。所以，我们要把模板中的所有<code>selectedHero</code>替换为<code>hero</code>。只改这些就够了。最终结果如下所示：</p>
+<figure class="highlight dust"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="xml">template: '''</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> *<span class="attr">ngIf</span>=<span class="string">"hero != null"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">h2</span>&gt;</span><span class="template-variable">&#123; &#123;hero.name&#125;</span><span class="xml"> &#125; details!<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span><span class="tag">&lt;<span class="name">label</span>&gt;</span>id: <span class="tag">&lt;/<span class="name">label</span>&gt;</span><span class="template-variable">&#123; &#123;hero.id&#125;</span><span class="xml"> &#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">label</span>&gt;</span>name: <span class="tag">&lt;/<span class="name">label</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">input</span> [(<span class="attr">ngModel</span>)]=<span class="string">"hero.name"</span> <span class="attr">placeholder</span>=<span class="string">"name"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span>'''</div></pre></td></tr></table></figure>
+<p>现在，我们的英雄详情布局只存在于<code>HeroDetailComponent</code>组件中。</p>
+<h4 id="添加-hero-属性"><a href="#添加-hero-属性" class="headerlink" title="添加 hero 属性"></a>添加 hero 属性</h4><p>把刚刚所说的<code>hero</code>属性添加到组件类。</p>
+<figure class="highlight abnf"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Hero hero<span class="comment">;</span></div></pre></td></tr></table></figure>
+<p>啊哦！我们声明<code>hero</code>属性是<code>Hero</code>类型，但是我们的<code>Hero</code>类还在<code>app_component.dart</code>文件中。我们有了两个组件，它们位于各自的文件，并且都需要引用<code>Hero</code>类。</p>
+<p>要解决这个问题，我们得从<code>app_component.dart</code>文件中把<code>Hero</code>类移到属于它自己的<code>hero.dart</code>文件中。</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Hero</span> </span>&#123;</div><div class="line">  <span class="keyword">final</span> <span class="built_in">int</span> id;</div><div class="line">  <span class="built_in">String</span> name;</div><div class="line"></div><div class="line">  Hero(<span class="keyword">this</span>.id, <span class="keyword">this</span>.name);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在<code>app_component.dart</code>和<code>hero_detail_component.dart</code>的顶部附近添加下列<code>import</code>语句：</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta"><span class="meta-keyword">import</span> 'hero.dart';</span></div></pre></td></tr></table></figure>
+<h4 id="hero-属性是一个输入属性"><a href="#hero-属性是一个输入属性" class="headerlink" title="hero 属性是一个输入属性"></a>hero 属性是一个输入属性</h4><p><code>HeroDetailComponent</code>必须被告知该显示哪个英雄。谁告诉它呢？自然是父组件<code>AppComponent</code>了！</p>
+<p><code>AppComponent</code>知道该显示哪个英雄——用户从列表中选中的那个。用户选择的英雄在它的<code>selectedHero</code>属性中。</p>
+<p>我们马上更新<code>AppComponent</code>的模板，把该组件的<code>selectedHero</code>属性绑定到我们的<code>HeroDetailComponent</code>组件的<code>hero</code>属性上。绑定看起来可能是这样的：</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;<span class="keyword">my</span>-hero-detail [hero]=<span class="string">"selectedHero"</span>&gt;&lt;/<span class="keyword">my</span>-hero-detail&gt;</div></pre></td></tr></table></figure>
+<p>注意，<code>hero</code>是属性绑定的<strong>目标</strong>——它位于等号 (<code>=</code>) 左边方括号中。</p>
+<p>Angular 要求我们把<strong>目标</strong>属性声明为组件的<strong>输入</strong>属性，否则，Angular 会拒绝绑定，并抛出错误。</p>
+<blockquote>
+<p>我们在这里详细解释了输入属性，以及为什么目标属性需要这样的特殊待遇，而源属性却不需要。</p>
+</blockquote>
+<p>我们有几种方式把<code>hero</code>声明成输入属性。这里我们采用首选的方式：通过使用<code>@Input</code>注解<code>hero</code>属性。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">@<span class="keyword">Input</span>()</div><div class="line">Hero hero;</div></pre></td></tr></table></figure>
+<h3 id="更新-AppComponent"><a href="#更新-AppComponent" class="headerlink" title="更新 AppComponent"></a>更新 AppComponent</h3><p>我们回到<code>AppComponent</code>，让它使用<code>HeroDetailComponent</code>组件。</p>
+<p>我们先导入<code>HeroDetailComponent</code>组件，以便可以引用它。</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta"><span class="meta-keyword">import</span> 'hero_detail_component.dart';</span></div></pre></td></tr></table></figure>
+<p>在模板中，找到刚刚删除“英雄详情”内容的位置，添加表示<code>HeroDetailComponent</code>组件的元素标签：</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="section">&lt;my-hero-detail&gt;</span><span class="section">&lt;/my-hero-detail&gt;</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p><code>my-hero-detail</code>是我们在<code>HeroDetailComponent</code>元数据中设置的<code>selector</code></p>
+</blockquote>
+<p>这两个组件目前还不能协同工作，直到我们把<code>AppComponent</code>组件的<code>selectedHero</code>属性绑定到<code>HeroDetailComponent</code>元素的<code>hero</code>属性上，就像这样：</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;<span class="keyword">my</span>-hero-detail [hero]=<span class="string">"selectedHero"</span>&gt;&lt;/<span class="keyword">my</span>-hero-detail&gt;</div></pre></td></tr></table></figure>
+<p>AppComponent的模板是这样的：</p>
+<figure class="highlight dust"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="xml">template: '''</span></div><div class="line">  <span class="tag">&lt;<span class="name">h1</span>&gt;</span><span class="template-variable">&#123; &#123;title&#125;</span><span class="xml"> &#125;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></div><div class="line">  <span class="tag">&lt;<span class="name">h2</span>&gt;</span>My Heroes<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">"heroes"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">li</span> *<span class="attr">ngFor</span>=<span class="string">"let hero of heroes"</span></span></div><div class="line">      [<span class="attr">class.selected</span>]=<span class="string">"hero == selectedHero"</span></div><div class="line">      (<span class="attr">click</span>)=<span class="string">"onSelect(hero)"</span>&gt;</div><div class="line">      <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"badge"</span>&gt;</span><span class="template-variable">&#123; &#123;hero.id&#125;</span><span class="xml"> &#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span> </span><span class="template-variable">&#123; &#123;hero.name&#125;</span><span class="xml"> &#125;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">my-hero-detail</span> [<span class="attr">hero</span>]=<span class="string">"selectedHero"</span>&gt;</span><span class="tag">&lt;/<span class="name">my-hero-detail</span>&gt;</span></div><div class="line">''',</div></pre></td></tr></table></figure>
+<p>多亏数据绑定机制，<code>HeroDetailComponent</code>可以从<code>AppComponent</code>接收到英雄数据，并在列表下方显示那个英雄的详情。每一次用户选择一个新英雄，详情都会更新。</p>
+<p>现在什么都还没有发生！</p>
+<p>我们点击列表内的英雄，并没有详细信息！我们在浏览器开发工具的控制台中找找看错误信息！但并没有出错。</p>
+<p>似乎是Angular忽略了新的标签。确实如此！</p>
+<h4 id="指令列表"><a href="#指令列表" class="headerlink" title="指令列表"></a>指令列表</h4><p>浏览器会忽视它无法识别的标签和属性（attribute），Angular同样如此。</p>
+<p>我们已经导入<code>HeroDetailComponent</code>，并在模板中使用它，但是我们并没有告诉Angular。</p>
+<p>我们可以通过元数据的<code>directives</code>列表告诉 Angular 我们在模板中使用了哪些组件。让我们在<code>@Component</code>配置对象底部，紧跟着<code>template</code>和<code>styles</code>的后面，添加列表属性。</p>
+<figure class="highlight accesslog"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">directives: const <span class="string">[HeroDetailComponent]</span></div></pre></td></tr></table></figure>
+<h4 id="搞定！"><a href="#搞定！" class="headerlink" title="搞定！"></a>搞定！</h4><p>当在浏览器中查看应用时，可以看到英雄列表。当选中一个英雄时，可以看到所选英雄的详情。</p>
+<p>从根本上的改变是，我们可以在应用中的任何地方使用这个<code>HeroDetailComponent</code>组件来显示英雄详情了。</p>
+<p>我们创建了第一个可复用组件！</p>
+<h4 id="回顾应用结构"><a href="#回顾应用结构" class="headerlink" title="回顾应用结构"></a>回顾应用结构</h4><p>来验证下吧，在本章中，经过这些漂亮的重构，我们应该得到下列结构：</p>
+<figure class="highlight gherkin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">angular_tour_of_heroes/</div><div class="line">|<span class="string">___lib/</span></div><div class="line">|<span class="string">    </span>|<span class="string">___app_component.dart</span></div><div class="line">|<span class="string">    </span>|<span class="string">___hero.dart</span></div><div class="line">|<span class="string">    </span>|<span class="string">___hero_detail_component.dart</span></div><div class="line">|<span class="string">___web/</span></div><div class="line">|<span class="string">    </span>|<span class="string">___index.html</span></div><div class="line">|<span class="string">    </span>|<span class="string">___main.dart</span></div><div class="line">|<span class="string">    </span>|<span class="string">___styles.css</span></div><div class="line">|<span class="string">___pubspec.yaml</span></div></pre></td></tr></table></figure>
+<h3 id="我们已经走过的路"><a href="#我们已经走过的路" class="headerlink" title="我们已经走过的路"></a>我们已经走过的路</h3><p>来盘点一下我们已经构建了什么。</p>
+<ul>
+<li>我们创建了一个可复用组件</li>
+<li>我们学会了如何让一个组件接收输入</li>
+<li>我们学会了把父组件绑定到子组件。</li>
+<li>我们学会了需要在<code>directives</code>列表中声明应用指令</li>
+</ul>
+<h4 id="前方的路"><a href="#前方的路" class="headerlink" title="前方的路"></a>前方的路</h4><p>通过抽取共享组件，我们的《英雄之旅》变得更有复用性了。</p>
+<p>但在<code>AppComponent</code>中，我们仍然使用着模拟数据。这不能忍。我们应该重构数据访问为一个独立的服务，并在需要数据的组件之间共享。</p>
+<p>在下一章，我们将学习如何创建服务。</p>
+<blockquote>
+<p>下一步</p>
+<p>服务</p>
+</blockquote>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2016/12/18/多组件/">多组件</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">soojade</a></p>
+        <p><span>发布时间:</span>2016-12-18, 14:47:52</p>
+        <p><span>最后更新:</span>2016-12-18, 21:26:36</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2016/12/18/多组件/" title="多组件">http://soojade.github.io/2016/12/18/多组件/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://soojade.github.io/2016/12/18/多组件/　　作者: soojade" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2016/12/18/服务/">
+                    服务
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2016/12/18/主从结构/">
+                    主从结构
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#多组件"><span class="toc-number">1.</span> <span class="toc-text">多组件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#我们离开的地方"><span class="toc-number">1.1.</span> <span class="toc-text">我们离开的地方</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#保持应用的编译和运行"><span class="toc-number">1.1.1.</span> <span class="toc-text">保持应用的编译和运行</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#制作英雄详情组件"><span class="toc-number">1.2.</span> <span class="toc-text">制作英雄详情组件</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#拆分英雄详情组件"><span class="toc-number">1.2.1.</span> <span class="toc-text">拆分英雄详情组件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#命名约定"><span class="toc-number">1.2.2.</span> <span class="toc-text">命名约定</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#英雄详情模板"><span class="toc-number">1.2.3.</span> <span class="toc-text">英雄详情模板</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#添加-hero-属性"><span class="toc-number">1.2.4.</span> <span class="toc-text">添加 hero 属性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#hero-属性是一个输入属性"><span class="toc-number">1.2.5.</span> <span class="toc-text">hero 属性是一个输入属性</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#更新-AppComponent"><span class="toc-number">1.3.</span> <span class="toc-text">更新 AppComponent</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#指令列表"><span class="toc-number">1.3.1.</span> <span class="toc-text">指令列表</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#搞定！"><span class="toc-number">1.3.2.</span> <span class="toc-text">搞定！</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#回顾应用结构"><span class="toc-number">1.3.3.</span> <span class="toc-text">回顾应用结构</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#我们已经走过的路"><span class="toc-number">1.4.</span> <span class="toc-text">我们已经走过的路</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#前方的路"><span class="toc-number">1.4.1.</span> <span class="toc-text">前方的路</span></a></li></ol></li></ol></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-4 i,
+        .toc-level-4 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"多组件　| soojade个人空间　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+      <div class="duoshuo" id="comments">
+    <div id="comment-box" ></div>
+    <div class="ds-thread" id="ds-thread" data-thread-key="2016/12/18/多组件/" data-title="多组件" data-url="http://soojade.github.io/2016/12/18/多组件/"></div>
+    <script>
+        var duoshuoQuery = {short_name:"soojade"};
+        var loadComment = function(){
+            var d = document, s = d.createElement('script');
+            s.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+            s.async = true; s.charset = 'UTF-8';
+            (d.head || d.body).appendChild(s);
+        }
+
+        
+    </script>
+    
+    <script> loadComment(); </script>
+
+</div>
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2016/12/18/服务/" title="上一篇: 服务">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2016/12/18/主从结构/" title="下一篇: 主从结构">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/02/06/javascript忍者秘籍笔记————函数是根基/">javascript 忍者秘籍————函数是根基</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/05/javascript忍者秘籍笔记————利用测试和调试武装自己/">javascript 忍者秘籍笔记————利用测试和调试武装自己</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/05/javascript忍者秘籍笔记————进入忍者世界/">javascript 忍者秘籍笔记————进入忍者世界</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/01/angular文档——CLI-快速起步/">angular文档——CLI-快速起步</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/15/angular点-线-面：模板引用变量/">angular.点-线-面：模板引用变量</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/15/javascript坑与技巧：花式交换两个数值/">javascript坑与技巧：花式交换两个数值</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/04/javascript坑与技巧：异常/">javascript坑与技巧：异常</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/03/javascript坑与技巧：表单/">javascript坑与技巧：表单</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/03/javascript坑与技巧：DOM/">javascript坑与技巧：DOM</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/02/javascript坑与技巧：this/">javascript坑与技巧：this</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/02/javascript坑与技巧：变量作用域/">javascript坑与技巧：变量作用域</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/02/javascript坑与技巧：箭头函数/">javascript坑与技巧：箭头函数</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/02/javascript坑与技巧：闭包/">javascript坑与技巧：闭包</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/02/javascript坑与技巧：sort/">javascript坑与技巧：sort</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/01/javascript坑与技巧：filter/">javascript坑与技巧：filter</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/01/javascript坑与技巧：map/">javascript坑与技巧：map</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/react文档-表单/">react文档--表单</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/react文档-列表和键/">react文档--列表和键</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/react文档-条件渲染/">react文档--条件渲染</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/react文档-事件处理/">react文档--事件处理</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/react文档-state和生命周期/">react文档--state和生命周期</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/react文档-组件和props/">react文档--组件和props</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/react文档-渲染元素/">react文档--渲染元素</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/react文档-介绍JSX/">react文档--介绍JSX</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/react文档-HelloWorld/">react文档--HelloWorld</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/react文档-安装/">react文档--安装</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/20/dart开发命令行工具/">dart开发命令行工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/19/dart语言基础/">dart语言基础</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/19/HTTP/">HTTP</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/19/路由/">路由</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/18/服务/">服务</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/18/多组件/">多组件</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/18/主从结构/">主从结构</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/18/英雄编辑器/">英雄编辑器</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/18/简介/">简介</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/16/模板语法/">模板语法</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/14/依赖注入/">依赖注入</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/13/表单/">表单</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/13/用户输入/">用户输入</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/11/显示数据/">显示数据</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/10/架构/">架构</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/10/学习angular/">学习angular</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/10/搭建开发环境/">搭建开发环境</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/10/概览/">概览</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/10/快速开始/">快速开始</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+  <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i>
+                2016-2017 soojade
+            </div>
+            <div class="footer-right">
+                 Made by soojade <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                Total <span id="busuanzi_value_site_pv"></span> views.
+                欢迎第<span id="busuanzi_value_site_uv"></span>个小伙伴
+                <span id="busuanzi_value_page_pv"></span> Hits
+            </div>
+        
+    </div>
+</footer>
+
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 15;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+    <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+             tags: ".article-tag a", 
+            
+             articleNav: "#article-nav a, #post-nav-button a", 
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>

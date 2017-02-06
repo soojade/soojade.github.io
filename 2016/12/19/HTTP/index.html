@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="soojade" />
+
+
+
+<meta name="description" content="HTTP客户对我们的进展很满意！现在，它们想要从服务器获取英雄数据，然后让用户添加、编辑和删除英雄，并且把这些修改结果保存回服务器。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HTTP">
+<meta property="og:url" content="http://soojade.github.io/2016/12/19/HTTP/index.html">
+<meta property="og:site_name" content="soojade个人空间">
+<meta property="og:description" content="HTTP客户对我们的进展很满意！现在，它们想要从服务器获取英雄数据，然后让用户添加、编辑和删除英雄，并且把这些修改结果保存回服务器。">
+<meta property="og:image" content="https://webdev.dartlang.org/resources/images/devguide/toh/toh-hero-search.png">
+<meta property="og:updated_time" content="2016-12-19T15:41:15.201Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="HTTP">
+<meta name="twitter:description" content="HTTP客户对我们的进展很满意！现在，它们想要从服务器获取英雄数据，然后让用户添加、编辑和删除英雄，并且把这些修改结果保存回服务器。">
+<meta name="twitter:image" content="https://webdev.dartlang.org/resources/images/devguide/toh/toh-hero-search.png">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="soojade个人空间" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="img/favicon.ico">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/green/pace-theme-flash.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>HTTP | soojade个人空间</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: true
+    }
+</script>
+
+
+    <script>
+        yiliaConfig.jquery_ui = [true, "//cdn.bootcss.com/jqueryui/1.10.4/jquery-ui.min.js", "//cdn.bootcss.com/jqueryui/1.10.4/css/jquery-ui.min.css"];
+    </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/avatar.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">soojade</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">博客</p>
+        
+
+        
+            <form id="search-form">
+            <input type="text" id="local-search-input" name="q" placeholder="search..." class="search form-control" autocomplete="off" autocorrect="off" searchonload="false" />
+            <i class="fa fa-times" onclick="resetSearch()"></i>
+            </form>
+            <div id="local-search-result"></div>
+            <p class='no-result'>No results found <i class='fa fa-spinner fa-pulse'></i></p>
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=2035030023@qq.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" href="https://github.com/soojade" title="GitHub"></a>
+                            
+                                <a class="fa 知乎" href="https://www.zhihu.com/people/soojade/activities" title="知乎"></a>
+                            
+                                <a class="fa 简书" href="http://www.jianshu.com/users/b2e1cf392d42/latest_articles" title="简书"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/angular-angular-点-线-面/">angular angular.点-线-面</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/angular-angular文档/">angular angular文档</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dart-dart命令行/">dart  dart命令行</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dart-angularDart-web-angular指南/">dart angularDart web angular指南</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dart-angularDart-web-angular教程/">dart angularDart web angular教程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dart-dart基础/">dart dart基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-javascript坑与技巧/">javascript javascript坑与技巧</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-javascript坑与技巧-DOM/">javascript javascript坑与技巧 DOM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-javascript坑与技巧-filter/">javascript javascript坑与技巧 filter()</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-javascript坑与技巧-map/">javascript javascript坑与技巧 map()</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-javascript坑与技巧-sort/">javascript javascript坑与技巧 sort()</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-javascript坑与技巧-this/">javascript javascript坑与技巧 this</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-javascript坑与技巧-变量作用域/">javascript javascript坑与技巧 变量作用域</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-javascript坑与技巧-异常/">javascript javascript坑与技巧 异常</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-javascript坑与技巧-箭头函数/">javascript javascript坑与技巧 箭头函数</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-javascript坑与技巧-表单/">javascript javascript坑与技巧 表单</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-javascript坑与技巧-闭包/">javascript javascript坑与技巧 闭包</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript忍者秘籍笔记/">javascript忍者秘籍笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/react文档-翻译/">react文档 翻译</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">专注于Web与游戏</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">soojade</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/avatar.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">soojade</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">博客</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=2035030023@qq.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/soojade" title="GitHub"></a>
+                            
+                                <a class="fa 知乎" target="_blank" href="https://www.zhihu.com/people/soojade/activities" title="知乎"></a>
+                            
+                                <a class="fa 简书" target="_blank" href="http://www.jianshu.com/users/b2e1cf392d42/latest_articles" title="简书"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-HTTP" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/12/19/HTTP/" class="article-date">
+      <time datetime="2016-12-19T15:40:14.000Z" itemprop="datePublished">2016-12-19</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      HTTP
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/dart/">dart</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dart-angularDart-web-angular教程/">dart angularDart web angular教程</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h2 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h2><p>客户对我们的进展很满意！现在，它们想要从服务器获取英雄数据，然后让用户添加、编辑和删除英雄，并且把这些修改结果保存回服务器。<br><a id="more"></a></p>
+<p>在这一章中，我们要让应用程序通过 HTTP 调用来访问远程服务器上相应的 Web API。</p>
+<p>运行这部分的<a href="http://angular-examples.github.io/toh-6" target="_blank" rel="external">在线例子</a>。</p>
+<h3 id="我们离开的地方"><a href="#我们离开的地方" class="headerlink" title="我们离开的地方"></a>我们离开的地方</h3><p>在前一章中，我们学会了在仪表盘和固定的英雄列表之间导航，并编辑选定的英雄。这也就是本章的起点。</p>
+<h4 id="保持应用的编译和运行"><a href="#保持应用的编译和运行" class="headerlink" title="保持应用的编译和运行"></a>保持应用的编译和运行</h4><p>打开终端/控制台窗口，通过输入如下命令，启动 Dart 编译器，它会监视文件变化，并启动开发服务器：</p>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">pub serve</span></div></pre></td></tr></table></figure>
+<p>在我们继续构建《英雄之旅》的时候，应用保持运行并自动更新。</p>
+<h2 id="提供HTTP服务"><a href="#提供HTTP服务" class="headerlink" title="提供HTTP服务"></a>提供HTTP服务</h2><p>我们将使用 Dart 中的 <strong>http</strong> 包的 <code>BrowserClient</code> 类来与服务器通信。</p>
+<h4 id="更新-Pubspec"><a href="#更新-Pubspec" class="headerlink" title="更新 Pubspec"></a>更新 Pubspec</h4><p>通过添加<code>stream_transformers</code>和 Dart 的 http 包来更新包依赖。</p>
+<p>我们还需要添加 <code>resolved_identifiers</code> 项，以便通知 Angular2 转换器 我们将使用 <code>BrowserClient</code>。我们还需要从 http 中使用 <code>Client</code>，所以现在让我们一块添加上。</p>
+<p>更新 <code>pubspec.yaml</code> ，内容如下：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="attr">name:</span> angular_tour_of_heroes</div><div class="line"><span class="comment"># . . . </span></div><div class="line"><span class="attr">dependencies:</span></div><div class="line"><span class="attr">  angular2:</span> ^<span class="number">2.2</span><span class="number">.0</span></div><div class="line"><span class="attr">  http:</span> ^<span class="number">0.11</span><span class="number">.0</span></div><div class="line"><span class="attr">  stream_transformers:</span> ^<span class="number">0.3</span><span class="number">.0</span></div><div class="line">  <span class="comment"># . . . </span></div><div class="line"><span class="attr">transformers:</span></div><div class="line"><span class="attr">- angular2:</span></div><div class="line"><span class="comment"># . . . </span></div><div class="line"><span class="attr">    entry_points:</span> web/main.dart</div><div class="line"><span class="attr">    resolved_identifiers:</span></div><div class="line"><span class="attr">        BrowserClient:</span> <span class="string">'package:http/browser_client.dart'</span></div><div class="line"><span class="attr">        Client:</span> <span class="string">'package:http/http.dart'</span></div><div class="line"><span class="bullet">-</span> dart_to_js_script_rewriter</div></pre></td></tr></table></figure>
+<h4 id="注册-HTTP-服务"><a href="#注册-HTTP-服务" class="headerlink" title="注册 HTTP 服务"></a>注册 HTTP 服务</h4><p>在我们的应用开始使用 <code>BrowserClient</code> 之前，我们必须将它注册为一个服务提供者。</p>
+<p>在应用中，我们应该能够在任何地方访问 <code>BrowserClient</code> 服务。因此我们将它注册到 <code>bootstrap</code> 调用中，那是我们启动应用和根组件 <code>AppComponent</code> 的地方。</p>
+<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> <span class="string">'package:angular2/core.dart'</span>;</div><div class="line"><span class="keyword">import</span> <span class="string">'package:angular2/platform/browser.dart'</span>;</div><div class="line"><span class="keyword">import</span> <span class="string">'package:angular_tour_of_heroes/app_component.dart'</span>;</div><div class="line"><span class="keyword">import</span> <span class="string">'package:http/browser_client.dart'</span>;</div><div class="line"></div><div class="line">void main() &#123;</div><div class="line">  bootstrap(AppComponent, [</div><div class="line">    provide(BrowserClient, useFactory: <span class="function"><span class="params">()</span> =&gt;</span> <span class="keyword">new</span> BrowserClient(), deps: [])</div><div class="line">  ]);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>注意，我们在列表中添加了 <code>BrowserClient</code> ，作为 <code>bootstrap</code> 方法的第二个参数。这与<code>@Component</code>注解中的 <code>providers</code> 列表效果一样。</p>
+<h4 id="模拟-Web-API"><a href="#模拟-Web-API" class="headerlink" title="模拟 Web API"></a>模拟 Web API</h4><p>我们建议在根组件 <code>AppComponent</code> 的 <code>providers</code> 中注册全应用级的服务。这里在 <code>main</code> 中进行注册有一个特殊的原因。</p>
+<p>我们的应用处在开发的早期阶段，并且离进入产品阶段还很远。我们甚至都还没有一个用来处理英雄相关请求的 Web 服务器，在此之前，我们将不得不伪造一个 。</p>
+<p>我们将欺骗 Http 客户端，让它从一个 Mock 服务（内存 Web API）中获取和保存数据。而应用本身并不需要知道，也不应该知道。所以我们让 内存（in-memory） Web API 悄悄的在 <code>AppComponent</code> 之上进行配置。</p>
+<p>这个版本的 <code>web/main.dart</code> 就是用来实现这个小花招的：</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> <span class="string">'package:angular2/core.dart'</span>;</div><div class="line"><span class="keyword">import</span> <span class="string">'package:angular2/platform/browser.dart'</span>;</div><div class="line"><span class="keyword">import</span> <span class="string">'package:angular_tour_of_heroes/app_component.dart'</span>;</div><div class="line"><span class="keyword">import</span> <span class="string">'package:angular_tour_of_heroes/in_memory_data_service.dart'</span>;</div><div class="line"><span class="keyword">import</span> <span class="string">'package:http/http.dart'</span>;</div><div class="line"></div><div class="line"><span class="keyword">void</span> main() &#123;</div><div class="line">  bootstrap(AppComponent,</div><div class="line">    [provide(<span class="built_in">Client</span>, useClass: InMemoryDataService)]</div><div class="line">    <span class="comment">// Using a real back end? Import browser_client.dart and change the above to</span></div><div class="line">    <span class="comment">// [provide(Client, useFactory: () =&gt; new BrowserClient(), deps: [])]</span></div><div class="line">  );</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>我们要替换 <code>BrowserClient</code> ，该服务会通过内存 Web API 服务，与远程服务器进行会话。我们的内存 Web API 服务如下所示，是通过 http 库的 <code>MockClient</code> 类来实现的。所有的 <code>http</code> 客户端实现都共享了一个通用的 <code>Client</code> 接口。所以我们在应用中使用了 <code>Clien</code>t 类型，以便自由地在各个实现之间进行切换。</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// lib/in_memory_data_service.dart</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> <span class="string">'dart:async'</span>;</div><div class="line"><span class="keyword">import</span> <span class="string">'dart:convert'</span>;</div><div class="line"><span class="keyword">import</span> <span class="string">'dart:math'</span>;</div><div class="line"></div><div class="line"><span class="keyword">import</span> <span class="string">'package:angular2/core.dart'</span>;</div><div class="line"><span class="keyword">import</span> <span class="string">'package:http/http.dart'</span>;</div><div class="line"><span class="keyword">import</span> <span class="string">'package:http/testing.dart'</span>;</div><div class="line"></div><div class="line"><span class="keyword">import</span> <span class="string">'hero.dart'</span>;</div><div class="line"></div><div class="line"><span class="meta">@Injectable</span>()</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">InMemoryDataService</span> <span class="keyword">extends</span> <span class="title">MockClient</span> </span>&#123;</div><div class="line">  <span class="keyword">static</span> <span class="keyword">final</span> _initialHeroes = [</div><div class="line">    &#123;<span class="string">'id'</span>: <span class="number">11</span>, <span class="string">'name'</span>: <span class="string">'Mr. Nice'</span>&#125;,</div><div class="line">    &#123;<span class="string">'id'</span>: <span class="number">12</span>, <span class="string">'name'</span>: <span class="string">'Narco'</span>&#125;,</div><div class="line">    &#123;<span class="string">'id'</span>: <span class="number">13</span>, <span class="string">'name'</span>: <span class="string">'Bombasto'</span>&#125;,</div><div class="line">    &#123;<span class="string">'id'</span>: <span class="number">14</span>, <span class="string">'name'</span>: <span class="string">'Celeritas'</span>&#125;,</div><div class="line">    &#123;<span class="string">'id'</span>: <span class="number">15</span>, <span class="string">'name'</span>: <span class="string">'Magneta'</span>&#125;,</div><div class="line">    &#123;<span class="string">'id'</span>: <span class="number">16</span>, <span class="string">'name'</span>: <span class="string">'RubberMan'</span>&#125;,</div><div class="line">    &#123;<span class="string">'id'</span>: <span class="number">17</span>, <span class="string">'name'</span>: <span class="string">'Dynama2'</span>&#125;,</div><div class="line">    &#123;<span class="string">'id'</span>: <span class="number">18</span>, <span class="string">'name'</span>: <span class="string">'Dr IQ'</span>&#125;,</div><div class="line">    &#123;<span class="string">'id'</span>: <span class="number">19</span>, <span class="string">'name'</span>: <span class="string">'Magma'</span>&#125;,</div><div class="line">    &#123;<span class="string">'id'</span>: <span class="number">20</span>, <span class="string">'name'</span>: <span class="string">'Tornado'</span>&#125;</div><div class="line">  ];</div><div class="line">  <span class="keyword">static</span> <span class="keyword">final</span> <span class="built_in">List</span>&lt;Hero&gt; _heroesDb =</div><div class="line">      _initialHeroes.map((json) =&gt; <span class="keyword">new</span> Hero.fromJson(json)).toList();</div><div class="line">  <span class="keyword">static</span> <span class="built_in">int</span> _nextId = _heroesDb.map((hero) =&gt; hero.id).fold(<span class="number">0</span>, max) + <span class="number">1</span>;</div><div class="line"></div><div class="line">  <span class="keyword">static</span> Future&lt;Response&gt; _handler(Request request) <span class="keyword">async</span> &#123;</div><div class="line">    <span class="keyword">var</span> data;</div><div class="line">    <span class="keyword">switch</span> (request.method) &#123;</div><div class="line">      <span class="keyword">case</span> <span class="string">'GET'</span>:</div><div class="line">        <span class="keyword">final</span> id = <span class="built_in">int</span>.parse(request.url.pathSegments.last, onError: (_) =&gt; <span class="keyword">null</span>);</div><div class="line">        <span class="keyword">if</span> (id != <span class="keyword">null</span>) &#123;</div><div class="line">          data = _heroesDb.firstWhere((hero) =&gt; hero.id == id); <span class="comment">// throws if no match</span></div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">          <span class="built_in">String</span> prefix = request.url.queryParameters[<span class="string">'name'</span>] ?? <span class="string">''</span>;</div><div class="line">          <span class="keyword">final</span> regExp = <span class="keyword">new</span> <span class="built_in">RegExp</span>(prefix, caseSensitive: <span class="keyword">false</span>);</div><div class="line">          data = _heroesDb.where((hero) =&gt; hero.name.contains(regExp)).toList();</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">break</span>;</div><div class="line">      <span class="keyword">case</span> <span class="string">'POST'</span>:</div><div class="line">        <span class="keyword">var</span> name = JSON.decode(request.body)[<span class="string">'name'</span>];</div><div class="line">        <span class="keyword">var</span> newHero = <span class="keyword">new</span> Hero(_nextId++, name);</div><div class="line">        _heroesDb.add(newHero);</div><div class="line">        data = newHero;</div><div class="line">        <span class="keyword">break</span>;</div><div class="line">      <span class="keyword">case</span> <span class="string">'PUT'</span>:</div><div class="line">        <span class="keyword">var</span> heroChanges = <span class="keyword">new</span> Hero.fromJson(JSON.decode(request.body));</div><div class="line">        <span class="keyword">var</span> targetHero = _heroesDb.firstWhere((h) =&gt; h.id == heroChanges.id);</div><div class="line">        targetHero.name = heroChanges.name;</div><div class="line">        data = targetHero;</div><div class="line">        <span class="keyword">break</span>;</div><div class="line">      <span class="keyword">case</span> <span class="string">'DELETE'</span>:</div><div class="line">        <span class="keyword">var</span> id = <span class="built_in">int</span>.parse(request.url.pathSegments.last);</div><div class="line">        _heroesDb.removeWhere((hero) =&gt; hero.id == id);</div><div class="line">        <span class="comment">// No data, so leave it as null.</span></div><div class="line">        <span class="keyword">break</span>;</div><div class="line">      <span class="keyword">default</span>:</div><div class="line">        <span class="keyword">throw</span> <span class="string">'Unimplemented HTTP method <span class="subst">$&#123;request.method&#125;</span>'</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">new</span> Response(JSON.encode(&#123;<span class="string">'data'</span>: data&#125;), <span class="number">200</span>,</div><div class="line">        headers: &#123;<span class="string">'content-type'</span>: <span class="string">'application/json'</span>&#125;);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  InMemoryDataService() : <span class="keyword">super</span>(_handler);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>该文件替换了 <code>mock_heroes.dart</code> ，它现在可以安全的删除了。</p>
+<p>作为通用的 Web API 服务，我们的模拟内存服务将以 JSON 格式进行编解码英雄数据。现在我们给 <code>Hero</code> 类增加这些功能： </p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Hero</span> </span>&#123;</div><div class="line">  <span class="keyword">final</span> <span class="built_in">int</span> id;</div><div class="line">  <span class="built_in">String</span> name;</div><div class="line"></div><div class="line">  Hero(<span class="keyword">this</span>.id, <span class="keyword">this</span>.name);</div><div class="line"></div><div class="line">  <span class="keyword">factory</span> Hero.fromJson(<span class="built_in">Map</span>&lt;<span class="built_in">String</span>, <span class="keyword">dynamic</span>&gt; hero) =&gt;</div><div class="line">    <span class="keyword">new</span> Hero(_toInt(hero[<span class="string">'id'</span>]), hero[<span class="string">'name'</span>]);</div><div class="line"></div><div class="line">  <span class="built_in">Map</span> toJson() =&gt; &#123;<span class="string">'id'</span>: id, <span class="string">'name'</span>: name&#125;;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="built_in">int</span> _toInt(id) =&gt; id <span class="keyword">is</span> <span class="built_in">int</span> ? id : <span class="built_in">int</span>.parse(id);</div></pre></td></tr></table></figure>
+<h3 id="英雄与-HTTP"><a href="#英雄与-HTTP" class="headerlink" title="英雄与 HTTP"></a>英雄与 HTTP</h3><p>来看看我们目前的<code>HeroService</code>的实现</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Future&lt;<span class="built_in">List</span>&lt;Hero&gt;&gt; getHeroes() <span class="keyword">async</span> =&gt; mockHeroes;</div></pre></td></tr></table></figure>
+<p>我们返回了一个 Future ，它用来解析模拟英雄数据。在当时，它当时可能看起来显得有点过于复杂。不过我们预料到总有这么一天会通过 HTTP 客户端来获取英雄数据， 而且我们知道，那一定是一个异步操作。</p>
+<p>这一天来了！我们将 <code>getHeroes()</code> 转换为使用 HTTP 。</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">static</span> <span class="keyword">const</span> _heroesUrl = <span class="string">'api/heroes'</span>; <span class="comment">// URL to web API</span></div><div class="line"></div><div class="line"><span class="keyword">final</span> Client _http;</div><div class="line"></div><div class="line">HeroService(<span class="keyword">this</span>._http);</div><div class="line"></div><div class="line">Future&lt;<span class="built_in">List</span>&lt;Hero&gt;&gt; getHeroes() <span class="keyword">async</span> &#123;</div><div class="line">  <span class="keyword">try</span> &#123;</div><div class="line">    <span class="keyword">final</span> response = <span class="keyword">await</span> _http.<span class="keyword">get</span>(_heroesUrl);</div><div class="line">    <span class="keyword">final</span> heroes = _extractData(response)</div><div class="line">        .map((value) =&gt; <span class="keyword">new</span> Hero.fromJson(value))</div><div class="line">        .toList();</div><div class="line">    <span class="keyword">return</span> heroes;</div><div class="line">  &#125; <span class="keyword">catch</span> (e) &#123;</div><div class="line">    <span class="keyword">throw</span> _handleError(e);</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">dynamic</span> _extractData(Response resp) =&gt; JSON.decode(resp.body)[<span class="string">'data'</span>];</div><div class="line"></div><div class="line">Exception _handleError(<span class="keyword">dynamic</span> e) &#123;</div><div class="line">  <span class="built_in">print</span>(e); <span class="comment">// for demo purposes only</span></div><div class="line">  <span class="keyword">return</span> <span class="keyword">new</span> Exception(<span class="string">'Server error; cause: $e'</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>更新后的导入语句如下：</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="meta"><span class="meta-keyword">import</span> 'dart:async';</span></div><div class="line"><span class="meta"><span class="meta-keyword">import</span> 'dart:convert';</span></div><div class="line"></div><div class="line"><span class="meta"><span class="meta-keyword">import</span> 'package:angular2/core.dart';</span></div><div class="line"><span class="meta"><span class="meta-keyword">import</span> 'package:http/http.dart';</span></div><div class="line"></div><div class="line"><span class="meta"><span class="meta-keyword">import</span> 'hero.dart';</span></div></pre></td></tr></table></figure>
+<p>刷新浏览器后，英雄数据就会从模拟服务器被成功读取。</p>
+<h4 id="HTTP-Future"><a href="#HTTP-Future" class="headerlink" title="HTTP Future"></a>HTTP Future</h4><p>我们将仍然返回一个 Future ，但是用不同的方法来创建它。</p>
+<p>为获取到英雄列表，我们首先异步调用 <code>http.get()</code> 。然后使用 <code>_extractData</code> 助手方法来解码响应的正文。</p>
+<p>响应的 JSON 只有一个单一的 <code>data</code> 属性，保存了调用者真正期望的英雄列表。所以我们夺取那个列表，并将它作为解析的 Future 值来返回。</p>
+<blockquote>
+<p>仔细看看这个由服务器返回的数据的形态。这个内存 Web API 的范例中所做的是返回一个带有<code>data</code>属性的对象。你的 API 也可以返回其它东西。请调整这些代码以匹配你的 Web API。</p>
+</blockquote>
+<p>调用者并不知道这些小花招。就像之前一样，它接收一个英雄列表的 Future 。它并不知道我们是从（模拟）服务器获取英雄数据。也不必了解把 HTTP 响应转换成英雄数据时所作的这些复杂变换。看到美妙之处了吧，这正是将数据访问委托组一个服务的目的，就像 <code>HeroService</code>。</p>
+<h4 id="错误处理"><a href="#错误处理" class="headerlink" title="错误处理"></a>错误处理</h4><p>在<code>getHeroes()</code>的最后，我们<code>catch</code>了服务器的失败信息，并把它们传给了错误处理器：</p>
+<figure class="highlight sqf"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&#125; <span class="keyword">catch</span> (e) &#123;</div><div class="line">  <span class="keyword">throw</span> <span class="variable">_handleError</span>(e);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这是一个关键的步骤！我们必须预料到 HTTP 请求会失败，因为有太多我们无法控制的原因可能导致它们频繁出现各种错误。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">Exception</span> _handleError(dynamic e) &#123;</div><div class="line">  <span class="keyword">print</span>(e); <span class="comment">// for demo purposes only</span></div><div class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="keyword">Exception</span>(<span class="string">'Server error; cause: $e'</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在这个范例服务中，我们把错误记录到控制台中；在真实世界中，我们应该做得更好。</p>
+<p>我们决定通过传播异常，将错误信息用一个用户友好的格式返回给调用者，以便调用者能把一个合适的错误信息显示给用户。</p>
+<h4 id="通过-id-获取英雄"><a href="#通过-id-获取英雄" class="headerlink" title="通过 id 获取英雄"></a>通过 id 获取英雄</h4><p><code>HeroDetailComponent</code>请求<code>HeroService</code>获取一个单一的英雄来编辑。</p>
+<p><code>HeroService</code>获取所有的英雄，然后通过匹配的<code>id</code>过滤找到期望的英雄。在一个模拟的情形下是好的。但当我们只想要一个却向真实服务器请求所有的英雄是浪费的。多数的web APIs 支持这样的格式<code>api/hero/:id</code>，通过 id 获取请求。</p>
+<p>更新<code>HeroService.getHero</code>方法，使用通过id获取请求，应用我们刚学到的来写<code>getHeroes</code>:</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function">Future&lt;Hero&gt; <span class="title">getHero</span>(<span class="params"><span class="keyword">int</span> id</span>) <span class="keyword">async</span> </span>&#123;</div><div class="line">  <span class="keyword">try</span> &#123;</div><div class="line">    final response = <span class="keyword">await</span> _http.<span class="keyword">get</span>(<span class="string">'$_heroesUrl/$id'</span>);</div><div class="line">    <span class="keyword">return</span> <span class="keyword">new</span> Hero.fromJson(_extractData(response));</div><div class="line">  &#125; <span class="keyword">catch</span> (e) &#123;</div><div class="line">    <span class="keyword">throw</span> _handleError(e);</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这几乎和<code>getHeroes</code>一样。URL 通过编码英雄 id 到 URL 来匹配<code>api/hero/:id</code>这种模式告诉服务器应该更新哪个英雄。</p>
+<p>我们也应该适应响应的<code>data</code>是一个单一的英雄对象而不是一个列表。</p>
+<h4 id="getHeroes-API-没变"><a href="#getHeroes-API-没变" class="headerlink" title="getHeroes API 没变"></a>getHeroes API 没变</h4><p>虽然我们对 <code>getHeroes()</code>和<code>getHeroes()</code> 做了一些重要的 <em>内部</em>修改，但该方法公开的函数签名并没有任何变化。从这两个方法我们返回的仍然是一个 Future，不用被迫更新任何一个调用了它们的组件。</p>
+<p>到目前为止，我们的客户很欣赏这种富有弹性的 API 集成方式。 现在它们想增加创建和删除英雄的功能。</p>
+<p>让我们来看看当我们试图更新英雄的详情时会发生什么。</p>
+<h3 id="更新英雄详情"><a href="#更新英雄详情" class="headerlink" title="更新英雄详情"></a>更新英雄详情</h3><p>我们已经可以在英雄详情中编辑英雄的名字了。来试试吧。在输入的时候，页头上的英雄名字也会随之更新。不过当我们点了Back（后退）按钮时，这些修改就丢失了。</p>
+<p>以前是不会丢失更新的，现在是怎么回事？当该应用使用模拟出来的英雄列表时，更新直接被应用到了单一的、应用级共享的英雄列表中的英雄对象。而现在改成了从服务器获取数据。如果我们希望这些更改被持久化，我们就得把它们写回服务器。</p>
+<h4 id="保存英雄详情"><a href="#保存英雄详情" class="headerlink" title="保存英雄详情"></a>保存英雄详情</h4><p>我们先来确保对英雄名字的编辑不会丢失。先在英雄详情模板的底部添加一个保存按钮，它绑定了一个<code>click</code>事件，事件绑定会调用组件中一个名叫<code>save</code>的新方法：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">button</span> (<span class="attr">click</span>)=<span class="string">"save()"</span>&gt;</span>Save<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div></pre></td></tr></table></figure>
+<p><code>save</code>方法使用 <code>hero</code> 服务的<code>update</code>方法来保存对英雄名字的修改，然后导航回前一个视图：</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function">Future&lt;Null&gt; <span class="title">save</span>(<span class="params"></span>) <span class="keyword">async</span> </span>&#123;</div><div class="line">  <span class="keyword">await</span> _heroService.update(hero);</div><div class="line">  goBack();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="hero-服务的-update-方法"><a href="#hero-服务的-update-方法" class="headerlink" title="hero 服务的 update 方法"></a>hero 服务的 update 方法</h4><p><code>update</code>方法的大致结构与<code>getHeroes</code>类似，不过我们使用 HTTP 的 <em>put</em> 方法来把修改保存到服务端：</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">static</span> <span class="keyword">final</span> _headers = &#123;<span class="string">'Content-Type'</span>: <span class="string">'application/json'</span>&#125;;</div><div class="line"></div><div class="line">Future&lt;Hero&gt; update(Hero hero) <span class="keyword">async</span> &#123;</div><div class="line">  <span class="keyword">try</span> &#123;</div><div class="line">    <span class="keyword">final</span> url = <span class="string">'$_heroesUrl/<span class="subst">$&#123;hero.id&#125;</span>'</span>;</div><div class="line">    <span class="keyword">final</span> response =</div><div class="line">        <span class="keyword">await</span> _http.put(url, headers: _headers, body: JSON.encode(hero));</div><div class="line">    <span class="keyword">return</span> <span class="keyword">new</span> Hero.fromJson(_extractData(response));</div><div class="line">  &#125; <span class="keyword">catch</span> (e) &#123;</div><div class="line">    <span class="keyword">throw</span> _handleError(e);</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>我们通过一个编码在 URL 中的英雄 id 来告诉服务器应该更新哪个英雄。put 的 body 是该英雄的 JSON 字符串编码，它是通过调用<code>SON.encode</code>得到的。并且在请求头中标记出的 body 的内容类型（<code>application/json</code>）。</p>
+<p>刷新浏览器试一下，对英雄名字的修改现在应该能保存了。</p>
+<h3 id="添加英雄"><a href="#添加英雄" class="headerlink" title="添加英雄"></a>添加英雄</h3><p>要添加一个新的英雄，我们得先知道英雄的名字。我们使用一个 <code>input</code> 元素配合一个添加按钮来实现。</p>
+<p>把下列代码插入 heroes 组件的 HTML 中，放在标题的下面：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">label</span>&gt;</span>Hero name:<span class="tag">&lt;/<span class="name">label</span>&gt;</span> <span class="tag">&lt;<span class="name">input</span> #<span class="attr">heroName</span> /&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">button</span> (<span class="attr">click</span>)=<span class="string">"add(heroName.value); heroName.value=''"</span>&gt;</span></div><div class="line">    Add</div><div class="line">  <span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>当点击事件触发时，我们调用组件的点击处理器，然后清空这个输入框，以便用来输入另一个名字。</p>
+<figure class="highlight fortran"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Future&lt;Null&gt; add(String <span class="keyword">name</span>) async &#123;</div><div class="line">  <span class="keyword">name</span> = <span class="keyword">name</span>.<span class="built_in">trim</span>();</div><div class="line">  <span class="keyword">if</span> (<span class="keyword">name</span>.isEmpty) <span class="keyword">return</span>;</div><div class="line">  heroes.add(await _heroService.create(<span class="keyword">name</span>));</div><div class="line">  selectedHero = null;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>当指定的名字不为空的时候，点击处理器就会委托 hero 服务来创建一个具有此名字的英雄，并把这个新的英雄添加到我们的列表中。</p>
+<p>最后，我们在<code>HeroService</code>类中实现这个<code>create</code>方法。</p>
+<figure class="highlight sqf"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">Future&lt;Hero&gt; create(String <span class="built_in">name</span>) async &#123;</div><div class="line">  <span class="keyword">try</span> &#123;</div><div class="line">    final response = await <span class="variable">_http</span>.post(<span class="variable">_heroesUrl</span>,</div><div class="line">        headers: <span class="variable">_headers</span>, body: JSON.encode(&#123;<span class="string">'name'</span>: <span class="built_in">name</span>&#125;));</div><div class="line">    return new Hero.fromJson(<span class="variable">_extractData</span>(response));</div><div class="line">  &#125; <span class="keyword">catch</span> (e) &#123;</div><div class="line">    <span class="keyword">throw</span> <span class="variable">_handleError</span>(e);</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>刷新浏览器，并创建一些新的英雄！</p>
+<h3 id="删除一个英雄"><a href="#删除一个英雄" class="headerlink" title="删除一个英雄"></a>删除一个英雄</h3><p>英雄太多了？ 我们在英雄列表视图中来为每个英雄添加一个删除按钮吧。</p>
+<p>把这个按钮元素添加到英雄列表组件的 HTML 中，把它放在<code>&lt;li&gt;</code>标签中的英雄名的后面：</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&lt;button <span class="keyword">class</span>=<span class="string">"delete"</span></div><div class="line">  (<span class="built_in">click</span>)=<span class="string">"delete(hero); $event.stopPropagation()"</span>&gt;x&lt;/button&gt;</div></pre></td></tr></table></figure>
+<p><code>&lt;li&gt;</code>元素应该变成了这样：</p>
+<figure class="highlight dust"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="xml"><span class="tag">&lt;<span class="name">li</span> *<span class="attr">ngFor</span>=<span class="string">"let hero of heroes"</span> (<span class="attr">click</span>)=<span class="string">"onSelect(hero)"</span></span></span></div><div class="line">    [<span class="attr">class.selected</span>]=<span class="string">"hero == selectedHero"</span>&gt;</div><div class="line">  <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"badge"</span>&gt;</span><span class="template-variable">&#123; &#123;hero.id&#125;</span><span class="xml"> &#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span></div><div class="line">  <span class="tag">&lt;<span class="name">span</span>&gt;</span><span class="template-variable">&#123; &#123;hero.name&#125;</span><span class="xml"> &#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span></div><div class="line">  <span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">"delete"</span></span></div><div class="line">    (<span class="attr">click</span>)=<span class="string">"delete(hero); $event.stopPropagation()"</span>&gt;x<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">li</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>除了调用组件的<code>delete</code>方法之外，这个<code>delete</code>按钮的点击处理器还应该阻止点击事件向上冒泡——我们并不希望触发<code>&lt;li&gt;</code>的点击事件处理器，否则它会选中我们要删除的这位英雄。</p>
+<p><code>delete</code>处理器的逻辑略复杂：</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function">Future&lt;Null&gt; <span class="title">delete</span>(<span class="params">Hero hero</span>) <span class="keyword">async</span> </span>&#123;</div><div class="line">  <span class="keyword">await</span> _heroService.delete(hero.id);</div><div class="line">  heroes.<span class="keyword">remove</span>(hero);</div><div class="line">  <span class="keyword">if</span> (selectedHero == hero) selectedHero = <span class="literal">null</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>当然，我们仍然把删除英雄的操作委托给了 hero 服务，不过该组件仍然负责更新显示：它从列表中移除了被删除的英雄，如果删除的是正选中的英雄，还会清空选择。</p>
+<p>我们希望删除按钮被放在英雄条目的最右边。于是 CSS 变成了这样：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">button</span><span class="selector-class">.delete</span> &#123;</div><div class="line">  <span class="attribute">float</span>:right;</div><div class="line">  <span class="attribute">margin-top</span>: <span class="number">2px</span>;</div><div class="line">  <span class="attribute">margin-right</span>: .<span class="number">8em</span>;</div><div class="line">  <span class="attribute">background-color</span>: gray <span class="meta">!important</span>;</div><div class="line">  <span class="attribute">color</span>:white;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="hero-服务的delete方法"><a href="#hero-服务的delete方法" class="headerlink" title="hero 服务的delete方法"></a>hero 服务的delete方法</h4><p>hero 服务的<code>delete</code>方法使用 HTTP 的 delete 方法来从服务器上移除该英雄：</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">Future&lt;<span class="built_in">Null</span>&gt; delete(<span class="built_in">int</span> id) <span class="keyword">async</span> &#123;</div><div class="line">  <span class="keyword">try</span> &#123;</div><div class="line">    <span class="keyword">final</span> url = <span class="string">'$_heroesUrl/$id'</span>;</div><div class="line">    <span class="keyword">await</span> _http.delete(url, headers: _headers);</div><div class="line">  &#125; <span class="keyword">catch</span> (e) &#123;</div><div class="line">    <span class="keyword">throw</span> _handleError(e);</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>刷新浏览器，并试一下这个新的删除功能。</p>
+<h3 id="数据流"><a href="#数据流" class="headerlink" title="数据流"></a>数据流</h3><p>回顾一下之前的内容，<code>HeroService.getHeroes()</code> 等待 <code>http.get()</code> 响应，并生成一个包含 <code>List&lt;Hero&gt;</code> 的 Future。当我们只对一个单一的结果感兴趣时，这很不错。</p>
+<p>但是请求并非总是”一步到位”（one and done）的。我们可能开始一个请求，然后取消，并在服务器对第一个请求作出响应前，开始另一个请求。像这样一个<em>请求-取消-新请求</em>的序列，很难通过<em>Future</em>实现。但接下来我们会看到，它对于<em>Stream</em>却很简单。</p>
+<h4 id="按名搜索"><a href="#按名搜索" class="headerlink" title="按名搜索"></a>按名搜索</h4><p>我们将为《英雄之旅》添加一个<em>英雄搜索</em>功能。当用户在搜索框中输入一个名字时，我们将不断发起 HTTP 请求，以获得按名字过滤的英雄。</p>
+<p>我们先创建<code>HeroSearchService</code>服务，它会把搜索查询发送到我们服务器的 Web API。</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> <span class="string">'dart:async'</span>;</div><div class="line"><span class="keyword">import</span> <span class="string">'dart:convert'</span>;</div><div class="line"></div><div class="line"><span class="keyword">import</span> <span class="string">'package:angular2/core.dart'</span>;</div><div class="line"><span class="keyword">import</span> <span class="string">'package:http/http.dart'</span>;</div><div class="line"></div><div class="line"><span class="keyword">import</span> <span class="string">'hero.dart'</span>;</div><div class="line"></div><div class="line"><span class="meta">@Injectable</span>()</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">HeroSearchService</span> </span>&#123;</div><div class="line">  <span class="keyword">final</span> Client _http;</div><div class="line"></div><div class="line">  HeroSearchService(<span class="keyword">this</span>._http);</div><div class="line"></div><div class="line">  Future&lt;<span class="built_in">List</span>&lt;Hero&gt;&gt; search(<span class="built_in">String</span> term) <span class="keyword">async</span> &#123;</div><div class="line">    <span class="keyword">try</span> &#123;</div><div class="line">      <span class="keyword">final</span> response = <span class="keyword">await</span> _http.<span class="keyword">get</span>(<span class="string">'app/heroes/?name=$term'</span>);</div><div class="line">      <span class="keyword">return</span> _extractData(response)</div><div class="line">          .map((json) =&gt; <span class="keyword">new</span> Hero.fromJson(json))</div><div class="line">          .toList();</div><div class="line">    &#125; <span class="keyword">catch</span> (e) &#123;</div><div class="line">      <span class="keyword">throw</span> _handleError(e);</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">dynamic</span> _extractData(Response resp) =&gt; JSON.decode(resp.body)[<span class="string">'data'</span>];</div><div class="line"></div><div class="line">  Exception _handleError(<span class="keyword">dynamic</span> e) &#123;</div><div class="line">    <span class="built_in">print</span>(e); <span class="comment">// for demo purposes only</span></div><div class="line">    <span class="keyword">return</span> <span class="keyword">new</span> Exception(<span class="string">'Server error; cause: $e'</span>);</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><code>HeroSearchService</code>中的<code>_http.get()</code>调用和 <code>HeroService</code> 中的类似，只是这次 URL 带了查询字符串。</p>
+<h4 id="英雄搜索组件"><a href="#英雄搜索组件" class="headerlink" title="英雄搜索组件"></a>英雄搜索组件</h4><p>我们再创建一个新的 <code>HeroSearchComponent</code> 来调用这个新的 <code>HeroSearchService</code> 。</p>
+<p>组件模板很简单，就是一个输入框和一个相匹配的搜索结果列表。</p>
+<figure class="highlight dust"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"search-component"</span>&gt;</span></span></div><div class="line">  <span class="tag">&lt;<span class="name">h4</span>&gt;</span>Hero Search<span class="tag">&lt;/<span class="name">h4</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">input</span> #<span class="attr">searchBox</span> <span class="attr">id</span>=<span class="string">"search-box"</span> (<span class="attr">keyup</span>)=<span class="string">"search(searchBox.value)"</span> /&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> *<span class="attr">ngFor</span>=<span class="string">"let hero of heroes | async"</span></span></div><div class="line">         (<span class="attr">click</span>)=<span class="string">"gotoDetail(hero)"</span> <span class="attr">class</span>=<span class="string">"search-result"</span> &gt;</div><div class="line">      <span class="template-variable">&#123; &#123;hero.name&#125;</span><span class="xml"> &#125;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>我们还要往这个新组件中添加样式。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.search-result</span> &#123;</div><div class="line">  <span class="attribute">border-bottom</span>: <span class="number">1px</span> solid gray;</div><div class="line">  <span class="attribute">border-left</span>: <span class="number">1px</span> solid gray;</div><div class="line">  <span class="attribute">border-right</span>: <span class="number">1px</span> solid gray;</div><div class="line">  <span class="attribute">width</span>:<span class="number">195px</span>;</div><div class="line">  <span class="attribute">height</span>: <span class="number">20px</span>;</div><div class="line">  <span class="attribute">padding</span>: <span class="number">5px</span>;</div><div class="line">  <span class="attribute">background-color</span>: white;</div><div class="line">  <span class="attribute">cursor</span>: pointer;</div><div class="line">&#125;</div><div class="line"><span class="selector-id">#search-box</span> &#123;</div><div class="line">  <span class="attribute">width</span>: <span class="number">200px</span>;</div><div class="line">  <span class="attribute">height</span>: <span class="number">20px</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>当用户在搜索框中输入时，一个 <code>keyup</code> 事件绑定会调用该组件的<code>search</code>方法，并传入新的搜索框的值。</p>
+<p><code>*ngFor</code>从该组件的<code>heroes</code>属性重复获取 hero 对象。这也没啥特别的。</p>
+<p>但是接下来我们看到，现在 <code>heroes</code> 属性是一个英雄列表的 Stream 对象，而不再只是英雄列表。 <code>*ngFor</code> 不能用 <code>Stream</code> 对象做任何事，除非我们在它后面跟一个 <code>async</code> 管道(<code>AsyncPipe</code>) 。这个 <code>async</code> 管道会订阅 <code>Stream</code> 对象，并为 <code>*ngFor</code> 生成一个英雄列表。</p>
+<p>是时候创建 <code>HeroSearchComponent</code> 类及其元数据了。</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> <span class="string">'dart:async'</span>;</div><div class="line"></div><div class="line"><span class="keyword">import</span> <span class="string">'package:angular2/core.dart'</span>;</div><div class="line"><span class="keyword">import</span> <span class="string">'package:angular2/router.dart'</span>;</div><div class="line"><span class="keyword">import</span> <span class="string">'package:stream_transformers/stream_transformers.dart'</span>;</div><div class="line"></div><div class="line"><span class="keyword">import</span> <span class="string">'hero_search_service.dart'</span>;</div><div class="line"><span class="keyword">import</span> <span class="string">'hero.dart'</span>;</div><div class="line"></div><div class="line"><span class="meta">@Component</span>(</div><div class="line">    selector: <span class="string">'hero-search'</span>,</div><div class="line">    templateUrl: <span class="string">'hero_search_component.html'</span>,</div><div class="line">    styleUrls: <span class="keyword">const</span> [<span class="string">'hero_search_component.css'</span>],</div><div class="line">    providers: <span class="keyword">const</span> [HeroSearchService])</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">HeroSearchComponent</span> <span class="keyword">implements</span> <span class="title">OnInit</span> </span>&#123;</div><div class="line">  HeroSearchService _heroSearchService;</div><div class="line">  Router _router;</div><div class="line"></div><div class="line">  Stream&lt;<span class="built_in">List</span>&lt;Hero&gt;&gt; heroes;</div><div class="line">  StreamController&lt;<span class="built_in">String</span>&gt; _searchTerms =</div><div class="line">      <span class="keyword">new</span> StreamController&lt;<span class="built_in">String</span>&gt;.broadcast();</div><div class="line"></div><div class="line">  HeroSearchComponent(<span class="keyword">this</span>._heroSearchService, <span class="keyword">this</span>._router) &#123;&#125;</div><div class="line"></div><div class="line">  <span class="comment">// Push a search term into the stream.</span></div><div class="line">  <span class="keyword">void</span> search(<span class="built_in">String</span> term) =&gt; _searchTerms.add(term);</div><div class="line"></div><div class="line">  Future&lt;<span class="built_in">Null</span>&gt; ngOnInit() <span class="keyword">async</span> &#123;</div><div class="line">    heroes = _searchTerms.stream</div><div class="line">        .transform(<span class="keyword">new</span> Debounce(<span class="keyword">new</span> <span class="built_in">Duration</span>(milliseconds: <span class="number">300</span>)))</div><div class="line">        .distinct()</div><div class="line">        .transform(<span class="keyword">new</span> FlatMapLatest((term) =&gt; term.isEmpty</div><div class="line">            ? <span class="keyword">new</span> Stream&lt;<span class="built_in">List</span>&lt;Hero&gt;&gt;.fromIterable([&lt;Hero&gt;[]])</div><div class="line">            : _heroSearchService.search(term).asStream()))</div><div class="line">        .handleError((e) &#123;</div><div class="line">      <span class="built_in">print</span>(e); <span class="comment">// for demo purposes only</span></div><div class="line">    &#125;);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">void</span> gotoDetail(Hero hero) &#123;</div><div class="line">    <span class="keyword">var</span> link = [</div><div class="line">      <span class="string">'HeroDetail'</span>,</div><div class="line">      &#123;<span class="string">'id'</span>: hero.id.toString()&#125;</div><div class="line">    ];</div><div class="line">    _router.navigate(link);</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="搜索词"><a href="#搜索词" class="headerlink" title="搜索词"></a>搜索词</h4><p>仔细看下这个<code>_searchTerms</code>：</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">StreamController&lt;<span class="built_in">String</span>&gt; _searchTerms =</div><div class="line">    <span class="keyword">new</span> StreamController&lt;<span class="built_in">String</span>&gt;.broadcast();</div><div class="line"></div><div class="line"><span class="comment">// Push a search term into the stream.</span></div><div class="line"><span class="keyword">void</span> search(<span class="built_in">String</span> term) =&gt; _searchTerms.add(term);</div></pre></td></tr></table></figure>
+<p><code>StreamController</code>，顾名思义，是用于 Stream 的控制器，它允许我们处理基础数据流，例如添加数据。</p>
+<p>在我们的例子中，字符串的基础数据流（<code>_searchTerms.stream</code>），表示与用户输入的搜索词匹配的英雄名称。每次调用 <code>search</code> ，都会通过控制器的 <code>add</code> 方法，将新的字符串放进数据流。</p>
+<h4 id="初始化-heroes-属性（ngOnInit）"><a href="#初始化-heroes-属性（ngOnInit）" class="headerlink" title="初始化 heroes 属性（ngOnInit）"></a>初始化 heroes 属性（ngOnInit）</h4><p>我们打算把搜索词的数据流转换成 <code>hero</code> 列表的数据流，并把结果赋值给 <code>heroes</code> 属性。</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">Stream&lt;<span class="built_in">List</span>&lt;Hero&gt;&gt; heroes;</div><div class="line"></div><div class="line">Future&lt;<span class="built_in">Null</span>&gt; ngOnInit() <span class="keyword">async</span> &#123;</div><div class="line">  heroes = _searchTerms.stream</div><div class="line">      .transform(<span class="keyword">new</span> Debounce(<span class="keyword">new</span> <span class="built_in">Duration</span>(milliseconds: <span class="number">300</span>)))</div><div class="line">      .distinct()</div><div class="line">      .transform(<span class="keyword">new</span> FlatMapLatest((term) =&gt; term.isEmpty</div><div class="line">          ? <span class="keyword">new</span> Stream&lt;<span class="built_in">List</span>&lt;Hero&gt;&gt;.fromIterable([&lt;Hero&gt;[]])</div><div class="line">          : _heroSearchService.search(term).asStream()))</div><div class="line">      .handleError((e) &#123;</div><div class="line">    <span class="built_in">print</span>(e); <span class="comment">// for demo purposes only</span></div><div class="line">  &#125;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>如果我们把每一次用户按键都直接传给<code>HeroSearchService</code>，就会发起一场 HTTP 请求风暴。这可不好玩。我们不希望占用服务器资源，也不打算耗尽网络带宽。</p>
+<p>幸运的是，数据流转换器可以帮助我们归并这些请求。我们将对 <code>HeroSearchService</code> 发起更少的调用，并且仍然及时地获得响应。做法如下：</p>
+<ul>
+<li>在传出最终字符串之前，<code>transform(new Debounce(... 300)))</code> 会一直等待，直到搜索词暂停输入300毫秒。我们实际发起请求的间隔永远不会小于300ms。</li>
+<li><code>distinct()</code> 会确保在搜索词发生变化时，我们仅发送一次请求。这样就不会重复请求同一个搜索词了。</li>
+<li><code>transform(new FlatMapLatest(...))</code> 应用了一个类似映射的转换器，它会为每个已经通过去抖动（debounce）和去重复（distinct）的搜索词调用搜索服务。并且，它会丢弃之前的搜索结果，仅返回最近的搜索服务结果。</li>
+<li><code>handleError()</code>处理错误。这个简单的例子中只是把错误信息打印到控制台;实际的应用应该做得更好。</li>
+</ul>
+<h4 id="为仪表盘添加搜索组件"><a href="#为仪表盘添加搜索组件" class="headerlink" title="为仪表盘添加搜索组件"></a>为仪表盘添加搜索组件</h4><p>我们将英雄搜索的 HTML 元素添加到<code>DashboardComponent</code>模版的底部。</p>
+<figure class="highlight dust"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="xml"><span class="tag">&lt;<span class="name">h3</span>&gt;</span>Top Heroes<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"grid grid-pad"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">a</span> *<span class="attr">ngFor</span>=<span class="string">"let hero of heroes"</span>  [<span class="attr">routerLink</span>]=<span class="string">"['HeroDetail', </span></span><span class="template-variable">&#123;id: hero.id.toString()&#125;</span><span class="xml"><span class="tag"><span class="string">]"</span>  <span class="attr">class</span>=<span class="string">"col-1-4"</span>&gt;</span></span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"module hero"</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">h4</span>&gt;</span><span class="template-variable">&#123; &#123;hero.name&#125;</span><span class="xml"> &#125;<span class="tag">&lt;/<span class="name">h4</span>&gt;</span></span></div><div class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">hero-search</span>&gt;</span><span class="tag">&lt;/<span class="name">hero-search</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>最后，从 <code>hero_search_component.dart</code> 中导入 <code>HeroSearchComponent</code> ，并将其添加到 <code>directives</code> 列表中。</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> <span class="string">'hero_search_component.dart'</span>;</div><div class="line"></div><div class="line"><span class="meta">@Component</span>(</div><div class="line">    selector: <span class="string">'my-dashboard'</span>,</div><div class="line">    templateUrl: <span class="string">'dashboard_component.html'</span>,</div><div class="line">    styleUrls: <span class="keyword">const</span> [<span class="string">'dashboard_component.css'</span>],</div><div class="line">    directives: <span class="keyword">const</span> [HeroSearchComponent, ROUTER_DIRECTIVES])</div></pre></td></tr></table></figure>
+<p>再次运行该应用，跳转到仪表盘，并在英雄下方的搜索框里输入一些文本。看起来就像这样：</p>
+<p><img src="https://webdev.dartlang.org/resources/images/devguide/toh/toh-hero-search.png" alt=""></p>
+<h3 id="应用的结构与代码"><a href="#应用的结构与代码" class="headerlink" title="应用的结构与代码"></a>应用的结构与代码</h3><p>回顾一下本章在线例子中的范例代码。验证我们是否得到了如下结构：</p>
+<figure class="highlight gherkin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">angular_tour_of_heroes/</div><div class="line">|<span class="string">___lib/</span></div><div class="line">|<span class="string">    </span>|<span class="string">___app_component.css</span></div><div class="line">|<span class="string">    </span>|<span class="string">___app_component.dart</span></div><div class="line">|<span class="string">    </span>|<span class="string">___dashboard_component.css</span></div><div class="line">|<span class="string">    </span>|<span class="string">___dashboard_component.dart</span></div><div class="line">|<span class="string">    </span>|<span class="string">___dashboard_component.html</span></div><div class="line">|<span class="string">    </span>|<span class="string">___hero.dart</span></div><div class="line">|<span class="string">    </span>|<span class="string">___hero_detail_component.css</span></div><div class="line">|<span class="string">    </span>|<span class="string">___hero_detail_component.dart</span></div><div class="line">|<span class="string">    </span>|<span class="string">___hero_detail_component.html</span></div><div class="line">|<span class="string">    </span>|<span class="string">___hero_search_component.css (new)</span></div><div class="line">|<span class="string">    </span>|<span class="string">___hero_search_component.dart (new)</span></div><div class="line">|<span class="string">    </span>|<span class="string">___hero_search_component.html (new)</span></div><div class="line">|<span class="string">    </span>|<span class="string">___hero_search_service.dart (new)</span></div><div class="line">|<span class="string">    </span>|<span class="string">___hero_service.dart</span></div><div class="line">|<span class="string">    </span>|<span class="string">___heroes_component.css</span></div><div class="line">|<span class="string">    </span>|<span class="string">___heroes_component.dart</span></div><div class="line">|<span class="string">    </span>|<span class="string">___heroes_component.html</span></div><div class="line">|<span class="string">    </span>|<span class="string">___in_memory_data_service.dart (new)</span></div><div class="line">|<span class="string">___web/</span></div><div class="line">|<span class="string">    </span>|<span class="string">___main.dart</span></div><div class="line">|<span class="string">    </span>|<span class="string">___index.html</span></div><div class="line">|<span class="string">    </span>|<span class="string">___styles.css</span></div><div class="line">|<span class="string">___pubspec.yaml</span></div></pre></td></tr></table></figure>
+<h3 id="最后冲刺"><a href="#最后冲刺" class="headerlink" title="最后冲刺"></a>最后冲刺</h3><p>旅程即将结束，不过我们已经收获颇丰。</p>
+<ul>
+<li>我们在应用程序中添加了使用 HTTP 时必要的依赖</li>
+<li>我们重构了 <code>HeroService</code> ，以通过 Web API 来加载英雄数据</li>
+<li>我们扩展了 <code>HeroService</code>，以支持 Post 、 Put 和 Delete 方法</li>
+<li>我们更新了组件，以允许用户添加、编辑和删除英雄</li>
+<li>我们配置了一个内存（in-memory） Web API</li>
+<li>我们学会了如何使用数据流</li>
+</ul>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2016/12/19/HTTP/">HTTP</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">soojade</a></p>
+        <p><span>发布时间:</span>2016-12-19, 23:40:14</p>
+        <p><span>最后更新:</span>2016-12-19, 23:41:15</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2016/12/19/HTTP/" title="HTTP">http://soojade.github.io/2016/12/19/HTTP/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://soojade.github.io/2016/12/19/HTTP/　　作者: soojade" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2016/12/19/dart语言基础/">
+                    dart语言基础
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2016/12/19/路由/">
+                    路由
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP"><span class="toc-number">1.</span> <span class="toc-text">HTTP</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#我们离开的地方"><span class="toc-number">1.1.</span> <span class="toc-text">我们离开的地方</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#保持应用的编译和运行"><span class="toc-number">1.1.1.</span> <span class="toc-text">保持应用的编译和运行</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#提供HTTP服务"><span class="toc-number">2.</span> <span class="toc-text">提供HTTP服务</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#更新-Pubspec"><span class="toc-number">2.0.1.</span> <span class="toc-text">更新 Pubspec</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#注册-HTTP-服务"><span class="toc-number">2.0.2.</span> <span class="toc-text">注册 HTTP 服务</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#模拟-Web-API"><span class="toc-number">2.0.3.</span> <span class="toc-text">模拟 Web API</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#英雄与-HTTP"><span class="toc-number">2.1.</span> <span class="toc-text">英雄与 HTTP</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#HTTP-Future"><span class="toc-number">2.1.1.</span> <span class="toc-text">HTTP Future</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#错误处理"><span class="toc-number">2.1.2.</span> <span class="toc-text">错误处理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#通过-id-获取英雄"><span class="toc-number">2.1.3.</span> <span class="toc-text">通过 id 获取英雄</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#getHeroes-API-没变"><span class="toc-number">2.1.4.</span> <span class="toc-text">getHeroes API 没变</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#更新英雄详情"><span class="toc-number">2.2.</span> <span class="toc-text">更新英雄详情</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#保存英雄详情"><span class="toc-number">2.2.1.</span> <span class="toc-text">保存英雄详情</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#hero-服务的-update-方法"><span class="toc-number">2.2.2.</span> <span class="toc-text">hero 服务的 update 方法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#添加英雄"><span class="toc-number">2.3.</span> <span class="toc-text">添加英雄</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#删除一个英雄"><span class="toc-number">2.4.</span> <span class="toc-text">删除一个英雄</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#hero-服务的delete方法"><span class="toc-number">2.4.1.</span> <span class="toc-text">hero 服务的delete方法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数据流"><span class="toc-number">2.5.</span> <span class="toc-text">数据流</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#按名搜索"><span class="toc-number">2.5.1.</span> <span class="toc-text">按名搜索</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#英雄搜索组件"><span class="toc-number">2.5.2.</span> <span class="toc-text">英雄搜索组件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#搜索词"><span class="toc-number">2.5.3.</span> <span class="toc-text">搜索词</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#初始化-heroes-属性（ngOnInit）"><span class="toc-number">2.5.4.</span> <span class="toc-text">初始化 heroes 属性（ngOnInit）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#为仪表盘添加搜索组件"><span class="toc-number">2.5.5.</span> <span class="toc-text">为仪表盘添加搜索组件</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#应用的结构与代码"><span class="toc-number">2.6.</span> <span class="toc-text">应用的结构与代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#最后冲刺"><span class="toc-number">2.7.</span> <span class="toc-text">最后冲刺</span></a></li></ol></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-4 i,
+        .toc-level-4 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"HTTP　| soojade个人空间　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+      <div class="duoshuo" id="comments">
+    <div id="comment-box" ></div>
+    <div class="ds-thread" id="ds-thread" data-thread-key="2016/12/19/HTTP/" data-title="HTTP" data-url="http://soojade.github.io/2016/12/19/HTTP/"></div>
+    <script>
+        var duoshuoQuery = {short_name:"soojade"};
+        var loadComment = function(){
+            var d = document, s = d.createElement('script');
+            s.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+            s.async = true; s.charset = 'UTF-8';
+            (d.head || d.body).appendChild(s);
+        }
+
+        
+    </script>
+    
+    <script> loadComment(); </script>
+
+</div>
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2016/12/19/dart语言基础/" title="上一篇: dart语言基础">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2016/12/19/路由/" title="下一篇: 路由">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/02/06/javascript忍者秘籍笔记————函数是根基/">javascript 忍者秘籍————函数是根基</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/05/javascript忍者秘籍笔记————利用测试和调试武装自己/">javascript 忍者秘籍笔记————利用测试和调试武装自己</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/05/javascript忍者秘籍笔记————进入忍者世界/">javascript 忍者秘籍笔记————进入忍者世界</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/01/angular文档——CLI-快速起步/">angular文档——CLI-快速起步</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/15/angular点-线-面：模板引用变量/">angular.点-线-面：模板引用变量</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/15/javascript坑与技巧：花式交换两个数值/">javascript坑与技巧：花式交换两个数值</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/04/javascript坑与技巧：异常/">javascript坑与技巧：异常</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/03/javascript坑与技巧：表单/">javascript坑与技巧：表单</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/03/javascript坑与技巧：DOM/">javascript坑与技巧：DOM</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/02/javascript坑与技巧：this/">javascript坑与技巧：this</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/02/javascript坑与技巧：变量作用域/">javascript坑与技巧：变量作用域</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/02/javascript坑与技巧：箭头函数/">javascript坑与技巧：箭头函数</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/02/javascript坑与技巧：闭包/">javascript坑与技巧：闭包</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/02/javascript坑与技巧：sort/">javascript坑与技巧：sort</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/01/javascript坑与技巧：filter/">javascript坑与技巧：filter</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/01/javascript坑与技巧：map/">javascript坑与技巧：map</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/react文档-表单/">react文档--表单</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/react文档-列表和键/">react文档--列表和键</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/react文档-条件渲染/">react文档--条件渲染</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/react文档-事件处理/">react文档--事件处理</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/react文档-state和生命周期/">react文档--state和生命周期</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/react文档-组件和props/">react文档--组件和props</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/react文档-渲染元素/">react文档--渲染元素</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/react文档-介绍JSX/">react文档--介绍JSX</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/react文档-HelloWorld/">react文档--HelloWorld</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/react文档-安装/">react文档--安装</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/20/dart开发命令行工具/">dart开发命令行工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/19/dart语言基础/">dart语言基础</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/19/HTTP/">HTTP</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/19/路由/">路由</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/18/服务/">服务</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/18/多组件/">多组件</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/18/主从结构/">主从结构</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/18/英雄编辑器/">英雄编辑器</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/18/简介/">简介</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/16/模板语法/">模板语法</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/14/依赖注入/">依赖注入</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/13/表单/">表单</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/13/用户输入/">用户输入</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/11/显示数据/">显示数据</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/10/架构/">架构</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/10/学习angular/">学习angular</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/10/搭建开发环境/">搭建开发环境</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/10/概览/">概览</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/10/快速开始/">快速开始</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+  <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i>
+                2016-2017 soojade
+            </div>
+            <div class="footer-right">
+                 Made by soojade <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                Total <span id="busuanzi_value_site_pv"></span> views.
+                欢迎第<span id="busuanzi_value_site_uv"></span>个小伙伴
+                <span id="busuanzi_value_page_pv"></span> Hits
+            </div>
+        
+    </div>
+</footer>
+
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 15;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+    <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+             tags: ".article-tag a", 
+            
+             articleNav: "#article-nav a, #post-nav-button a", 
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>

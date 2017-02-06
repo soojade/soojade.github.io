@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="soojade" />
+
+
+
+<meta name="description" content="表单表单是商业应用的支柱，我们用它来执行登录、求助、下单、预订机票、安排会议，以及不计其数的其它数据录入任务。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="表单">
+<meta property="og:url" content="http://soojade.github.io/2016/12/13/表单/index.html">
+<meta property="og:site_name" content="soojade个人空间">
+<meta property="og:description" content="表单表单是商业应用的支柱，我们用它来执行登录、求助、下单、预订机票、安排会议，以及不计其数的其它数据录入任务。">
+<meta property="og:image" content="https://angular.cn/resources/images/devguide/forms/hero-form-1.png">
+<meta property="og:image" content="https://webdev.dartlang.org/resources/images/devguide/forms/ng-model-in-action.png">
+<meta property="og:image" content="https://webdev.dartlang.org/angular/guide/images/ng-model-in-action-2.png">
+<meta property="og:image" content="https://webdev.dartlang.org/resources/images/devguide/forms/name-required-error.png">
+<meta property="og:updated_time" content="2016-12-18T06:42:57.002Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="表单">
+<meta name="twitter:description" content="表单表单是商业应用的支柱，我们用它来执行登录、求助、下单、预订机票、安排会议，以及不计其数的其它数据录入任务。">
+<meta name="twitter:image" content="https://angular.cn/resources/images/devguide/forms/hero-form-1.png">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="soojade个人空间" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="img/favicon.ico">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/green/pace-theme-flash.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>表单 | soojade个人空间</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: true
+    }
+</script>
+
+
+    <script>
+        yiliaConfig.jquery_ui = [true, "//cdn.bootcss.com/jqueryui/1.10.4/jquery-ui.min.js", "//cdn.bootcss.com/jqueryui/1.10.4/css/jquery-ui.min.css"];
+    </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/avatar.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">soojade</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">博客</p>
+        
+
+        
+            <form id="search-form">
+            <input type="text" id="local-search-input" name="q" placeholder="search..." class="search form-control" autocomplete="off" autocorrect="off" searchonload="false" />
+            <i class="fa fa-times" onclick="resetSearch()"></i>
+            </form>
+            <div id="local-search-result"></div>
+            <p class='no-result'>No results found <i class='fa fa-spinner fa-pulse'></i></p>
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=2035030023@qq.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" href="https://github.com/soojade" title="GitHub"></a>
+                            
+                                <a class="fa 知乎" href="https://www.zhihu.com/people/soojade/activities" title="知乎"></a>
+                            
+                                <a class="fa 简书" href="http://www.jianshu.com/users/b2e1cf392d42/latest_articles" title="简书"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/angular-angular-点-线-面/">angular angular.点-线-面</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/angular-angular文档/">angular angular文档</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dart-dart命令行/">dart  dart命令行</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dart-angularDart-web-angular指南/">dart angularDart web angular指南</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dart-angularDart-web-angular教程/">dart angularDart web angular教程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dart-dart基础/">dart dart基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-javascript坑与技巧/">javascript javascript坑与技巧</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-javascript坑与技巧-DOM/">javascript javascript坑与技巧 DOM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-javascript坑与技巧-filter/">javascript javascript坑与技巧 filter()</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-javascript坑与技巧-map/">javascript javascript坑与技巧 map()</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-javascript坑与技巧-sort/">javascript javascript坑与技巧 sort()</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-javascript坑与技巧-this/">javascript javascript坑与技巧 this</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-javascript坑与技巧-变量作用域/">javascript javascript坑与技巧 变量作用域</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-javascript坑与技巧-异常/">javascript javascript坑与技巧 异常</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-javascript坑与技巧-箭头函数/">javascript javascript坑与技巧 箭头函数</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-javascript坑与技巧-表单/">javascript javascript坑与技巧 表单</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-javascript坑与技巧-闭包/">javascript javascript坑与技巧 闭包</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript忍者秘籍笔记/">javascript忍者秘籍笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/react文档-翻译/">react文档 翻译</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">专注于Web与游戏</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">soojade</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/avatar.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">soojade</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">博客</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=2035030023@qq.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/soojade" title="GitHub"></a>
+                            
+                                <a class="fa 知乎" target="_blank" href="https://www.zhihu.com/people/soojade/activities" title="知乎"></a>
+                            
+                                <a class="fa 简书" target="_blank" href="http://www.jianshu.com/users/b2e1cf392d42/latest_articles" title="简书"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-表单" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/12/13/表单/" class="article-date">
+      <time datetime="2016-12-13T15:21:01.000Z" itemprop="datePublished">2016-12-13</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      表单
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/dart/">dart</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dart-angularDart-web-angular指南/">dart angularDart web angular指南</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h2 id="表单"><a href="#表单" class="headerlink" title="表单"></a>表单</h2><p>表单是商业应用的支柱，我们用它来执行登录、求助、下单、预订机票、安排会议，以及不计其数的其它数据录入任务。<br><a id="more"></a><br>任何经验丰富的 Web 开发人员都能使用适当的标签拼凑出 HTML 表单。 但是，要想做出具有贴心的数据输入体验的表单， 引导用户明晰、高效地完成表单背后的工作流程，挑战就大多了。</p>
+<p>老实说，这当中所需要的设计技能超出了本章的范围。</p>
+<p><strong>双向数据绑定、变更跟踪、有效性验证和错误处理</strong>等功能离不开框架的支持。 本章将介绍 Angular 表单相关的内容。</p>
+<p>下面，从零开始，一步一步构建出一个简单的表单。在这个过程中，我们将学会如何：</p>
+<ul>
+<li>怎样使用组件和模板构建 Angular 表单</li>
+<li><code>ngModel</code>双向数据绑定语法，用于读取和写入输入控件的值</li>
+<li><code>ngControl</code>指令跟踪表单控件的状态变化和有效性</li>
+<li>怎样使用<code>ngControl</code>添加给表单控件的特殊 CSS 类，提供强大的视觉反馈</li>
+<li>怎样向用户显示验证错误提示，以及启用/禁用表单控件</li>
+<li>怎样利用模板引用变量在控件之间共享信息</li>
+</ul>
+<p>运行<a href="http://angular-examples.github.io/forms/" target="_blank" rel="external">在线例子</a></p>
+<h3 id="模板驱动的表单"><a href="#模板驱动的表单" class="headerlink" title="模板驱动的表单"></a>模板驱动的表单</h3><p>通常，我们使用 Angular 模板语法编写模板，结合本章所描述的表单专用指令和技术来构建表单。</p>
+<blockquote>
+<p>这不是创建表单的唯一方式，本章中只介绍模板驱动的表单。</p>
+</blockquote>
+<p>利用 Angular 模板，可以构建几乎所有表单——登录表单、联系人表单…… 以及任何的商务表单。 可以创造性的摆放各种控件、把它们绑定到数据、指定校验规则、显示校验错误、有条件的禁用或 启用特定的控件、触发内置的视觉反馈等等，不胜枚举。</p>
+<p>它用起来很简单，这是因为 Angular 处理了大多数重复、单调的任务，这让我们可以不必亲自操刀、身陷其中。</p>
+<p>我们将讨论和学习构建如下的“模板驱动”表单：</p>
+<p><img src="https://angular.cn/resources/images/devguide/forms/hero-form-1.png" alt=""></p>
+<p>这里是<em>英雄职业介绍所</em>，使用这个表单来维护候选英雄们的个人信息。每个英雄都需要一份工作。 公司的任务就是让适当的英雄去解决它/她所擅长应对的危机！</p>
+<p>表单中的三个字段，其中两个是必填的。必填的字段在左侧有个绿色的竖条，方便用户分辨哪些是必填项。</p>
+<p>如果删除了英雄的名字，表单就会用醒目的样式把验证错误显示出来。</p>
+<p>注意，提交按钮被禁用了，而且输入控件左侧的“必填”条从绿色变为了红色。</p>
+<blockquote>
+<p>我们会使用标准 CSS 来定制“必填”条的颜色和位置。</p>
+</blockquote>
+<p>按下面的步骤，一点一点构建此表单：</p>
+<ol>
+<li>创建<code>Hero</code>模型类</li>
+<li>创建控制此表单的组件</li>
+<li>创建具有初始表单布局的模板</li>
+<li>添加<code>ngModel</code>指令到每个表单输入控件</li>
+<li>添加<code>ngControl</code>指令到每个表单输入控件</li>
+<li>添加自定义 CSS 来提供视觉反馈</li>
+<li>显示和隐藏有效性验证的错误信息</li>
+<li>使用 <code>ngSubmit</code> 处理表单提交</li>
+<li>提交后改变表单的显示</li>
+</ol>
+<h4 id="搭建"><a href="#搭建" class="headerlink" title="搭建"></a>搭建</h4><p>创建新的项目目录（<code>angular_forms</code>）并新建3个文件：<code>pubspec.yaml</code>，<code>web/index.html</code>，和<code>web/main.dart</code>。内容如下：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># pubspec.yaml</span></div><div class="line"></div><div class="line"><span class="attr">name:</span> hero_form</div><div class="line"><span class="attr">description:</span> Form example</div><div class="line"><span class="attr">version:</span> <span class="number">0.0</span><span class="number">.1</span></div><div class="line"><span class="attr">environment:</span></div><div class="line"><span class="attr">  sdk:</span> <span class="string">'&gt;=1.19.0 &lt;2.0.0'</span></div><div class="line"><span class="attr">dependencies:</span></div><div class="line"><span class="attr">  angular2:</span> ^<span class="number">2.2</span><span class="number">.0</span></div><div class="line"><span class="attr">dev_dependencies:</span></div><div class="line"><span class="attr">  browser:</span> ^<span class="number">0.10</span><span class="number">.0</span></div><div class="line"><span class="attr">  dart_to_js_script_rewriter:</span> ^<span class="number">1.0</span><span class="number">.1</span></div><div class="line"><span class="attr">transformers:</span></div><div class="line"><span class="attr">- angular2:</span></div><div class="line"><span class="attr">    platform_directives:</span></div><div class="line"><span class="bullet">    -</span> <span class="string">'package:angular2/common.dart#COMMON_DIRECTIVES'</span></div><div class="line"><span class="attr">    platform_pipes:</span></div><div class="line"><span class="bullet">    -</span> <span class="string">'package:angular2/common.dart#COMMON_PIPES'</span></div><div class="line"><span class="attr">    entry_points:</span> web/main.dart</div><div class="line"><span class="bullet">-</span> dart_to_js_script_rewriter</div></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!--web/index.html--&gt;</span></div><div class="line"></div><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Hero Form<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">defer</span> <span class="attr">src</span>=<span class="string">"main.dart"</span> <span class="attr">type</span>=<span class="string">"application/dart"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">defer</span> <span class="attr">src</span>=<span class="string">"packages/browser/dart.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">hero-form</span>&gt;</span>Loading...<span class="tag">&lt;/<span class="name">hero-form</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// web/main.dart</span></div><div class="line"></div><div class="line"><span class="meta"><span class="meta-keyword">import</span> 'package:angular2/platform/browser.dart';</span></div><div class="line"><span class="meta"><span class="meta-keyword">import</span> 'package:hero_form/hero_form_component.dart';</span></div><div class="line">main() &#123;</div><div class="line">  bootstrap(HeroFormComponent);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>创建新的目录<code>lib</code>。在其中新建<code>hero_form_component.dart</code>文件，填入如下代码：</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> <span class="string">'package:angular2/core.dart'</span>;</div><div class="line"></div><div class="line"><span class="meta">@Component</span>(<span class="string">selector:</span> <span class="string">'hero-form'</span>, <span class="string">template:</span> <span class="string">'Hero form will go here'</span>)</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">HeroFormComponent</span> &#123;</span>&#125;</div></pre></td></tr></table></figure>
+<h4 id="创建-Hero-模型类"><a href="#创建-Hero-模型类" class="headerlink" title="创建 Hero 模型类"></a>创建 Hero 模型类</h4><p>当用户输入表单数据时，需要捕获它们的变化，并更新到模型的实例中。 除非知道模型里有什么，否则无法设计表单的布局。</p>
+<p>最简单的模型是个“属性包”，用来存放应用中一件事物的事实。 这里使用了描述<code>Hero</code>类的三个必备字段 (<code>id</code>、<code>name</code>、<code>power</code>)，和一个可选字段 (<code>alterEgo</code>)。</p>
+<p>在<code>lib</code>目录，添加一个<code>hero.dart</code>文件，写入以下代码：</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Hero</span> </span>&#123;</div><div class="line">  <span class="built_in">int</span> number;</div><div class="line">  <span class="built_in">String</span> name;</div><div class="line">  <span class="built_in">String</span> power;</div><div class="line">  <span class="built_in">String</span> alterEgo;</div><div class="line"></div><div class="line">  Hero(<span class="keyword">this</span>.number, <span class="keyword">this</span>.name, <span class="keyword">this</span>.power, [<span class="keyword">this</span>.alterEgo]);</div><div class="line"></div><div class="line">  <span class="built_in">String</span> toString() =&gt; <span class="string">'$number: $name ($alterEgo). Super power: $power'</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这是一个少量需求和零行为的贫血模型。对演示来说很完美。</p>
+<p><code>alterEgo</code>是可选的，调用构造函数时可省略：注意在<code>[this.alterEgo]</code>中的<code>[]</code>。</p>
+<p>可以像这样创建新英雄：</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> myHero = <span class="keyword">new</span> Hero(</div><div class="line">    <span class="number">42</span>, <span class="string">'SkyDog'</span>, <span class="string">'Fetch any object at any distance'</span>, <span class="string">'Leslie Rollover'</span>);</div><div class="line"><span class="built_in">print</span>(<span class="string">'My hero is <span class="subst">$&#123;myHero.name&#125;</span>.'</span>); <span class="comment">// "My hero is SkyDog."</span></div></pre></td></tr></table></figure>
+<h4 id="创建表单组件"><a href="#创建表单组件" class="headerlink" title="创建表单组件"></a>创建表单组件</h4><p>Angular 表单分为两部分：基于 HTML 的模板和组件类，用来程序处理数据和用户交互。</p>
+<p>先从组件开始，是因为它可以简要说明英雄编辑器能做什么。</p>
+<p>编辑<code>hero_form_component.dart</code>，使用下面的代码替换全部内容：</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> <span class="string">'package:angular2/core.dart'</span>;</div><div class="line"></div><div class="line"><span class="keyword">import</span> <span class="string">'hero.dart'</span>;</div><div class="line"></div><div class="line"><span class="keyword">const</span> <span class="built_in">List</span>&lt;<span class="built_in">String</span>&gt; _powers = <span class="keyword">const</span> [</div><div class="line">  <span class="string">'Really Smart'</span>,</div><div class="line">  <span class="string">'Super Flexible'</span>,</div><div class="line">  <span class="string">'Super Hot'</span>,</div><div class="line">  <span class="string">'Weather Changer'</span></div><div class="line">];</div><div class="line"></div><div class="line"><span class="meta">@Component</span>(</div><div class="line">    selector: <span class="string">'hero-form'</span>,</div><div class="line">    templateUrl: <span class="string">'hero_form_component.html'</span>)</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">HeroFormComponent</span> </span>&#123;</div><div class="line">  <span class="built_in">List</span>&lt;<span class="built_in">String</span>&gt; <span class="keyword">get</span> powers =&gt; _powers;</div><div class="line">  <span class="built_in">bool</span> submitted = <span class="keyword">false</span>;</div><div class="line">  Hero model = <span class="keyword">new</span> Hero(<span class="number">18</span>, <span class="string">'Dr IQ'</span>, _powers[<span class="number">0</span>], <span class="string">'Chuck Overstreet'</span>);</div><div class="line">  <span class="comment">// <span class="doctag">TODO:</span> Remove this when we're done</span></div><div class="line">  <span class="built_in">String</span> <span class="keyword">get</span> diagnostic =&gt; <span class="string">'DIAGNOSTIC: $model'</span>;</div><div class="line"></div><div class="line">  onSubmit() &#123;</div><div class="line">    submitted = <span class="keyword">true</span>;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这个组件没有什么特别的地方，没有表单相关的东西，与之前写过的组件没什么不同。</p>
+<p>只需要前面章节中学过的概念，就可以完全理解这个组件：</p>
+<ol>
+<li>代码从 Angular 库导入一套标准的符号。</li>
+<li><code>@Component</code>选择器<code>hero-form</code>表示可以用<code>&lt;hero-form&gt;</code>标签把这个表单放进父模板。</li>
+<li><code>moduleId</code>属性设置了相对模块的基地址，例如<code>templateUrl</code>。</li>
+<li><code>templateUrl</code>属性指向一个独立的名为<code>hero-form.component.html</code>的 HTML 模板文件。</li>
+<li>为<code>model</code>和<code>powers</code>定义了供演示用的假数据。 将来，可以注入服务来获取和保存真实数据， 或者暴露这些属性为输入与输出属性，绑定到父组件上。 我们现在先不关心这些，因为这些未来的变化不会影响到表单。</li>
+<li>在最后增加<code>diagnostic</code>属性，它返回这个模型的字符串描述。在开发过程中，它会让我们看到我们所做的事情，给自己留个备注，最后离开时提醒我们丢掉它。</li>
+</ol>
+<p>为什么在这组件文件中不是内联模板呢？</p>
+<p>当模板很短时内联模板是很好的，但大多数表单模板并不短。Dart 文件通常不是写（或读）大型 HTML 的最好的地方，而且没有几个编辑器能对混写的 HTML 和代码提供足够的帮助。内容清晰、目标明确的短文件也是很好的。</p>
+<p>我们做了一个好的选择把 HTML 模板放到别处。让我们编写它。</p>
+<h4 id="创建初始-HTML-表单模板"><a href="#创建初始-HTML-表单模板" class="headerlink" title="创建初始 HTML 表单模板"></a>创建初始 HTML 表单模板</h4><p>在<code>lib</code>目录下创新新的<code>hero_form_component.html</code>文件，并输入下面的模板代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">&lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"container"</span>&gt;</div><div class="line">  <span class="xml"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>Hero Form<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></div><div class="line">  &lt;form&gt;</div><div class="line">    <span class="xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"form-group"</span>&gt;</span></span></div><div class="line">      <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"name"</span>&gt;</span>Name<span class="tag">&lt;/<span class="name">label</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">class</span>=<span class="string">"form-control"</span> <span class="attr">required</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"form-group"</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"alterEgo"</span>&gt;</span>Alter Ego<span class="tag">&lt;/<span class="name">label</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">class</span>=<span class="string">"form-control"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">class</span>=<span class="string">"btn btn-default"</span>&gt;</span>Submit<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">form</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>这是一段普通的旧式 HTML 5 代码。我们展现了<code>Hero</code>的两个域，<code>name</code>和<code>alterEgo</code>，提供给用户在输入框中输入。</p>
+<p><code>Name</code>的<code>&lt;input&gt;</code>控件具有 HTML5 的<code>required</code>属性；但 <code>Alter Ego</code>的<code>&lt;input&gt;</code>控件没有，因为<code>alterEgo</code>是可选的。</p>
+<p>在底部有个提交按钮，具有一些 CSS 类。</p>
+<p><strong>我们还没有真正用到Angular</strong>。没有绑定，没有额外的指令，只有布局。</p>
+<p><code>container</code>、<code>form-group</code>、<code>form-control</code>和<code>btn</code>是 <em>Bootstrap</em> 的 CSS 类。纯粹是装饰。 我们使用 <em>Bootstrap</em> 来美化我们的表单。</p>
+<blockquote>
+<p>Angular 不需要<code>container</code>、<code>form-group</code>、<code>form-control</code>和<code>btn</code>类， 或者外部库的任何样式。Angular 应用可以使用任何 CSS 库…… ，或者什么都不用。</p>
+</blockquote>
+<p>让我们添加样式表。</p>
+<ol>
+<li>下载<a href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" target="_blank" rel="external">Bootstrap</a>，放到<code>web</code>目录下。</li>
+<li>编辑<code>web/index.html</code>，引入<code>bootstrap.min.css</code>：</li>
+</ol>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"bootstrap.min.css"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">defer</span> <span class="attr">src</span>=<span class="string">"main.dart"</span> <span class="attr">type</span>=<span class="string">"application/dart"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">defer</span> <span class="attr">src</span>=<span class="string">"packages/browser/dart.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+<h4 id="用-ngFor-添加超能力"><a href="#用-ngFor-添加超能力" class="headerlink" title="用 *ngFor 添加超能力"></a>用 *ngFor 添加超能力</h4><p>英雄可以从认证过的固定列表中选择一项超能力。 这个列表位于<code>HeroFormComponent</code>中。</p>
+<p>在表单中添加<code>select</code>，用<code>ngFor</code>把<code>powers</code>列表绑定到列表选项，在之前的<em>显示数据</em>一章中使用过的技术。</p>
+<p>在 <code>Alter Ego</code> 组的紧下方添加如下 HTML：</p>
+<figure class="highlight django"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"form-group"</span>&gt;</span></span></div><div class="line">  <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"power"</span>&gt;</span>Hero Power<span class="tag">&lt;/<span class="name">label</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">select</span> <span class="attr">class</span>=<span class="string">"form-control"</span> <span class="attr">required</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">option</span> *<span class="attr">ngFor</span>=<span class="string">"let p of powers"</span> [<span class="attr">value</span>]=<span class="string">"p"</span>&gt;</span><span class="template-variable">&#123;&#123;p&#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">option</span>&gt;</span></span></div><div class="line">  <span class="tag">&lt;/<span class="name">select</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
+<p><code>powers</code>列表中的每一项超能力都会渲染成<code>&lt;option&gt;</code>标签。 模板输入变量<code>p</code>在每个迭代指向不同的超能力，使用双花括号插值表达式语法来显示它的名称。</p>
+<h4 id="使用-ngModel-进行双向数据绑定"><a href="#使用-ngModel-进行双向数据绑定" class="headerlink" title="使用 *ngModel 进行双向数据绑定"></a>使用 *ngModel 进行双向数据绑定</h4><p>我们看不到英雄数据因为我们还没有绑定到<code>Hero</code>。在前面的章节我们知道怎么去做。<em>显示数据</em>告诉我们属性绑定。<em>用户输入</em> 向我们展示了如何通过事件绑定来监听 DOM 事件，以及如何用显示值来更新组件的属性。</p>
+<p>现在我们需要同时进行显示、监听和提取。</p>
+<p>虽然可以在表单中使用我们已知的技术。但是，我们将介绍个新东西：<code>ngModel</code>指令，它使绑定表单到模型变得超级简单。</p>
+<p>找到<code>Name</code>对应的<code>&lt;input&gt;</code>标签，并且像这样更新它：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;input <span class="class"><span class="keyword">type</span></span>=<span class="string">"text"</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"form-control"</span> required</div><div class="line">       [(ngModel)]=<span class="string">"model.name"</span> &gt;</div><div class="line"><span class="type">TODO</span>: remove <span class="keyword">this</span>: &#123;&#123;model.name&#125;&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>我们在<code>input</code>标签后添加用于诊断的插值表达式，以看清正在发生什么事。 给自己留个备注，提醒我们完成后移除它。</p>
+</blockquote>
+<p>聚焦到绑定语法：<code>[(ngModel)]=&quot;...&quot;</code>上。</p>
+<p>如果现在运行这个应用，开始在姓名输入框中键入，添加和删除字符，我们将看到它们从插值文本中显示和消失。 某一瞬间，它看起来可能是这样：</p>
+<p><img src="https://webdev.dartlang.org/resources/images/devguide/forms/ng-model-in-action.png" alt=""></p>
+<p>诊断信息可以证明，数据确实从输入框流动到模型，再反向流动回来。这就是<strong>双向数据绑定</strong>！</p>
+<p>为第二人格和超能力属性添加类似的<code>[(ngModel)]</code>绑定。抛弃输入框的绑定消息，在组件顶部添加到<code>diagnostic</code>属性的新绑定。 这样就能确认双向数据绑定在整个 Hero 模型上都能正常工作了。</p>
+<p>修改之后的表单，其核心是三个<code>[(ngModel)]</code>绑定，看起来像这样：</p>
+<figure class="highlight django"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="xml"></span><span class="template-variable">&#123;&#123;diagnostic&#125;&#125;</span><span class="xml"></span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"form-group"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"name"</span>&gt;</span>Name<span class="tag">&lt;/<span class="name">label</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">class</span>=<span class="string">"form-control"</span> <span class="attr">required</span></span></div><div class="line">         [(<span class="attr">ngModel</span>)]=<span class="string">"model.name"</span> &gt;</div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"form-group"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"alterEgo"</span>&gt;</span>Alter Ego<span class="tag">&lt;/<span class="name">label</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">class</span>=<span class="string">"form-control"</span></span></div><div class="line">         [(<span class="attr">ngModel</span>)]=<span class="string">"model.alterEgo"</span>&gt;</div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"form-group"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"power"</span>&gt;</span>Hero Power<span class="tag">&lt;/<span class="name">label</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">select</span> <span class="attr">class</span>=<span class="string">"form-control"</span> <span class="attr">required</span></span></div><div class="line">          [(<span class="attr">ngModel</span>)]=<span class="string">"model.power"</span>&gt;</div><div class="line">    <span class="tag">&lt;<span class="name">option</span> *<span class="attr">ngFor</span>=<span class="string">"let p of powers"</span> [<span class="attr">value</span>]=<span class="string">"p"</span>&gt;</span><span class="template-variable">&#123;&#123;p&#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">option</span>&gt;</span></span></div><div class="line">  <span class="tag">&lt;/<span class="name">select</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>如果我们现在运行应用，修改 Hero 模型的每个属性，表单看起来像这样：</p>
+<p><img src="https://webdev.dartlang.org/angular/guide/images/ng-model-in-action-2.png" alt=""></p>
+<p>表单顶部的诊断信息证实了我们对值的改变都反应到了模型。</p>
+<p><strong>删除诊断绑定</strong>。它已经完成了它的使命。</p>
+<blockquote>
+<h4 id="ngModel-内幕"><a href="#ngModel-内幕" class="headerlink" title="[(ngModel)]内幕"></a>[(ngModel)]内幕</h4><p><em>本节是对[(ngModel)]的深入剖析，它是可选的。不感兴趣？跳过它！</em></p>
+<p>从绑定语法中的<strong>[()]</strong>开始出发，是一个很好的线索。</p>
+<p>属性绑定使数据流从模型中流向屏幕上的目标属性。我们通过把属性名包裹在方括号<strong>[]</strong>中来标记出目标属性。 这是<strong>从模型到视图</strong>的单向数据绑定。</p>
+<p>事件绑定使数据流从屏幕上的目标属性流向模型。我们通过把属性名包裹在圆括号<strong>()</strong>中来标记出目标属性。这是<strong>从视图到模型</strong>反向的单向数据绑定。</p>
+<p>难怪 Angular 使用了组合的标点<strong>[()]</strong>，来标记出双向数据绑定和<strong>双向数据流</strong>。</p>
+<p>事实上，可以把NgModel绑定拆成两个独立的模式，就像下面重写的 <code>Name</code>的<code>&lt;input&gt;</code>绑定一样：</p>
+</blockquote>
+  <figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;input <span class="class"><span class="keyword">type</span></span>=<span class="string">"text"</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"form-control"</span> required</div><div class="line">      [ngModel]=<span class="string">"model.name"</span></div><div class="line">      (ngModelChange)=<span class="string">"model.name = $event"</span> &gt;</div><div class="line"><span class="type">TODO</span>: remove <span class="keyword">this</span>: &#123;&#123;model.name&#125;&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>这个属性绑定看起来很眼熟，但事件绑定看起来有点怪。</p>
+<p><code>ngModelChange</code>指定<code>NgModel</code>指令的事件属性。 当 Angular 在表单中看到[(x)]的绑定目标时， 它会期待这个<code>x</code>指令有一个名为<code>x</code>的输入属性，和一个名为<code>xChange</code>的输出属性。</p>
+<p>模板表达式中的另一个古怪之处是<code>model.name = $event</code>。 之前看到的<code>$event</code>对象来自 DOM 事件。 但<code>ngModelChange</code>属性不会生产生 DOM 事件；它是Angular <code>EventEmitter</code>类型的属性，当它触发时， 它返回的是输入框的值——这正是我们应该赋值给模型<code>name</code>属性的值。</p>
+<p>很高兴知道这些，但是这样现实吗？<code>[(ngModel)]</code>通常是我们想用的，但当事件处理器需要做一些特别的事情，例如合并或限制按键频率时，我们可能会拆分绑定。</p>
+</blockquote>
+<h4 id="通过-ngControl-跟踪修改状态与有效性验证"><a href="#通过-ngControl-跟踪修改状态与有效性验证" class="headerlink" title="通过 ngControl 跟踪修改状态与有效性验证"></a>通过 ngControl 跟踪修改状态与有效性验证</h4><p>表单不仅是关于数据绑定的。我们还想知道表单中各个控件的状态。<code>NgControl</code>指令为我们保留了对控件状态的追踪。</p>
+<blockquote>
+<p><code>NgControl</code>是<code>NgForm</code>指令家庭中的一员，只能被应用在<code>&lt;form&gt;</code>标签内部的控件。</p>
+</blockquote>
+<p>我们的应用可以访问一个<code>NgControl</code>的实例，用户是否碰过此控件，值是否改变过，或值是否有效。</p>
+<p><code>NgControl</code>不仅仅追踪状态；它还使用特定的 Angular CSS 类来更新控件，例如<code>ng-valid</code>或<code>ng-invalid</code>。我们可以使用这些类名来修改控件的外观，显示或隐藏消息。</p>
+<p>一会儿我们将探索这些效果。现在让我们添加<code>ngControl</code>到三个表单控件，从<code>Name</code>输入框开始吧。</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;input <span class="class"><span class="keyword">type</span></span>=<span class="string">"text"</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"form-control"</span> required</div><div class="line">       [(ngModel)]=<span class="string">"model.name"</span></div><div class="line">       ngControl=<span class="string">"name"</span> &gt;</div></pre></td></tr></table></figure>
+<p>一定要为每一个<code>ngControl</code>指令赋值唯一的变量名。</p>
+<blockquote>
+<p>Angular 使用<code>ngControl</code>名作为键值把控件注册到<code>NgForm</code>指令。我们没有明确的添加<code>NgForm</code>指令，但是它就在这里；我们将在这章稍后的部分讨论它。</p>
+</blockquote>
+<p><del>以下内容由于 Angular 版本改变，而文档没有更新，下面的内容暂时无效，等官方文档更改后再说</del></p>
+<h4 id="添加用于视觉反馈的自定义-CSS"><a href="#添加用于视觉反馈的自定义-CSS" class="headerlink" title="添加用于视觉反馈的自定义 CSS"></a>添加用于视觉反馈的自定义 CSS</h4><p><code>NgControl</code>不仅仅追踪状态。它有三个类来更新控件，描述控件的状态。</p>
+<table>
+<thead>
+<tr>
+<th>状态</th>
+<th>类为真</th>
+<th>类为假</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>控件已被访问</td>
+<td>ng-touched</td>
+<td>ng-untouched</td>
+</tr>
+<tr>
+<td>控件值已经改变</td>
+<td>ng-dirty</td>
+<td>ng-pristine</td>
+</tr>
+<tr>
+<td>控件值是有效的</td>
+<td>ng-valid</td>
+<td>ng-invalid</td>
+</tr>
+</tbody>
+</table>
+<p>让我们添加一个名为<strong>spy</strong>的临时的<em>模板引用变量</em>到<code>Name</code>的<code>&lt;input&gt;</code>标签，并且使用<code>spy</code>来显示这些类。</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;input type=<span class="string">"text"</span> <span class="keyword">class</span>=<span class="string">"form-control"</span> required</div><div class="line">       [(ngModel)]=<span class="string">"model.name"</span></div><div class="line">       ngControl=<span class="string">"name"</span> <span class="meta">#spy &gt;</span></div><div class="line">TODO: <span class="keyword">remove</span> <span class="keyword">this</span>: &#123;&#123;spy.className&#125;&#125;</div></pre></td></tr></table></figure>
+<p><del>无效 end</del></p>
+<h4 id="显示和隐藏验证错误信息"><a href="#显示和隐藏验证错误信息" class="headerlink" title="显示和隐藏验证错误信息"></a>显示和隐藏验证错误信息</h4><p>我们能做的更好。</p>
+<p><code>Name</code>输入框是必填的，清空它会让左侧的条变红。这表示某些东西是错的，但我们不知道错在哪里，或者如何纠正。 可以借助<code>ng-invalid</code>类来给出有用的提示。</p>
+<p>当用户删除姓名时，看起来应该是这样的：</p>
+<p><img src="https://webdev.dartlang.org/resources/images/devguide/forms/name-required-error.png" alt=""></p>
+<p>要达到这个效果，在<code>&lt;input&gt;</code>标签中添加：</p>
+<ol>
+<li>一个模板引用变量</li>
+<li><code>“is required”</code>消息，放在邻近的<code>&lt;div&gt;</code>元素中，只有当控件无效时，才显示它。</li>
+</ol>
+<p>这里是对<code>Name</code>输入框添加错误信息的例子：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;input <span class="class"><span class="keyword">type</span></span>=<span class="string">"text"</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"form-control"</span> required</div><div class="line">       [(ngModel)]=<span class="string">"model.name"</span></div><div class="line">       ngControl=<span class="string">"name"</span> #name=<span class="string">"ngForm"</span> &gt;</div><div class="line">&lt;div [hidden]=<span class="string">"name.valid"</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"alert alert-danger"</span>&gt;</div><div class="line">  <span class="type">Name</span> is required</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure>
+<p>我们需要一个模板引用变量来访问模板内输入框的 Angular 控件。这里我们创建了名为<code>name</code>的变量，并且赋值为 “ngForm”。</p>
+<p>Angular 通过<code>ngControl</code>指令识别语法并且设置<code>name</code>变量给控件对象鉴定，不巧的是，我们命名为“name”。</p>
+<p>我们绑定控件对象的<code>valid</code>属性给元素的<code>hidden</code>属性。当控件是可用的，消息隐藏；如果控件不可用，消息显示。</p>
+<blockquote>
+<h4 id="NgForm-指令"><a href="#NgForm-指令" class="headerlink" title="NgForm 指令"></a>NgForm 指令</h4><p>回想之前的部分<code>ngControl</code>作为“name”通过<code>NgForm</code>注册到输入框。</p>
+<p>我们我们不明确的添加<code>NgForm</code>指令。Angular 隐式的添加到整个<code>&lt;form&gt;</code>元素。</p>
+<p><code>NgForm</code>指令为<code>&lt;form&gt;</code>元素扩充了额外的特性。它收集指令（被<code>ngControl</code>指令识别的元素）并且监视它们的属性变化，包括有效性。它还有自己的<code>valid</code>属性，只有当其中所有控件都有效时，它才有效。</p>
+<p>在本例中，我们把“name”控件抛出它的控件集合，并且把它分配给一个模板引用变量以便我们能够访问控件的属性——比如控件自身的<code>valid</code>属性。</p>
+</blockquote>
+<p>英雄的第二人格是可选项，所以不用改它。</p>
+<p>英雄的超能力选项是必填的。 只要愿意，可以往<code>&lt;select&gt;</code>上添加相同的错误处理。 但没有必要，这个选择框已经限制了超能力只能选有效值。</p>
+<h4 id="使用-ngSubmit-提交表单"><a href="#使用-ngSubmit-提交表单" class="headerlink" title="使用 ngSubmit 提交表单"></a>使用 ngSubmit 提交表单</h4><p>在填表完成之后，用户应该能提交这个表单。 Submit（提交）按钮位于表单的底部，它自己不做任何事，但因为有特殊的 type 值 (<code>type=&quot;submit&quot;</code>)，所以会触发表单提交。</p>
+<p>此时提交表单是无意义的。为了让它有意义，我们要用另外的 Angular 指令<code>NgSubmit</code>来更新<code>&lt;form&gt;</code>标签，并且把它绑定到<code>HeroFormComponent.submit()</code>方法:</p>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;form (<span class="name">ngSubmit</span>)=<span class="string">"onSubmit()"</span> #heroForm=<span class="string">"ngForm"</span>&gt;</div></pre></td></tr></table></figure>
+<p>上面代码的最后出现一些额外的东西！我们定义了一个模板引用变量<code>#heroForm</code>，并初始化为 “<code>ngForm</code>“。</p>
+<p>现在<code>heroForm</code>变量处理的是<code>NgForm</code>如我们之前关于<code>ngControl</code>的讨论，虽然这次我们有一个对表单的引用，而不是一个控件。</p>
+<p>我们通过<code>heroForm</code>变量使用事件绑定机制把表单的整体有效性绑定到按钮的<code>disabled</code>属性。这里是代码：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&lt;button <span class="class"><span class="keyword">type</span></span>=<span class="string">"submit"</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"btn btn-default"</span></div><div class="line">        [disabled]=<span class="string">"!heroForm.form.valid"</span>&gt;<span class="type">Submit</span>&lt;/button&gt;</div></pre></td></tr></table></figure>
+<p>如果现在运行应用，我们会发现按钮是可用的。它没做任何有用的事，但它是激活的。</p>
+<p>现在如果我们删除姓名，我们违反了“必填”的原则，它会适时的显示错误信息。提交按钮也被禁用了。</p>
+<p>不感动吗？再想一会儿。如果没有 Angular 的帮助，我们又该怎么让按钮的禁用/启用状态和表单的有效性关联起来呢？</p>
+<p>有了 Angular，它就是这么简单：</p>
+<ol>
+<li>定义模板引用变量，放在（强化过的）form 元素上。</li>
+<li>在许多行之外的按钮引用该变量。</li>
+</ol>
+<h4 id="切换两个表单区域（额外的奖励）"><a href="#切换两个表单区域（额外的奖励）" class="headerlink" title="切换两个表单区域（额外的奖励）"></a>切换两个表单区域（额外的奖励）</h4><p>提交表单还是不够激动人心。</p>
+<blockquote>
+<p>对演示来说，这个收场很平淡的。老实说，即使让它更出彩，也无法教给我们任何关于表单的新知识。 但这是练习新学到的绑定技能的好机会。 如果你不感兴趣，继续前进跳到本章的总结部分。</p>
+</blockquote>
+<p>让我们来实现一些更炫的视觉效果吧。隐藏掉数据输入区域，显示一些其它东西。</p>
+<p>先把表单包裹进<code>&lt;div&gt;</code>中，再把它的<code>hidden</code>属性绑定到<code>HeroFormComponent.submitted</code>属性。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">  <span class="tag">&lt;<span class="name">div</span> [<span class="attr">hidden</span>]=<span class="string">"submitted"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>Hero Form<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">form</span> (<span class="attr">ngSubmit</span>)=<span class="string">"onSubmit()"</span> #<span class="attr">heroForm</span>=<span class="string">"ngForm"</span>&gt;</span></div><div class="line"><span class="comment">&lt;!-- ... --&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">form</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>主表单从一开始就是可见的，因为<code>submitted</code>属性是 false，直到我们提交了这个表单，正如下面这段来自<code>hero_form_component.dart</code>的代码展示的：</p>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">bool </span><span class="keyword">submitted </span>= false<span class="comment">;</span></div><div class="line">onSubmit() &#123;</div><div class="line">  <span class="keyword">submitted </span>= true<span class="comment">;</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>当我们点击提交按钮时，<code>submitted</code>标志会变成 <code>true</code>，并且表单像预想中一样消失了。</p>
+<p>现在，当表单处于已提交状态时，应用需要显示一些别的东西。 在刚刚写的<code>&lt;div&gt;</code>包装下方，添加下列 HTML 块：</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">&lt;<span class="keyword">div</span> [hidden]=<span class="string">"!submitted"</span>&gt;</div><div class="line">  &lt;h2&gt;You submitted <span class="keyword">the</span> following:&lt;/h2&gt;</div><div class="line">  &lt;<span class="keyword">div</span> <span class="built_in">class</span>=<span class="string">"row"</span>&gt;</div><div class="line">    &lt;<span class="keyword">div</span> <span class="built_in">class</span>=<span class="string">"col-xs-3"</span>&gt;Name&lt;/<span class="keyword">div</span>&gt;</div><div class="line">    &lt;<span class="keyword">div</span> <span class="built_in">class</span>=<span class="string">"col-xs-9  pull-left"</span>&gt;&#123;&#123; model.<span class="built_in">name</span> &#125;&#125;&lt;/<span class="keyword">div</span>&gt;</div><div class="line">  &lt;/<span class="keyword">div</span>&gt;</div><div class="line">  &lt;<span class="keyword">div</span> <span class="built_in">class</span>=<span class="string">"row"</span>&gt;</div><div class="line">    &lt;<span class="keyword">div</span> <span class="built_in">class</span>=<span class="string">"col-xs-3"</span>&gt;Alter Ego&lt;/<span class="keyword">div</span>&gt;</div><div class="line">    &lt;<span class="keyword">div</span> <span class="built_in">class</span>=<span class="string">"col-xs-9 pull-left"</span>&gt;&#123;&#123; model.alterEgo &#125;&#125;&lt;/<span class="keyword">div</span>&gt;</div><div class="line">  &lt;/<span class="keyword">div</span>&gt;</div><div class="line">  &lt;<span class="keyword">div</span> <span class="built_in">class</span>=<span class="string">"row"</span>&gt;</div><div class="line">    &lt;<span class="keyword">div</span> <span class="built_in">class</span>=<span class="string">"col-xs-3"</span>&gt;Power&lt;/<span class="keyword">div</span>&gt;</div><div class="line">    &lt;<span class="keyword">div</span> <span class="built_in">class</span>=<span class="string">"col-xs-9 pull-left"</span>&gt;&#123;&#123; model.power &#125;&#125;&lt;/<span class="keyword">div</span>&gt;</div><div class="line">  &lt;/<span class="keyword">div</span>&gt;</div><div class="line">  &lt;br&gt;</div><div class="line">  &lt;button <span class="built_in">class</span>=<span class="string">"btn btn-default"</span> (click)=<span class="string">"submitted=false"</span>&gt;Edit&lt;/button&gt;</div><div class="line">&lt;/<span class="keyword">div</span>&gt;</div></pre></td></tr></table></figure>
+<p>我们的英雄又出现了，它通过插值表达式绑定显示为只读内容。 这一小段 HTML 只在组件处于已提交状态时才会显示。</p>
+<p>这段 HTML 包含了一个编辑按钮，将 click 事件绑定到表达式，用于清除<code>submitted</code>标志。</p>
+<p>当我们点击编辑按钮时，这个只读块消失了，可编辑的表单重新出现了。</p>
+<p>够炫吗？好吧，我们已经尽力了！</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>本章讨论的 Angular 表单技术利用了下列框架特性来支持数据修改、验证和更多操作：</p>
+<ul>
+<li>Angular HTML 表单模板。</li>
+<li>带有<code>Component</code>装饰器(Dart中应该是<code>annotation</code>)的表单组件类。</li>
+<li>用来处理表单提交的<code>ngSubmit</code>指令。</li>
+<li>模板引用变量，例如<code>#heroForm</code>、<code>#name</code>、<code>#power</code>和<code>#spy</code>。</li>
+<li>用于双向数据绑定的<code>ngModel</code>指令。</li>
+<li>用于确认和追踪表单元素变化的<code>ngControl</code>指令。</li>
+<li>指向 input 控件的引用变量上的<code>valid</code>属性，可用于检查控件是否有效、是否显示/隐藏错误信息。</li>
+<li>当表单无效时，使用属性绑定使提交按钮不可用。</li>
+<li>定制 CSS 类来给用户提供无效控件的视觉反馈。</li>
+</ul>
+<blockquote>
+<p>下一步</p>
+<p>依赖注入</p>
+</blockquote>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2016/12/13/表单/">表单</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">soojade</a></p>
+        <p><span>发布时间:</span>2016-12-13, 23:21:01</p>
+        <p><span>最后更新:</span>2016-12-18, 14:42:57</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2016/12/13/表单/" title="表单">http://soojade.github.io/2016/12/13/表单/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://soojade.github.io/2016/12/13/表单/　　作者: soojade" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2016/12/14/依赖注入/">
+                    依赖注入
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2016/12/13/用户输入/">
+                    用户输入
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#表单"><span class="toc-number">1.</span> <span class="toc-text">表单</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#模板驱动的表单"><span class="toc-number">1.1.</span> <span class="toc-text">模板驱动的表单</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#搭建"><span class="toc-number">1.1.1.</span> <span class="toc-text">搭建</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#创建-Hero-模型类"><span class="toc-number">1.1.2.</span> <span class="toc-text">创建 Hero 模型类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#创建表单组件"><span class="toc-number">1.1.3.</span> <span class="toc-text">创建表单组件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#创建初始-HTML-表单模板"><span class="toc-number">1.1.4.</span> <span class="toc-text">创建初始 HTML 表单模板</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#用-ngFor-添加超能力"><span class="toc-number">1.1.5.</span> <span class="toc-text">用 *ngFor 添加超能力</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#使用-ngModel-进行双向数据绑定"><span class="toc-number">1.1.6.</span> <span class="toc-text">使用 *ngModel 进行双向数据绑定</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ngModel-内幕"><span class="toc-number">1.1.7.</span> <span class="toc-text">[(ngModel)]内幕</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#通过-ngControl-跟踪修改状态与有效性验证"><span class="toc-number">1.1.8.</span> <span class="toc-text">通过 ngControl 跟踪修改状态与有效性验证</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#添加用于视觉反馈的自定义-CSS"><span class="toc-number">1.1.9.</span> <span class="toc-text">添加用于视觉反馈的自定义 CSS</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#显示和隐藏验证错误信息"><span class="toc-number">1.1.10.</span> <span class="toc-text">显示和隐藏验证错误信息</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#NgForm-指令"><span class="toc-number">1.1.11.</span> <span class="toc-text">NgForm 指令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#使用-ngSubmit-提交表单"><span class="toc-number">1.1.12.</span> <span class="toc-text">使用 ngSubmit 提交表单</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#切换两个表单区域（额外的奖励）"><span class="toc-number">1.1.13.</span> <span class="toc-text">切换两个表单区域（额外的奖励）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#总结"><span class="toc-number">1.2.</span> <span class="toc-text">总结</span></a></li></ol></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-4 i,
+        .toc-level-4 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"表单　| soojade个人空间　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+      <div class="duoshuo" id="comments">
+    <div id="comment-box" ></div>
+    <div class="ds-thread" id="ds-thread" data-thread-key="2016/12/13/表单/" data-title="表单" data-url="http://soojade.github.io/2016/12/13/表单/"></div>
+    <script>
+        var duoshuoQuery = {short_name:"soojade"};
+        var loadComment = function(){
+            var d = document, s = d.createElement('script');
+            s.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+            s.async = true; s.charset = 'UTF-8';
+            (d.head || d.body).appendChild(s);
+        }
+
+        
+    </script>
+    
+    <script> loadComment(); </script>
+
+</div>
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2016/12/14/依赖注入/" title="上一篇: 依赖注入">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2016/12/13/用户输入/" title="下一篇: 用户输入">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/02/06/javascript忍者秘籍笔记————函数是根基/">javascript 忍者秘籍————函数是根基</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/05/javascript忍者秘籍笔记————利用测试和调试武装自己/">javascript 忍者秘籍笔记————利用测试和调试武装自己</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/05/javascript忍者秘籍笔记————进入忍者世界/">javascript 忍者秘籍笔记————进入忍者世界</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/01/angular文档——CLI-快速起步/">angular文档——CLI-快速起步</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/15/angular点-线-面：模板引用变量/">angular.点-线-面：模板引用变量</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/15/javascript坑与技巧：花式交换两个数值/">javascript坑与技巧：花式交换两个数值</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/04/javascript坑与技巧：异常/">javascript坑与技巧：异常</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/03/javascript坑与技巧：表单/">javascript坑与技巧：表单</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/03/javascript坑与技巧：DOM/">javascript坑与技巧：DOM</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/02/javascript坑与技巧：this/">javascript坑与技巧：this</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/02/javascript坑与技巧：变量作用域/">javascript坑与技巧：变量作用域</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/02/javascript坑与技巧：箭头函数/">javascript坑与技巧：箭头函数</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/02/javascript坑与技巧：闭包/">javascript坑与技巧：闭包</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/02/javascript坑与技巧：sort/">javascript坑与技巧：sort</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/01/javascript坑与技巧：filter/">javascript坑与技巧：filter</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/01/javascript坑与技巧：map/">javascript坑与技巧：map</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/react文档-表单/">react文档--表单</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/react文档-列表和键/">react文档--列表和键</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/react文档-条件渲染/">react文档--条件渲染</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/react文档-事件处理/">react文档--事件处理</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/react文档-state和生命周期/">react文档--state和生命周期</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/react文档-组件和props/">react文档--组件和props</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/react文档-渲染元素/">react文档--渲染元素</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/react文档-介绍JSX/">react文档--介绍JSX</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/react文档-HelloWorld/">react文档--HelloWorld</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/react文档-安装/">react文档--安装</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/20/dart开发命令行工具/">dart开发命令行工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/19/dart语言基础/">dart语言基础</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/19/HTTP/">HTTP</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/19/路由/">路由</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/18/服务/">服务</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/18/多组件/">多组件</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/18/主从结构/">主从结构</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/18/英雄编辑器/">英雄编辑器</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/18/简介/">简介</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/16/模板语法/">模板语法</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/14/依赖注入/">依赖注入</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/13/表单/">表单</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/13/用户输入/">用户输入</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/11/显示数据/">显示数据</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/10/架构/">架构</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/10/学习angular/">学习angular</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/10/搭建开发环境/">搭建开发环境</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/10/概览/">概览</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/10/快速开始/">快速开始</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+  <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i>
+                2016-2017 soojade
+            </div>
+            <div class="footer-right">
+                 Made by soojade <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                Total <span id="busuanzi_value_site_pv"></span> views.
+                欢迎第<span id="busuanzi_value_site_uv"></span>个小伙伴
+                <span id="busuanzi_value_page_pv"></span> Hits
+            </div>
+        
+    </div>
+</footer>
+
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 15;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+    <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+             tags: ".article-tag a", 
+            
+             articleNav: "#article-nav a, #post-nav-button a", 
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>

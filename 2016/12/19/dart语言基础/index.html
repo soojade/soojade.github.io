@@ -1,0 +1,1081 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="soojade" />
+
+
+
+<meta name="description" content="一些重要概念
+所有的东西都是对象，所有的对象都是类的实例，所有的对象都继承自内置的Object类。
+程序中只当数据类型是为了指出自己的使用意图，并帮助语言进行语法检查。但是，指定类型不是必须的。
+Dart 代码在运行前解析。指定数据类型和编译时的常量，可以提高运行速度。
+Dart 程序有统一的程序入口: main()。
+Dart支持顶级的变量定义。
+Dart没有public、protected、p">
+<meta property="og:type" content="article">
+<meta property="og:title" content="dart语言基础">
+<meta property="og:url" content="http://soojade.github.io/2016/12/19/dart语言基础/index.html">
+<meta property="og:site_name" content="soojade个人空间">
+<meta property="og:description" content="一些重要概念
+所有的东西都是对象，所有的对象都是类的实例，所有的对象都继承自内置的Object类。
+程序中只当数据类型是为了指出自己的使用意图，并帮助语言进行语法检查。但是，指定类型不是必须的。
+Dart 代码在运行前解析。指定数据类型和编译时的常量，可以提高运行速度。
+Dart 程序有统一的程序入口: main()。
+Dart支持顶级的变量定义。
+Dart没有public、protected、p">
+<meta property="og:updated_time" content="2016-12-19T16:00:37.692Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="dart语言基础">
+<meta name="twitter:description" content="一些重要概念
+所有的东西都是对象，所有的对象都是类的实例，所有的对象都继承自内置的Object类。
+程序中只当数据类型是为了指出自己的使用意图，并帮助语言进行语法检查。但是，指定类型不是必须的。
+Dart 代码在运行前解析。指定数据类型和编译时的常量，可以提高运行速度。
+Dart 程序有统一的程序入口: main()。
+Dart支持顶级的变量定义。
+Dart没有public、protected、p">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="soojade个人空间" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="img/favicon.ico">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/green/pace-theme-flash.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>dart语言基础 | soojade个人空间</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: true
+    }
+</script>
+
+
+    <script>
+        yiliaConfig.jquery_ui = [true, "//cdn.bootcss.com/jqueryui/1.10.4/jquery-ui.min.js", "//cdn.bootcss.com/jqueryui/1.10.4/css/jquery-ui.min.css"];
+    </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/avatar.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">soojade</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">博客</p>
+        
+
+        
+            <form id="search-form">
+            <input type="text" id="local-search-input" name="q" placeholder="search..." class="search form-control" autocomplete="off" autocorrect="off" searchonload="false" />
+            <i class="fa fa-times" onclick="resetSearch()"></i>
+            </form>
+            <div id="local-search-result"></div>
+            <p class='no-result'>No results found <i class='fa fa-spinner fa-pulse'></i></p>
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=2035030023@qq.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" href="https://github.com/soojade" title="GitHub"></a>
+                            
+                                <a class="fa 知乎" href="https://www.zhihu.com/people/soojade/activities" title="知乎"></a>
+                            
+                                <a class="fa 简书" href="http://www.jianshu.com/users/b2e1cf392d42/latest_articles" title="简书"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/angular-angular-点-线-面/">angular angular.点-线-面</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/angular-angular文档/">angular angular文档</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dart-dart命令行/">dart  dart命令行</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dart-angularDart-web-angular指南/">dart angularDart web angular指南</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dart-angularDart-web-angular教程/">dart angularDart web angular教程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dart-dart基础/">dart dart基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-javascript坑与技巧/">javascript javascript坑与技巧</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-javascript坑与技巧-DOM/">javascript javascript坑与技巧 DOM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-javascript坑与技巧-filter/">javascript javascript坑与技巧 filter()</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-javascript坑与技巧-map/">javascript javascript坑与技巧 map()</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-javascript坑与技巧-sort/">javascript javascript坑与技巧 sort()</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-javascript坑与技巧-this/">javascript javascript坑与技巧 this</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-javascript坑与技巧-变量作用域/">javascript javascript坑与技巧 变量作用域</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-javascript坑与技巧-异常/">javascript javascript坑与技巧 异常</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-javascript坑与技巧-箭头函数/">javascript javascript坑与技巧 箭头函数</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-javascript坑与技巧-表单/">javascript javascript坑与技巧 表单</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-javascript坑与技巧-闭包/">javascript javascript坑与技巧 闭包</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript忍者秘籍笔记/">javascript忍者秘籍笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/react文档-翻译/">react文档 翻译</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">专注于Web与游戏</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">soojade</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/avatar.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">soojade</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">博客</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=2035030023@qq.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/soojade" title="GitHub"></a>
+                            
+                                <a class="fa 知乎" target="_blank" href="https://www.zhihu.com/people/soojade/activities" title="知乎"></a>
+                            
+                                <a class="fa 简书" target="_blank" href="http://www.jianshu.com/users/b2e1cf392d42/latest_articles" title="简书"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-dart语言基础" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/12/19/dart语言基础/" class="article-date">
+      <time datetime="2016-12-19T15:59:28.000Z" itemprop="datePublished">2016-12-19</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      dart语言基础
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/dart/">dart</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dart-dart基础/">dart dart基础</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h3 id="一些重要概念"><a href="#一些重要概念" class="headerlink" title="一些重要概念"></a>一些重要概念</h3><ul>
+<li>所有的东西都是对象，所有的对象都是类的实例，所有的对象都继承自内置的Object类。</li>
+<li>程序中只当数据类型是为了指出自己的使用意图，并帮助语言进行语法检查。但是，指定类型不是必须的。</li>
+<li>Dart 代码在运行前解析。指定数据类型和编译时的常量，可以提高运行速度。</li>
+<li>Dart 程序有统一的程序入口: main()。</li>
+<li>Dart支持顶级的变量定义。</li>
+<li>Dart没有<em>public</em>、<em>protected</em>、<em>private</em>的概念，<code>_</code>开头表示私有。</li>
+<li>没有初始化的变量都会被赋予默认值 <code>null</code>。</li>
+<li><code>final</code>的值只能被设定一次。<code>const</code> 是一个编译时的常量，可以通过<strong>const</strong>来创建常量的值，<code>var c=const[];</code>const[] 本身是构造函数。实例变量可以是<strong>final</strong>，但不能是<strong>const</strong>。<a id="more"></a>
+</li>
+</ul>
+<h3 id="关键字（Keywords）"><a href="#关键字（Keywords）" class="headerlink" title="关键字（Keywords）"></a>关键字（Keywords）</h3><table>
+<thead>
+<tr>
+<th>abstract</th>
+<th>continue</th>
+<th>false</th>
+<th>new</th>
+<th>this</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>as</td>
+<td>default</td>
+<td>final</td>
+<td>null</td>
+<td>throw</td>
+</tr>
+<tr>
+<td>assert</td>
+<td>deferred</td>
+<td>finally</td>
+<td>operator</td>
+<td>true</td>
+</tr>
+<tr>
+<td>async</td>
+<td>do</td>
+<td>for</td>
+<td>part</td>
+<td>try</td>
+</tr>
+<tr>
+<td>async</td>
+<td>dynamic</td>
+<td>get</td>
+<td>rethrow</td>
+<td>typedef </td>
+</tr>
+<tr>
+<td>await</td>
+<td>else</td>
+<td>if</td>
+<td>return</td>
+<td>var</td>
+</tr>
+<tr>
+<td>break</td>
+<td>enum</td>
+<td>implements</td>
+<td>set</td>
+<td>void</td>
+</tr>
+<tr>
+<td>case</td>
+<td>export</td>
+<td>import</td>
+<td>static</td>
+<td>while</td>
+</tr>
+<tr>
+<td>catch</td>
+<td>external</td>
+<td>in</td>
+<td>super</td>
+<td>with</td>
+</tr>
+<tr>
+<td>class</td>
+<td>extends</td>
+<td>is</td>
+<td>switch</td>
+<td>yield</td>
+</tr>
+<tr>
+<td>const</td>
+<td>factory</td>
+<td>library</td>
+<td>sync</td>
+<td>yield</td>
+</tr>
+</tbody>
+</table>
+<h3 id="内置类型（Built-in-types）"><a href="#内置类型（Built-in-types）" class="headerlink" title="内置类型（Built-in types）"></a>内置类型（Built-in types）</h3><p><code>is is！</code>操作符判断对象是否为指定类型，如num、String等。</p>
+<p><code>as</code>用来类型断言。</p>
+<ul>
+<li>num<ul>
+<li>int 取值范围：-2^53 to 2^53</li>
+<li>double</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// String -&gt; int</span></div><div class="line"><span class="keyword">var</span> one = <span class="built_in">int</span>.parse(<span class="string">'1'</span>);</div><div class="line"></div><div class="line"><span class="comment">// String -&gt; double</span></div><div class="line"><span class="keyword">var</span> onePointOne = <span class="built_in">double</span>.parse(<span class="string">'1.1'</span>);</div><div class="line"></div><div class="line"><span class="comment">// int -&gt; String</span></div><div class="line"><span class="built_in">String</span> oneAsString = <span class="number">1.</span>toString();</div><div class="line"></div><div class="line"><span class="comment">// double -&gt; String 注意括号中要有小数点位数，否则报错</span></div><div class="line"><span class="built_in">String</span> piAsString = <span class="number">3.14159</span>.toStringAsFixed(<span class="number">2</span>);</div></pre></td></tr></table></figure>
+<ul>
+<li><p>String</p>
+<ul>
+<li>Dart 的String 是 UTF-16 编码的一个队列。</li>
+<li><code>&#39;...&#39;，&quot;...&quot;</code>表示字符串。</li>
+<li><code>&#39;&#39;&#39;...&#39;&#39;&#39;，&quot;&quot;&quot;...&quot;&quot;&quot;</code>表示多行字符串。</li>
+<li><code>r&#39;...&#39;,r&quot;...&quot;</code>表示“raw”字符串。</li>
+</ul>
+</li>
+<li><p>bool</p>
+<ul>
+<li>Dart 是强bool 类型检查，只有bool 类型的值是<code>true</code> 才被认为是true。</li>
+</ul>
+</li>
+<li><p>List</p>
+</li>
+</ul>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 使用List的构造函数，也可以添加int参数，表示List固定长度，不能进行添加 删除操作</span></div><div class="line"><span class="keyword">var</span> vegetables = <span class="keyword">new</span> <span class="built_in">List</span>();</div><div class="line"></div><div class="line"><span class="comment">// 或者简单的用List来赋值</span></div><div class="line"><span class="keyword">var</span> fruits = [<span class="string">'apples'</span>, <span class="string">'oranges'</span>];</div><div class="line"></div><div class="line"><span class="comment">// 添加元素</span></div><div class="line">fruits.add(<span class="string">'kiwis'</span>);</div><div class="line"></div><div class="line"><span class="comment">// 添加多个元素</span></div><div class="line">fruits.addAll([<span class="string">'grapes'</span>, <span class="string">'bananas'</span>]);</div><div class="line"></div><div class="line"><span class="comment">// 获取List的长度</span></div><div class="line"><span class="keyword">assert</span>(fruits.length == <span class="number">5</span>);</div><div class="line"></div><div class="line"><span class="comment">// 获取第一个元素</span></div><div class="line">fruits.first;</div><div class="line"></div><div class="line"><span class="comment">// 获取元素最后一个元素</span></div><div class="line">fruits.last;</div><div class="line"></div><div class="line"><span class="comment">// 利用索引获取元素</span></div><div class="line"><span class="keyword">assert</span>(fruits[<span class="number">0</span>] == <span class="string">'apples'</span>);</div><div class="line"></div><div class="line"><span class="comment">// 查找某个元素的索引号</span></div><div class="line"><span class="keyword">assert</span>(fruits.indexOf(<span class="string">'apples'</span>) == <span class="number">0</span>);</div><div class="line"></div><div class="line"><span class="comment">// 删除指定位置的元素，返回删除的元素</span></div><div class="line">fruits.removeAt(index);</div><div class="line"></div><div class="line"><span class="comment">// 删除指定元素,成功返回true，失败返回false</span></div><div class="line">fruits.remove(<span class="string">'apples'</span>);</div><div class="line"></div><div class="line"><span class="comment">// 删除最后一个元素，返回删除的元素</span></div><div class="line">fruits.removeLast();</div><div class="line"></div><div class="line"><span class="comment">// 删除指定范围元素，含头不含尾，成功返回null</span></div><div class="line">fruits.removeRange(start,end);</div><div class="line"></div><div class="line"><span class="comment">// 删除指定条件的元素，成功返回null</span></div><div class="line">fruits.removeWhere((item) =&gt; item.length &gt;<span class="number">6</span>)；</div><div class="line"></div><div class="line"><span class="comment">// 删除所有的元素</span></div><div class="line">fruits.clear();</div><div class="line"><span class="keyword">assert</span>(fruits.length == <span class="number">0</span>);</div><div class="line"></div><div class="line"><span class="comment">// sort()对元素进行排序，传入一个函数作为参数，return &lt;0表示由小到大， &gt;0表示由大到小</span></div><div class="line">fruits.sort((a, b) =&gt; a.compareTo(b));</div></pre></td></tr></table></figure>
+<ul>
+<li>Map</li>
+</ul>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Map的声明</span></div><div class="line"><span class="keyword">var</span> hawaiianBeaches = &#123;</div><div class="line">    <span class="string">'oahu'</span> : [<span class="string">'waikiki'</span>, <span class="string">'kailua'</span>, <span class="string">'waimanalo'</span>],</div><div class="line">    <span class="string">'big island'</span> : [<span class="string">'wailea bay'</span>, <span class="string">'pololu beach'</span>],</div><div class="line">    <span class="string">'kauai'</span> : [<span class="string">'hanalei'</span>, <span class="string">'poipu'</span>]</div><div class="line">&#125;;</div><div class="line"><span class="keyword">var</span> searchTerms = <span class="keyword">new</span> <span class="built_in">Map</span>();</div><div class="line"></div><div class="line"><span class="comment">// 指定键值对的参数类型</span></div><div class="line"><span class="keyword">var</span> nobleGases = <span class="keyword">new</span> <span class="built_in">Map</span>&lt;<span class="built_in">int</span>, <span class="built_in">String</span>&gt;();</div><div class="line"></div><div class="line"><span class="comment">// Map的赋值，中括号中是Key，这里可不是数组</span></div><div class="line">nobleGase[<span class="number">54</span>] = <span class="string">'dart'</span>;</div><div class="line"></div><div class="line"><span class="comment">//Map中的键值对是唯一的</span></div><div class="line"><span class="comment">//同Set不同，第二次输入的Key如果存在，Value会覆盖之前的数据</span></div><div class="line">nobleGases[<span class="number">54</span>] = <span class="string">'xenon'</span>;</div><div class="line"><span class="keyword">assert</span>(nobleGases[<span class="number">54</span>] == <span class="string">'xenon'</span>);</div><div class="line"></div><div class="line"><span class="comment">// 检索Map是否含有某Key</span></div><div class="line"><span class="keyword">assert</span>(nobleGases.containsKey(<span class="number">54</span>));</div><div class="line"></div><div class="line"><span class="comment">//删除某个键值对</span></div><div class="line">nobleGases.remove(<span class="number">54</span>);</div><div class="line"><span class="keyword">assert</span>(!nobleGases.containsKey(<span class="number">54</span>));</div></pre></td></tr></table></figure>
+<ul>
+<li>Runes<br>Dart 中 runes 是UTF-32字符集的string 对象。</li>
+</ul>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">string</span> = <span class="string">'Dart'</span>;</div><div class="line"><span class="keyword">string</span>.codeUnitAt(<span class="number">0</span>); <span class="comment">// 68 返回指定位置index的16位UTF-16编码单元</span></div><div class="line"><span class="keyword">string</span>.codeUnits;     <span class="comment">// [68, 97, 114, 116] 返回一个只读的List，包含字符串中所有的UTF-16编码单元。</span></div></pre></td></tr></table></figure>
+<ul>
+<li>Symbol</li>
+</ul>
+<p>symbol字面量是编译时常量，在标识符前面加<code>#</code>。如果是动态确定，则使用Symbol构造函数，通过<code>new</code>来实例化。</p>
+<h3 id="函数（Functions）"><a href="#函数（Functions）" class="headerlink" title="函数（Functions）"></a>函数（Functions）</h3><p>所有的函数都会有返回值。如果没有指定函数返回值，则默认的返回值是<code>null</code><br>。没有返回值的函数，系统会在最后添加隐式的<code>return</code> 语句。</p>
+<p>函数可以有两种类型的参数：</p>
+<ul>
+<li>必须的——必须的参数放在参数列表的前面。</li>
+<li>可选的——可选的参数跟在必须的参数后面。</li>
+</ul>
+<h5 id="可选的参数"><a href="#可选的参数" class="headerlink" title="可选的参数"></a>可选的参数</h5><p>可以通过<strong>名字</strong>或<strong>位置</strong>指定可选参数，但是两个不能同时存在。</p>
+<ul>
+<li>命名可选参数使用<code>{}</code>，默认值使用冒号<code>:</code>(1.21后可以使用<code>=</code>)，调用时需指明参数名，与顺序无关。</li>
+<li>位置可选参数使用<code>[]</code>，默认值使用等号<code>=</code>，调用时参数按顺序赋值。</li>
+</ul>
+<h3 id="操作符（Operators）"><a href="#操作符（Operators）" class="headerlink" title="操作符（Operators）"></a>操作符（Operators）</h3><p>表中，操作符的优先级依次降低。</p>
+<table>
+<thead>
+<tr>
+<th>描述</th>
+<th>操作符</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>一元后置操作符</td>
+<td>expr++    expr–    ()    []    .    ?.</td>
+</tr>
+<tr>
+<td>一元前置操作符</td>
+<td>-expr    !expr    ~expr    ++expr    –expr   </td>
+</tr>
+<tr>
+<td>乘除</td>
+<td>*    /    %  ~/</td>
+</tr>
+<tr>
+<td>加减</td>
+<td>+    -</td>
+</tr>
+<tr>
+<td>位移</td>
+<td>&lt;&lt;    &gt;&gt;</td>
+</tr>
+<tr>
+<td>按位与</td>
+<td>&amp;</td>
+</tr>
+<tr>
+<td>按位异或</td>
+<td>^</td>
+</tr>
+<tr>
+<td>按位或</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>关系和类型判断</td>
+<td>&gt;=    &gt;    &lt;=    &lt;    as    is    is!</td>
+</tr>
+<tr>
+<td>等</td>
+<td>==    !=</td>
+</tr>
+<tr>
+<td>逻辑与</td>
+<td>&amp;&amp;</td>
+</tr>
+<tr>
+<td>逻辑或</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>若为null</td>
+<td>??</td>
+</tr>
+<tr>
+<td>条件表达式</td>
+<td>expr1 ? expr2 : expr3</td>
+</tr>
+<tr>
+<td>级联</td>
+<td>..</td>
+</tr>
+<tr>
+<td>赋值</td>
+<td>=    *=    /=    ~/=    %=    +=    -=    &lt;&lt;=    &gt;&gt;=    &amp;=    ^=</td>
+<td>=    ??=</td>
+</tr>
+</tbody>
+</table>
+<h3 id="流程控制语句（Control-flow-statements）"><a href="#流程控制语句（Control-flow-statements）" class="headerlink" title="流程控制语句（Control flow statements）"></a>流程控制语句（Control flow statements）</h3><ul>
+<li>if…else</li>
+<li>for</li>
+<li>while do-whild</li>
+<li>break continue</li>
+<li>switch…case</li>
+<li>assert（仅在checked模式有效）</li>
+</ul>
+<h3 id="异常（Exceptions）"><a href="#异常（Exceptions）" class="headerlink" title="异常（Exceptions）"></a>异常（Exceptions）</h3><h5 id="throw"><a href="#throw" class="headerlink" title="throw"></a>throw</h5><ul>
+<li>抛出固定类型的异常：</li>
+</ul>
+<figure class="highlight haxe"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">throw</span> <span class="keyword">new</span> <span class="type">FormatException</span>(<span class="string">'Expected at least 1 section'</span>);</div></pre></td></tr></table></figure>
+<ul>
+<li>抛出任意类型的异常：</li>
+</ul>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">throw</span> <span class="string">'Out of llamas!'</span>;</div></pre></td></tr></table></figure>
+<ul>
+<li>因为抛出异常属于表达式，可以将throw语句放在=&gt;语句中，或者其它可以出现表达式的地方：</li>
+</ul>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">distanceTo(Point other) =&gt;</div><div class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> UnimplementedError();</div></pre></td></tr></table></figure>
+<h5 id="catch"><a href="#catch" class="headerlink" title="catch"></a>catch</h5><p>将可能出现异常的代码放置到<code>try</code>语句中，可以通过 <code>on</code>语句来指定需要捕获的异常类型，使用<code>catch</code>来处理异常。</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">try</span> &#123;</div><div class="line">  <span class="selector-tag">breedMoreLlamas</span>();</div><div class="line">&#125; <span class="selector-tag">on</span> <span class="selector-tag">OutOfLlamasException</span> &#123;</div><div class="line">  <span class="comment">// A specific exception</span></div><div class="line">  <span class="selector-tag">buyMoreLlamas</span>();</div><div class="line">&#125; <span class="selector-tag">on</span> <span class="selector-tag">Exception</span> <span class="selector-tag">catch</span> (e) &#123;</div><div class="line">  <span class="comment">// Anything else that is an exception</span></div><div class="line">  <span class="selector-tag">print</span>(<span class="string">'Unknown exception: $e'</span>);</div><div class="line">&#125; <span class="selector-tag">catch</span> (e, s) &#123;</div><div class="line">  <span class="selector-tag">print</span>(<span class="string">'Exception details:\n $e'</span>);</div><div class="line">  <span class="selector-tag">print</span>(<span class="string">'Stack trace:\n $s'</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>可以向<code>catch()</code>传递1个或2个参数。第一个参数表示：捕获的异常的具体信息，第二个参数表示：异常的堆栈跟踪(stack trace)。</p>
+<h5 id="rethrow"><a href="#rethrow" class="headerlink" title="rethrow"></a>rethrow</h5><p><code>rethrow</code>语句用来处理一个异常，同时希望这个异常能够被其它调用的部分使用。</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">final</span> foo = <span class="string">''</span>;</div><div class="line"></div><div class="line"><span class="keyword">void</span> misbehave() &#123;</div><div class="line">  <span class="keyword">try</span> &#123;</div><div class="line">    foo = <span class="string">"1"</span>;</div><div class="line">  &#125; <span class="keyword">catch</span> (e) &#123;</div><div class="line">    <span class="built_in">print</span>(<span class="string">'2'</span>);</div><div class="line">    <span class="keyword">rethrow</span>;<span class="comment">// 如果不重新抛出异常，main函数中的catch语句执行不到</span></div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">void</span> main() &#123;</div><div class="line">  <span class="keyword">try</span> &#123;</div><div class="line">    misbehave();</div><div class="line">  &#125; <span class="keyword">catch</span> (e) &#123;</div><div class="line">    <span class="built_in">print</span>(<span class="string">'3'</span>);</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h5 id="finally"><a href="#finally" class="headerlink" title="finally"></a>finally</h5><p>Dart 的<code>finally</code>用来执行那些无论异常是否发生都执行的操作。</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">final</span> foo = <span class="string">''</span>;</div><div class="line"></div><div class="line"><span class="keyword">void</span> misbehave() &#123;</div><div class="line">  <span class="keyword">try</span> &#123;</div><div class="line">    foo = <span class="string">"1"</span>;</div><div class="line">  &#125; <span class="keyword">catch</span> (e) &#123;</div><div class="line">    <span class="built_in">print</span>(<span class="string">'2'</span>);</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">void</span> main() &#123;</div><div class="line">  <span class="keyword">try</span> &#123;</div><div class="line">    misbehave();</div><div class="line">  &#125; <span class="keyword">catch</span> (e) &#123;</div><div class="line">    <span class="built_in">print</span>(<span class="string">'3'</span>);</div><div class="line">  &#125; <span class="keyword">finally</span> &#123;</div><div class="line">    <span class="built_in">print</span>(<span class="string">'4'</span>); <span class="comment">// 即使没有rethrow最终都会执行到</span></div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="类（Classes）"><a href="#类（Classes）" class="headerlink" title="类（Classes）"></a>类（Classes）</h3><p>Dart 是一种面向对象的语言，并且支持基于mixin的继承方式：<strong>一个类可以继承自多个父类</strong>。</p>
+<p>使用<code>new</code>语句来构造一个类。构造函数的名字可能是ClassName，也可以是<code>ClassName.identifier</code>。例如：</p>
+<figure class="highlight haxe"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> jsonData = JSON.decode(<span class="string">'&#123;"x":1, "y":2&#125;'</span>);</div><div class="line"></div><div class="line"><span class="comment">// Create a Point using Point().</span></div><div class="line"><span class="keyword">var</span> p1 = <span class="keyword">new</span> <span class="type">Point</span>(<span class="number">2</span>, <span class="number">2</span>);</div><div class="line"></div><div class="line"><span class="comment">// Create a Point using Point.fromJson().</span></div><div class="line"><span class="keyword">var</span> p2 = <span class="keyword">new</span> <span class="type">Point</span>.fromJson(jsonData);</div></pre></td></tr></table></figure>
+<ul>
+<li>使用<code>.</code>来调用实例的变量或者方法。</li>
+<li>使用 <code>?.</code> 来避免左边操作数为<code>null</code>引发异常。</li>
+<li>使用<code>const</code>替代<code>new</code>来创建编译时的常量构造函数。</li>
+<li>两个使用<code>const</code>构建的同一个构造函数，实例相等。</li>
+<li>获取对象的运行时类型使用：<code>o.runtimeType</code>。</li>
+</ul>
+<h5 id="实例化变量"><a href="#实例化变量" class="headerlink" title="实例化变量"></a>实例化变量</h5><p>在类定义中，所有没有初始化的变量都会被初始化为<code>null</code>。</p>
+<p>所有实例变量会生成一个隐式的<code>getter</code>方法，不是<code>final</code>或<code>const</code>的实例变量也会生成一个隐式的<code>setter</code>方法。</p>
+<h5 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h5><figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Point</span> </span>&#123;</div><div class="line">  <span class="built_in">num</span> x;</div><div class="line">  <span class="built_in">num</span> y;</div><div class="line"></div><div class="line">  Point(<span class="built_in">num</span> x, <span class="built_in">num</span> y) &#123;</div><div class="line">    <span class="comment">// 这不是最好的方式.</span></div><div class="line">    <span class="keyword">this</span>.x = x; <span class="comment">// this关键字指向当前类的实例</span></div><div class="line">    <span class="keyword">this</span>.y = y;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Point</span> </span>&#123;</div><div class="line">  <span class="built_in">num</span> x;</div><div class="line">  <span class="built_in">num</span> y;</div><div class="line"></div><div class="line">  <span class="comment">// 推荐方式</span></div><div class="line">  Point(<span class="keyword">this</span>.x, <span class="keyword">this</span>.y);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h6 id="默认构造函数"><a href="#默认构造函数" class="headerlink" title="默认构造函数"></a>默认构造函数</h6><p>没有声明构造函数，dart会提供默认构造函数。默认构造函数没有参数，并且调用父类的无参数构造函数。</p>
+<h6 id="构造函数不能被继承"><a href="#构造函数不能被继承" class="headerlink" title="构造函数不能被继承"></a>构造函数不能被继承</h6><p>子类不会继承父类的构造函数。如果不显式提供子类的构造函数，系统就提供默认的构造函数。</p>
+<h6 id="命名构造函数"><a href="#命名构造函数" class="headerlink" title="命名构造函数"></a>命名构造函数</h6><figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Point</span> </span>&#123;</div><div class="line">  <span class="built_in">num</span> x;</div><div class="line">  <span class="built_in">num</span> y;</div><div class="line"></div><div class="line">  Point(<span class="keyword">this</span>.x, <span class="keyword">this</span>.y);</div><div class="line"></div><div class="line">  <span class="comment">// 命名构造函数</span></div><div class="line">  Point.fromJson(<span class="built_in">Map</span> json) &#123;</div><div class="line">    x = json[<span class="string">'x'</span>];</div><div class="line">    y = json[<span class="string">'y'</span>];</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>使用命名构造函数可以实现一个类多个构造函数。构造函数不能被继承，父类中的命名构造函数不能被子类继承。如果想要子类也拥有一个父类一样名字的构造函数，必须在子类实现这个构造函数。</p>
+<h6 id="调用父类的非默认构造函数"><a href="#调用父类的非默认构造函数" class="headerlink" title="调用父类的非默认构造函数"></a>调用父类的非默认构造函数</h6><p>默认情况下，子类调用父类的无参数的非命名构造函数。父类的构造函数会在子类的构造函数体之前（大括号前）调用。如果也使用了<strong>初始化列表</strong> ，则会先执行<strong>初始化列表</strong> 中的内容，即下面的顺序：</p>
+<ol>
+<li>初始化列表</li>
+<li>父类无参数构造函数</li>
+<li>主类无参数构造函数</li>
+</ol>
+<p>如果父类不显式提供无参的非命名构造函数，在子类中必须手动调用父类的一个构造函数。在子类构造函数名后，大括号<code>{</code>前，使用<code>super.</code>调用父类的构造函数，中间使用<code>:</code>分割。</p>
+<p><strong>父类构造函数参数不能访问<code>this</code>，例如，参数可以调用静态方法但不能调用实例方法。</strong></p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</div><div class="line">  <span class="type">String</span> firstName;</div><div class="line"></div><div class="line">  <span class="type">Person</span>.fromJson(<span class="type">Map</span> data) &#123;</div><div class="line">    print(<span class="symbol">'in</span> <span class="type">Person</span>');</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Employee</span> <span class="keyword">extends</span> <span class="title">Person</span> </span>&#123;</div><div class="line">  <span class="comment">// 父类没有无参数的非命名构造函数，必须手动调用一个构造函数 super.fromJson(data)</span></div><div class="line">  <span class="type">Employee</span>.fromJson(<span class="type">Map</span> data) : <span class="keyword">super</span>.fromJson(data) &#123;</div><div class="line">    print(<span class="symbol">'in</span> <span class="type">Employee</span>');</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">main() &#123;</div><div class="line">  <span class="keyword">var</span> emp = <span class="keyword">new</span> <span class="type">Employee</span>.fromJson(&#123;&#125;);</div><div class="line"></div><div class="line">  <span class="comment">// Prints:</span></div><div class="line">  <span class="comment">// in Person</span></div><div class="line">  <span class="comment">// in Employee</span></div><div class="line">  <span class="keyword">if</span> (emp is <span class="type">Person</span>) &#123;</div><div class="line">    <span class="comment">// Type check</span></div><div class="line">    emp.firstName = <span class="symbol">'Bo</span>b';</div><div class="line">  &#125;</div><div class="line">  (emp as <span class="type">Person</span>).firstName = <span class="symbol">'Bo</span>b';</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>因为父类构造函数的参数是在被调用之前确认值的，所以参数可以是一个表达式，像一个函数的调用。</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Employee</span> <span class="keyword">extends</span> <span class="title">Person</span> </span>&#123;</div><div class="line">  <span class="comment">// ...</span></div><div class="line">  <span class="type">Employee</span>() : <span class="keyword">super</span>.fromJson(findDefaultData()); <span class="comment">// 一个函数调用作为参数</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>当在构造函数初始化列表中使用<code>super()</code>时，要把它放在最后。</p>
+<figure class="highlight mathematica"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">View(<span class="keyword">Style</span> style, <span class="keyword">List</span> children)</div><div class="line">    : _children = children,</div><div class="line">      super(style) &#123;&#125;</div></pre></td></tr></table></figure>
+<h6 id="初始化列表"><a href="#初始化列表" class="headerlink" title="初始化列表"></a>初始化列表</h6><p>除了调用父类的构造函数，也可以通过<strong>初始化列表</strong> 在子类的构造函数体前（大括号前）来初始化实例的变量值，使用逗号<code>,</code>分隔。如下所示：</p>
+<blockquote>
+<p>一个初始化器的右边没有访问<code>this</code>。</p>
+</blockquote>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Point</span> </span>&#123;</div><div class="line">  <span class="built_in">num</span> x;</div><div class="line">  <span class="built_in">num</span> y;</div><div class="line"></div><div class="line">  Point(<span class="keyword">this</span>.x, <span class="keyword">this</span>.y);</div><div class="line"></div><div class="line">  <span class="comment">// 在构造函数体前 初始化列表 设置实例变量</span></div><div class="line">  Point.fromJson(<span class="built_in">Map</span> jsonMap)</div><div class="line">      : x = jsonMap[<span class="string">'x'</span>],</div><div class="line">        y = jsonMap[<span class="string">'y'</span>] &#123;</div><div class="line">    <span class="built_in">print</span>(<span class="string">'In Point.fromJson(): ($x, $y)'</span>);</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h6 id="重定向构造函数"><a href="#重定向构造函数" class="headerlink" title="重定向构造函数"></a>重定向构造函数</h6><p>有时候构造函数的目的只是重定向到该类的另一个构造函数。重定向构造函数没有函数体，使用冒号<code>:</code>分隔。</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Point</span> </span>&#123;</div><div class="line">  <span class="built_in">num</span> x;</div><div class="line">  <span class="built_in">num</span> y;</div><div class="line"></div><div class="line">  <span class="comment">// 主构造函数</span></div><div class="line">  Point(<span class="keyword">this</span>.x, <span class="keyword">this</span>.y) &#123;</div><div class="line">    <span class="built_in">print</span>(<span class="string">"Point($x, $y)"</span>);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="comment">// 重定向构造函数，指向主构造函数，函数体为空</span></div><div class="line">  Point.alongXAxis(<span class="built_in">num</span> x) : <span class="keyword">this</span>(x, <span class="number">0</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">void</span> main() &#123;</div><div class="line">  <span class="keyword">var</span> p1 = <span class="keyword">new</span> Point(<span class="number">1</span>, <span class="number">2</span>);</div><div class="line">  <span class="keyword">var</span> p2 = <span class="keyword">new</span> Point.alongXAxis(<span class="number">4</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h6 id="常量构造函数"><a href="#常量构造函数" class="headerlink" title="常量构造函数"></a>常量构造函数</h6><p>如果类的对象不会发生变化，可以构造一个编译时的常量构造函数。定义格式如下：</p>
+<ul>
+<li>定义所有的实例变量是<code>final</code>。</li>
+<li>使用<code>const</code>声明构造函数。</li>
+</ul>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">ImmutablePoint</span> </span>&#123;</div><div class="line">  <span class="keyword">final</span> <span class="built_in">num</span> x;</div><div class="line">  <span class="keyword">final</span> <span class="built_in">num</span> y;</div><div class="line">  <span class="keyword">const</span> ImmutablePoint(<span class="keyword">this</span>.x, <span class="keyword">this</span>.y);</div><div class="line">  <span class="keyword">static</span> <span class="keyword">final</span> ImmutablePoint origin =</div><div class="line">      <span class="keyword">const</span> ImmutablePoint(<span class="number">0</span>, <span class="number">0</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h6 id="工厂构造函数"><a href="#工厂构造函数" class="headerlink" title="工厂构造函数"></a>工厂构造函数</h6><p>当实例化了一个构造函数后，不想每次都创建该类的一个新的实例的时候使用<code>factory</code>关键字，定义工厂构造函数，从缓存中返回一个实例，或返回一个子类型的实例。</p>
+<p><strong>工厂构造函数不能访问<code>this</code></strong></p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Logger</span> </span>&#123;</div><div class="line">  <span class="keyword">final</span> <span class="built_in">String</span> name;</div><div class="line">  <span class="built_in">bool</span> mute = <span class="keyword">false</span>;</div><div class="line">  <span class="keyword">static</span> <span class="keyword">final</span> <span class="built_in">Map</span>&lt;<span class="built_in">String</span>, Logger&gt; _cache = &lt;<span class="built_in">String</span>, Logger&gt;&#123;&#125;; <span class="comment">// 缓存保存对象</span></div><div class="line">  <span class="keyword">factory</span> Logger(<span class="built_in">String</span> name) &#123;</div><div class="line">    <span class="keyword">if</span> (_cache.containsKey(name)) &#123;</div><div class="line">      <span class="keyword">return</span> _cache[name];</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">      <span class="keyword">final</span> logger = <span class="keyword">new</span> Logger._internal(name);</div><div class="line">      _cache[name] = logger;</div><div class="line">      <span class="keyword">return</span> logger;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">  Logger._internal(<span class="keyword">this</span>.name);<span class="comment">// 命名构造函数</span></div><div class="line">  <span class="keyword">void</span> log(<span class="built_in">String</span> msg) &#123;</div><div class="line">    <span class="keyword">if</span> (!mute) &#123;</div><div class="line">      <span class="built_in">print</span>(msg);</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">main() &#123;</div><div class="line">  <span class="keyword">var</span> p1 = <span class="keyword">new</span> Logger(<span class="string">"1"</span>);</div><div class="line">  p1.log(<span class="string">"2"</span>);</div><div class="line"></div><div class="line">  <span class="keyword">var</span> p2 = <span class="keyword">new</span> Logger(<span class="string">'22'</span>);</div><div class="line">  p2.log(<span class="string">'3'</span>);</div><div class="line">  <span class="keyword">var</span> p3 = <span class="keyword">new</span> Logger(<span class="string">'1'</span>);<span class="comment">// 相同对象直接访问缓存</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h5 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h5><h6 id="实例方法"><a href="#实例方法" class="headerlink" title="实例方法"></a>实例方法</h6><p>实例方法可以访问实例变量和<code>this</code>。</p>
+<h6 id="Getters-and-setters"><a href="#Getters-and-setters" class="headerlink" title="Getters and setters"></a>Getters and setters</h6><p><code>get()</code>和<code>set()</code>方法是Dart 语言提供的专门用来读取和写入对象的属性的方法。每一个类的实例变量都有一个隐式的<code>getter</code>和可能的<code>setter</code>（如果字段为<code>final</code>或<code>const</code>，只有<code>getter</code>）。</p>
+<p>像<code>++</code>之类的操作符，无论是否明确定义了getter，都按预期的方式工作。为了避免意想不到的副作用，操作符调用getter一次，将其值保存在临时变量中。</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Rectangle</span> </span>&#123;</div><div class="line">  <span class="built_in">num</span> left;</div><div class="line">  <span class="built_in">num</span> top;</div><div class="line">  <span class="built_in">num</span> width;</div><div class="line">  <span class="built_in">num</span> height;</div><div class="line"></div><div class="line">  Rectangle(<span class="keyword">this</span>.left, <span class="keyword">this</span>.top, <span class="keyword">this</span>.width, <span class="keyword">this</span>.height);</div><div class="line"></div><div class="line">  <span class="comment">// Define two calculated properties: right and bottom.</span></div><div class="line">  <span class="built_in">num</span> <span class="keyword">get</span> right             =&gt; left + width;</div><div class="line">      <span class="keyword">set</span> right(<span class="built_in">num</span> value)  =&gt; left = value - width;</div><div class="line">  <span class="built_in">num</span> <span class="keyword">get</span> bottom            =&gt; top + height;</div><div class="line">      <span class="keyword">set</span> bottom(<span class="built_in">num</span> value) =&gt; top = value - height;</div><div class="line">&#125;</div><div class="line"></div><div class="line">main() &#123;</div><div class="line">  <span class="keyword">var</span> rect = <span class="keyword">new</span> Rectangle(<span class="number">3</span>, <span class="number">4</span>, <span class="number">20</span>, <span class="number">15</span>);</div><div class="line">  <span class="keyword">assert</span>(rect.left == <span class="number">3</span>);</div><div class="line">  rect.right = <span class="number">12</span>;</div><div class="line">  <span class="keyword">assert</span>(rect.left == <span class="number">-8</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h6 id="抽象方法"><a href="#抽象方法" class="headerlink" title="抽象方法"></a>抽象方法</h6><p>抽象方法，只有函数声明，没有函数体，以分号<code>;</code>结尾，作为接口在其他类中实现。调用抽象方法会导致运行时错误。如果在不是抽象类中定义抽象方法会引发<code>warning</code>，但不会阻止实例化。</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Doer</span> </span>&#123;</div><div class="line">  ...</div><div class="line"></div><div class="line">  void doSomething(); <span class="comment">// 定义抽象方法</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">EffectiveDoer</span> <span class="keyword">extends</span> <span class="title">Doer</span> </span>&#123;</div><div class="line">  void doSomething() &#123;</div><div class="line">    <span class="comment">// ...Provide an implementation, so the method is not abstract here...</span></div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h6 id="可重写的运算符"><a href="#可重写的运算符" class="headerlink" title="可重写的运算符"></a>可重写的运算符</h6><p>下面是可重写的运算符，在运算符前面使用<code>operator</code>关键字。</p>
+<p>如果重写<code>==</code>，需要重写<code>Object</code>的<code>hashCode</code>getter。</p>
+<table>
+<thead>
+<tr>
+<th>&lt;</th>
+<th>+</th>
+<th>{</th>
+<th>[]</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&gt;</td>
+<td>/</td>
+<td>^</td>
+<td>[]=</td>
+</tr>
+<tr>
+<td>&lt;=</td>
+<td>~/</td>
+<td>&amp;</td>
+<td>~</td>
+</tr>
+<tr>
+<td>&gt;=</td>
+<td>&#42;</td>
+<td>&lt;&lt;</td>
+<td>==</td>
+</tr>
+<tr>
+<td>–</td>
+<td>%</td>
+<td>&gt;&gt;</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+<h5 id="抽象类"><a href="#抽象类" class="headerlink" title="抽象类"></a>抽象类</h5><p>使用<code>abstract</code>关键字定义一个抽象类，抽象类不能实例化。抽象类通常用来定义接口。</p>
+<p>假如需要将抽象类实例化，需要定义一个<code>factory constructor</code>。</p>
+<p>抽象类通常会包含一些抽象的方法。</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">abstract</span> <span class="keyword">class</span> <span class="title">AbstractContainer</span> &#123; <span class="comment">// 抽象类</span></div><div class="line">  <span class="comment">// ....</span></div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">void</span> <span class="title">updateChildren</span>(<span class="params"></span>)</span>; <span class="comment">// 抽象方法</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h5 id="隐式接口"><a href="#隐式接口" class="headerlink" title="隐式接口"></a>隐式接口</h5><p>每一个类都隐式的定义一个接口，这个接口包含了这个类的所有实例成员和它实现的所有接口。</p>
+<p>一个类可以实现一个或多个（用<code>,</code>隔开）接口，通过<code>implements</code>关键字。</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</div><div class="line">  <span class="keyword">final</span> _name;</div><div class="line">  Person(<span class="keyword">this</span>._name);</div><div class="line">  <span class="built_in">String</span> greet(who) =&gt; <span class="string">'hello,$who,i am $_name'</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Imposter</span> <span class="keyword">implements</span> <span class="title">Person</span> </span>&#123;</div><div class="line">  <span class="keyword">final</span> _name = <span class="string">''</span>;</div><div class="line">  <span class="built_in">String</span> greet(who) =&gt; <span class="string">'hi $who.do you know who i am.'</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line">greetBob(Person p) =&gt; p.greet(<span class="string">'bob'</span>);</div><div class="line">main(<span class="built_in">List</span>&lt;<span class="built_in">String</span>&gt; args) &#123;</div><div class="line">  <span class="built_in">print</span>(greetBob(<span class="keyword">new</span> Person(<span class="string">'lili'</span>)));</div><div class="line">  <span class="built_in">print</span>(greetBob(<span class="keyword">new</span> Imposter()));</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h5 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h5><p>使用<code>extends</code>来创造子类，使用<code>super</code>来指向父类。</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Television</span> </span>&#123;</div><div class="line">  void turnOn() &#123;</div><div class="line">    _illuminateDisplay();</div><div class="line">    _activateIrSensor();</div><div class="line">  &#125;</div><div class="line">  <span class="comment">// ...</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">SmartTelevision</span> <span class="keyword">extends</span> <span class="title">Television</span> </span>&#123;</div><div class="line">  void turnOn() &#123;</div><div class="line">    <span class="keyword">super</span>.turnOn();</div><div class="line">    _bootNetworkInterface();</div><div class="line">    _initializeMemory();</div><div class="line">    _upgradeApps();</div><div class="line">  &#125;</div><div class="line">  <span class="comment">// ...</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>子类可以重载实例方法，getter和setter。使用<code>@override</code>注解重载方法。</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span> </span>&#123;</div><div class="line">  <span class="meta">@override</span></div><div class="line">  <span class="keyword">void</span> noSuchMethod(Invocation mirror) &#123;</div><div class="line">    <span class="built_in">print</span>(<span class="string">'You tried to use a non-existent member:'</span> +</div><div class="line">          <span class="string">'<span class="subst">$&#123;mirror.memberName&#125;</span>'</span>);</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>如果使用<code>noSuchMethod()</code>来实现每一个可能的getter，setter和一个或多个类型的方法，可以使用<code>@proxy</code>注解来避免警告：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@proxy</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span> </span>&#123;</div><div class="line">  <span class="function"><span class="keyword">void</span> <span class="title">noSuchMethod</span><span class="params">(Invocation mirror)</span> </span>&#123;</div><div class="line">    <span class="comment">// ...</span></div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>如果知道编译时类型，可以不使用<code>@proxy</code>，只需要使类实现这些类型。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span> <span class="keyword">implements</span> <span class="title">SomeClass</span>, <span class="title">SomeOtherClass</span> </span>&#123;</div><div class="line">  <span class="function"><span class="keyword">void</span> <span class="title">noSuchMethod</span><span class="params">(Invocation mirror)</span> </span>&#123;</div><div class="line">    <span class="comment">// ...</span></div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h5 id="枚举类型"><a href="#枚举类型" class="headerlink" title="枚举类型"></a>枚举类型</h5><p>枚举类型是一种特殊的类，通常用来表示一组固定数字的常量值。</p>
+<p>使用<code>enum</code>关键字声明枚举类型。</p>
+<figure class="highlight crystal"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">enum</span> <span class="title">Color</span> &#123;</span></div><div class="line">  red,</div><div class="line">  green,</div><div class="line">  blue</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>每个枚举类型都有一个<code>index</code>的getter，返回以0开始的位置索引，每次加1。</p>
+<figure class="highlight irpf90"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">assert</span>(Color.red.<span class="built_in">index</span> == <span class="number">0</span>);</div><div class="line"><span class="keyword">assert</span>(Color.green.<span class="built_in">index</span> == <span class="number">1</span>);</div><div class="line"><span class="keyword">assert</span>(Color.blue.<span class="built_in">index</span> == <span class="number">2</span>);</div></pre></td></tr></table></figure>
+<p>使用<code>values</code>关键字获取枚举的所有值，返回一个列表。</p>
+<figure class="highlight dos"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">print</span>(<span class="built_in">Color</span>.values); // [<span class="built_in">Color</span>.red, <span class="built_in">Color</span>.green, <span class="built_in">Color</span>.blue]</div></pre></td></tr></table></figure>
+<p>在switch语句中使用枚举，必须在case语句中判断所有的枚举，否则会获得警告。</p>
+<figure class="highlight processing"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">enum</span> Color &#123;</div><div class="line">  <span class="built_in">red</span>,</div><div class="line">  <span class="built_in">green</span>,</div><div class="line">  <span class="built_in">blue</span></div><div class="line">&#125;</div><div class="line"><span class="comment">// ...</span></div><div class="line">Color aColor = Color.<span class="built_in">blue</span>;</div><div class="line"><span class="keyword">switch</span> (aColor) &#123;</div><div class="line">  <span class="keyword">case</span> Color.<span class="built_in">red</span>:</div><div class="line">    <span class="built_in">print</span>(<span class="string">'Red as roses!'</span>);</div><div class="line">    <span class="keyword">break</span>;</div><div class="line">  <span class="keyword">case</span> Color.<span class="built_in">green</span>:</div><div class="line">    <span class="built_in">print</span>(<span class="string">'Green as grass!'</span>);</div><div class="line">    <span class="keyword">break</span>;</div><div class="line">  <span class="keyword">default</span>: <span class="comment">//必须完成所有判断，否则会引发warning</span></div><div class="line">    <span class="built_in">print</span>(aColor);  <span class="comment">// 'Color.blue'</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>枚举类型有以下限制：</p>
+<ul>
+<li>不能继承，mixin，或实现一个枚举。</li>
+<li>不能显式的实例化一个枚举。</li>
+</ul>
+<h5 id="minxins"><a href="#minxins" class="headerlink" title="minxins"></a>minxins</h5><p>mixins是一种在多个类层次结构中，重用一个类的代码的方法。使用<code>with</code>关键字后跟多个mixin名。</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Musician</span> <span class="keyword">extends</span> <span class="title">Performer</span> <span class="keyword">with</span> <span class="title">Musical</span> </span>&#123;</div><div class="line">  <span class="comment">// ...</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Maestro</span> <span class="keyword">extends</span> <span class="title">Person</span></span></div><div class="line">    <span class="keyword">with</span> <span class="type">Musical</span>, <span class="type">Aggressive</span>, <span class="type">Demented</span> &#123;</div><div class="line">  <span class="type">Maestro</span>(<span class="type">String</span> maestroName) &#123;</div><div class="line">    name = maestroName;</div><div class="line">    canConduct = <span class="literal">true</span>;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h5 id="class变量和方法"><a href="#class变量和方法" class="headerlink" title="class变量和方法"></a>class变量和方法</h5><p>使用<code>static</code>关键字来实现类范围内变量和方法。</p>
+<ul>
+<li>静态变量</li>
+</ul>
+<p>静态变量在使用时初始化。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Color</span> </span>&#123;</div><div class="line">  <span class="keyword">static</span> <span class="keyword">const</span> red =</div><div class="line">      <span class="function"><span class="keyword">const</span> <span class="title">Color</span><span class="params">(<span class="string">'red'</span>)</span></span>; <span class="comment">// A constant static variable.</span></div><div class="line">  <span class="keyword">final</span> String name;      <span class="comment">// An instance variable.</span></div><div class="line">  <span class="function"><span class="keyword">const</span> <span class="title">Color</span><span class="params">(<span class="keyword">this</span>.name)</span></span>; <span class="comment">// A constant constructor.</span></div><div class="line">&#125;</div><div class="line"></div><div class="line">main() &#123;</div><div class="line">  <span class="keyword">assert</span>(Color.red.name == <span class="string">'red'</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>静态方法</li>
+</ul>
+<p>静态方法不能被实例调用，不能访问<code>this</code>，只能被类名调用。</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> <span class="string">'dart:math'</span>;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Point</span> </span>&#123;</div><div class="line">  <span class="built_in">num</span> x;</div><div class="line">  <span class="built_in">num</span> y;</div><div class="line">  Point(<span class="keyword">this</span>.x, <span class="keyword">this</span>.y);</div><div class="line"></div><div class="line">  <span class="keyword">static</span> <span class="built_in">num</span> distanceBetween(Point a, Point b) &#123;</div><div class="line">    <span class="keyword">var</span> dx = a.x - b.x;</div><div class="line">    <span class="keyword">var</span> dy = a.y - b.y;</div><div class="line">    <span class="keyword">return</span> sqrt(dx * dx + dy * dy);</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">main() &#123;</div><div class="line">  <span class="keyword">var</span> a = <span class="keyword">new</span> Point(<span class="number">2</span>, <span class="number">2</span>);</div><div class="line">  <span class="keyword">var</span> b = <span class="keyword">new</span> Point(<span class="number">4</span>, <span class="number">4</span>);</div><div class="line">  <span class="keyword">var</span> distance = Point.distanceBetween(a, b);</div><div class="line">  <span class="built_in">print</span>(distance); <span class="comment">// 2.8284271247461903</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><strong>对于通用或广泛使用的工具和功能，应该使用顶级函数，而不是静态方法。</strong></p>
+<p>可以使用静态方法作为编译时常量。例如，可以给一个常量构造函数，传递一个静态方法作为参数。</p>
+<h3 id="泛型（Generics）"><a href="#泛型（Generics）" class="headerlink" title="泛型（Generics）"></a>泛型（Generics）</h3><p>使用<code>&lt;...&gt;</code> 的方式来定义泛型。</p>
+<h5 id="为什么使用泛型"><a href="#为什么使用泛型" class="headerlink" title="为什么使用泛型"></a>为什么使用泛型</h5><ul>
+<li>虽然Dart 语言中类型是可选的，但是明确的指明使用的是泛型，会让代码更好理解。</li>
+</ul>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> names = <span class="keyword">new</span> <span class="built_in">List</span>&lt;<span class="built_in">String</span>&gt;();</div><div class="line">names.addAll([<span class="string">'Seth'</span>, <span class="string">'Kathy'</span>, <span class="string">'Lars'</span>]);</div><div class="line"><span class="comment">// ...</span></div><div class="line">names.add(<span class="number">42</span>); <span class="comment">// Fails in checked mode (succeeds in production mode).</span></div></pre></td></tr></table></figure>
+<ul>
+<li>使用泛型减少代码重复。</li>
+</ul>
+<p>代码片段一：</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">ObjectCache</span> </span>&#123;</div><div class="line">  <span class="built_in">Object</span> getByKey(<span class="built_in">String</span> key);</div><div class="line">  setByKey(<span class="built_in">String</span> key, <span class="built_in">Object</span> value);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>代码片段二：</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">StringCache</span> </span>&#123;</div><div class="line">  <span class="built_in">String</span> getByKey(<span class="built_in">String</span> key);</div><div class="line">  setByKey(<span class="built_in">String</span> key, <span class="built_in">String</span> value);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>以上的两段代码可以使用泛型简化如下：</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Cache</span>&lt;<span class="title">T</span>&gt; </span>&#123;</div><div class="line">  T getByKey(<span class="built_in">String</span> key);</div><div class="line">  setByKey(<span class="built_in">String</span> key, T value);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h5 id="用于集合类型-Using-collection-literals"><a href="#用于集合类型-Using-collection-literals" class="headerlink" title="用于集合类型(Using collection literals)"></a>用于集合类型(Using collection literals)</h5><p>泛型用于<code>List</code> 和 <code>Map</code> 类型参数化。</p>
+<ul>
+<li>List: <code>&lt;type&gt;</code></li>
+<li>Map: <code>&lt;keyType, valueType&gt;</code></li>
+</ul>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> names = &lt;<span class="built_in">String</span>&gt;[<span class="string">'Seth'</span>, <span class="string">'Kathy'</span>, <span class="string">'Lars'</span>];</div><div class="line"><span class="keyword">var</span> pages = &lt;<span class="built_in">String</span>, <span class="built_in">String</span>&gt;&#123;</div><div class="line">  <span class="string">'index.html'</span>: <span class="string">'Homepage'</span>,</div><div class="line">  <span class="string">'robots.txt'</span>: <span class="string">'Hints for web robots'</span>,</div><div class="line">  <span class="string">'humans.txt'</span>: <span class="string">'We are people, not machines'</span></div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h5 id="在构造函数中参数化类型"><a href="#在构造函数中参数化类型" class="headerlink" title="在构造函数中参数化类型"></a>在构造函数中参数化类型</h5><figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> names = <span class="keyword">new</span> <span class="built_in">List</span>&lt;<span class="built_in">String</span>&gt;();</div><div class="line">names.addAll([<span class="string">'Seth'</span>, <span class="string">'Kathy'</span>, <span class="string">'Lars'</span>]);</div><div class="line"><span class="keyword">var</span> nameSet = <span class="keyword">new</span> <span class="built_in">Set</span>&lt;<span class="built_in">String</span>&gt;.from(names);</div><div class="line"><span class="keyword">var</span> views = <span class="keyword">new</span> <span class="built_in">Map</span>&lt;<span class="built_in">int</span>, View&gt;();</div></pre></td></tr></table></figure>
+<h5 id="泛型集合及它们所包含的类型"><a href="#泛型集合及它们所包含的类型" class="headerlink" title="泛型集合及它们所包含的类型"></a>泛型集合及它们所包含的类型</h5><p>dart的泛型类型是具体的，在运行时包含它们的类型信息。</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> names = <span class="keyword">new</span> <span class="built_in">List</span>&lt;<span class="built_in">String</span>&gt;();</div><div class="line">names.addAll([<span class="string">'Seth'</span>, <span class="string">'Kathy'</span>, <span class="string">'Lars'</span>]);</div><div class="line"><span class="built_in">print</span>(names <span class="keyword">is</span> <span class="built_in">List</span>&lt;<span class="built_in">String</span>&gt;); <span class="comment">// true</span></div></pre></td></tr></table></figure>
+<p>然而，<code>is</code>表达式检查的是集合的类型，而不是里面的对象。在生产模式下，一个<code>List&lt;Stirng&gt;</code>可能有很多不是<code>string</code>的条目在里面。解决办法是检查每一项，或者包裹在一个异常处理程序中。</p>
+<h5 id="限制参数化类型"><a href="#限制参数化类型" class="headerlink" title="限制参数化类型"></a>限制参数化类型</h5><p>当实现一个泛型时，如果需要限制它参数的类型，可以使用<code>extends</code>关键字。</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// T 必须是SomeBaseClass或它的后代</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Foo&lt;T</span> <span class="keyword">extends</span> <span class="title">SomeBaseClass&gt;</span> </span>&#123;...&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Extender</span> <span class="keyword">extends</span> <span class="title">SomeBaseClass</span> </span>&#123;...&#125;</div><div class="line"></div><div class="line">void main() &#123;</div><div class="line">  <span class="comment">// It's OK to use SomeBaseClass or any of its subclasses inside &lt;&gt;.</span></div><div class="line">  <span class="keyword">var</span> someBaseClassFoo = <span class="keyword">new</span> <span class="type">Foo</span>&lt;<span class="type">SomeBaseClass</span>&gt;();</div><div class="line">  <span class="keyword">var</span> extenderFoo = <span class="keyword">new</span> <span class="type">Foo</span>&lt;<span class="type">Extender</span>&gt;();</div><div class="line"></div><div class="line">  <span class="comment">// It's also OK to use no &lt;&gt; at all.</span></div><div class="line">  <span class="keyword">var</span> foo = <span class="keyword">new</span> <span class="type">Foo</span>();</div><div class="line"></div><div class="line">  <span class="comment">// Specifying any non-SomeBaseClass type results in a warning and, in</span></div><div class="line">  <span class="comment">// checked mode, a runtime error.</span></div><div class="line">  <span class="comment">// var objectFoo = new Foo&lt;Object&gt;();</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="库和可见性"><a href="#库和可见性" class="headerlink" title="库和可见性"></a>库和可见性</h3><p>使用<code>import</code> 和 <code>library</code> 指令可以方便的创建一个模块或分享代码。一个Dart 库不仅能够提供相应的API，还可以包含一些以<code>_</code>开头的私有变量仅在库内部可见。</p>
+<p>每一个Dart 应用都是一个库，即使它没有使用<code>library</code>指令。库可以方便是使用各种类型的包。</p>
+<h5 id="使用库（Libraries-and-visibility）"><a href="#使用库（Libraries-and-visibility）" class="headerlink" title="使用库（Libraries and visibility）"></a>使用库（Libraries and visibility）</h5><p>使用<code>import</code>指定怎样的命名空间，从一个库引用另一个库。</p>
+<p><code>import</code>唯一要求的参数是指定库的URI。</p>
+<ul>
+<li>dart内置库，URI组合<code>dart:</code></li>
+<li>其他库，使用文件路径或<code>package:</code>组合。<code>package:</code>组合式通过包管理工具提供的。</li>
+</ul>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta"><span class="meta-keyword">import</span> 'dart:html';</span></div><div class="line"><span class="meta"><span class="meta-keyword">import</span> 'package:mylib/mylib.dart';</span></div></pre></td></tr></table></figure>
+<h6 id="指定一个库的前缀"><a href="#指定一个库的前缀" class="headerlink" title="指定一个库的前缀"></a>指定一个库的前缀</h6><p>如果导入的库拥有相互冲突的名字，使用<code>as</code>为其中一个或几个指定不一样的前缀。</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> <span class="string">'package:lib1/lib1.dart'</span>;</div><div class="line"><span class="keyword">import</span> <span class="string">'package:lib2/lib2.dart'</span> <span class="keyword">as</span> lib2;</div><div class="line"><span class="comment">// ...</span></div><div class="line"><span class="built_in">Element</span> element1 = <span class="keyword">new</span> <span class="built_in">Element</span>();           <span class="comment">// Uses Element from lib1.</span></div><div class="line">lib2.<span class="built_in">Element</span> element2 = <span class="keyword">new</span> lib2.<span class="built_in">Element</span>(); <span class="comment">// Uses Element from lib2.</span></div></pre></td></tr></table></figure>
+<h6 id="导入库的一部分"><a href="#导入库的一部分" class="headerlink" title="导入库的一部分"></a>导入库的一部分</h6><p>如果只需要使用库的一部分内容，使用<code>show</code>或<code>hide</code>有选择的导入。</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 仅导入foo.</span></div><div class="line"><span class="meta"><span class="meta-keyword">import</span> 'package:lib1/lib1.dart' show foo;</span></div><div class="line"></div><div class="line"><span class="comment">// 除了foo都导入</span></div><div class="line"><span class="meta"><span class="meta-keyword">import</span> 'package:lib2/lib2.dart' hide foo;</span></div></pre></td></tr></table></figure>
+<h6 id="延迟加载库"><a href="#延迟加载库" class="headerlink" title="延迟加载库"></a>延迟加载库</h6><p>延迟加载，也叫懒加载，允许应用程序按需加载库。使用延迟加载的场景：</p>
+<ul>
+<li>减少程序初始化启动时间。</li>
+<li>执行A/B测试——尝试替换一个算法的实现。</li>
+<li>加载很少用的功能，比如可选的屏幕和对话框。</li>
+</ul>
+<p>要延迟加载一个库，首先必须使用<code>deferred as</code>导入它。</p>
+<figure class="highlight clean"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> <span class="string">'package:deferred/hello.dart'</span> deferred <span class="keyword">as</span> hello;</div></pre></td></tr></table></figure>
+<p>当需要使用库的时候，使用库名调用<code>loadLibrary()</code>。</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">greet</span>() <span class="selector-tag">async</span> &#123;</div><div class="line">  <span class="comment">// 使用await关键字暂停执行，直到库加载</span></div><div class="line">  <span class="selector-tag">await</span> <span class="selector-tag">hello</span><span class="selector-class">.loadLibrary</span>();</div><div class="line">  <span class="selector-tag">hello</span><span class="selector-class">.printGreeting</span>();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>可以在代码中多次调用<code>loadLibrary()</code>方法。但是实际上它只会被执行一次。</p>
+<p>使用延迟加载的注意事项：</p>
+<ul>
+<li>延迟加载的内容只有在加载后才存在。</li>
+<li>Dart 隐式的将<code>deferred as</code>改为了<code>deferred as namespace</code>。<code>loadLibrary()</code>返回值是<code>Future</code>。</li>
+</ul>
+<h3 id="异步支持（Asynchrony-support）"><a href="#异步支持（Asynchrony-support）" class="headerlink" title="异步支持（Asynchrony support）"></a>异步支持（Asynchrony support）</h3><p>使用<code>async</code>函数和<code>await</code>表达式实现异步操作。</p>
+<p>当需要使用一个从<code>Future</code>返回的值时，有两个选择：</p>
+<ul>
+<li>使用<code>async</code>和<code>await</code>。</li>
+<li>使用<code>Future API</code>。</li>
+</ul>
+<p>当需要从一个<code>Stream</code>获取值时，有两个选择：</p>
+<ul>
+<li>使用<code>async</code>和异步的循环(<code>await for</code>)。</li>
+<li>使用<code>Stream API</code>。</li>
+</ul>
+<p>代码使用了<code>async</code>和<code>await</code>就是异步的，虽然看起来像同步代码。</p>
+<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">await</span> lookUpVersion()</div></pre></td></tr></table></figure>
+<p>要使用<code>await</code>，代码必须在函数后面标记为<code>async</code>：</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">checkVersion() <span class="keyword">async</span> &#123;</div><div class="line">  <span class="keyword">var</span> version = <span class="keyword">await</span> lookUpVersion();</div><div class="line">  <span class="keyword">if</span> (version == expectedVersion) &#123;</div><div class="line">    <span class="comment">// Do something.</span></div><div class="line">  &#125; <span class="keyword">else</span> &#123;</div><div class="line">    <span class="comment">// Do something else.</span></div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>可以使用<code>try，catch和finally</code>配合<code>await</code>处理错误。</p>
+<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">try</span> &#123;</div><div class="line">  server = <span class="function">await HttpServer.<span class="title">bind</span><span class="params">(InternetAddress.LOOPBACK_IP_V4, <span class="number">4044</span>)</span></span>;</div><div class="line">&#125; <span class="keyword">catch</span> (e) &#123;</div><div class="line">  <span class="comment">// 无法绑定到端口时......</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h5 id="声明异步函数"><a href="#声明异步函数" class="headerlink" title="声明异步函数"></a>声明异步函数</h5><p>异步函数是一个被<code>async</code>标记的函数。</p>
+<p>虽然异步的函数中可能执行耗时的操作，但是函数本身在调用后将会立即返回，即使函数体一条语句也没执行。</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">checkVersion() <span class="keyword">async</span> &#123;</div><div class="line">  <span class="comment">// ...</span></div><div class="line">&#125;</div><div class="line"></div><div class="line">lookUpVersion() <span class="keyword">async</span> =&gt; <span class="comment">/* ... */</span>;</div></pre></td></tr></table></figure>
+<p>给函数添加<code>async</code>关键字将使函数返回一个<code>Future</code>类型。</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 修改前是同步的</span></div><div class="line"><span class="built_in">String</span> lookUpVersionSync() =&gt; <span class="string">'1.0.0'</span>;</div><div class="line"></div><div class="line"><span class="comment">// 修改后 是异步的 函数体不需要使用Future API</span></div><div class="line"><span class="comment">// dart会在必要的时候创建Future对象</span></div><div class="line">Future&lt;<span class="built_in">String</span>&gt; lookUpVersion() <span class="keyword">async</span> =&gt; <span class="string">'1.0.0'</span>;</div></pre></td></tr></table></figure>
+<h5 id="在-Future-中使用-await-表达式"><a href="#在-Future-中使用-await-表达式" class="headerlink" title="在 Future 中使用 await 表达式"></a>在 Future 中使用 await 表达式</h5><figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">await</span> expression</div></pre></td></tr></table></figure>
+<p>可以在异步函数中多次使用<code>await</code></p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var <span class="keyword">entrypoint</span><span class="bash"> = await findEntrypoint();</span></div><div class="line">var exitCode = await runExecutable(<span class="keyword">entrypoint</span><span class="bash">, args);</span></div><div class="line">await flushThenExit(exitCode);</div></pre></td></tr></table></figure>
+<p>在<code>await</code>表达式中，表达式通常是一个<code>Future</code>。如果表达式不是<code>Future</code> 类型，它将自动被包装为<code>Future</code>类型。<code>await expression</code>的返回值是一个对象。await表达式使执行暂停，直到对象可用。</p>
+<p>如果<code>await</code>不工作，确保<code>await</code>处于<code>async</code>函数中。即使是在main函数中，也要标记为<code>async</code>。</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">main() <span class="keyword">async</span> &#123;</div><div class="line">  checkVersion();</div><div class="line">                          <span class="comment">// 这里使用了 await</span></div><div class="line">  <span class="built_in">print</span>(<span class="string">'In main: version is <span class="subst">$&#123;await lookUpVersion()&#125;</span>'</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h5 id="在Stream中使用异步循环"><a href="#在Stream中使用异步循环" class="headerlink" title="在Stream中使用异步循环"></a>在Stream中使用异步循环</h5><figure class="highlight ceylon"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"> <span class="comment">// expression的值必须是Stram类型</span></div><div class="line">await <span class="keyword">for</span> (<span class="keyword">variable</span> declaration <span class="keyword">in</span> expression) &#123;</div><div class="line">  <span class="comment">// Executes each time the stream emits a value.</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>异步循环的执行流程如下：</p>
+<ol>
+<li>等待 stream 发出数据。</li>
+<li>执行循环体，并将变量的值设置为发出的数据。</li>
+<li>重复1.，2.直到stream 对象被关闭。</li>
+</ol>
+<p>结束监听stram 可以使用<code>break</code> 或<code>returen</code> 语句，跳出<code>for</code>循环，取消订阅stream。</p>
+<p>如果异步循环不工作，确保是在一个<code>async</code>函数中，如果使用异步循环在<code>main()</code>函数中，也要确保<code>main()</code>函数被标记为<code>async</code>。</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">main() <span class="keyword">async</span> &#123;</div><div class="line">  ...</div><div class="line">  <span class="keyword">await</span> <span class="keyword">for</span> (<span class="keyword">var</span> request <span class="keyword">in</span> requestServer) &#123;</div><div class="line">    handleRequest(request);</div><div class="line">  &#125;</div><div class="line">  ...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="可调用类（Callable-classes）"><a href="#可调用类（Callable-classes）" class="headerlink" title="可调用类（Callable classes）"></a>可调用类（Callable classes）</h3><p>Dart 语言中为了能够让类像函数一样能够被调用，可以实现<code>call()</code>方法。</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">WannabeFunction</span> </span>&#123;</div><div class="line">  call(<span class="built_in">String</span> a, <span class="built_in">String</span> b, <span class="built_in">String</span> c) =&gt; <span class="string">'$a $b $c!'</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line">main() &#123;</div><div class="line">  <span class="keyword">var</span> wf = <span class="keyword">new</span> WannabeFunction();</div><div class="line">  <span class="keyword">var</span> out = wf(<span class="string">"Hi"</span>,<span class="string">"there,"</span>,<span class="string">"gang"</span>);</div><div class="line">  <span class="built_in">print</span>(<span class="string">'$out'</span>); <span class="comment">// Hi there, gang!</span></div><div class="line">  <span class="built_in">print</span>(wf.runtimeType); <span class="comment">// WannabeFunction</span></div><div class="line">  <span class="built_in">print</span>(out.runtimeType); <span class="comment">// String</span></div><div class="line">  <span class="built_in">print</span>(wf <span class="keyword">is</span> <span class="built_in">Function</span>); <span class="comment">// true</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="隔离（Isolates）"><a href="#隔离（Isolates）" class="headerlink" title="隔离（Isolates）"></a>隔离（Isolates）</h3><p>Dart 代码都运行在独立的隔离空间中，每个隔离空间都有自己的内存堆栈，确保每个隔离空间的状态不会被其它的隔离空间访问。</p>
+<h3 id="类型定义（Typedefs）"><a href="#类型定义（Typedefs）" class="headerlink" title="类型定义（Typedefs）"></a>类型定义（Typedefs）</h3><p><code>typedef</code>关键字，用来声明一种类型，当一个函数类型分配给一个变量时，保留类型信息。</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 声明一种 Compare类型</span></div><div class="line"><span class="keyword">typedef</span> <span class="built_in">int</span> Compare(<span class="built_in">int</span> a, <span class="built_in">int</span> b);</div><div class="line"></div><div class="line"><span class="built_in">int</span> sort(<span class="built_in">int</span> a, <span class="built_in">int</span> b) =&gt; a - b;</div><div class="line"></div><div class="line">main() &#123;</div><div class="line">  <span class="keyword">assert</span>(sort <span class="keyword">is</span> Compare); <span class="comment">// True!</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><strong> 当前 typedef 仅用于函数类型</strong>。</p>
+<h3 id="元数据（Metadata）"><a href="#元数据（Metadata）" class="headerlink" title="元数据（Metadata）"></a>元数据（Metadata）</h3><p>元数据是以<code>@</code>开始的修饰符。在<code>@</code> 后面接着编译时的常量或调用一个常量构造函数。</p>
+<p>所有dart代码中可用的三个注解：</p>
+<ul>
+<li>@deprecated 被弃用的</li>
+<li>@override 重载</li>
+<li>@proxy 代理</li>
+</ul>
+<h5 id="定义自己的元数据"><a href="#定义自己的元数据" class="headerlink" title="定义自己的元数据"></a>定义自己的元数据</h5><p>通过<code>library</code>来定义一个库，在库中定义一个相同名字的<code>class</code>，然后在类中定义<code>const</code> 构造方法。</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 定义</span></div><div class="line"><span class="keyword">library</span> todo;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">todo</span> </span>&#123;</div><div class="line">  <span class="keyword">final</span> <span class="built_in">String</span> who;</div><div class="line">  <span class="keyword">final</span> <span class="built_in">String</span> what;</div><div class="line"></div><div class="line">  <span class="keyword">const</span> todo(<span class="keyword">this</span>.who, <span class="keyword">this</span>.what);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 使用</span></div><div class="line"><span class="keyword">import</span> <span class="string">'todo.dart'</span>;</div><div class="line"></div><div class="line"><span class="meta">@todo</span>(<span class="string">'seth'</span>, <span class="string">'make this do something'</span>)</div><div class="line"><span class="keyword">void</span> doSomething() &#123;</div><div class="line">  <span class="built_in">print</span>(<span class="string">'do something'</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>元数据可以修饰<code>library</code>(库), <code>class</code>(类), <code>typedef</code>(类型定义), <code>type parameter</code>(类型参数), <code>constructor</code>(构造函数), <code>factory</code>(工厂函数), <code>function</code>(函数), <code>field</code>(作用域), <code>parameter</code>(参数), 或者 <code>variable declaration</code>(变量声明)。</p>
+<p>可以使用<code>reflection</code>反射，在运行时检查元数据。</p>
+<h3 id="注释（Comments）"><a href="#注释（Comments）" class="headerlink" title="注释（Comments）"></a>注释（Comments）</h3><ul>
+<li>单行注释：<code>/</code></li>
+<li>多行注释：<code>/*...*/</code></li>
+<li>文档注释：<code>/**...*/</code>或<code>///</code> 使用<code>[]</code>引用参考生成API文档链接</li>
+</ul>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> <span class="title">Llama</span> &#123;</div><div class="line">  String name;<span class="comment">// 这是单行注释</span></div><div class="line">  <span class="function"><span class="keyword">void</span> <span class="title">feed</span>(<span class="params">Food food</span>) </span>&#123;</div><div class="line">    <span class="comment">/*</span></div><div class="line">    这是多行注释</div><div class="line">    /</div><div class="line">  &#125;</div><div class="line"></div><div class="line">/**</div><div class="line">这里是文档注释</div><div class="line">*/</div><div class="line">  <span class="comment"><span class="doctag">///</span> Exercises your llama with an [activity] for</span></div><div class="line">  <span class="comment"><span class="doctag">///</span> [timeLimit] minutes.</span></div><div class="line">  <span class="function"><span class="keyword">void</span> <span class="title">exercise</span>(<span class="params">Activity activity, <span class="keyword">int</span> timeLimit</span>) </span>&#123;</div><div class="line">    <span class="comment">// ...</span></div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2016/12/19/dart语言基础/">dart语言基础</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">soojade</a></p>
+        <p><span>发布时间:</span>2016-12-19, 23:59:28</p>
+        <p><span>最后更新:</span>2016-12-20, 00:00:37</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2016/12/19/dart语言基础/" title="dart语言基础">http://soojade.github.io/2016/12/19/dart语言基础/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://soojade.github.io/2016/12/19/dart语言基础/　　作者: soojade" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2016/12/20/dart开发命令行工具/">
+                    dart开发命令行工具
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2016/12/19/HTTP/">
+                    HTTP
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#一些重要概念"><span class="toc-number">1.</span> <span class="toc-text">一些重要概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#关键字（Keywords）"><span class="toc-number">2.</span> <span class="toc-text">关键字（Keywords）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#内置类型（Built-in-types）"><span class="toc-number">3.</span> <span class="toc-text">内置类型（Built-in types）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#函数（Functions）"><span class="toc-number">4.</span> <span class="toc-text">函数（Functions）</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#可选的参数"><span class="toc-number">4.0.1.</span> <span class="toc-text">可选的参数</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#操作符（Operators）"><span class="toc-number">5.</span> <span class="toc-text">操作符（Operators）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#流程控制语句（Control-flow-statements）"><span class="toc-number">6.</span> <span class="toc-text">流程控制语句（Control flow statements）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#异常（Exceptions）"><span class="toc-number">7.</span> <span class="toc-text">异常（Exceptions）</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#throw"><span class="toc-number">7.0.1.</span> <span class="toc-text">throw</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#catch"><span class="toc-number">7.0.2.</span> <span class="toc-text">catch</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#rethrow"><span class="toc-number">7.0.3.</span> <span class="toc-text">rethrow</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#finally"><span class="toc-number">7.0.4.</span> <span class="toc-text">finally</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#类（Classes）"><span class="toc-number">8.</span> <span class="toc-text">类（Classes）</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#实例化变量"><span class="toc-number">8.0.1.</span> <span class="toc-text">实例化变量</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#构造函数"><span class="toc-number">8.0.2.</span> <span class="toc-text">构造函数</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#默认构造函数"><span class="toc-number">8.0.2.1.</span> <span class="toc-text">默认构造函数</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#构造函数不能被继承"><span class="toc-number">8.0.2.2.</span> <span class="toc-text">构造函数不能被继承</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#命名构造函数"><span class="toc-number">8.0.2.3.</span> <span class="toc-text">命名构造函数</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#调用父类的非默认构造函数"><span class="toc-number">8.0.2.4.</span> <span class="toc-text">调用父类的非默认构造函数</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#初始化列表"><span class="toc-number">8.0.2.5.</span> <span class="toc-text">初始化列表</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#重定向构造函数"><span class="toc-number">8.0.2.6.</span> <span class="toc-text">重定向构造函数</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#常量构造函数"><span class="toc-number">8.0.2.7.</span> <span class="toc-text">常量构造函数</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#工厂构造函数"><span class="toc-number">8.0.2.8.</span> <span class="toc-text">工厂构造函数</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#方法"><span class="toc-number">8.0.3.</span> <span class="toc-text">方法</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#实例方法"><span class="toc-number">8.0.3.1.</span> <span class="toc-text">实例方法</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#Getters-and-setters"><span class="toc-number">8.0.3.2.</span> <span class="toc-text">Getters and setters</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#抽象方法"><span class="toc-number">8.0.3.3.</span> <span class="toc-text">抽象方法</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#可重写的运算符"><span class="toc-number">8.0.3.4.</span> <span class="toc-text">可重写的运算符</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#抽象类"><span class="toc-number">8.0.4.</span> <span class="toc-text">抽象类</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#隐式接口"><span class="toc-number">8.0.5.</span> <span class="toc-text">隐式接口</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#继承"><span class="toc-number">8.0.6.</span> <span class="toc-text">继承</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#枚举类型"><span class="toc-number">8.0.7.</span> <span class="toc-text">枚举类型</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#minxins"><span class="toc-number">8.0.8.</span> <span class="toc-text">minxins</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#class变量和方法"><span class="toc-number">8.0.9.</span> <span class="toc-text">class变量和方法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#泛型（Generics）"><span class="toc-number">9.</span> <span class="toc-text">泛型（Generics）</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#为什么使用泛型"><span class="toc-number">9.0.1.</span> <span class="toc-text">为什么使用泛型</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#用于集合类型-Using-collection-literals"><span class="toc-number">9.0.2.</span> <span class="toc-text">用于集合类型(Using collection literals)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#在构造函数中参数化类型"><span class="toc-number">9.0.3.</span> <span class="toc-text">在构造函数中参数化类型</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#泛型集合及它们所包含的类型"><span class="toc-number">9.0.4.</span> <span class="toc-text">泛型集合及它们所包含的类型</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#限制参数化类型"><span class="toc-number">9.0.5.</span> <span class="toc-text">限制参数化类型</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#库和可见性"><span class="toc-number">10.</span> <span class="toc-text">库和可见性</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#使用库（Libraries-and-visibility）"><span class="toc-number">10.0.1.</span> <span class="toc-text">使用库（Libraries and visibility）</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#指定一个库的前缀"><span class="toc-number">10.0.1.1.</span> <span class="toc-text">指定一个库的前缀</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#导入库的一部分"><span class="toc-number">10.0.1.2.</span> <span class="toc-text">导入库的一部分</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#延迟加载库"><span class="toc-number">10.0.1.3.</span> <span class="toc-text">延迟加载库</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#异步支持（Asynchrony-support）"><span class="toc-number">11.</span> <span class="toc-text">异步支持（Asynchrony support）</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#声明异步函数"><span class="toc-number">11.0.1.</span> <span class="toc-text">声明异步函数</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#在-Future-中使用-await-表达式"><span class="toc-number">11.0.2.</span> <span class="toc-text">在 Future 中使用 await 表达式</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#在Stream中使用异步循环"><span class="toc-number">11.0.3.</span> <span class="toc-text">在Stream中使用异步循环</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#可调用类（Callable-classes）"><span class="toc-number">12.</span> <span class="toc-text">可调用类（Callable classes）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#隔离（Isolates）"><span class="toc-number">13.</span> <span class="toc-text">隔离（Isolates）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#类型定义（Typedefs）"><span class="toc-number">14.</span> <span class="toc-text">类型定义（Typedefs）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#元数据（Metadata）"><span class="toc-number">15.</span> <span class="toc-text">元数据（Metadata）</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#定义自己的元数据"><span class="toc-number">15.0.1.</span> <span class="toc-text">定义自己的元数据</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#注释（Comments）"><span class="toc-number">16.</span> <span class="toc-text">注释（Comments）</span></a></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-4 i,
+        .toc-level-4 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"dart语言基础　| soojade个人空间　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+      <div class="duoshuo" id="comments">
+    <div id="comment-box" ></div>
+    <div class="ds-thread" id="ds-thread" data-thread-key="2016/12/19/dart语言基础/" data-title="dart语言基础" data-url="http://soojade.github.io/2016/12/19/dart语言基础/"></div>
+    <script>
+        var duoshuoQuery = {short_name:"soojade"};
+        var loadComment = function(){
+            var d = document, s = d.createElement('script');
+            s.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+            s.async = true; s.charset = 'UTF-8';
+            (d.head || d.body).appendChild(s);
+        }
+
+        
+    </script>
+    
+    <script> loadComment(); </script>
+
+</div>
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2016/12/20/dart开发命令行工具/" title="上一篇: dart开发命令行工具">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2016/12/19/HTTP/" title="下一篇: HTTP">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/02/06/javascript忍者秘籍笔记————函数是根基/">javascript 忍者秘籍————函数是根基</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/05/javascript忍者秘籍笔记————利用测试和调试武装自己/">javascript 忍者秘籍笔记————利用测试和调试武装自己</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/05/javascript忍者秘籍笔记————进入忍者世界/">javascript 忍者秘籍笔记————进入忍者世界</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/01/angular文档——CLI-快速起步/">angular文档——CLI-快速起步</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/15/angular点-线-面：模板引用变量/">angular.点-线-面：模板引用变量</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/15/javascript坑与技巧：花式交换两个数值/">javascript坑与技巧：花式交换两个数值</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/04/javascript坑与技巧：异常/">javascript坑与技巧：异常</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/03/javascript坑与技巧：表单/">javascript坑与技巧：表单</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/03/javascript坑与技巧：DOM/">javascript坑与技巧：DOM</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/02/javascript坑与技巧：this/">javascript坑与技巧：this</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/02/javascript坑与技巧：变量作用域/">javascript坑与技巧：变量作用域</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/02/javascript坑与技巧：箭头函数/">javascript坑与技巧：箭头函数</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/02/javascript坑与技巧：闭包/">javascript坑与技巧：闭包</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/02/javascript坑与技巧：sort/">javascript坑与技巧：sort</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/01/javascript坑与技巧：filter/">javascript坑与技巧：filter</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/01/javascript坑与技巧：map/">javascript坑与技巧：map</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/react文档-表单/">react文档--表单</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/react文档-列表和键/">react文档--列表和键</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/react文档-条件渲染/">react文档--条件渲染</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/react文档-事件处理/">react文档--事件处理</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/react文档-state和生命周期/">react文档--state和生命周期</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/react文档-组件和props/">react文档--组件和props</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/react文档-渲染元素/">react文档--渲染元素</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/react文档-介绍JSX/">react文档--介绍JSX</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/react文档-HelloWorld/">react文档--HelloWorld</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/react文档-安装/">react文档--安装</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/20/dart开发命令行工具/">dart开发命令行工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/19/dart语言基础/">dart语言基础</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/19/HTTP/">HTTP</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/19/路由/">路由</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/18/服务/">服务</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/18/多组件/">多组件</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/18/主从结构/">主从结构</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/18/英雄编辑器/">英雄编辑器</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/18/简介/">简介</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/16/模板语法/">模板语法</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/14/依赖注入/">依赖注入</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/13/表单/">表单</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/13/用户输入/">用户输入</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/11/显示数据/">显示数据</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/10/架构/">架构</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/10/学习angular/">学习angular</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/10/搭建开发环境/">搭建开发环境</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/10/概览/">概览</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/10/快速开始/">快速开始</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+  <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i>
+                2016-2017 soojade
+            </div>
+            <div class="footer-right">
+                 Made by soojade <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                Total <span id="busuanzi_value_site_pv"></span> views.
+                欢迎第<span id="busuanzi_value_site_uv"></span>个小伙伴
+                <span id="busuanzi_value_page_pv"></span> Hits
+            </div>
+        
+    </div>
+</footer>
+
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 15;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+    <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+             tags: ".article-tag a", 
+            
+             articleNav: "#article-nav a, #post-nav-button a", 
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>

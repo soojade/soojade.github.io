@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="soojade" />
+
+
+
+<meta name="description" content="依赖注入依赖注入是重要的程序设计模式。Angular 有自己的依赖注入框架，离开了它，几乎没法构建 Angular 应用。它使用得非常广泛，以至于几乎每个人都会把它简称为 DI。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="依赖注入">
+<meta property="og:url" content="http://soojade.github.io/2016/12/14/依赖注入/index.html">
+<meta property="og:site_name" content="soojade个人空间">
+<meta property="og:description" content="依赖注入依赖注入是重要的程序设计模式。Angular 有自己的依赖注入框架，离开了它，几乎没法构建 Angular 应用。它使用得非常广泛，以至于几乎每个人都会把它简称为 DI。">
+<meta property="og:updated_time" content="2016-12-19T15:49:15.204Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="依赖注入">
+<meta name="twitter:description" content="依赖注入依赖注入是重要的程序设计模式。Angular 有自己的依赖注入框架，离开了它，几乎没法构建 Angular 应用。它使用得非常广泛，以至于几乎每个人都会把它简称为 DI。">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="soojade个人空间" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="img/favicon.ico">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/green/pace-theme-flash.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>依赖注入 | soojade个人空间</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: true
+    }
+</script>
+
+
+    <script>
+        yiliaConfig.jquery_ui = [true, "//cdn.bootcss.com/jqueryui/1.10.4/jquery-ui.min.js", "//cdn.bootcss.com/jqueryui/1.10.4/css/jquery-ui.min.css"];
+    </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/avatar.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">soojade</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">博客</p>
+        
+
+        
+            <form id="search-form">
+            <input type="text" id="local-search-input" name="q" placeholder="search..." class="search form-control" autocomplete="off" autocorrect="off" searchonload="false" />
+            <i class="fa fa-times" onclick="resetSearch()"></i>
+            </form>
+            <div id="local-search-result"></div>
+            <p class='no-result'>No results found <i class='fa fa-spinner fa-pulse'></i></p>
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=2035030023@qq.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" href="https://github.com/soojade" title="GitHub"></a>
+                            
+                                <a class="fa 知乎" href="https://www.zhihu.com/people/soojade/activities" title="知乎"></a>
+                            
+                                <a class="fa 简书" href="http://www.jianshu.com/users/b2e1cf392d42/latest_articles" title="简书"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/angular-angular-点-线-面/">angular angular.点-线-面</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/angular-angular文档/">angular angular文档</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dart-dart命令行/">dart  dart命令行</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dart-angularDart-web-angular指南/">dart angularDart web angular指南</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dart-angularDart-web-angular教程/">dart angularDart web angular教程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dart-dart基础/">dart dart基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-javascript坑与技巧/">javascript javascript坑与技巧</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-javascript坑与技巧-DOM/">javascript javascript坑与技巧 DOM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-javascript坑与技巧-filter/">javascript javascript坑与技巧 filter()</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-javascript坑与技巧-map/">javascript javascript坑与技巧 map()</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-javascript坑与技巧-sort/">javascript javascript坑与技巧 sort()</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-javascript坑与技巧-this/">javascript javascript坑与技巧 this</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-javascript坑与技巧-变量作用域/">javascript javascript坑与技巧 变量作用域</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-javascript坑与技巧-异常/">javascript javascript坑与技巧 异常</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-javascript坑与技巧-箭头函数/">javascript javascript坑与技巧 箭头函数</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-javascript坑与技巧-表单/">javascript javascript坑与技巧 表单</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-javascript坑与技巧-闭包/">javascript javascript坑与技巧 闭包</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript忍者秘籍笔记/">javascript忍者秘籍笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/react文档-翻译/">react文档 翻译</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">专注于Web与游戏</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">soojade</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/avatar.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">soojade</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">博客</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=2035030023@qq.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/soojade" title="GitHub"></a>
+                            
+                                <a class="fa 知乎" target="_blank" href="https://www.zhihu.com/people/soojade/activities" title="知乎"></a>
+                            
+                                <a class="fa 简书" target="_blank" href="http://www.jianshu.com/users/b2e1cf392d42/latest_articles" title="简书"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-依赖注入" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/12/14/依赖注入/" class="article-date">
+      <time datetime="2016-12-14T12:25:14.000Z" itemprop="datePublished">2016-12-14</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      依赖注入
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/dart/">dart</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dart-angularDart-web-angular指南/">dart angularDart web angular指南</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h2 id="依赖注入"><a href="#依赖注入" class="headerlink" title="依赖注入"></a>依赖注入</h2><p>依赖注入是重要的程序设计模式。Angular 有自己的依赖注入框架，离开了它，几乎没法构建 Angular 应用。它使用得非常广泛，以至于几乎每个人都会把它简称为 DI。<br><a id="more"></a></p>
+<p>本章将学习什么是 DI，以及为什么需要它。然后，将学习在 Angular 应用中该如何使用它。</p>
+<ul>
+<li><a href="#why">为什么需要依赖注入？</a></li>
+<li><a href="#di">Angular 依赖注入</a></li>
+<li><a href="#provider">注入器提供者</a></li>
+<li><a href="#token">依赖注入令牌</a></li>
+<li><a href="#summary">总结</a></li>
+</ul>
+<p>运行<a href="http://angular-examples.github.io/dependency-injection" target="_blank" rel="external">在线例子</a>.</p>
+<h3 id="why">为什么需要依赖注入？</h3>
+
+<p>让我们从下列代码开始：</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Car</span> </span>&#123;</div><div class="line">  Engine engine;</div><div class="line">  Tires tires;</div><div class="line">  <span class="keyword">var</span> description = <span class="string">'No DI'</span>;</div><div class="line"></div><div class="line">  Car() &#123;</div><div class="line">    engine = <span class="keyword">new</span> Engine();</div><div class="line">    tires = <span class="keyword">new</span> Tires();</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="comment">// Method using the engine and tires</span></div><div class="line">  <span class="built_in">String</span> drive() =&gt; <span class="string">'$description car with '</span></div><div class="line">    <span class="string">'<span class="subst">$&#123;engine.cylinders&#125;</span> cylinders and '</span></div><div class="line">    <span class="string">'<span class="subst">$&#123;tires.make&#125;</span> tires.'</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>我们的<code>Car</code>类会在它的构造函数中创建所需的每样东西。问题何在？问题在于，这个<code>Car</code>类过于脆弱、缺乏弹性并且难以测试。</p>
+<p><code>Car</code>类需要一个引擎 (engine) 和一些轮胎 (tire)，它没有去请求现成的实例，而是在构造函数中用具体的Engine和Tires类实例化出自己的副本。</p>
+<p>如果<code>Engine</code>类升级了，它的构造函数要求传入一个参数，这该怎么办？这个<code>Car</code>类就被破坏了，在把创建引擎的代码重写为<code>engine = new Engine(theNewParameter)</code>之前，它都是坏的。当第一次写<code>Car</code>类时，我们不关心<code>Engine</code>构造函数的参数，现在也不想关心。但是，当<code>Engine</code>类的定义发生变化时，就不得不在乎了，<code>Car</code>类也不得不跟着改变。这就会让<code>Car</code>类过于脆弱。</p>
+<p>如果想在<code>Car</code>上使用不同品牌的轮胎会怎样？太糟了。我们被锁定在<code>Tires</code>类创建时使用的那个品牌上。这让<code>Car</code>类缺乏弹性。</p>
+<p>现在，每辆车都有它自己的引擎。它不能和其它车辆共享引擎。虽然这对于汽车来说还算可以理解，但是设想一下那些应该被共享的依赖，比如用来联系厂家服务中心的车载无线电。我们的<code>car</code>缺乏必要的弹性，无法共享当初给其它消费者创建的车载无线电。</p>
+<p>当给<code>Car</code>类写测试的时候，我们被它那些隐藏的依赖所摆布。能在测试环境中成功创建新的<code>Engine</code>吗？<code>Engine</code>自己又依赖什么？那些依赖本身又依赖什么？<code>Engine</code>的新实例会发起到服务器的异步调用吗？我们当然不想在测试期间这么一层层追下去。</p>
+<p>如果<code>Car</code>应该在轮胎气压低的时候闪动警示灯该怎么办？如果没法在测试期间换上一个低气压的轮胎，那该如何确认它能正确的闪警示灯？</p>
+<p>我们没法控制这辆车背后隐藏的依赖。当不能控制依赖时，类就会变得难以测试。</p>
+<p>该如何让<code>Car</code>更强壮、有弹性以及可测试？</p>
+<p>答案超级简单。把<code>Car</code>的构造函数改造成使用 DI 的版本：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">final</span> Engine engine;</div><div class="line"><span class="keyword">final</span> Tires tires;</div><div class="line">String description = <span class="string">'DI'</span>;</div><div class="line"></div><div class="line">Car(<span class="keyword">this</span>.engine, <span class="keyword">this</span>.tires);</div></pre></td></tr></table></figure>
+<p>发生了什么？我们把依赖的定义移到了构造函数中。<code>Car</code>类不再创建引擎或者轮胎。它仅仅“消费”它们。</p>
+<blockquote>
+<p>再次借助 Dart 的构造器语法来同时定义参数和初始化属性。</p>
+</blockquote>
+<p>现在，通过往构造函数中传入引擎和轮胎来创建一辆车。</p>
+<figure class="highlight haxe"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Simple car with 4 cylinders and Flintstone tires.</span></div><div class="line"><span class="keyword">new</span> <span class="type">Car</span>(<span class="keyword">new</span> <span class="type">Engine</span>(), <span class="keyword">new</span> <span class="type">Tires</span>())</div></pre></td></tr></table></figure>
+<p>酷！引擎和轮胎这两个依赖的定义与<code>Car</code>类本身解耦了。只要喜欢，可以传入任何类型的引擎或轮胎，只要它们能满足引擎或轮胎的通用 API 需求。</p>
+<p>如果有人扩展了<code>Engine</code>类，那就不再是<code>Car</code>类的烦恼了。</p>
+<blockquote>
+<p>Car的消费者也有这个问题。消费者必须更新创建这辆车的代码，就像这样：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&gt; <span class="class"><span class="keyword">class</span> <span class="title">Engine2</span> <span class="keyword">extends</span> <span class="title">Engine</span> </span>&#123;</div><div class="line">&gt;   <span class="type">Engine2</span>(cylinders) : <span class="keyword">super</span>.withCylinders(cylinders);</div><div class="line">&gt; &#125;</div><div class="line">&gt;</div><div class="line">&gt; <span class="type">Car</span> superCar() =&gt;</div><div class="line">&gt;   <span class="comment">// Super car with 12 cylinders and Flintstone tires.</span></div><div class="line">&gt;   <span class="keyword">new</span> <span class="type">Car</span>(<span class="keyword">new</span> <span class="type">Engine2</span>(<span class="number">12</span>), <span class="keyword">new</span> <span class="type">Tires</span>())</div><div class="line">&gt;   ..description = <span class="symbol">'Supe</span>r';</div><div class="line">&gt;</div></pre></td></tr></table></figure>
+</blockquote>
+<p>&gt;</p>
+<blockquote>
+<p>这里的要点是：<code>Car</code>本身不必变化。下面就来解决消费者的问题。</p>
+</blockquote>
+<p><code>Car</code>类非常容易测试，因为现在我们对它的依赖有了完全的控制权。 在每个测试期间，我们可以往构造函数中传入模拟对象，做想让它们做的事：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MockEngine</span> <span class="keyword">extends</span> <span class="title">Engine</span> </span>&#123;</div><div class="line">  <span class="type">MockEngine</span>() : <span class="keyword">super</span>.withCylinders(<span class="number">8</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MockTires</span> <span class="keyword">extends</span> <span class="title">Tires</span> </span>&#123;</div><div class="line">  <span class="type">MockTires</span>() &#123; make = <span class="symbol">'YokoGoodSton</span>e'; &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="type">Car</span> testCar() =&gt;</div><div class="line">  <span class="comment">// Test car with 8 cylinders and YokoGoodStone tires.</span></div><div class="line">  <span class="keyword">new</span> <span class="type">Car</span>(<span class="keyword">new</span> <span class="type">MockEngine</span>(), <span class="keyword">new</span> <span class="type">MockTires</span>())</div><div class="line">  ..description = <span class="symbol">'Tes</span>t';</div></pre></td></tr></table></figure>
+<h5 id="刚刚学习了什么是依赖注入"><a href="#刚刚学习了什么是依赖注入" class="headerlink" title="刚刚学习了什么是依赖注入"></a>刚刚学习了什么是依赖注入</h5><p>它是一种编程模式，可以让类从外部源中获得它的依赖，而不必亲自创建它们。</p>
+<p>酷！但是，可怜的消费者怎么办？那些希望得到一个<code>Car</code>的人们现在必须创建所有这三部分了：<code>Car</code>、<code>Engine</code>和<code>Tires</code>。<code>Car</code>类把它的快乐建立在了消费者的痛苦之上。需要某种机制为我们把这三个部分装配好。</p>
+<p>可以写一个巨型类来做这件事：</p>
+<figure class="highlight pony"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">import <span class="string">'car.dart'</span>;</div><div class="line"></div><div class="line"><span class="comment">// BAD pattern!</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">CarFactory</span> &#123;</span></div><div class="line">  <span class="type">Car</span> createCar() =&gt;</div><div class="line">      <span class="function"><span class="keyword">new</span> <span class="title">Car</span>(createEngine(), <span class="title">createTires</span>())</span></div><div class="line">        ..<span class="title">description</span> = '<span class="title">Factory</span>';</div><div class="line"></div><div class="line">  <span class="title">Engine</span> <span class="title">createEngine</span>() =&gt; <span class="function"><span class="keyword">new</span> <span class="title">Engine</span>();</span></div><div class="line">  <span class="title">Tires</span> <span class="title">createTires</span>() =&gt; <span class="function"><span class="keyword">new</span> <span class="title">Tires</span>();</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>现在只需要三个创建方法，这还不算太坏。但是当应用规模变大之后，维护它将变得惊险重重。这个工厂类将变成由相互依赖的工厂方法构成的巨型蜘蛛网。</p>
+<p>如果能简单的列出想建造的东西，而不用定义该把哪些依赖注入到哪些对象中，那该多好！</p>
+<p>到了依赖注入框架一展身手的时候了！想象框架中有一个叫做<em>注入器(injector)</em>的东西。用这个注入器注册一些类，它会弄明白如何创建它们。</p>
+<p>当需要一个<code>Car</code>时，就简单的找注入器取车就可以了。</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> car = injector.<span class="keyword">get</span>(Car);</div></pre></td></tr></table></figure>
+<p>皆大欢喜。<code>Car</code>不需要知道如何创建<code>Engine</code>和<code>Tires</code>。消费者不需要知道如何创建<code>Car</code>。开发人员不需要维护巨大的工厂类。<code>Car</code>和消费者只要简单地请求想要什么，注入器就会交付它们。</p>
+<p>这就是<strong>依赖注入框架</strong>存在的原因。</p>
+<p>现在，我们知道了什么是依赖注入，以及它的优点。再来看看它在 Angular 中是怎么实现的。</p>
+<h3 id="di">Angular 依赖注入</h3>
+
+<p>Angular 附带了自己的依赖注入框架。此框架也能被当做独立模块用于其它应用和框架中。</p>
+<p>听起来很好。当在 Angular 中构建组件的时候，它到底能为我们做了什么呢？来一点一点搞清楚吧。</p>
+<p>从<em>英雄之旅</em>中构建的<code>HeroesComponent</code>的简化版本开始。</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">import <span class="string">'package:angular2/core.dart'</span>;</div><div class="line">import <span class="string">'hero_list_component.dart'</span>;</div><div class="line">@Component(</div><div class="line">    selector: <span class="string">'my-heroes'</span>,</div><div class="line">    template: <span class="string">'''</span></div><div class="line">      &lt;h2&gt;Heroes&lt;/h2&gt;</div><div class="line">      &lt;hero-list&gt;&lt;/hero-list&gt;''',</div><div class="line">    directives: const [HeroListComponent])</div><div class="line">class HeroesComponent &#123;&#125;</div></pre></td></tr></table></figure>
+<p><code>HeroesComponent</code>是英雄特性区域的根组件。它管理区域内所有子组件。简化后的版本只有一个子组件<code>HeroListComponent</code>，用来显示英雄列表。如下所示：</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">import <span class="string">'package:angular2/core.dart'</span>;</div><div class="line">import <span class="string">'hero.dart'</span>;</div><div class="line">import <span class="string">'mock_heroes.dart'</span>;</div><div class="line">@Component(</div><div class="line">    selector: <span class="string">'hero-list'</span>,</div><div class="line">    template: <span class="string">'''</span></div><div class="line">      &lt;div *ngFor="let hero of heroes"&gt;</div><div class="line">        &#123;&#123;hero.id&#125;&#125; - &#123;&#123;hero.name&#125;&#125;</div><div class="line">      &lt;/div&gt;''')</div><div class="line">class HeroListComponent &#123;</div><div class="line">  final List&lt;Hero&gt; heroes = HEROES;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>现在<code>HeroListComponent</code>从HEROES获得英雄数据，是在另一个文件中定义的内存数据集。它在开发的早期阶段可能还够用，但离完美就差得远了。一旦开始测试此组件，或者想从远端服务器获得英雄数据，就不得不修改heroes的实现，还要修改每个用到了HEROES模拟数据的地方。</p>
+<p>可以用一个服务把获取英雄数据的代码封装起来。</p>
+<blockquote>
+<p>因为服务是一个<em>分离关注点</em>， 建议你把服务代码放到它自己的文件里。</p>
+</blockquote>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> <span class="string">'package:angular2/core.dart'</span>;</div><div class="line"></div><div class="line"><span class="keyword">import</span> <span class="string">'hero.dart'</span>;</div><div class="line"><span class="keyword">import</span> <span class="string">'mock_heroes.dart'</span>;</div><div class="line"></div><div class="line"><span class="meta">@Injectable</span>()</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">HeroService</span> </span>&#123;</div><div class="line">  <span class="built_in">List</span>&lt;Hero&gt; getHeroes() =&gt; HEROES;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><code>HeroService</code>暴露了<code>getHeroes</code>方法，返回跟以前一样的模拟数据，但它的消费者不需要知道这一点。</p>
+<blockquote>
+<p>注意服务类上面这个@Injectable()注解。很快会讨论它的用途。</p>
+<p>我们甚至没有假装这是一个真实的服务。如果真的从远端服务器获取数据，这个 API 必须是异步的，返回 <em>Future</em>。需要重新处理组件消费该服务的方式。通常这个很重要，但是目前的故事不需要。</p>
+</blockquote>
+<p>服务只是 Angular 中的一个类。在 Angular 注入器注册它之前，没有任何特别之处。</p>
+<h4 id="配置注入器"><a href="#配置注入器" class="headerlink" title="配置注入器"></a>配置注入器</h4><p>不需要创建 Angular 注入器。Angular 在启动过程中自动为我们创建一个应用级注入器。</p>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">bootstrap(<span class="name">AppComponent</span>)<span class="comment">;</span></div></pre></td></tr></table></figure>
+<p>我们必须通过注册<strong>提供者</strong>(provider)来配置注入器，这些提供者为应用创建所需服务。在本章的稍后部分会解释什么是提供者。</p>
+<p>在此之前，让我们看一个在引导期间注册提供者的例子：</p>
+<figure class="highlight gcode"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">bootstrap<span class="comment">(AppComponent,</span></div><div class="line">  [HeroService]); <span class="comment">// DISCOURAGED (but works)</span></div></pre></td></tr></table></figure>
+<p>注入器现在知道了我们的<code>HeroService</code>服务。一个<code>HeroService</code>实例会被注入到我们整个应用。</p>
+<p>当然我们不禁好奇，注释告诉我们不要这样做。它会工作，但不是最佳实践。<code>bootstrap</code>中提供的选项是给配置和最顶级的 Angular自身预注册的服务准备的，比如它的路由支持。</p>
+<p>首选的方法是在应用的组件注册应用提供者。因为<code>HeroService</code>在<em>英雄</em>特性区域可用，其它地方不可用，理想的地方是在顶级的<code>HeroesComponent</code>组件内注册。</p>
+<h4 id="在组件中注册提供者"><a href="#在组件中注册提供者" class="headerlink" title="在组件中注册提供者"></a>在组件中注册提供者</h4><p>下面是更新的<code>HerosComponent</code>，它注册了<code>HeroService</code>。</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">import <span class="string">'package:angular2/core.dart'</span>;</div><div class="line"></div><div class="line">import <span class="string">'hero_list_component.dart'</span>;</div><div class="line">import <span class="string">'hero_service.dart'</span>;</div><div class="line"></div><div class="line">@Component(</div><div class="line">    selector: <span class="string">'my-heroes'</span>,</div><div class="line">    template: <span class="string">'''</span></div><div class="line">      &lt;h2&gt;Heroes&lt;/h2&gt;</div><div class="line">      &lt;hero-list&gt;&lt;/hero-list&gt;''',</div><div class="line">    providers: const [HeroService],</div><div class="line">    directives: const [HeroListComponent])</div><div class="line">class HeroesComponent &#123;&#125;</div></pre></td></tr></table></figure>
+<p>看<code>@Component</code>注解的<code>providers</code>部分。现在一个<code>HeroService</code>实例可用来注入<code>HeroesComponent</code>组件及其所有的子组件。</p>
+<p><code>HeroesComponent</code>本身不需要<code>HeroService</code>。但它的子组件<code>HeroListComponent</code>需要，所以我们进行下一步。</p>
+<h4 id="为注入准备HeroListComponent"><a href="#为注入准备HeroListComponent" class="headerlink" title="为注入准备HeroListComponent"></a>为注入准备HeroListComponent</h4><p><code>HeroListComponent</code>应该从注入的<code>HeroService</code>获取英雄数据。 遵照依赖注入模式的要求，组件必须在它的构造函数中请求这些服务，就像以前解释过的那样。 只是个小改动：</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">import <span class="string">'package:angular2/core.dart'</span>;</div><div class="line">import <span class="string">'hero.dart'</span>;</div><div class="line">import <span class="string">'hero_service.dart'</span>;</div><div class="line">@Component(</div><div class="line">    selector: <span class="string">'hero-list'</span>,</div><div class="line">    template: <span class="string">'''</span></div><div class="line">      &lt;div *ngFor="let hero of heroes"&gt;</div><div class="line">        &#123;&#123;hero.id&#125;&#125; - &#123;&#123;hero.name&#125;&#125;</div><div class="line">      &lt;/div&gt;''')</div><div class="line">class HeroListComponent &#123;</div><div class="line">  final List&lt;Hero&gt; heroes;</div><div class="line">  HeroListComponent(HeroService heroService)</div><div class="line">      : heroes = heroService.getHeroes();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<h5 id="来看看构造函数"><a href="#来看看构造函数" class="headerlink" title="来看看构造函数"></a>来看看构造函数</h5><p>往构造函数中添加参数并不是这里所发生的一切。</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="quote">&gt;  HeroListComponent(HeroService heroService)</span></div><div class="line"><span class="quote">&gt;       : heroes = heroService.getHeroes();</span></div><div class="line">&gt;</div></pre></td></tr></table></figure>
+<p>注意，构造函数参数的类型是<code>HeroService</code>，并且<code>HeroListComponent</code>类有一个<code>@Component</code>注解（往上翻可以确认）。另外，记得父级组件 <code>(HeroesComponent)</code>有<code>HeroService</code>的<code>providers</code>信息。</p>
+<p>构造函数参数类型、<code>@Component</code>注解和父级的<code>providers</code>信息合起来告诉 Angular 的注入器，任何新建<code>HeroListComponent</code>的时候，注入一个<code>HeroService</code>的实例。</p>
+</blockquote>
+<h4 id="显式注入器的创建"><a href="#显式注入器的创建" class="headerlink" title="显式注入器的创建"></a>显式注入器的创建</h4><p>当我们在前面介绍注入器时，展示了如何使用它创建一个新<code>Car</code>。这里，也展示一下如何明确的创建这样的注入器：</p>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">injector</span> = ReflectiveInjector.resolveAndCreate([Car, Engine, Tires]);</div><div class="line"><span class="attribute">var car</span> = injector.get(Car);</div></pre></td></tr></table></figure>
+<p>无论在《英雄之旅》还是其它范例中，都没有出现这样的代码。在必要时，可以写使用显式注入器的代码，但却很少这样做。当 Angular 创建组件时——无论通过像<code>&lt;hero-list&gt;&lt;/hero-list&gt;</code>这样的 HTML 标签还是通过路由导航到组件——它都会自己管理好注入器的创建和调用。只要让 Angular 做好它自己的工作，我们就能安心享受自动依赖注入带来的好处。</p>
+<h4 id="单例服务"><a href="#单例服务" class="headerlink" title="单例服务"></a>单例服务</h4><p>在一个注入器的范围内，依赖都是单例的。在这个例子中，<code>HeroesComponent</code>和它的子组件<code>HeroListComponent</code>共享同一个<code>HeroService</code>实例。</p>
+<p>然而，Angular DI 是一个分层的依赖注入系统，这意味着嵌套的注入器可以创建它们自己的服务实例。要了解更多知识，参见<em>多级依赖注入器</em>一章。</p>
+<h4 id="测试组件"><a href="#测试组件" class="headerlink" title="测试组件"></a>测试组件</h4><p>前面强调过，设计一个适合依赖注入的类，可以让这个类更容易测试。要有效的测试应用中的一部分，只需要在构造函数的参数中列出依赖。</p>
+<p>例如，新建的<code>HeroListComponent</code>实例使用一个模拟服务，以便可以在测试中操纵它：</p>
+<figure class="highlight haxe"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> expectedHeroes = [<span class="keyword">new</span> <span class="type">Hero</span>(<span class="number">0</span>, <span class="string">'A'</span>), <span class="keyword">new</span> <span class="type">Hero</span>(<span class="number">1</span>, <span class="string">'B'</span>)];</div><div class="line"><span class="keyword">var</span> mockService = <span class="keyword">new</span> <span class="type">MockHeroService</span>(expectedHeroes);</div><div class="line">it(<span class="string">'should have heroes when HeroListComponent created'</span>, () &#123;</div><div class="line">  <span class="keyword">var</span> hlc = <span class="keyword">new</span> <span class="type">HeroListComponent</span>(mockService);</div><div class="line">  expect(hlc.heroes.length).toEqual(expectedHeroes.length);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h4 id="当服务需要别的服务时"><a href="#当服务需要别的服务时" class="headerlink" title="当服务需要别的服务时"></a>当服务需要别的服务时</h4><p>这个<code>HeroService</code>非常简单。它本身不需要任何依赖。</p>
+<p>如果它也有依赖，该怎么办呢？例如，它需要通过日志服务来汇报自己的活动。我们同样用构造函数注入模式，来添加一个带有<code>Logger</code>参数的构造函数。</p>
+<p>下面是在原来的基础上所做的修改：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> <span class="string">'package:angular2/core.dart'</span>;</div><div class="line"><span class="keyword">import</span> <span class="string">'../logger_service.dart'</span>;</div><div class="line"><span class="keyword">import</span> <span class="string">'hero.dart'</span>;</div><div class="line"><span class="keyword">import</span> <span class="string">'mock_heroes.dart'</span>;</div><div class="line"><span class="meta">@Injectable()</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">HeroService</span> </span>&#123;</div><div class="line">  <span class="keyword">final</span> Logger _logger;</div><div class="line">  HeroService(<span class="keyword">this</span>._logger);</div><div class="line">  List&lt;Hero&gt; getHeroes() &#123;</div><div class="line">    _logger.log(<span class="string">'Getting heroes ...'</span>);</div><div class="line">    <span class="keyword">return</span> HEROES;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>现在，这个构造函数要求注入一个<code>Logger</code>类的实例，并把它存到名为<code>_logger</code>的私有属性中。当别人请求英雄数据时，在<code>getHeroes</code>方法中调用这个属性的方法。</p>
+<h4 id="为什么要用-Injectable"><a href="#为什么要用-Injectable" class="headerlink" title="为什么要用 @Injectable()?"></a>为什么要用 @Injectable()?</h4><p><code>@Injectable()</code>标识一个类可以被注入器实例化。通常，在试图实例化没有被标识为<code>@Injectable()</code>的类时，注入器会报错。</p>
+<p>注入器同时负责实例化像<code>HerosComponent</code>这样的组件。为什么不标记<code>HerosComponent</code>为<code>@Injectable()</code>呢？</p>
+<p>我们可以添加它。但是没有必要，因为<code>HerosComponent</code>已经有<code>@Component</code>注解了，<code>@Component</code>（和随后将会学到的<code>@Directive</code>和<code>@Pipe</code>一样）是 <code>Injectable</code> 的子类型。实际上，正是这些<code>Injectable</code>注解把一个类标识为注入器实例化的目标。</p>
+<blockquote>
+<p><strong>总是使用<code>@Injectable()</code>的形式，不能只用<code>@Injectable</code>。一个元数据注解必须是一个编译时常量的引用或一个常量构造函数的调用比如<code>jectable()</code></strong>。</p>
+<p>如果我们忘了括号，分析器会显示：<strong>“Annotation creation must have arguments”</strong>。如果我们在运行这个应用，它不会工作，并且会在控制台显示：<strong>“expression must be a compile-time constant”</strong>。</p>
+</blockquote>
+<h3 id="创建和注册日志服务"><a href="#创建和注册日志服务" class="headerlink" title="创建和注册日志服务"></a>创建和注册日志服务</h3><p>要把日志服务注入到HeroService中需要两步：</p>
+<ol>
+<li>创建日志服务。</li>
+<li>把它注册到应用中。</li>
+</ol>
+<p>这个日志服务很简单：</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> <span class="string">'package:angular2/core.dart'</span>;</div><div class="line"></div><div class="line"><span class="meta">@Injectable</span>()</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Logger</span> </span>&#123;</div><div class="line">  <span class="built_in">List</span>&lt;<span class="built_in">String</span>&gt; _logs = [];</div><div class="line">  <span class="built_in">List</span>&lt;<span class="built_in">String</span>&gt; <span class="keyword">get</span> logs =&gt; _logs;</div><div class="line"></div><div class="line">  <span class="keyword">void</span> log(<span class="built_in">String</span> message) &#123;</div><div class="line">    _logs.add(message);</div><div class="line">    <span class="built_in">print</span>(message);</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>一个真正的实现可能会使用<a href="https://pub.dartlang.org/packages/logging" target="_blank" rel="external">logging</a>包。</p>
+</blockquote>
+<p>应用的每个角落都可能需要日志服务，所以把它放到项目的<code>lib</code>目录，并在我们的应用组件的<code>providers</code>列表中注册它。</p>
+<figure class="highlight accesslog"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">providers: const <span class="string">[Logger]</span></div></pre></td></tr></table></figure>
+<p>如果忘了注册这个日志服务，Angular 会在首次查找这个日志服务时，抛出一个异常:</p>
+<figure class="highlight xl"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">EXCEPTION: N<span class="function"><span class="title">o</span> provider <span class="keyword">for</span> Logger! (HeroListComponent -&gt;</span> H<span class="function"><span class="title">eroService</span> -&gt;</span> Logger)</div></pre></td></tr></table></figure>
+<p>Angular 告诉我们，依赖注入器找不到日志服务的<em>提供者</em>。它需要提供者来创建一个<code>Logger</code>实例来注入到一个新的<code>HeroService</code>实例，而<code>HeroService</code>又需要创建并注入到<code>HeroListComponent</code>的新实例。</p>
+<p>这个“创建链”始于<code>Logger</code>的提供者。这个<em>提供者</em>就是下一节的主题。</p>
+<h3 id="provider">注入器提供者</h3>
+
+<p>提供者提供依赖值的一个具体的、运行时的版本。注入器依靠<strong>提供者</strong>创建服务的实例，注入器再将服务的实例注入组件或其它服务。</p>
+<p>我们必须为注入器注册一个服务的<em>提供者</em>，否则它不知道该如何创建该服务。</p>
+<p>我们在前面通过<code>AppModule</code>元数据中的<code>providers</code>列表注册过<code>Logger</code>服务，就像这样：</p>
+<figure class="highlight accesslog"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">providers: const <span class="string">[Logger]</span></div></pre></td></tr></table></figure>
+<p>有很多方式可以提供一些实现 <code>Logger</code>的东西。<code>Logger</code>类本身是一个显而易见而且自然而然的提供者。 但它不是唯一的选项。</p>
+<p>我们可以用其它提供者来配置注入器，只要它能交付一个<code>Logger</code>。我们可以提供一个替代类。我们可以给它一个提供者，让它调用可以创建日志服务的工厂函数。所有这些方法，只要用在正确的场合，都可能是一个好的选择。</p>
+<p>最重要的是，当注入器需要一个<code>Logger</code>时，它得先有一个提供者。</p>
+<h4 id="Provider类"><a href="#Provider类" class="headerlink" title="Provider类"></a>Provider类</h4><p>像下面一样写<code>providers</code>列表：</p>
+<figure class="highlight accesslog"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">providers: const <span class="string">[Logger]</span></div></pre></td></tr></table></figure>
+<p>这实际上是用于注册提供者的简写方式，完整的是创建一个<code>Provider</code>类的新实例：</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> [<span class="keyword">const</span> Provider(Logger, useClass: Logger)]</div></pre></td></tr></table></figure>
+<p>我们提供了两个参数（或更多）给<code>Provider</code>的构造函数。</p>
+<p>第一个是令牌 (token)，它作为键值 (key) 使用，用于定位依赖值和注册提供者。</p>
+<p>第二个是一个命名参数，比如<code>useClass</code>，我们可以把它看做是指导如何创建依赖值的配方。有很多方式创建依赖值……也有很多方式可以写配方。</p>
+<h4 id="备选的类提供者"><a href="#备选的类提供者" class="headerlink" title="备选的类提供者"></a>备选的类提供者</h4><p>某些时候，我们会请求一个不同的类来提供服务。下列代码告诉注入器，当有人请求<code>Logger</code>时，返回<code>BetterLogger</code>。</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> [<span class="keyword">const</span> Provider(Logger, useClass: BetterLogger)]</div></pre></td></tr></table></figure>
+<blockquote>
+<p><em>在 Dart中，元数据注解的值不惜是要给编译时常量</em>。因此，我们不能在一个注解中调用函数来获取值。相反，我么您使用常量字面量或常量构造函数。例如，一个Typescript程序会使用对象字面量<code>{provide:Logger,useClass:BetterLogger}</code>。Dart 注解会使用常量值<code>const Provider(Logger,useClass:BetterLogger)</code>来代替。</p>
+</blockquote>
+<h4 id="带依赖的类提供者"><a href="#带依赖的类提供者" class="headerlink" title="带依赖的类提供者"></a>带依赖的类提供者</h4><p>假设<code>EvenBetterLogger</code>可以在日志消息中显示用户名。这个日志服务从注入的<code>UserService</code>中取得用户，<code>UserService</code>通常也会在应用级注入。</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Injectable</span>()</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">EvenBetterLogger</span> <span class="keyword">extends</span> <span class="title">Logger</span> </span>&#123;</div><div class="line">  <span class="keyword">final</span> <span class="type">UserService</span> _userService;</div><div class="line"></div><div class="line">  <span class="type">EvenBetterLogger</span>(<span class="keyword">this</span>._userService);</div><div class="line"></div><div class="line">  <span class="meta">@override</span> void log(<span class="type">String</span> message) &#123;</div><div class="line">    <span class="keyword">var</span> name = _userService.user.name;</div><div class="line">    <span class="keyword">super</span>.log(<span class="symbol">'Message</span> to $name: $message');</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>就像之前在<code>BetterLogger</code>中那样配置它。</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> [UserService, <span class="keyword">const</span> Provider(Logger, useClass: EvenBetterLogger)]</div></pre></td></tr></table></figure>
+<h4 id="别名类提供者"><a href="#别名类提供者" class="headerlink" title="别名类提供者"></a>别名类提供者</h4><p>假设某个旧组件依赖一个<code>OldLogger</code>类。<code>OldLogger</code>和<code>NewLogger</code>具有相同的接口，但是由于某些原因，我们不能升级这个旧组件并使用它。</p>
+<p>当旧组件想使用<code>OldLogger</code>记录消息时，我们希望改用<code>NewLogger</code>的单例对象来记录。</p>
+<p>不管组件请求的是新的还是旧的日志服务，依赖注入器注入的都应该是同一个单例对象。也就是说，<code>OldLogger</code>应该是<code>NewLogger</code>的别名。</p>
+<p>我们当然不会希望应用中有两个不同的<code>NewLogger</code>实例。不幸的是，如果尝试通过<code>useClass</code>来把<code>OldLogger</code>作为<code>NewLogger</code>的别名，就会导致这样的后果。</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> [NewLogger,</div><div class="line">  <span class="comment">// 不是别名，创建了两个 NewLogger 实例</span></div><div class="line">  <span class="keyword">const</span> Provider(OldLogger, useClass: NewLogger)]</div></pre></td></tr></table></figure>
+<p>解决方案：使用<code>useExisting</code>选项指定别名。</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> [NewLogger,</div><div class="line">  <span class="comment">// 别名，使用 NewLogger 代替 OldLogger</span></div><div class="line">  <span class="keyword">const</span> Provider(OldLogger, useExisting: NewLogger)]</div></pre></td></tr></table></figure>
+<h4 id="值提供者"><a href="#值提供者" class="headerlink" title="值提供者"></a>值提供者</h4><p>有时，提供一个预先做好的对象会比请求注入器从类中创建它更容易。</p>
+<blockquote>
+<p>因为 Dart 注解必须是编译时常量，<code>useValue</code>经常使用字符串或列表字面量。然而，<code>useValue</code>适用于任何常量对象。</p>
+<p>创建一个类，可以提供常量对象，确保所有的变量是<code>final</code>，给它一个<code>const</code>构造函数。</p>
+<p>通过使用<code>const</code>而不是<code>new</code>创建类的常量实例。</p>
+</blockquote>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">SilentLogger</span> <span class="keyword">implements</span> <span class="title">Logger</span> </span>&#123;</div><div class="line">  <span class="meta">@override</span></div><div class="line">  <span class="keyword">final</span> <span class="built_in">List</span>&lt;<span class="built_in">String</span>&gt; logs = <span class="keyword">const</span> [<span class="string">'Silent logger says "Shhhhh!". Provided via "useValue"'</span>];</div><div class="line"></div><div class="line">  <span class="keyword">const</span> SilentLogger();</div><div class="line"></div><div class="line">  <span class="meta">@override</span></div><div class="line">  <span class="keyword">void</span> log(<span class="built_in">String</span> message) &#123; &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">const</span> silentLogger = <span class="keyword">const</span> SilentLogger();</div></pre></td></tr></table></figure>
+<p>于是可以通过<code>useValue</code>选项来注册提供者，它会让这个对象直接扮演 <code>logger</code> 的角色。</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> [<span class="keyword">const</span> Provider(Logger, useValue: silentLogger)]</div></pre></td></tr></table></figure>
+<p>查看更多<code>useValue</code>的例子，见<a href="#non">非类依赖</a>和<a href="#opt">OpaqueToken(不透明令牌)</a>章节。</p>
+<h4 id="工厂提供者"><a href="#工厂提供者" class="headerlink" title="工厂提供者"></a>工厂提供者</h4><p>有时，我们需要动态创建这个依赖值，因为它所需要的信息直到最后一刻才能确定。也许这个信息会在浏览器的会话中不停地变化。</p>
+<p>假设这个可注入的服务不能独立访问信息源。</p>
+<p>这种情况下，请呼叫<strong>工厂提供者</strong>。</p>
+<p>让我们通过添加新的业务需求来说明这一点：<code>HeroService</code>必须对普通用户隐藏掉<em>秘密</em>英雄。只有授权用户才能看到秘密英雄。</p>
+<p>就像<code>EvenBetterLogger</code>那样，<code>HeroService</code>需要了解此用户的身份。它需要知道，这个用户是否有权看到隐藏英雄。这个授权可能在单一的应用会话中被改变，例如，用不同的用户登录时。</p>
+<p>与<code>EvenBetterLogger</code>不同，不能把<code>UserService</code>注入到<code>HeroService</code>中。<code>HeroService</code>无权访问用户信息，来决定谁有授权谁没有授权。</p>
+<blockquote>
+<p>为什么？我们也不知道。这样的事经常发生。</p>
+</blockquote>
+<p>让<code>HeroService</code>的构造函数带上一个布尔型的标志，来控制秘密英雄的显示。</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">final</span> Logger _logger;</div><div class="line"><span class="keyword">final</span> <span class="built_in">bool</span> _isAuthorized;</div><div class="line"></div><div class="line">HeroService(<span class="keyword">this</span>._logger, <span class="keyword">this</span>._isAuthorized);</div><div class="line"></div><div class="line"><span class="built_in">List</span>&lt;Hero&gt; getHeroes() &#123;</div><div class="line">  <span class="keyword">var</span> auth = _isAuthorized ? <span class="string">'authorized'</span> : <span class="string">'unauthorized'</span>;</div><div class="line">  _logger.log(<span class="string">'Getting heroes for $auth user.'</span>);</div><div class="line">  <span class="keyword">return</span> HEROES</div><div class="line">      .where((hero) =&gt; _isAuthorized || !hero.isSecret)</div><div class="line">      .toList();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>我们可以注入<code>Logger</code>，但是不能注入布尔型的<code>isAuthorized</code>。我们不得不通过通过工厂提供者创建这个<code>HeroService</code>的新实例。</p>
+<p>工厂提供者需要一个工厂方法：</p>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">HeroService heroServiceFactory(<span class="name">Logger</span> logger, UserService userService) =&gt;</div><div class="line">    new HeroService(<span class="name">logger</span>, userService.user.isAuthorized)<span class="comment">;</span></div></pre></td></tr></table></figure>
+<p>虽然<code>HeroService</code>不能访问<code>UserService</code>，但是工厂方法可以。</p>
+<p>我们同时把<code>Logger</code>和<code>UserService</code>注入到工厂提供者中，并且让注入器把它们传给工厂方法：</p>
+<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> heroServiceProvider = <span class="function"><span class="keyword">const</span> <span class="title">Provider</span><span class="params">(HeroService,</span></span></div><div class="line">    useFactory: heroServiceFactory,</div><div class="line">    deps: <span class="keyword">const</span> [Logger, UserService]);</div></pre></td></tr></table></figure>
+<blockquote>
+<p><code>useFactory</code>字段告诉 Angular：这个提供者是一个工厂方法，它的实现是<code>heroServiceFactory</code>。</p>
+<p><code>deps</code>属性是<em>提供者令牌</em>列表。<code>Logger</code>和<code>UserService</code>类作为它们自身类提供者的令牌。注入器解析这些令牌，把相应的服务注入到工厂函数中相应的参数中去。</p>
+</blockquote>
+<p>注意，我们在一个常量中捕获了这个工厂提供者：<code>heroServiceProvider</code>。这个额外的步骤让工厂提供者可被复用。无论哪里需要，都可以使用这个变量注册<code>HeroService</code>。</p>
+<p>在这个例子中，我们只在<code>HeroesComponent</code>中需要它，这里，它代替了元数据<code>providers</code>列表中原来的<code>HeroService</code>注册。对比一下新的和旧的实现：</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">import <span class="string">'package:angular2/core.dart'</span>;</div><div class="line">import <span class="string">'hero_list_component.dart'</span>;</div><div class="line">import <span class="string">'hero_service_provider.dart'</span>;</div><div class="line">@Component(</div><div class="line">    selector: <span class="string">'my-heroes'</span>,</div><div class="line">    template: <span class="string">'''</span></div><div class="line">      &lt;h2&gt;Heroes&lt;/h2&gt;</div><div class="line">      &lt;hero-list&gt;&lt;/hero-list&gt;''',</div><div class="line">    providers: const [heroServiceProvider],</div><div class="line">    directives: const [HeroListComponent])</div><div class="line">class HeroesComponent &#123;&#125;</div></pre></td></tr></table></figure>
+<h3 id="token">依赖注入令牌</h3>
+
+<p>当我们向注入器注册提供者时，实际上是把这个提供者和一个 DI 令牌关联起来了。 注入器维护一个内部的令牌-提供者映射表，这个映射表会在请求依赖时被引用到。令牌就是这个映射表中的键值。</p>
+<p>在前面的所有例子中，依赖值都是一个类实例，并且类的类型作为它自己的查找键值。 在下面的代码中，<code>HeroService</code>类型作为令牌，直接从注入器中获取<code>HeroService</code>实例：</p>
+<figure class="highlight abnf"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">heroService</span> = _injector.get(HeroService)<span class="comment">;</span></div></pre></td></tr></table></figure>
+<p>编写需要基于类的依赖注入的构造函数对我们来说是很幸运的。只要定义一个<code>HeroService</code>类型的构造函数参数，Angular 就会知道把跟<code>HeroService</code>类令牌关联的服务注入进来：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="title">HeroListComponent</span><span class="params">(HeroService heroService)</span></span></div></pre></td></tr></table></figure>
+<p>这是一个特殊的规约，因为大多数依赖值都是以类的形式提供的。</p>
+<h4 id="non">非类依赖</h4>
+
+<p>如果依赖值不是一个类呢？有时候想要注入的东西是一个字符串，函数或者对象。</p>
+<p>应用程序经常为很多很小的元素定义配置对象（例如应用程序的标题或网络API终点的地址）。但是这些配置对象不总是类的实例，它们可能是<em>Map</em>字面量，如下面这个：</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> <span class="built_in">Map</span> heroDiConfig = <span class="keyword">const</span> &lt;<span class="built_in">String</span>,<span class="built_in">String</span>&gt;&#123;</div><div class="line">  <span class="string">'apiEndpoint'</span> : <span class="string">'api.heroes.com'</span>,</div><div class="line">  <span class="string">'title'</span> : <span class="string">'Dependency Injection'</span></div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>我们想让这个配置对象在注入时可用，而且知道可以使用值提供者来注册一个对象。</p>
+<p>但是，这种情况下用什么作令牌呢？虽然我们可以使用<em>Map</em>，然而却不能，因为<code>Map</code>太普通了。我们的应用可能依赖几个<em>maps</em>，每一个都有不同的目的。</p>
+<blockquote>
+<p>在Typescript中， 接口不能作为提供者令牌。Dart 没有这一限制；每一个类隐式的定义了接口，所以接口名就是类名。<code>Mpa</code>是可用的令牌，即使它是抽象类的名称；仅仅因为它太普通了，不适合做令牌。</p>
+</blockquote>
+<h4 id="opt">不透明令牌</h4>
+
+<p>一个可选的解决方案是定义和使用 OpaqueToken（不透明的令牌）。定义方式类似于这样：</p>
+<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> <span class="string">'package:angular2/core.dart'</span>;</div><div class="line"></div><div class="line"><span class="keyword">const</span> APP_CONFIG = <span class="function"><span class="keyword">const</span> <span class="title">OpaqueToken</span><span class="params">(<span class="string">'app.config'</span>)</span></span>;</div></pre></td></tr></table></figure>
+<p>使用这个<code>OpaqueToken</code>对象注册依赖的提供者：</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">providers: <span class="keyword">const</span> [</div><div class="line">  <span class="keyword">const</span> Provider(APP_CONFIG, useValue: heroDiConfig)]</div></pre></td></tr></table></figure>
+<p>现在，在<code>@Inject</code>注解的帮助下，这个配置对象可以注入到任何需要它的构造函数中：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">AppComponent</span>(@<span class="keyword">Inject</span>(<span class="keyword">APP_CONFIG</span>) Map config)</div><div class="line">    : title = config[<span class="string">'title'</span>];</div></pre></td></tr></table></figure>
+<blockquote>
+<p>虽然<code>Map</code>接口在依赖注入过程中没有任何作用，但它为该类中的配置对象提供了强类型信息。</p>
+</blockquote>
+<p>作为一个可选方案，使用一个配置<code>Map</code>，我们可以定义自定义配置类：</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">AppConfig</span> </span>&#123;</div><div class="line">  <span class="built_in">String</span> apiEndpoint;</div><div class="line">  <span class="built_in">String</span> title;</div><div class="line">&#125;</div><div class="line"></div><div class="line">AppConfig heroDiConfigFactory() =&gt; <span class="keyword">new</span> AppConfig()</div><div class="line">  ..apiEndpoint = <span class="string">'api.heroes.com'</span></div><div class="line">  ..title = <span class="string">'Dependency Injection'</span>;</div></pre></td></tr></table></figure>
+<p>定义配置类有几个好处。一个关键的好处是强静态检查：如果我们拼错了属性名或分配了一个错误类型的值，我们会提早被警告。Dart 的<em>级联符号</em>(..)提供了一个方便的方式来初始化一个配置对象。</p>
+<p>如果我们使用如果我们使用级联符号，配置对象不能被声明为<code>const</code>，并且我们不能使用值提供者。一个解决方案是使用工厂提供者。我们下次说明。我们也展示了在我们顶级的<code>AppComponent</code>组件中怎样提供和注入配置对象：</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// providers</span></div><div class="line">providers: <span class="keyword">const</span> [</div><div class="line">  Logger, UserService,</div><div class="line">  <span class="keyword">const</span> Provider(APP_CONFIG, useFactory: heroDiConfigFactory)]</div><div class="line"></div><div class="line"><span class="comment">// ctor</span></div><div class="line">AppComponent(@Inject(APP_CONFIG) AppConfig <span class="built_in">config</span>, <span class="keyword">this</span>._userService)</div><div class="line">    : title = <span class="built_in">config</span>.title;</div></pre></td></tr></table></figure>
+<h3 id="可选依赖"><a href="#可选依赖" class="headerlink" title="可选依赖"></a>可选依赖</h3><p>我们的<code>HeroService</code>需要一个<code>Logger</code>，但是如果想不提供 <code>Logger</code> 也能得到它，该怎么办呢？ 我们可以把构造函数的参数标记为<code>@Optional()</code>，告诉 Angular 该依赖是可选的。</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">HeroService</span>(<span class="variable">@Optional</span>() this._logger) &#123;</div><div class="line">  <span class="selector-tag">_logger</span>?<span class="selector-class">.log</span>(someMessage);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>当使用<code>@Optional()</code>时，我们的代码必须准备好一个空值。如果其它的代码没有注册一个 logger，注入器会设置该<code>logger</code>的值为null。</p>
+<h3 id="summary">总结</h3>
+
+<p>本章，我们学习了 Angular 依赖注入的基础知识。我们可以注册很多种类的提供者，知道如何通过添加构造函数的参数来请求一个注入对象（例如一个服务）。</p>
+<p>Angular 依赖注入比前面描述的更能干。学习更多高级特性，如对嵌套注入器的支持，见<a href="https://webdev.dartlang.org/angular/guide/hierarchical-dependency-injection" target="_blank" rel="external">多级依赖注入</a>一章。</p>
+<h3 id="附录：直接使用注入器"><a href="#附录：直接使用注入器" class="headerlink" title="附录：直接使用注入器"></a>附录：直接使用注入器</h3><p>这里的<code>InjectorComponent</code>直接使用了注入器，但我们很少直接使用它。</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Component</span>(</div><div class="line">    selector: <span class="string">'my-injectors'</span>,</div><div class="line">    template: <span class="string">'''</span></div><div class="line">      &lt;h2&gt;Other Injections&lt;/h2&gt;</div><div class="line">      &lt;div id="car"&gt;&#123;&#123;car.drive()&#125;&#125;&lt;/div&gt;</div><div class="line">      &lt;div id="hero"&gt;&#123;&#123;hero.name&#125;&#125;&lt;/div&gt;</div><div class="line">      &lt;div id="rodent"&gt;&#123;&#123;rodent&#125;&#125;&lt;/div&gt;''',</div><div class="line">    providers: <span class="keyword">const</span> [</div><div class="line">      Car, Engine, Tires, heroServiceProvider, Logger])</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">InjectorComponent</span> </span>&#123;</div><div class="line">  <span class="keyword">final</span> Injector _injector;</div><div class="line">  Car car;</div><div class="line">  HeroService heroService;</div><div class="line">  Hero hero;</div><div class="line"></div><div class="line">  InjectorComponent(<span class="keyword">this</span>._injector) &#123;</div><div class="line">    car = _injector.<span class="keyword">get</span>(Car);</div><div class="line">    heroService = _injector.<span class="keyword">get</span>(HeroService);</div><div class="line">    hero = heroService.getHeroes()[<span class="number">0</span>];</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="built_in">String</span> <span class="keyword">get</span> rodent =&gt;</div><div class="line">    _injector.<span class="keyword">get</span>(ROUS, <span class="string">"R.O.U.S.'s? I don't think they exist!"</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><code>Injector</code>本身是可注入的服务。</p>
+<p>在这个例子中，Angular 把组件自身的<code>Injector</code>注入到了组件的构造函数中。然后，组件向注入的注入器请求它所需的服务。</p>
+<p>注意，这些服务本身没有注入到组件，它们是通过调用<code>injector.get</code>获得的。</p>
+<p><code>get</code>方法如果不能解析所请求的服务，会抛出异常。调用<code>get</code>时，还可以使用第二个参数，一旦获取的服务(<code>ROUS</code>)没有在当前或任何祖先注入器中注册过，就把它作为返回值。</p>
+<blockquote>
+<p>刚描述的这项技术是服务定位器模式的一个范例。</p>
+<p>要避免使用此技术，除非确实需要它。它会鼓励鲁莽的方式，就像在这里看到的。它难以解释、理解和测试。仅通过阅读构造函数，没法知道这个类需要什么或者它将做什么。它可以从任何祖先组件中获得服务，而不仅仅是它自己。会迫使我们深入它的实现，才可能明白它都做了啥。</p>
+<p>框架开发人员必须采用通用的或者动态的方式获取服务时，可能采用这个方法。</p>
+<p>下一步</p>
+<p>模板语法</p>
+</blockquote>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2016/12/14/依赖注入/">依赖注入</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">soojade</a></p>
+        <p><span>发布时间:</span>2016-12-14, 20:25:14</p>
+        <p><span>最后更新:</span>2016-12-19, 23:49:15</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2016/12/14/依赖注入/" title="依赖注入">http://soojade.github.io/2016/12/14/依赖注入/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://soojade.github.io/2016/12/14/依赖注入/　　作者: soojade" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2016/12/16/模板语法/">
+                    模板语法
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2016/12/13/表单/">
+                    表单
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#依赖注入"><span class="toc-number">1.</span> <span class="toc-text">依赖注入</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#why"><span class="toc-number">1.1.</span> <span class="toc-text">为什么需要依赖注入？</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#刚刚学习了什么是依赖注入"><span class="toc-number">1.1.0.1.</span> <span class="toc-text">刚刚学习了什么是依赖注入</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#di"><span class="toc-number">1.2.</span> <span class="toc-text">Angular 依赖注入</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#配置注入器"><span class="toc-number">1.2.1.</span> <span class="toc-text">配置注入器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#在组件中注册提供者"><span class="toc-number">1.2.2.</span> <span class="toc-text">在组件中注册提供者</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#为注入准备HeroListComponent"><span class="toc-number">1.2.3.</span> <span class="toc-text">为注入准备HeroListComponent</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#来看看构造函数"><span class="toc-number">1.2.3.1.</span> <span class="toc-text">来看看构造函数</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#显式注入器的创建"><span class="toc-number">1.2.4.</span> <span class="toc-text">显式注入器的创建</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#单例服务"><span class="toc-number">1.2.5.</span> <span class="toc-text">单例服务</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#测试组件"><span class="toc-number">1.2.6.</span> <span class="toc-text">测试组件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#当服务需要别的服务时"><span class="toc-number">1.2.7.</span> <span class="toc-text">当服务需要别的服务时</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#为什么要用-Injectable"><span class="toc-number">1.2.8.</span> <span class="toc-text">为什么要用 @Injectable()?</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#创建和注册日志服务"><span class="toc-number">1.3.</span> <span class="toc-text">创建和注册日志服务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#provider"><span class="toc-number">1.4.</span> <span class="toc-text">注入器提供者</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Provider类"><span class="toc-number">1.4.1.</span> <span class="toc-text">Provider类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#备选的类提供者"><span class="toc-number">1.4.2.</span> <span class="toc-text">备选的类提供者</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#带依赖的类提供者"><span class="toc-number">1.4.3.</span> <span class="toc-text">带依赖的类提供者</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#别名类提供者"><span class="toc-number">1.4.4.</span> <span class="toc-text">别名类提供者</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#值提供者"><span class="toc-number">1.4.5.</span> <span class="toc-text">值提供者</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#工厂提供者"><span class="toc-number">1.4.6.</span> <span class="toc-text">工厂提供者</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#token"><span class="toc-number">1.5.</span> <span class="toc-text">依赖注入令牌</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#non"><span class="toc-number">1.5.1.</span> <span class="toc-text">非类依赖</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#opt"><span class="toc-number">1.5.2.</span> <span class="toc-text">不透明令牌</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#可选依赖"><span class="toc-number">1.6.</span> <span class="toc-text">可选依赖</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#summary"><span class="toc-number">1.7.</span> <span class="toc-text">总结</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#附录：直接使用注入器"><span class="toc-number">1.8.</span> <span class="toc-text">附录：直接使用注入器</span></a></li></ol></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-4 i,
+        .toc-level-4 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"依赖注入　| soojade个人空间　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+      <div class="duoshuo" id="comments">
+    <div id="comment-box" ></div>
+    <div class="ds-thread" id="ds-thread" data-thread-key="2016/12/14/依赖注入/" data-title="依赖注入" data-url="http://soojade.github.io/2016/12/14/依赖注入/"></div>
+    <script>
+        var duoshuoQuery = {short_name:"soojade"};
+        var loadComment = function(){
+            var d = document, s = d.createElement('script');
+            s.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+            s.async = true; s.charset = 'UTF-8';
+            (d.head || d.body).appendChild(s);
+        }
+
+        
+    </script>
+    
+    <script> loadComment(); </script>
+
+</div>
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2016/12/16/模板语法/" title="上一篇: 模板语法">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2016/12/13/表单/" title="下一篇: 表单">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/02/06/javascript忍者秘籍笔记————函数是根基/">javascript 忍者秘籍————函数是根基</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/05/javascript忍者秘籍笔记————利用测试和调试武装自己/">javascript 忍者秘籍笔记————利用测试和调试武装自己</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/05/javascript忍者秘籍笔记————进入忍者世界/">javascript 忍者秘籍笔记————进入忍者世界</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/01/angular文档——CLI-快速起步/">angular文档——CLI-快速起步</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/15/angular点-线-面：模板引用变量/">angular.点-线-面：模板引用变量</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/15/javascript坑与技巧：花式交换两个数值/">javascript坑与技巧：花式交换两个数值</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/04/javascript坑与技巧：异常/">javascript坑与技巧：异常</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/03/javascript坑与技巧：表单/">javascript坑与技巧：表单</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/03/javascript坑与技巧：DOM/">javascript坑与技巧：DOM</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/02/javascript坑与技巧：this/">javascript坑与技巧：this</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/02/javascript坑与技巧：变量作用域/">javascript坑与技巧：变量作用域</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/02/javascript坑与技巧：箭头函数/">javascript坑与技巧：箭头函数</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/02/javascript坑与技巧：闭包/">javascript坑与技巧：闭包</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/02/javascript坑与技巧：sort/">javascript坑与技巧：sort</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/01/javascript坑与技巧：filter/">javascript坑与技巧：filter</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/01/javascript坑与技巧：map/">javascript坑与技巧：map</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/react文档-表单/">react文档--表单</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/react文档-列表和键/">react文档--列表和键</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/react文档-条件渲染/">react文档--条件渲染</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/react文档-事件处理/">react文档--事件处理</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/react文档-state和生命周期/">react文档--state和生命周期</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/react文档-组件和props/">react文档--组件和props</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/react文档-渲染元素/">react文档--渲染元素</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/react文档-介绍JSX/">react文档--介绍JSX</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/react文档-HelloWorld/">react文档--HelloWorld</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/react文档-安装/">react文档--安装</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/20/dart开发命令行工具/">dart开发命令行工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/19/dart语言基础/">dart语言基础</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/19/HTTP/">HTTP</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/19/路由/">路由</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/18/服务/">服务</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/18/多组件/">多组件</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/18/主从结构/">主从结构</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/18/英雄编辑器/">英雄编辑器</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/18/简介/">简介</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/16/模板语法/">模板语法</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/14/依赖注入/">依赖注入</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/13/表单/">表单</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/13/用户输入/">用户输入</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/11/显示数据/">显示数据</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/10/架构/">架构</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/10/学习angular/">学习angular</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/10/搭建开发环境/">搭建开发环境</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/10/概览/">概览</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/10/快速开始/">快速开始</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+  <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i>
+                2016-2017 soojade
+            </div>
+            <div class="footer-right">
+                 Made by soojade <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                Total <span id="busuanzi_value_site_pv"></span> views.
+                欢迎第<span id="busuanzi_value_site_uv"></span>个小伙伴
+                <span id="busuanzi_value_page_pv"></span> Hits
+            </div>
+        
+    </div>
+</footer>
+
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 15;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+    <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+             tags: ".article-tag a", 
+            
+             articleNav: "#article-nav a, #post-nav-button a", 
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>

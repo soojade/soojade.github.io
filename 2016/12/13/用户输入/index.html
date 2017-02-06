@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="soojade" />
+
+
+
+<meta name="description" content="用户输入当用户点击一个链接，按下一个按钮或输入文本时，我们想要了解它。这些操作都会触发 DOM 事件。在这章节，我们学习使用 Angular 事件绑定语法来绑定这些事件。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="用户输入">
+<meta property="og:url" content="http://soojade.github.io/2016/12/13/用户输入/index.html">
+<meta property="og:site_name" content="soojade个人空间">
+<meta property="og:description" content="用户输入当用户点击一个链接，按下一个按钮或输入文本时，我们想要了解它。这些操作都会触发 DOM 事件。在这章节，我们学习使用 Angular 事件绑定语法来绑定这些事件。">
+<meta property="og:updated_time" content="2016-12-18T06:42:50.026Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="用户输入">
+<meta name="twitter:description" content="用户输入当用户点击一个链接，按下一个按钮或输入文本时，我们想要了解它。这些操作都会触发 DOM 事件。在这章节，我们学习使用 Angular 事件绑定语法来绑定这些事件。">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="soojade个人空间" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="img/favicon.ico">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/green/pace-theme-flash.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>用户输入 | soojade个人空间</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: true
+    }
+</script>
+
+
+    <script>
+        yiliaConfig.jquery_ui = [true, "//cdn.bootcss.com/jqueryui/1.10.4/jquery-ui.min.js", "//cdn.bootcss.com/jqueryui/1.10.4/css/jquery-ui.min.css"];
+    </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/avatar.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">soojade</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">博客</p>
+        
+
+        
+            <form id="search-form">
+            <input type="text" id="local-search-input" name="q" placeholder="search..." class="search form-control" autocomplete="off" autocorrect="off" searchonload="false" />
+            <i class="fa fa-times" onclick="resetSearch()"></i>
+            </form>
+            <div id="local-search-result"></div>
+            <p class='no-result'>No results found <i class='fa fa-spinner fa-pulse'></i></p>
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=2035030023@qq.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" href="https://github.com/soojade" title="GitHub"></a>
+                            
+                                <a class="fa 知乎" href="https://www.zhihu.com/people/soojade/activities" title="知乎"></a>
+                            
+                                <a class="fa 简书" href="http://www.jianshu.com/users/b2e1cf392d42/latest_articles" title="简书"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/angular-angular-点-线-面/">angular angular.点-线-面</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/angular-angular文档/">angular angular文档</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dart-dart命令行/">dart  dart命令行</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dart-angularDart-web-angular指南/">dart angularDart web angular指南</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dart-angularDart-web-angular教程/">dart angularDart web angular教程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dart-dart基础/">dart dart基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-javascript坑与技巧/">javascript javascript坑与技巧</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-javascript坑与技巧-DOM/">javascript javascript坑与技巧 DOM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-javascript坑与技巧-filter/">javascript javascript坑与技巧 filter()</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-javascript坑与技巧-map/">javascript javascript坑与技巧 map()</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-javascript坑与技巧-sort/">javascript javascript坑与技巧 sort()</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-javascript坑与技巧-this/">javascript javascript坑与技巧 this</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-javascript坑与技巧-变量作用域/">javascript javascript坑与技巧 变量作用域</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-javascript坑与技巧-异常/">javascript javascript坑与技巧 异常</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-javascript坑与技巧-箭头函数/">javascript javascript坑与技巧 箭头函数</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-javascript坑与技巧-表单/">javascript javascript坑与技巧 表单</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-javascript坑与技巧-闭包/">javascript javascript坑与技巧 闭包</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript忍者秘籍笔记/">javascript忍者秘籍笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/react文档-翻译/">react文档 翻译</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">专注于Web与游戏</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">soojade</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/avatar.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">soojade</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">博客</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=2035030023@qq.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/soojade" title="GitHub"></a>
+                            
+                                <a class="fa 知乎" target="_blank" href="https://www.zhihu.com/people/soojade/activities" title="知乎"></a>
+                            
+                                <a class="fa 简书" target="_blank" href="http://www.jianshu.com/users/b2e1cf392d42/latest_articles" title="简书"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-用户输入" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/12/13/用户输入/" class="article-date">
+      <time datetime="2016-12-13T15:19:00.000Z" itemprop="datePublished">2016-12-13</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      用户输入
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/dart/">dart</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dart-angularDart-web-angular指南/">dart angularDart web angular指南</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h2 id="用户输入"><a href="#用户输入" class="headerlink" title="用户输入"></a>用户输入</h2><p>当用户点击一个链接，按下一个按钮或输入文本时，我们想要了解它。这些操作都会触发 DOM 事件。在这章节，我们学习使用 Angular 事件绑定语法来绑定这些事件。<br><a id="more"></a><br>运行<a href="http://angular-examples.github.io/user-input" target="_blank" rel="external">在线例子</a>。</p>
+<h3 id="绑定到用户输入事件"><a href="#绑定到用户输入事件" class="headerlink" title="绑定到用户输入事件"></a>绑定到用户输入事件</h3><p>我们可以使用 Angular 事件绑定机制来响应任何 DOM 事件。</p>
+<p>语法很简单。我们使用圆括号包围着 DOM 事件名，然后将包围在引号中的模板语句赋值给它。例如，这里是一个事件绑定，它实现了一个点击事件处理器：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">button</span> (<span class="attr">click</span>)=<span class="string">"onClickMe()"</span>&gt;</span>Click me!<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>等号左边的<code>(click)</code>表示把按钮的点击事件作为<strong>绑定目标</strong>。 等号右边引号中的文本是<strong>模板语句</strong>，通过调用组件的<code>onClickMe</code>方法来响应这个点击事件。<em>模板语句</em> 是 Dart 的子集，使用了一些限制和额外的技巧。</p>
+<p>写绑定时，我们必须要知道模板语句的执行上下文。出现在模板语句中的每个标识符都属于特定的上下文对象。这个对象通常都是控制此模板的 Angular 组件。 在这个例子中，这段 HTML 片段属于下面的组件：</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">@Component(</div><div class="line">    selector: <span class="string">'click-me'</span>,</div><div class="line">    template: <span class="string">'''</span></div><div class="line">      &lt;button (click)="onClickMe()"&gt;Click me!&lt;/button&gt;</div><div class="line">      &#123;&#123;clickMessage&#125;&#125;''')</div><div class="line">class ClickMeComponent &#123;</div><div class="line">  String clickMessage = <span class="string">''</span>;</div><div class="line"></div><div class="line">  void onClickMe() &#123;</div><div class="line">    clickMessage = <span class="string">'You are my hero!'</span>;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>当用户点击按钮时，Angular 调用组件的<code>onClickMe</code>方法。</p>
+<h3 id="通过-event-对象取得用户输入"><a href="#通过-event-对象取得用户输入" class="headerlink" title="通过 $event 对象取得用户输入"></a>通过 $event 对象取得用户输入</h3><p>我们可以绑定各种各样的事件，让我们绑定一个输入框的<code>keyup</code>事件，在屏幕显示用户的输入。</p>
+<p>这次我们将要监听事件同时获取用户输入。</p>
+<figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">template: '''</div><div class="line"><span class="code">  &lt;input (keyup)="onKey(\$event)"&gt; // 注意前面的 \</span></div><div class="line"><span class="code">  &lt;p&gt;&#123;&#123;values&#125;&#125;&lt;/p&gt;</span></div><div class="line">'''</div></pre></td></tr></table></figure>
+<p>Angular 通过<code>$event</code>变量获取事件对象，将它传递给组件的<code>onKey()</code>方法。我们想要的用户数据就在该变量的某个地方。</p>
+<blockquote>
+<p>模板在 Dart 文件中，需要在<code>$</code>前面加<code>\</code>。如果模板是外部的 HTML 文件，则直接使用<code>$event</code>。</p>
+</blockquote>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> <span class="title">KeyUpComponentV1</span> &#123;</div><div class="line">  String values = <span class="string">''</span>;</div><div class="line"></div><div class="line">  onKey(<span class="keyword">dynamic</span> <span class="keyword">event</span>) &#123;</div><div class="line">    values += <span class="keyword">event</span>.target.<span class="keyword">value</span> + <span class="string">' | '</span>;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>什么样的<code>$event</code>对象取决于什么样的触发事件。<code>keyup</code>事件来自 DOM，所以<code>$event</code>必须是一个<em>标准 DOM 事件对象</em>。<code>$event.target</code>返回一个<em>HTMLInput 元素</em>，它有一个包含用户输入数据的<code>value</code>属性。</p>
+<p>在<code>onKey()</code>组件方法，我们从事件对象提取用户的输入，添加到用户数据列表累加到组件的<code>values</code>属性。然后我们使用<em>插值表达式</em>在屏幕上显示累加的<code>values</code>属性值。</p>
+<blockquote>
+<p>我们传递的<code>$event</code>是任意类型，这意味着我们抛弃了强类型来简化我们的代码。我们通常更喜欢 Dart 提供的强类型。我们可以重写方法，像下面这样传递 HTML DOM 对象。</p>
+</blockquote>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> <span class="title">KeyUpComponentV1</span> &#123;</div><div class="line">  String values = <span class="string">''</span>;</div><div class="line"></div><div class="line">  onKey(KeyboardEvent <span class="keyword">event</span>) &#123;</div><div class="line">    InputElement el = <span class="keyword">event</span>.target;</div><div class="line">    values += <span class="string">'$&#123;el.value&#125;  | '</span>;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>上面代码中的强类型通过传递一个 DOM 事件给方法，揭露了一个严重问题：太多的关注模板细节，太少的关注点分离。</p>
+<h3 id="从一个模板引用变量中获得用户输入"><a href="#从一个模板引用变量中获得用户输入" class="headerlink" title="从一个模板引用变量中获得用户输入"></a>从一个模板引用变量中获得用户输入</h3><p>还有另一种方法不使用<code>$event</code>变量来获取用户数据。</p>
+<p>Angular 有一个被称为<em>模板引用变量</em>的语法特性。这些变量允许我们直接访问元素。我们通过在标识符前面加一个<code>#</code>来声明模板引用变量。</p>
+<p>这里是一个使用模板引用变量的例子，在一个超简单的模板中实现按键反馈功能。</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">@Component(</div><div class="line">    selector: <span class="string">'loop-back'</span>,</div><div class="line">    template: <span class="string">'''</span></div><div class="line">      &lt;input #box (keyup)="0"&gt;</div><div class="line">      &lt;p&gt;&#123;&#123;box.value&#125;&#125;&lt;/p&gt;</div><div class="line">    ''')</div><div class="line">class LoopBackComponent &#123;&#125;</div></pre></td></tr></table></figure>
+<p>我们在<code>&lt;input&gt;</code>元素声明一个名为<code>box</code>的模板引用变量。<code>box</code>变量是<code>&lt;input&gt;</code>元素本身的引用，这意味着我们可以获取 input 元素的<code>value</code>，并通过插值表达式把它显示在</p><p>标签中。</p>
+<p>这个模板完全是自包含的。它没有绑定到组件，组件也没做任何事情。</p>
+<blockquote>
+<p><strong>除非你绑定一个事件，否则这将完全无法工作。</strong><br>只有在应用做了些异步事件（如击键），Angular 才更新绑定（并最终影响到屏幕）。<br>这就是为什么我们绑定<code>keyup</code>事件到一个语句，而它什么都没做。我们绑定到数字 0 ，这是我们能想到的最短的语句。</p>
+</blockquote>
+<p>模板引用变量是迷人的。使用变量显然比通过<code>$event</code>对象获取文本框更简单。</p>
+<p>或许我们可以重写我们之前的 keyup 示例，以便于使用变量来获取用户的输入。让我们试试看。</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">@Component(</div><div class="line">    selector: <span class="string">'key-up2'</span>,</div><div class="line">    template: <span class="string">'''</span></div><div class="line">      &lt;input #box (keyup)="onKey(box.value)"&gt;</div><div class="line">      &lt;p&gt;&#123;&#123;values&#125;&#125;&lt;/p&gt;</div><div class="line">    ''')</div><div class="line">class KeyUpComponentV2 &#123;</div><div class="line">  String values = <span class="string">''</span>;</div><div class="line">  onKey(value) &#123;</div><div class="line">    values += <span class="string">'$value | '</span>;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这确实看起来简单。这个方法最漂亮的一点是：组件代码从视图中获得了干净的数据值。再也不用了解<code>$event</code>变量及其结构了。</p>
+<h3 id="按键事件过滤（通过key-enter）"><a href="#按键事件过滤（通过key-enter）" class="headerlink" title="按键事件过滤（通过key.enter）"></a>按键事件过滤（通过<code>key.enter</code>）</h3><p>假如我们不关心每一次按键。可能仅对当用户按下回车键时输入框的值感兴趣，我们想忽略所有其它的按键。当我们绑定<code>(keyup)</code>事件时，事件处理语句监听所有的按键。我们可以先过滤键值，检查每一个<code>$event.keyCode</code>，只有当键值是回车的时候更新<code>values</code>属性。</p>
+<p>对于键盘事件，Angular 有一个特殊的语法可以为我们过滤按键事件。我们可以只监听回车键，通过绑定 Angular 的<code>keyup.enter</code>模拟事件。</p>
+<p>直到那时我们更新组件的<code>values</code>属性。（在这个例子中，更新发生在时间绑定语句中。一个更好的实践是把更新代码放到组件中。）</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">@Component(</div><div class="line">    selector: <span class="string">'key-up3'</span>,</div><div class="line">    template: <span class="string">'''</span></div><div class="line">      &lt;input #box (keyup.enter)="values=box.value"&gt;</div><div class="line">      &lt;p&gt;&#123;&#123;values&#125;&#125;&lt;/p&gt;</div><div class="line">    ''')</div><div class="line">class KeyUpComponentV3 &#123;</div><div class="line">  String values = <span class="string">''</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="失去焦点事件-blur"><a href="#失去焦点事件-blur" class="headerlink" title="失去焦点事件 (blur)"></a>失去焦点事件 (blur)</h3><p>如果用户移除鼠标，点击页面其它地方，我们之前的例子不能传递输入框的当前状态。只有当用户按下回车键，并且焦点是在输入框中的时候，我们才能更新组件的<code>values</code>属性。</p>
+<p>让我们通过同样监听输入框的失去焦点事件来修复这个问题。</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">@Component(</div><div class="line">    selector: <span class="string">'key-up4'</span>,</div><div class="line">    template: <span class="string">'''</span></div><div class="line">      &lt;input #box</div><div class="line">        (keyup.enter)="values=box.value"</div><div class="line">        (blur)="values=box.value"&gt;</div><div class="line">      &lt;p&gt;&#123;&#123;values&#125;&#125;&lt;/p&gt;</div><div class="line">    ''')</div><div class="line">class KeyUpComponentV4 &#123;</div><div class="line">  String values = <span class="string">''</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="把它们放在一起"><a href="#把它们放在一起" class="headerlink" title="把它们放在一起"></a>把它们放在一起</h3><p>在上一章我们学习了怎样显示数据。在这一章我们获得了一个小小的事件绑定技术。</p>
+<p>让我们在一个微型应用中一起使用它们，应用能显示一个英雄列表，并把新的英雄加到列表中。用户可以通过先在输入框输入，然后按回车、点击添加按钮、或者点击页面上的其它地方来添加英雄。</p>
+<p>下面就是“简版英雄之旅”组件。</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">@Component(</div><div class="line">    selector: <span class="string">'little-tour'</span>,</div><div class="line">    template: <span class="string">'''</span></div><div class="line">      &lt;input #newHero</div><div class="line">        (keyup.enter)="addHero(newHero.value)"</div><div class="line">        (blur)="addHero(newHero.value); newHero.value='' "&gt;</div><div class="line"></div><div class="line">      &lt;button (click)=addHero(newHero.value)&gt;Add&lt;/button&gt;</div><div class="line"></div><div class="line">      &lt;ul&gt;&lt;li *ngFor="let hero of heroes"&gt;&#123;&#123;hero&#125;&#125;&lt;/li&gt;&lt;/ul&gt;</div><div class="line">    ''')</div><div class="line">class LittleTourComponent &#123;</div><div class="line">  List&lt;String&gt; heroes = [<span class="string">'Windstorm'</span>, <span class="string">'Bombasto'</span>, <span class="string">'Magneta'</span>, <span class="string">'Tornado'</span>];</div><div class="line"></div><div class="line">  void addHero(String newHero) &#123;</div><div class="line">    <span class="keyword">if</span> (newHero?.length &gt; <span class="number">0</span>) &#123;</div><div class="line">      heroes.add(newHero);</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>我们可以在这里看到之前的大部分东西。有些事新的，也有些是重复的。</p>
+<h4 id="使用模板变量来引用元素"><a href="#使用模板变量来引用元素" class="headerlink" title="使用模板变量来引用元素"></a>使用模板变量来引用元素</h4><p><code>newHero</code>模板变量引用了<code>&lt;input&gt;</code>元素。我们可以在<code>input</code>元素的任何兄弟或子级元素中使用<code>newHero</code>。</p>
+<p>从模板变量获取元素使得按钮点击处理器更简单。如果没有模板变量，我们必须使用一个花哨的 CSS 选择器来获取输入元素。</p>
+<h4 id="传递值，而非元素"><a href="#传递值，而非元素" class="headerlink" title="传递值，而非元素"></a>传递值，而非元素</h4><p>我们可以传递<code>newHero</code>到组件的<code>addHero</code>方法。</p>
+<p>但是那要求<code>addHero</code>来选择处理<code>&lt;input&gt;</code>DOM 元素，这是我们之前在第一次学习<code>KeyUpComponentV1</code>组件时不喜欢的方式。</p>
+<p>相反，我们获取输入框的值传递给<code>addHero</code>。组件对 HTML 或 DOM 一无所知，这是我们喜欢的方式。</p>
+<h4 id="保持模板语句简单"><a href="#保持模板语句简单" class="headerlink" title="保持模板语句简单"></a>保持模板语句简单</h4><p>我们绑定<code>(blur)</code>到两个 Dart 语句。</p>
+<p>我们喜欢第一个，它调用了<code>addHero</code>。我们不喜欢第二个，它分配了一个空字符串给输入框的值。</p>
+<p>第二条语句存在的一个好的理由。我们必须在添加完新的英雄列表后清除输入框。组件没有方式这样做，因为它不能访问输入框（我们设计的选择）。</p>
+<p>尽管这个例子能正常工作，我们有理由警惕在 HTML 中的 Dart语句。模板语句很强大，我们应该负责的使用它们。在 HTML 中使用复杂的 Dart 语句是不负责任的。</p>
+<p>我们应该重新考虑我们勉强传递输入框到组件中？</p>
+<p>应该有更好的第三种方式。确实有，当我们学习表单章节中的<code>NgModel</code>时会看到。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>我们已经掌握了响应用户输入和操作的基础技术。但是当处理大量用户输入时它们有一点笨拙。</p>
+<p>Angular 有称为<code>NgModel</code>的双向数据绑定，我们将在<em>表单</em>章节学习。</p>
+<blockquote>
+<p>下一步</p>
+<p>表单</p>
+</blockquote>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2016/12/13/用户输入/">用户输入</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">soojade</a></p>
+        <p><span>发布时间:</span>2016-12-13, 23:19:00</p>
+        <p><span>最后更新:</span>2016-12-18, 14:42:50</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2016/12/13/用户输入/" title="用户输入">http://soojade.github.io/2016/12/13/用户输入/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://soojade.github.io/2016/12/13/用户输入/　　作者: soojade" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2016/12/13/表单/">
+                    表单
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2016/12/11/显示数据/">
+                    显示数据
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#用户输入"><span class="toc-number">1.</span> <span class="toc-text">用户输入</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#绑定到用户输入事件"><span class="toc-number">1.1.</span> <span class="toc-text">绑定到用户输入事件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#通过-event-对象取得用户输入"><span class="toc-number">1.2.</span> <span class="toc-text">通过 $event 对象取得用户输入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#从一个模板引用变量中获得用户输入"><span class="toc-number">1.3.</span> <span class="toc-text">从一个模板引用变量中获得用户输入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#按键事件过滤（通过key-enter）"><span class="toc-number">1.4.</span> <span class="toc-text">按键事件过滤（通过key.enter）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#失去焦点事件-blur"><span class="toc-number">1.5.</span> <span class="toc-text">失去焦点事件 (blur)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#把它们放在一起"><span class="toc-number">1.6.</span> <span class="toc-text">把它们放在一起</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#使用模板变量来引用元素"><span class="toc-number">1.6.1.</span> <span class="toc-text">使用模板变量来引用元素</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#传递值，而非元素"><span class="toc-number">1.6.2.</span> <span class="toc-text">传递值，而非元素</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#保持模板语句简单"><span class="toc-number">1.6.3.</span> <span class="toc-text">保持模板语句简单</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#总结"><span class="toc-number">1.7.</span> <span class="toc-text">总结</span></a></li></ol></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-4 i,
+        .toc-level-4 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"用户输入　| soojade个人空间　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+      <div class="duoshuo" id="comments">
+    <div id="comment-box" ></div>
+    <div class="ds-thread" id="ds-thread" data-thread-key="2016/12/13/用户输入/" data-title="用户输入" data-url="http://soojade.github.io/2016/12/13/用户输入/"></div>
+    <script>
+        var duoshuoQuery = {short_name:"soojade"};
+        var loadComment = function(){
+            var d = document, s = d.createElement('script');
+            s.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+            s.async = true; s.charset = 'UTF-8';
+            (d.head || d.body).appendChild(s);
+        }
+
+        
+    </script>
+    
+    <script> loadComment(); </script>
+
+</div>
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2016/12/13/表单/" title="上一篇: 表单">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2016/12/11/显示数据/" title="下一篇: 显示数据">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/02/06/javascript忍者秘籍笔记————函数是根基/">javascript 忍者秘籍————函数是根基</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/05/javascript忍者秘籍笔记————利用测试和调试武装自己/">javascript 忍者秘籍笔记————利用测试和调试武装自己</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/05/javascript忍者秘籍笔记————进入忍者世界/">javascript 忍者秘籍笔记————进入忍者世界</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/01/angular文档——CLI-快速起步/">angular文档——CLI-快速起步</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/15/angular点-线-面：模板引用变量/">angular.点-线-面：模板引用变量</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/15/javascript坑与技巧：花式交换两个数值/">javascript坑与技巧：花式交换两个数值</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/04/javascript坑与技巧：异常/">javascript坑与技巧：异常</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/03/javascript坑与技巧：表单/">javascript坑与技巧：表单</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/03/javascript坑与技巧：DOM/">javascript坑与技巧：DOM</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/02/javascript坑与技巧：this/">javascript坑与技巧：this</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/02/javascript坑与技巧：变量作用域/">javascript坑与技巧：变量作用域</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/02/javascript坑与技巧：箭头函数/">javascript坑与技巧：箭头函数</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/02/javascript坑与技巧：闭包/">javascript坑与技巧：闭包</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/02/javascript坑与技巧：sort/">javascript坑与技巧：sort</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/01/javascript坑与技巧：filter/">javascript坑与技巧：filter</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/01/javascript坑与技巧：map/">javascript坑与技巧：map</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/react文档-表单/">react文档--表单</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/react文档-列表和键/">react文档--列表和键</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/react文档-条件渲染/">react文档--条件渲染</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/react文档-事件处理/">react文档--事件处理</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/react文档-state和生命周期/">react文档--state和生命周期</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/react文档-组件和props/">react文档--组件和props</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/react文档-渲染元素/">react文档--渲染元素</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/react文档-介绍JSX/">react文档--介绍JSX</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/react文档-HelloWorld/">react文档--HelloWorld</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/react文档-安装/">react文档--安装</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/20/dart开发命令行工具/">dart开发命令行工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/19/dart语言基础/">dart语言基础</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/19/HTTP/">HTTP</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/19/路由/">路由</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/18/服务/">服务</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/18/多组件/">多组件</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/18/主从结构/">主从结构</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/18/英雄编辑器/">英雄编辑器</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/18/简介/">简介</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/16/模板语法/">模板语法</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/14/依赖注入/">依赖注入</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/13/表单/">表单</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/13/用户输入/">用户输入</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/11/显示数据/">显示数据</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/10/架构/">架构</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/10/学习angular/">学习angular</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/10/搭建开发环境/">搭建开发环境</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/10/概览/">概览</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/10/快速开始/">快速开始</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+  <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i>
+                2016-2017 soojade
+            </div>
+            <div class="footer-right">
+                 Made by soojade <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                Total <span id="busuanzi_value_site_pv"></span> views.
+                欢迎第<span id="busuanzi_value_site_uv"></span>个小伙伴
+                <span id="busuanzi_value_page_pv"></span> Hits
+            </div>
+        
+    </div>
+</footer>
+
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 15;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+    <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+             tags: ".article-tag a", 
+            
+             articleNav: "#article-nav a, #post-nav-button a", 
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>
