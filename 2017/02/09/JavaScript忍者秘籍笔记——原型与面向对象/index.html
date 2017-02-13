@@ -15,21 +15,18 @@
 
 
 
-<meta name="description" content="第六章 原型与面向对象
-原型虽然是定义对象的一种很方便的方式，但它的本质依然是函数特性。
+<meta name="description" content="第六章 原型与面向对象原型虽然是定义对象的一种很方便的方式，但它的本质依然是函数特性。
 实例化和原型所有的函数在初始化的时候都有一个 prototype 属性，该属性的初始值是一个空对象。只有函数在作为构造器的时候，prototype 属性才会发挥更大的作用。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JavaScript 忍者秘籍笔记——原型与面向对象">
 <meta property="og:url" content="http://soojade.github.io/2017/02/09/JavaScript忍者秘籍笔记——原型与面向对象/index.html">
 <meta property="og:site_name" content="soojade个人空间">
-<meta property="og:description" content="第六章 原型与面向对象
-原型虽然是定义对象的一种很方便的方式，但它的本质依然是函数特性。
+<meta property="og:description" content="第六章 原型与面向对象原型虽然是定义对象的一种很方便的方式，但它的本质依然是函数特性。
 实例化和原型所有的函数在初始化的时候都有一个 prototype 属性，该属性的初始值是一个空对象。只有函数在作为构造器的时候，prototype 属性才会发挥更大的作用。">
-<meta property="og:updated_time" content="2017-02-13T05:46:47.736Z">
+<meta property="og:updated_time" content="2017-02-13T05:51:18.858Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript 忍者秘籍笔记——原型与面向对象">
-<meta name="twitter:description" content="第六章 原型与面向对象
-原型虽然是定义对象的一种很方便的方式，但它的本质依然是函数特性。
+<meta name="twitter:description" content="第六章 原型与面向对象原型虽然是定义对象的一种很方便的方式，但它的本质依然是函数特性。
 实例化和原型所有的函数在初始化的时候都有一个 prototype 属性，该属性的初始值是一个空对象。只有函数在作为构造器的时候，prototype 属性才会发挥更大的作用。">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
@@ -321,8 +318,7 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>第六章 原型与面向对象</p>
-<p>原型虽然是定义对象的一种很方便的方式，但它的本质依然是函数特性。</p>
+        <h1 id="第六章-原型与面向对象"><a href="#第六章-原型与面向对象" class="headerlink" title="第六章 原型与面向对象"></a>第六章 原型与面向对象</h1><p>原型虽然是定义对象的一种很方便的方式，但它的本质依然是函数特性。</p>
 <h2 id="实例化和原型"><a href="#实例化和原型" class="headerlink" title="实例化和原型"></a>实例化和原型</h2><p>所有的函数在初始化的时候都有一个 prototype 属性，该属性的初始值是一个空对象。只有函数在作为构造器的时候，prototype 属性才会发挥更大的作用。<br><a id="more"></a></p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Ninja</span>(<span class="params"></span>) </span>&#123; &#125;</div><div class="line"></div><div class="line">Ninja.prototype.swingSword = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">var</span> ninja1 = Ninja();</div><div class="line"><span class="built_in">console</span>.log(ninja1);</div><div class="line"></div><div class="line"><span class="keyword">var</span> ninja2 = <span class="keyword">new</span> Ninja();</div><div class="line"><span class="built_in">console</span>.log(ninja2);</div><div class="line"><span class="built_in">console</span>.log(ninja2.swingSword);</div><div class="line"><span class="built_in">console</span>.log(ninja2.swingSword());</div></pre></td></tr></table></figure>
 <p>我们并没有在构造器里显式地做任何事情，通过将<code>swingSword()</code>方法添加到构造器的<code>prototype</code>属性上，<code>swingSword()</code>方法就可以<strong>附加</strong>到新对象上了。</p>
@@ -364,7 +360,7 @@
         <p><span>本文标题:</span><a href="/2017/02/09/JavaScript忍者秘籍笔记——原型与面向对象/">JavaScript 忍者秘籍笔记——原型与面向对象</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">soojade</a></p>
         <p><span>发布时间:</span>2017-02-09, 11:53:23</p>
-        <p><span>最后更新:</span>2017-02-13, 13:46:47</p>
+        <p><span>最后更新:</span>2017-02-13, 13:51:18</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2017/02/09/JavaScript忍者秘籍笔记——原型与面向对象/" title="JavaScript 忍者秘籍笔记——原型与面向对象">http://soojade.github.io/2017/02/09/JavaScript忍者秘籍笔记——原型与面向对象/</a>
             <span class="copy-path" data-clipboard-text="原文: http://soojade.github.io/2017/02/09/JavaScript忍者秘籍笔记——原型与面向对象/　　作者: soojade" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
@@ -394,7 +390,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#实例化和原型"><span class="toc-number">1.</span> <span class="toc-text">实例化和原型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#继承与原型链"><span class="toc-number">1.1.</span> <span class="toc-text">继承与原型链</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HTML-DOM-原型"><span class="toc-number">1.2.</span> <span class="toc-text">HTML DOM 原型</span></a></li></ol></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#第六章-原型与面向对象"><span class="toc-number">1.</span> <span class="toc-text">第六章 原型与面向对象</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#实例化和原型"><span class="toc-number">1.1.</span> <span class="toc-text">实例化和原型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#继承与原型链"><span class="toc-number">1.1.1.</span> <span class="toc-text">继承与原型链</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HTML-DOM-原型"><span class="toc-number">1.1.2.</span> <span class="toc-text">HTML DOM 原型</span></a></li></ol></li></ol></li></ol>
         
     </div>
     <style>
