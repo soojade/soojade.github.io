@@ -15,16 +15,22 @@
 
 
 
-<meta name="description" content="filter()巧用 filter 去除数组中相同元素12var arr=[&apos;apple&apos;, &apos;strawberry&apos;, &apos;banana&apos;, &apos;pear&apos;, &apos;apple&apos;, &apos;orange&apos;, &apos;orange&apos;, &apos;strawberry&apos;];arr.filter((element,index,self)=&amp;gt;self.indexOf(element)===index); // [&quot;apple">
+<meta name="description" content="第六章 原型与面向对象
+原型虽然是定义对象的一种很方便的方式，但它的本质依然是函数特性。
+实例化和原型所有的函数在初始化的时候都有一个 prototype 属性，该属性的初始值是一个空对象。只有函数在作为构造器的时候，prototype 属性才会发挥更大的作用。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JavaScript坑与技巧：filter">
-<meta property="og:url" content="http://soojade.github.io/2017/01/01/javascript坑与技巧：filter/index.html">
+<meta property="og:title" content="JavaScript 忍者秘籍笔记——原型与面向对象">
+<meta property="og:url" content="http://soojade.github.io/2017/02/09/JavaScript忍者秘籍笔记——原型与面向对象/index.html">
 <meta property="og:site_name" content="soojade个人空间">
-<meta property="og:description" content="filter()巧用 filter 去除数组中相同元素12var arr=[&apos;apple&apos;, &apos;strawberry&apos;, &apos;banana&apos;, &apos;pear&apos;, &apos;apple&apos;, &apos;orange&apos;, &apos;orange&apos;, &apos;strawberry&apos;];arr.filter((element,index,self)=&amp;gt;self.indexOf(element)===index); // [&quot;apple">
-<meta property="og:updated_time" content="2017-02-07T00:56:32.095Z">
+<meta property="og:description" content="第六章 原型与面向对象
+原型虽然是定义对象的一种很方便的方式，但它的本质依然是函数特性。
+实例化和原型所有的函数在初始化的时候都有一个 prototype 属性，该属性的初始值是一个空对象。只有函数在作为构造器的时候，prototype 属性才会发挥更大的作用。">
+<meta property="og:updated_time" content="2017-02-13T05:46:47.736Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JavaScript坑与技巧：filter">
-<meta name="twitter:description" content="filter()巧用 filter 去除数组中相同元素12var arr=[&apos;apple&apos;, &apos;strawberry&apos;, &apos;banana&apos;, &apos;pear&apos;, &apos;apple&apos;, &apos;orange&apos;, &apos;orange&apos;, &apos;strawberry&apos;];arr.filter((element,index,self)=&amp;gt;self.indexOf(element)===index); // [&quot;apple">
+<meta name="twitter:title" content="JavaScript 忍者秘籍笔记——原型与面向对象">
+<meta name="twitter:description" content="第六章 原型与面向对象
+原型虽然是定义对象的一种很方便的方式，但它的本质依然是函数特性。
+实例化和原型所有的函数在初始化的时候都有一个 prototype 属性，该属性的初始值是一个空对象。只有函数在作为构造器的时候，prototype 属性才会发挥更大的作用。">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -56,7 +62,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>JavaScript坑与技巧：filter | soojade个人空间</title>
+<title>JavaScript 忍者秘籍笔记——原型与面向对象 | soojade个人空间</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -271,11 +277,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
-      <div class="body-wrap"><article id="post-javascript坑与技巧：filter" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-JavaScript忍者秘籍笔记——原型与面向对象" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2017/01/01/javascript坑与技巧：filter/" class="article-date">
-      <time datetime="2017-01-01T13:46:40.000Z" itemprop="datePublished">2017-01-01</time>
+      <a href="/2017/02/09/JavaScript忍者秘籍笔记——原型与面向对象/" class="article-date">
+      <time datetime="2017-02-09T03:53:23.000Z" itemprop="datePublished">2017-02-09</time>
 </a>
 
 
@@ -290,7 +296,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      JavaScript坑与技巧：filter
+      JavaScript 忍者秘籍笔记——原型与面向对象
     </h1>
   
 
@@ -305,7 +311,7 @@
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript-JavaScript坑与技巧-filter/">JavaScript JavaScript坑与技巧 filter()</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript忍者秘籍笔记/">JavaScript忍者秘籍笔记</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -315,11 +321,39 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h2 id="filter"><a href="#filter" class="headerlink" title="filter()"></a>filter()</h2><h3 id="巧用-filter-去除数组中相同元素"><a href="#巧用-filter-去除数组中相同元素" class="headerlink" title="巧用 filter 去除数组中相同元素"></a>巧用 filter 去除数组中相同元素</h3><figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">var arr=[<span class="string">'apple'</span>, <span class="string">'strawberry'</span>, <span class="string">'banana'</span>, <span class="string">'pear'</span>, <span class="string">'apple'</span>, <span class="string">'orange'</span>, <span class="string">'orange'</span>, <span class="string">'strawberry'</span>];</div><div class="line">arr.filter(<span class="function"><span class="params">(element,index,self)</span>=&gt;</span>self.indexOf(element)===index); <span class="regexp">//</span> [<span class="string">"apple"</span>, <span class="string">"strawberry"</span>, <span class="string">"banana"</span>, <span class="string">"pear"</span>, <span class="string">"orange"</span>]</div></pre></td></tr></table></figure>
-<a id="more"></a>
-<p><code>filter()</code>接收的回调函数可以有多个参数。通常我们仅使用第一个参数，表示数组的某个元素。回调函数还可接收另外两个参数，表示元素的位置和数组本身。</p>
-<p><code>indexOf</code>总是返回第一个元素的位置，后续的重复元素位置与<code>indexOf</code>返回的位置不相等，就会被过滤掉。</p>
-
+        <p>第六章 原型与面向对象</p>
+<p>原型虽然是定义对象的一种很方便的方式，但它的本质依然是函数特性。</p>
+<h2 id="实例化和原型"><a href="#实例化和原型" class="headerlink" title="实例化和原型"></a>实例化和原型</h2><p>所有的函数在初始化的时候都有一个 prototype 属性，该属性的初始值是一个空对象。只有函数在作为构造器的时候，prototype 属性才会发挥更大的作用。<br><a id="more"></a></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Ninja</span>(<span class="params"></span>) </span>&#123; &#125;</div><div class="line"></div><div class="line">Ninja.prototype.swingSword = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">var</span> ninja1 = Ninja();</div><div class="line"><span class="built_in">console</span>.log(ninja1);</div><div class="line"></div><div class="line"><span class="keyword">var</span> ninja2 = <span class="keyword">new</span> Ninja();</div><div class="line"><span class="built_in">console</span>.log(ninja2);</div><div class="line"><span class="built_in">console</span>.log(ninja2.swingSword);</div><div class="line"><span class="built_in">console</span>.log(ninja2.swingSword());</div></pre></td></tr></table></figure>
+<p>我们并没有在构造器里显式地做任何事情，通过将<code>swingSword()</code>方法添加到构造器的<code>prototype</code>属性上，<code>swingSword()</code>方法就可以<strong>附加</strong>到新对象上了。</p>
+<p>使用<code>new</code>操作符将函数作为构造器进行调用的时候，其上下文被定义为新对象实例。这意味着，除了通过原型给函数附加属性的形式外，还可以在构造器函数内通过<code>this</code>参数初始化。初始化优先级如下：</p>
+<ol>
+<li>在构造器函数内给对象实例添加的属性。</li>
+<li>通过原型给对象实例添加的属性。</li>
+</ol>
+<p>在构造器内的绑定操作优先级永远都高于原型上的绑定操作。因为构造器的<code>this</code>上下文指向的是实例自身，所以可以在构造器内对核心内容执行初始化。</p>
+<p>对象属性引用查找的一般过程：</p>
+<ol>
+<li>在引用对象的一个属性时，首先检查该对象本身是否拥有该属性，如果有，则直接返回；</li>
+<li>如果没有，再查看对象的原型(<code>prototype</code>)，检查该原型上是否有所要的属性，如果有直接返回；</li>
+<li>如果没有，该值是 <code>undefined</code>。</li>
+</ol>
+<p>JavaScript 中每个对象，都有一个名为 <code>constructor</code> 的隐式属性，该属性引用的是创建该对象的构造器。由于 <code>prototype</code> 是构造器的一个属性，所以每个对象都有一个方式可以找到自己的原型。</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Ninja</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">this</span>.swung = <span class="literal">true</span>;</div><div class="line">    <span class="comment">// 定义与原型方法同名的实例方法</span></div><div class="line">    <span class="keyword">this</span>.swingSword = <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> !<span class="keyword">this</span>.swung;</div><div class="line">    &#125;;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> ninja = <span class="keyword">new</span> Ninja();</div><div class="line">Ninja.prototype.swingSword = <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.swung;</div><div class="line">&#125;</div><div class="line">ninja.swingSword(); <span class="comment">// false</span></div></pre></td></tr></table></figure>
+<p><code>constructor</code>属性作为创建该对象的原始函数的引用，被添加到所有的实例上。利用该属性，可以验证实例的起源，就像<code>instanceof</code>操作符一样。由于该属性只是原始构造器的一个引用，所以可以使用该引用再次实例化一个新对象。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Ninja</span>(<span class="params"></span>) </span>&#123; &#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> ninja = <span class="keyword">new</span> Ninja();</div><div class="line"><span class="keyword">var</span> ninja2 = <span class="keyword">new</span> ninja.constructor();</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(ninja2 <span class="keyword">instanceof</span> Ninja); <span class="comment">// true</span></div><div class="line"><span class="built_in">console</span>.log(ninja !== ninja2); <span class="comment">// true</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>尽管对象的<code>constructor</code>属性可以被修改，这样做没有任何直接或很明显的目的，只是告知对象在哪里被创建的。如果<code>constructor</code>属性被覆盖，那么创建该对象的原始函数就丢失了。</p>
+</blockquote>
+<h3 id="继承与原型链"><a href="#继承与原型链" class="headerlink" title="继承与原型链"></a>继承与原型链</h3><p><code>instanceof</code>操作符还有另一个功能，利用它作为对象继承的一种形式。通过执行<code>instanceof</code>操作，可以判断函数是否继承了其原型链中任何对象的功能。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params"></span>) </span>&#123; &#125;</div><div class="line">Person.prototype.dance = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123; &#125;;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Ninja</span>(<span class="params"></span>) </span>&#123; &#125;</div><div class="line"><span class="comment">// 将Ninja的原型设为Person的实例</span></div><div class="line">Ninja.prototype = <span class="keyword">new</span> Person();</div><div class="line"></div><div class="line"><span class="keyword">var</span> ninja = <span class="keyword">new</span> Ninja();</div><div class="line"><span class="built_in">console</span>.log(ninja <span class="keyword">instanceof</span> Ninja); <span class="comment">// true</span></div><div class="line"><span class="built_in">console</span>.log(ninja <span class="keyword">instanceof</span> Person); <span class="comment">// true</span></div><div class="line"><span class="built_in">console</span>.log(ninja <span class="keyword">instanceof</span> <span class="built_in">Object</span>); <span class="comment">// true</span></div><div class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> ninja.dance == <span class="string">"function"</span>); <span class="comment">// true</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>不要这样：<code>Ninja.prototype = Person.prototype</code>，这样做的话，Ninja原型上的任何修改都会影响到Person的原型，因为他们是同一个对象。</p>
+</blockquote>
+<h3 id="HTML-DOM-原型"><a href="#HTML-DOM-原型" class="headerlink" title="HTML DOM 原型"></a>HTML DOM 原型</h3><p>所有的 DOM 元素都继承于HTMLElement构造器。通过访问HTMLElement的原型，浏览器可以为我们提供扩展任意 HTML 节点的能力。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"parent"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"a"</span>&gt;</span>I'm going to be removed.<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"b"</span>&gt;</span>Me too!</div><div class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></div><div class="line">        HTMLElement.prototype.remove = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">            <span class="keyword">if</span>(<span class="keyword">this</span>.parentNode)&#123;</div><div class="line">                <span class="keyword">this</span>.parentNode.removeChild(<span class="keyword">this</span>);</div><div class="line">            &#125;;</div><div class="line">            <span class="keyword">var</span> a = <span class="built_in">document</span>.getElementById(<span class="string">'a'</span>);</div><div class="line">            <span class="comment">// 使用原方法删除节点</span></div><div class="line">            a.parentNode.removeChild(a);</div><div class="line">            <span class="comment">// 使用新方法删除节点</span></div><div class="line">            <span class="built_in">document</span>.getElementById(<span class="string">'b'</span>).remove();</div><div class="line">        &#125;</div><div class="line">    <span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>注意：HTML元素不可以直接通过其构造器进行实例化。</p>
+<figure class="highlight haxe"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> elem = <span class="keyword">new</span> <span class="type">HTMLElement</span>(); <span class="comment">// 错误</span></div></pre></td></tr></table></figure>
       
     </div>
     
@@ -327,13 +361,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2017/01/01/javascript坑与技巧：filter/">JavaScript坑与技巧：filter</a></p>
+        <p><span>本文标题:</span><a href="/2017/02/09/JavaScript忍者秘籍笔记——原型与面向对象/">JavaScript 忍者秘籍笔记——原型与面向对象</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">soojade</a></p>
-        <p><span>发布时间:</span>2017-01-01, 21:46:40</p>
-        <p><span>最后更新:</span>2017-02-07, 08:56:32</p>
+        <p><span>发布时间:</span>2017-02-09, 11:53:23</p>
+        <p><span>最后更新:</span>2017-02-13, 13:46:47</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2017/01/01/javascript坑与技巧：filter/" title="JavaScript坑与技巧：filter">http://soojade.github.io/2017/01/01/javascript坑与技巧：filter/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://soojade.github.io/2017/01/01/javascript坑与技巧：filter/　　作者: soojade" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2017/02/09/JavaScript忍者秘籍笔记——原型与面向对象/" title="JavaScript 忍者秘籍笔记——原型与面向对象">http://soojade.github.io/2017/02/09/JavaScript忍者秘籍笔记——原型与面向对象/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://soojade.github.io/2017/02/09/JavaScript忍者秘籍笔记——原型与面向对象/　　作者: soojade" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -345,16 +379,10 @@
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2017/01/02/javascript坑与技巧：sort/">
-                    JavaScript坑与技巧：sort
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2017/01/01/javascript坑与技巧：map/">
-                    JavaScript坑与技巧：map
+                <a href="/2017/02/07/JavaScript忍者秘籍笔记——闭包/">
+                    JavaScript 忍者秘籍笔记——闭包
                 </a>
             </div>
         
@@ -366,7 +394,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#filter"><span class="toc-number">1.</span> <span class="toc-text">filter()</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#巧用-filter-去除数组中相同元素"><span class="toc-number">1.1.</span> <span class="toc-text">巧用 filter 去除数组中相同元素</span></a></li></ol></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#实例化和原型"><span class="toc-number">1.</span> <span class="toc-text">实例化和原型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#继承与原型链"><span class="toc-number">1.1.</span> <span class="toc-text">继承与原型链</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HTML-DOM-原型"><span class="toc-number">1.2.</span> <span class="toc-text">HTML DOM 原型</span></a></li></ol></li></ol>
         
     </div>
     <style>
@@ -402,7 +430,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"JavaScript坑与技巧：filter　| soojade个人空间　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"JavaScript 忍者秘籍笔记——原型与面向对象　| soojade个人空间　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -418,7 +446,7 @@
     
       <div class="duoshuo" id="comments">
     <div id="comment-box" ></div>
-    <div class="ds-thread" id="ds-thread" data-thread-key="2017/01/01/javascript坑与技巧：filter/" data-title="JavaScript坑与技巧：filter" data-url="http://soojade.github.io/2017/01/01/javascript坑与技巧：filter/"></div>
+    <div class="ds-thread" id="ds-thread" data-thread-key="2017/02/09/JavaScript忍者秘籍笔记——原型与面向对象/" data-title="JavaScript 忍者秘籍笔记——原型与面向对象" data-url="http://soojade.github.io/2017/02/09/JavaScript忍者秘籍笔记——原型与面向对象/"></div>
     <script>
         var duoshuoQuery = {short_name:"soojade"};
         var loadComment = function(){
@@ -441,15 +469,13 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2017/01/02/javascript坑与技巧：sort/" title="上一篇: JavaScript坑与技巧：sort">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2017/01/01/javascript坑与技巧：map/" title="下一篇: JavaScript坑与技巧：map">
+            <a href="/2017/02/07/JavaScript忍者秘籍笔记——闭包/" title="下一篇: JavaScript 忍者秘籍笔记——闭包">
                 <i class="fa fa-angle-right"></i>
             </a>
         

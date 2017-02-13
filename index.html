@@ -279,6 +279,76 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-JavaScript忍者秘籍笔记——原型与面向对象" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/02/09/JavaScript忍者秘籍笔记——原型与面向对象/" class="article-date">
+      <time datetime="2017-02-09T03:53:23.000Z" itemprop="datePublished">2017-02-09</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/02/09/JavaScript忍者秘籍笔记——原型与面向对象/">JavaScript 忍者秘籍笔记——原型与面向对象</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <p>第六章 原型与面向对象</p>
+<p>原型虽然是定义对象的一种很方便的方式，但它的本质依然是函数特性。</p>
+<h2 id="实例化和原型"><a href="#实例化和原型" class="headerlink" title="实例化和原型"></a>实例化和原型</h2><p>所有的函数在初始化的时候都有一个 prototype 属性，该属性的初始值是一个空对象。只有函数在作为构造器的时候，prototype 属性才会发挥更大的作用。<br>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript忍者秘籍笔记/">JavaScript忍者秘籍笔记</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a href="/2017/02/09/JavaScript忍者秘籍笔记——原型与面向对象/#more">阅读全文 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-JavaScript忍者秘籍笔记——闭包" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -895,77 +965,6 @@
       
         <p class="article-more-link">
           <a href="/2017/01/04/javascript坑与技巧：异常/#more">阅读全文 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-javascript坑与技巧：表单" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2017/01/03/javascript坑与技巧：表单/" class="article-date">
-      <time datetime="2017-01-03T05:57:41.000Z" itemprop="datePublished">2017-01-03</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/01/03/javascript坑与技巧：表单/">JavaScript坑与技巧：表单</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h2 id="表单"><a href="#表单" class="headerlink" title="表单"></a>表单</h2><h3 id="巧用-input-加密提交"><a href="#巧用-input-加密提交" class="headerlink" title="巧用 input 加密提交"></a>巧用 input 加密提交</h3><p>很多登录表单出于安全考虑，提交时不传输明文密码，而是密码的MD5。普通JavaScript开发人员会直接修改<code>&lt;input&gt;</code>：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- HTML --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">id</span>=<span class="string">"login-form"</span> <span class="attr">method</span>=<span class="string">"post"</span> <span class="attr">onsubmit</span>=<span class="string">"return checkForm()"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">id</span>=<span class="string">"username"</span> <span class="attr">name</span>=<span class="string">"username"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"password"</span> <span class="attr">id</span>=<span class="string">"password"</span> <span class="attr">name</span>=<span class="string">"password"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">"submit"</span>&gt;</span>Submit<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></div><div class="line">/******************/</div><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">checkForm</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> pwd = <span class="built_in">document</span>.getElementById(<span class="string">'password'</span>);</div><div class="line">    <span class="comment">// 把用户输入的明文变为MD5:</span></div><div class="line">    pwd.value = toMD5(pwd.value);</div><div class="line">    <span class="comment">// 继续下一步:</span></div><div class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">&#125;</div><div class="line"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
-<p>这个做法看上去没啥问题，但用户输入了密码提交时，密码框的显示会突然从几个<code>*</code>变成32个<code>*</code>（因为MD5有 32 个字符）。</p>
-<p>要想不改变用户的输入，可以利用<code>&lt;input type=&quot;hidden&quot;&gt;</code>实现：<br>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript-JavaScript坑与技巧-表单/">JavaScript JavaScript坑与技巧 表单</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a href="/2017/01/03/javascript坑与技巧：表单/#more">阅读全文 >></a>
         </p>
       
       <div class="clearfix"></div>
