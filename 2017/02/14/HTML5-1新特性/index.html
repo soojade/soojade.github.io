@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="soojade" />
+
+
+
+<meta name="description" content="HTML5.1 14个新特性在 2016 年 11 月， W3C 对 HTML5 标准进行了更新，它是 2 年内的第一次小更新。其中的一些新的元素包含了组合标签, 现在这样的元素包括有 &amp;lt;dialog&amp;gt;,&amp;lt;details&amp;gt;,&amp;lt;summary&amp;gt; 以及&amp;lt;picture&amp;gt;，这样就为开发者提供了更多表达创意和内容的空间。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HTML5.1 新特性">
+<meta property="og:url" content="http://soojade.github.io/2017/02/14/HTML5-1新特性/index.html">
+<meta property="og:site_name" content="soojade个人空间">
+<meta property="og:description" content="HTML5.1 14个新特性在 2016 年 11 月， W3C 对 HTML5 标准进行了更新，它是 2 年内的第一次小更新。其中的一些新的元素包含了组合标签, 现在这样的元素包括有 &amp;lt;dialog&amp;gt;,&amp;lt;details&amp;gt;,&amp;lt;summary&amp;gt; 以及&amp;lt;picture&amp;gt;，这样就为开发者提供了更多表达创意和内容的空间。">
+<meta property="og:updated_time" content="2017-02-14T05:25:36.095Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="HTML5.1 新特性">
+<meta name="twitter:description" content="HTML5.1 14个新特性在 2016 年 11 月， W3C 对 HTML5 标准进行了更新，它是 2 年内的第一次小更新。其中的一些新的元素包含了组合标签, 现在这样的元素包括有 &amp;lt;dialog&amp;gt;,&amp;lt;details&amp;gt;,&amp;lt;summary&amp;gt; 以及&amp;lt;picture&amp;gt;，这样就为开发者提供了更多表达创意和内容的空间。">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="soojade个人空间" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="img/favicon.ico">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/green/pace-theme-flash.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>HTML5.1 新特性 | soojade个人空间</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: true
+    }
+</script>
+
+
+    <script>
+        yiliaConfig.jquery_ui = [true, "//cdn.bootcss.com/jqueryui/1.10.4/jquery-ui.min.js", "//cdn.bootcss.com/jqueryui/1.10.4/css/jquery-ui.min.css"];
+    </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/avatar.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">soojade</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">博客</p>
+        
+
+        
+            <form id="search-form">
+            <input type="text" id="local-search-input" name="q" placeholder="search..." class="search form-control" autocomplete="off" autocorrect="off" searchonload="false" />
+            <i class="fa fa-times" onclick="resetSearch()"></i>
+            </form>
+            <div id="local-search-result"></div>
+            <p class='no-result'>No results found <i class='fa fa-spinner fa-pulse'></i></p>
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=2035030023@qq.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" href="https://github.com/soojade" title="GitHub"></a>
+                            
+                                <a class="fa 知乎" href="https://www.zhihu.com/people/soojade/activities" title="知乎"></a>
+                            
+                                <a class="fa 简书" href="http://www.jianshu.com/users/b2e1cf392d42/latest_articles" title="简书"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML-HTML5-1新特性/">HTML HTML5.1新特性</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript-JavaScript坑与技巧/">JavaScript JavaScript坑与技巧</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript-JavaScript坑与技巧-DOM/">JavaScript JavaScript坑与技巧 DOM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript-JavaScript坑与技巧-filter/">JavaScript JavaScript坑与技巧 filter()</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript-JavaScript坑与技巧-map/">JavaScript JavaScript坑与技巧 map()</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript-JavaScript坑与技巧-sort/">JavaScript JavaScript坑与技巧 sort()</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript-JavaScript坑与技巧-this/">JavaScript JavaScript坑与技巧 this</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript-JavaScript坑与技巧-变量作用域/">JavaScript JavaScript坑与技巧 变量作用域</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript-JavaScript坑与技巧-异常/">JavaScript JavaScript坑与技巧 异常</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript-JavaScript坑与技巧-箭头函数/">JavaScript JavaScript坑与技巧 箭头函数</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript-JavaScript坑与技巧-表单/">JavaScript JavaScript坑与技巧 表单</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript-JavaScript坑与技巧-闭包/">JavaScript JavaScript坑与技巧 闭包</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript忍者秘籍笔记/">JavaScript忍者秘籍笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/angular-angular-点-线-面/">angular angular.点-线-面</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/angular-angular文档/">angular angular文档</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dart-dart命令行/">dart  dart命令行</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dart-angularDart-web-angular指南/">dart angularDart web angular指南</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dart-angularDart-web-angular教程/">dart angularDart web angular教程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dart-dart基础/">dart dart基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/react文档-翻译/">react文档 翻译</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">专注于Web与游戏</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">soojade</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/avatar.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">soojade</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">博客</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=2035030023@qq.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/soojade" title="GitHub"></a>
+                            
+                                <a class="fa 知乎" target="_blank" href="https://www.zhihu.com/people/soojade/activities" title="知乎"></a>
+                            
+                                <a class="fa 简书" target="_blank" href="http://www.jianshu.com/users/b2e1cf392d42/latest_articles" title="简书"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-HTML5-1新特性" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/02/14/HTML5-1新特性/" class="article-date">
+      <time datetime="2017-02-14T03:52:17.000Z" itemprop="datePublished">2017-02-14</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      HTML5.1 新特性
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/HTML/">HTML</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTML-HTML5-1新特性/">HTML HTML5.1新特性</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h1 id="HTML5-1-14个新特性"><a href="#HTML5-1-14个新特性" class="headerlink" title="HTML5.1 14个新特性"></a>HTML5.1 14个新特性</h1><p>在 2016 年 11 月， W3C 对 HTML5 标准进行了更新，它是 2 年内的第一次小更新。其中的一些新的元素包含了组合标签, 现在这样的元素包括有 <code>&lt;dialog&gt;</code>,<code>&lt;details&gt;</code>,<code>&lt;summary&gt;</code> 以及<code>&lt;picture&gt;</code>，这样就为开发者提供了更多表达创意和内容的空间。<br><a id="more"></a></p>
+<h2 id="1-防止网络钓鱼攻击"><a href="#1-防止网络钓鱼攻击" class="headerlink" title="1. 防止网络钓鱼攻击"></a>1. 防止网络钓鱼攻击</h2><p>大多数使用<code>target=&quot;_blank&quot;</code>的人都知道——新打开的一个标签可以更改<code>window.opener.location</code>到一些网络钓鱼页面。它会在开放页面上代表你执行一些恶意 JavaScript 代码。因为用户相信打开的页面已安全，所以他们不会有所怀疑。</p>
+<p>为了完全消除这个问题，HTML5.1 已经通过隔离浏览器上下文的方式标准化了的 <code>rel=”noopener”</code>属性的用法。<code>rel =“noopener”</code>可以在 <code>&lt;a&gt;</code> 和 <code>&lt;area&gt;</code> 标签中使用。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span> <span class="attr">target</span>=<span class="string">"_blank"</span> <span class="attr">rel</span>=<span class="string">"noopener"</span>&gt;</span></div><div class="line">  The link won't make trouble anymore</div><div class="line"><span class="tag">&lt;/<span class="name">a</span>&gt;</span></div></pre></td></tr></table></figure>
+<h2 id="2-灵活处理图片标题"><a href="#2-灵活处理图片标题" class="headerlink" title="2. 灵活处理图片标题"></a>2. 灵活处理图片标题</h2><p><code>&lt;figcaption&gt;</code> 标签表示与 <code>&lt;figure&gt;</code> 元素关联的标题或图例，通常作为例如图片、图表、插图等视觉元素的容器。在早期的 HTML 版本中，<code>&lt;figcaption&gt;</code> 只能用作第一个或最后一个 <code>&lt;figure&gt;</code> 的子标签。HTML5.1 已放宽此限制，现在您可以在 <code>&lt;figure&gt;</code> 容器中的任何位置使用 <code>&lt;figcaption&gt;</code>。</p>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&lt;article&gt;</div><div class="line">  &lt;h1&gt;The Headline <span class="keyword">of</span> todays news &lt;/h1&gt;</div><div class="line">  &lt;figure&gt;</div><div class="line">    &lt;img src=<span class="string">"petrolimage.jpeg"</span> alt=<span class="string">"Petrol price drops"</span>&gt;</div><div class="line">    &lt;figcaption&gt;A man fueling up his car <span class="keyword">at</span> petrol station&lt;/figcaption&gt;</div><div class="line">  &lt;/figure&gt;</div><div class="line">  &lt;p&gt;This is <span class="keyword">the</span> forth hike <span class="keyword">in</span> petrol prices <span class="keyword">in</span> <span class="literal">two</span> month <span class="keyword">and</span> <span class="keyword">the</span> <span class="keyword">third</span> <span class="keyword">in</span> <span class="keyword">case</span> <span class="keyword">of</span> diesel <span class="keyword">in</span> <span class="literal">one</span> fortnight.&lt;/p&gt;</div><div class="line">&lt;/article&gt;</div></pre></td></tr></table></figure>
+<h2 id="3-拼写检查"><a href="#3-拼写检查" class="headerlink" title="3. 拼写检查"></a>3. 拼写检查</h2><p><code>spellcheck</code> 是一个取值可以为<code>空字符串</code>、<code>true</code> 和 <code>false</code> 的枚举属性。如果指定其状态为 <code>true</code>，就表示元素将会接受对其的拼写和语法检查。</p>
+<p><code>element.forceSpellCheck()</code> 将强制用户代理在文本元素上报告检查出来的拼写和语法错误，即使用户从来没将输入聚焦在该元素上。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">spellcheck</span>=<span class="string">"true"</span>&gt;</span></div><div class="line"> <span class="tag">&lt;<span class="name">label</span>&gt;</span>Name: <span class="tag">&lt;<span class="name">input</span> <span class="attr">spellcheck</span>=<span class="string">" false"</span> <span class="attr">id</span>=<span class="string">"textbox"</span>&gt;</span><span class="tag">&lt;/<span class="name">label</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">p</span>&gt;</span></div></pre></td></tr></table></figure>
+<h2 id="4-空选项"><a href="#4-空选项" class="headerlink" title="4. 空选项"></a>4. 空选项</h2><p>新版的 HTML 允许你创建一个空的<code>&lt;option&gt;</code>元素。它可以是 <code>&lt;optgroup&gt;</code>, <code>&lt;datalist&gt;</code> 或者 <code>&lt;select&gt;</code> 元素的子元素。你将会发现这项功能在设计对用户友好的表单方面时能有所帮助。</p>
+<h2 id="5-支持-Frame-的全屏"><a href="#5-支持-Frame-的全屏" class="headerlink" title="5. 支持 Frame 的全屏"></a>5. 支持 Frame 的全屏</h2><p>为 Frame 开发的布尔变量 <code>allowfullscreen</code> 属性允许您通过使用 <code>requestFullscreen()</code> 方法控制内容是否可以全屏显示。 例如，我们使用嵌入 YouTube 的播放器的 <code>iframe</code> 做示例。需要设置 <code>allowfullscreen</code> 属性才能让播放器全屏显示视频。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">article</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">header</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"/usericons/16235"</span>&gt;</span> <span class="tag">&lt;<span class="name">b</span>&gt;</span>Fred Flintstone<span class="tag">&lt;/<span class="name">b</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"/posts/30934"</span> <span class="attr">rel</span>=<span class="string">bookmark</span>&gt;</span>12:44<span class="tag">&lt;/<span class="name">a</span>&gt;</span> — <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#acl-503439551"</span>&gt;</span>Private Post<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">header</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">main</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>Check out my new video!<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">iframe</span> <span class="attr">title</span>=<span class="string">"Video"</span> <span class="attr">src</span>=<span class="string">"https://youtube.com/?id=92469812"</span> <span class="attr">allowfullscreen</span>&gt;</span><span class="tag">&lt;/<span class="name">iframe</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">main</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">article</span>&gt;</span></div></pre></td></tr></table></figure>
+<h2 id="6-嵌入-header-和-footer"><a href="#6-嵌入-header-和-footer" class="headerlink" title="6. 嵌入 header 和 footer"></a>6. 嵌入 header 和 footer</h2><p>HTML5.1 允许你在另一个 <code>header</code> 嵌入 <code>header</code> 和 <code>footer</code>。你可以向头部元素添加一个 <code>header</code> 或 <code>footer</code> ，假如它们在段落内容里包含它们自己。假如你想添加详细阐述诸如 <code>&lt;section&gt;</code> 和 <code>&lt;article&gt;</code> 标签到语义段落元素，这个特性将变得非常有用。</p>
+<p>在下面的代码中，<code>&lt;article&gt;</code> 标签包含一个 <code>&lt;header&gt;</code> 标签，它有个自身包含 <code>&lt;header&gt;</code> 标签的 <code>&lt;aside&gt;</code> 标签。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">article</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">header</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">h2</span>&gt;</span>Lesson: How to cook chicken<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">aside</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">header</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">h2</span>&gt;</span>About the author: Tom Hank<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"./tomhank/"</span>&gt;</span>Contact him!<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">header</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">p</span>&gt;</span>Expert in nothing but Cooking. The cookbook sideshow.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">aside</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">header</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;<span class="name">ins</span>&gt;</span>Pour the marinade into the zip-top bag with the chicken and seal it.</div><div class="line">          Remove as much air as possible from the bag and seal it. <span class="tag">&lt;/<span class="name">ins</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">article</span>&gt;</span></div></pre></td></tr></table></figure>
+<h2 id="7-图片零宽度"><a href="#7-图片零宽度" class="headerlink" title="7. 图片零宽度"></a>7. 图片零宽度</h2><p>HTML 新版本允许你添加零宽度的图片。当图片不需要向用户展示时，可以使用此特性。假如一个 <code>img</code> 元素还有其他用途而不仅仅是展示一个图片，例如，作为一个服务的一部分用来计算页面视图个数，在 <code>width</code> 和 <code>height</code> 属性中使用 <code>0</code> 数值。对于 <code>0</code> 宽度的图片，推荐使用空属性。</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;<span class="selector-tag">img</span> src=<span class="string">"theimagefile.jpg"</span> <span class="attribute">width</span>=<span class="string">"0"</span> height=<span class="string">"0"</span> alt=<span class="string">""</span>&gt;</div></pre></td></tr></table></figure>
+<h2 id="8-校验表单"><a href="#8-校验表单" class="headerlink" title="8. 校验表单"></a>8. 校验表单</h2><p>新的 <code>reportValidity()</code> 方法允许你校验一个表单和重置结果，并且在浏览器适合位置向用户报告错误。用户代理可以报告一个以上的限制规则，假如单一元素同时遇到多个问题。对于这种情况，“密码”输入为必填内容但没有填，将会标识为错误。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">h2</span>&gt;</span>Form validation<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>Enter details<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">form</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">label</span>&gt;</span></div><div class="line">    Mandatory input <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"password"</span> <span class="attr">name</span>=<span class="string">"password"</span> <span class="attr">required</span> /&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">label</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">"submit"</span>&gt;</span>Submit<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></div><div class="line">  <span class="built_in">document</span>.querySelector(<span class="string">'form'</span>).reportValidity()</div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+<h2 id="9-浏览器的上下文菜单"><a href="#9-浏览器的上下文菜单" class="headerlink" title="9. 浏览器的上下文菜单"></a>9. 浏览器的上下文菜单</h2><p>在 HTML5.1 中, 你可以使用 <code>&lt;menu&gt;</code> 标记来定义菜单，里面包含了一个或者多个 <code>&lt;menuitem&gt;</code> 元素, 然后利用 <code>contextmenu</code> 属性将其绑定到任何元素上。<code>&lt;menu&gt;</code> 元素的 <code>id</code> 取值应该与我们想要为其添加上下文菜单的元素的 <code>contextmenu</code> 属性取值保持一致。</p>
+<p>每一个 <code>&lt;menuitem&gt;</code> 都可以有如下三个表单项中的一个:</p>
+<ul>
+<li><p><code>radio</code> – 从一个分组中获取选项；</p>
+</li>
+<li><p><code>checkbox</code> – 选择或者取消选择一个选项；</p>
+</li>
+<li><p><code>command</code> – 在点击时执行一个动作。</p>
+</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">h2</span> <span class="attr">contextmenu</span>=<span class="string">"popup-menu"</span>&gt;</span></div><div class="line">  Right click to get the context menu demo.</div><div class="line"><span class="tag">&lt;/<span class="name">h2</span>&gt;</span></div><div class="line"> </div><div class="line"><span class="tag">&lt;<span class="name">menu</span> <span class="attr">type</span>=<span class="string">"context"</span> <span class="attr">id</span>=<span class="string">"popup-menu"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">menuitem</span> <span class="attr">type</span>=<span class="string">"checkbox"</span> <span class="attr">checked</span>=<span class="string">"true"</span>&gt;</span>Checkbox 1 <span class="tag">&lt;/<span class="name">menuitem</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">menuitem</span> <span class="attr">type</span>=<span class="string">"command"</span> <span class="attr">label</span>=<span class="string">"Command"</span> <span class="attr">onclick</span>=<span class="string">"alert('WARNING')"</span>&gt;</span>Checkbox 2<span class="tag">&lt;/<span class="name">menuitem</span>&gt;</span> </div><div class="line">  <span class="tag">&lt;<span class="name">menuitem</span> <span class="attr">type</span>=<span class="string">"radio"</span> <span class="attr">name</span>=<span class="string">"group1"</span>&gt;</span>Radio button a<span class="tag">&lt;/<span class="name">menuitem</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">menuitem</span> <span class="attr">type</span>=<span class="string">"radio"</span> <span class="attr">name</span>=<span class="string">"group1"</span> <span class="attr">checked</span>=<span class="string">"true"</span>&gt;</span>Radio button b<span class="tag">&lt;/<span class="name">menuitem</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">menuitem</span> <span class="attr">type</span>=<span class="string">"checkbox"</span> <span class="attr">disabled</span>&gt;</span>Disabled menu item<span class="tag">&lt;/<span class="name">menuitem</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">menu</span>&gt;</span></div></pre></td></tr></table></figure>
+<h2 id="10-在脚本和样式上使用加密随机数"><a href="#10-在脚本和样式上使用加密随机数" class="headerlink" title="10. 在脚本和样式上使用加密随机数"></a>10. 在脚本和样式上使用加密随机数</h2><p>加密随机数（cryptographic nonce ）是一个随机生成的数字，只能被使用一次, 而且针对每一次页面请求，它都得被生成出来。这个 <code>nonce</code> 属性可以被使用在 <code>&lt;script&gt;</code> 和 <code>&lt;style&gt;</code> 元素中。</p>
+<p>它一般被用在一个网站的内容安全策略之中，以决定一个特定的样式和脚本是否应该在页面上被实现。在下面所提供的代码中，这个 value 是硬编码的，不过在实际的使用场景中，这个值是随机生成的。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">nonce</span>=<span class="string">'d3ne7uWP43Bhr0e'</span>&gt;</span><span class="undefined"></span></div><div class="line">  The JavaScript Code </div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+<h2 id="11-反序链接关系"><a href="#11-反序链接关系" class="headerlink" title="11. 反序链接关系"></a>11. 反序链接关系</h2><p><code>rev</code> 属性在 HTML4 里有定义，但是它并没出现在 HTML5 里。W3C 决定在 <code>&lt;a&gt;</code> 和 <code>&lt;link&gt;</code> 元素里重新包含 <code>rev</code> 属性。<code>rev</code> 属性标识当前和反向的链接文档的关系。它已经被包含来支持广泛使用数据结构标记格式，RDFa。</p>
+<p>让我们用两个文档来举个例子，每个包含一课程，在它们之间的链接可以使用如下 rel 和 rev 的属性来定义。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">href</span>=<span class="string">"Lesson2.html"</span> <span class="attr">rel</span>=<span class="string">"next"</span> <span class="attr">rev</span>=<span class="string">"prev"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">href</span>=<span class="string">"Lesson1.html"</span> <span class="attr">rel</span>=<span class="string">"prev"</span> <span class="attr">rev</span>=<span class="string">"next"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">href</span>=<span class="string">"Lesson3.html"</span> <span class="attr">rel</span>=<span class="string">"next"</span> <span class="attr">rev</span>=<span class="string">"prev"</span>&gt;</span></div></pre></td></tr></table></figure>
+<h2 id="12-显示-隐藏信息"><a href="#12-显示-隐藏信息" class="headerlink" title="12. 显示/隐藏信息"></a>12. 显示/隐藏信息</h2><p>新的<code>&lt;details&gt;</code> 和<code>&lt;summary&gt;</code> 元素允许您向一段内容添加扩展信息。您可以通过单击元素来显示或隐藏一个附加信息块。 默认情况下是隐藏附加信息的。</p>
+<p>在代码中，您应该将 <code>&lt;summary&gt;</code> 标记放在 <code>&lt;details&gt;</code> 标记内，如下所示。<code>&lt;summary&gt;</code> 标签之后，你可以添加要隐藏的其他内容。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">section</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">h3</span>&gt;</span>Error Message<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">details</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">summary</span>&gt;</span>This file hasn't been download due to network error.<span class="tag">&lt;/<span class="name">summary</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">dl</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">dt</span>&gt;</span>File name:<span class="tag">&lt;/<span class="name">dt</span>&gt;</span><span class="tag">&lt;<span class="name">dd</span>&gt;</span>Passcode.txt<span class="tag">&lt;/<span class="name">dd</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">dt</span>&gt;</span>File size:<span class="tag">&lt;/<span class="name">dt</span>&gt;</span><span class="tag">&lt;<span class="name">dd</span>&gt;</span>8 KB<span class="tag">&lt;/<span class="name">dd</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">dt</span>&gt;</span>Error code:<span class="tag">&lt;/<span class="name">dt</span>&gt;</span><span class="tag">&lt;<span class="name">dd</span>&gt;</span>342a<span class="tag">&lt;/<span class="name">dd</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">dl</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">details</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">section</span>&gt;</span></div></pre></td></tr></table></figure>
+<h2 id="13-更多的输入项类型"><a href="#13-更多的输入项类型" class="headerlink" title="13. 更多的输入项类型"></a>13. 更多的输入项类型</h2><p>HTML 输入项元素扩充了三个输入类型 – <code>week</code>, <code>month</code> 以及 <code>datetime-local</code>。<br>正如其名称所表明的，头两个元素可以让用户选择一个星期值和一个月份值。根据浏览器的支持情况不同，它们俩都会被渲染成一个下拉显示的日历，让你可以选择一年中一个特定的星期或者月份。</p>
+<p><code>datatime-local</code> 表示的是一个日期和时间的输入域, 不过没有时区设置。其数据可以采用跟 <code>month</code> 或者 <code>week</code> 输入项类似的方法来选定, 而时间可以单独输入。</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">&lt;section&gt;</div><div class="line">  &lt;h2&gt; </div><div class="line">    Week, Month and Datetime-local </div><div class="line">  &lt;/h2&gt;</div><div class="line">  &lt;<span class="selector-tag">form</span> action=<span class="string">"action_page.php"</span>&gt;</div><div class="line">    Choose <span class="selector-tag">a</span> week:</div><div class="line">    &lt;<span class="selector-tag">input</span> type=<span class="string">"week"</span> name=<span class="string">"year_week"</span>&gt;</div><div class="line">    &lt;<span class="selector-tag">input</span> type=<span class="string">"submit"</span>&gt;</div><div class="line">  &lt;/form&gt;</div><div class="line">  &lt;<span class="selector-tag">form</span> action=<span class="string">"action_page.php"</span>&gt;</div><div class="line">    Birthday (month and year):</div><div class="line">    &lt;<span class="selector-tag">input</span> type=<span class="string">"month"</span> name=<span class="string">"bdaymonth"</span>&gt;</div><div class="line">    &lt;<span class="selector-tag">input</span> type=<span class="string">"submit"</span>&gt;</div><div class="line">  &lt;/form&gt;</div><div class="line">  &lt;<span class="selector-tag">form</span> action=<span class="string">"action_page.php"</span>&gt;</div><div class="line">    Joining (date and time):</div><div class="line">    &lt;<span class="selector-tag">input</span> type=<span class="string">"datetime-local"</span> name=<span class="string">"bdaytime"</span>&gt;</div><div class="line">    &lt;<span class="selector-tag">input</span> type=<span class="string">"submit"</span> value=<span class="string">"Send"</span>&gt;</div><div class="line">  &lt;/form&gt;</div><div class="line">&lt;/section&gt;</div></pre></td></tr></table></figure>
+<h2 id="14-响应式图像"><a href="#14-响应式图像" class="headerlink" title="14. 响应式图像"></a>14. 响应式图像</h2><p>W3C 引入了一些功能特性，无需使用 CSS 就可以实现响应式图像。它们是:</p>
+<h3 id="srcset-图像属性"><a href="#srcset-图像属性" class="headerlink" title="srcset 图像属性"></a>srcset 图像属性</h3><p><code>srcset</code> 属性让你可以指定一个多个可选的图像来源，对应于不同的像素分辨率。它将允许浏览器根据用户设备的不同选择合适质量的实现来进行显示。例如，对于使用网络比较慢的移动设备的用户，显示一张低分辨率的图片会比较好。</p>
+<p>你可以使用 <code>srcset</code> 属性并且带上它自有的 <code>x</code> 修饰符来描述每一个图片的像素比例, 如果用户的像素比例等于 <code>3</code>，就会显示 <code>high-res</code> 这张图片。</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;img src=<span class="string">"clicks/low-res.jpg"</span> srcset=<span class="comment">"</span></div><div class="line">  clicks/low-<span class="keyword">res</span>.jpg <span class="number">1</span><span class="keyword">x</span>, </div><div class="line">  clicks/medium-<span class="keyword">res</span>.jpg <span class="number">2</span><span class="keyword">x</span>, </div><div class="line">  clicks/high-<span class="keyword">res</span>.jpg <span class="number">3</span><span class="keyword">x</span><span class="comment">"&gt;</span></div></pre></td></tr></table></figure>
+<p>除了像素比例之外，你也可以选择使用 <code>w</code> 修饰符来指定不同尺寸大小的图片。在如下示例中，<code>high-res</code> 图片被定义成在宽度为 <code>1600px</code> 时显示。</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;img src=<span class="string">"clicks/low-res.jpg"</span> srcset=<span class="comment">"</span></div><div class="line">  clicks/low-<span class="keyword">res</span>.jpg <span class="number">500</span><span class="keyword">w</span>, </div><div class="line">  clicks/medium-<span class="keyword">res</span>.jpg <span class="number">1000</span><span class="keyword">w</span>, </div><div class="line">  clicks/high-<span class="keyword">res</span>.jpg <span class="number">1600</span><span class="keyword">w</span><span class="comment">"&gt;</span></div></pre></td></tr></table></figure>
+<h3 id="sizes-图像属性"><a href="#sizes-图像属性" class="headerlink" title="sizes 图像属性"></a>sizes 图像属性</h3><p>大多数时候创作者们都喜欢针对不同的屏幕尺寸显示不同的图片。这个可以用 <code>sizes</code> 属性做到。它让你可以针对分配给图像显示的空间大小来对宽度做出调整, 然后使用 <code>srcset</code> 属性来挑选合适的图片来显示。例如:</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;img src=<span class="string">"clicks/low-res.jpg"</span> sizes=<span class="string">"(max-width: 25em) 60vw, 100vw"</span> </div><div class="line">  srcset=<span class="comment">"clicks/low-res.jpg 500w, </span></div><div class="line">  clicks/medium-<span class="keyword">res</span>.jpg <span class="number">1000</span><span class="keyword">w</span>, </div><div class="line">  clicks/high-<span class="keyword">res</span>.jpg <span class="number">1600</span><span class="keyword">w</span><span class="comment">"&gt;</span></div></pre></td></tr></table></figure>
+<p>在这里，<code>sizes</code> 属性定义了在视窗大于 <code>25em</code> 时图像宽度为视窗宽度的 <code>100%</code>，或者在小于等于 <code>25em</code> 时为视图宽度的 <code>60%</code>。</p>
+<h3 id="picture-元素"><a href="#picture-元素" class="headerlink" title="picture 元素"></a>picture 元素</h3><p><code>picture</code> 元素让你可以针对不同的屏幕尺寸声明图片。这个可以通过用 <code>&lt;picture&gt;</code> 元素封装 <code>&lt;img&gt;</code> ，并且描述多个 <code>&lt;source&gt;</code> 子元素来实现。</p>
+<p><code>&lt;picture&gt;</code> 标记单独使用并不会显示任何东西。你已经被假定会声明默认的图像来源作为 <code>src</code> 属性的取值，而可选的图像来源则会放在 <code>scrset</code> 属性之中，如下所示：</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="symbol">&lt;picture&gt;</span></div><div class="line">  &lt;<span class="keyword">source</span> media=<span class="string">"(max-width: 25em)"</span> srcset=<span class="comment">"</span></div><div class="line">    clicks/small/low-<span class="keyword">res</span>.jpg <span class="number">1</span><span class="keyword">x</span>,</div><div class="line">    clicks/small/medium-<span class="keyword">res</span>.jpg <span class="number">2</span><span class="keyword">x</span>, </div><div class="line">    clicks/small/high-<span class="keyword">res</span>.jpg <span class="number">3</span><span class="keyword">x</span></div><div class="line">  <span class="comment">"&gt;</span></div><div class="line">  &lt;<span class="keyword">source</span> media=<span class="string">"(max-width: 60em)"</span> srcset=<span class="comment">"</span></div><div class="line">    clicks/large/low-<span class="keyword">res</span>.jpg <span class="number">1</span><span class="keyword">x</span>,</div><div class="line">    clicks/large/medium-<span class="keyword">res</span>.jpg <span class="number">2</span><span class="keyword">x</span>, </div><div class="line">    clicks/large/high-<span class="keyword">res</span>.jpg <span class="number">3</span><span class="keyword">x</span></div><div class="line">  <span class="comment">"&gt;</span></div><div class="line"> </div><div class="line">  &lt;img src=<span class="string">"clicks/default/medium-res.jpg"</span>&gt;</div><div class="line">&lt;/picture&gt;</div></pre></td></tr></table></figure>
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2017/02/14/HTML5-1新特性/">HTML5.1 新特性</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">soojade</a></p>
+        <p><span>发布时间:</span>2017-02-14, 11:52:17</p>
+        <p><span>最后更新:</span>2017-02-14, 13:25:36</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2017/02/14/HTML5-1新特性/" title="HTML5.1 新特性">http://soojade.github.io/2017/02/14/HTML5-1新特性/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://soojade.github.io/2017/02/14/HTML5-1新特性/　　作者: soojade" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2017/02/09/JavaScript忍者秘籍笔记——原型与面向对象/">
+                    JavaScript 忍者秘籍笔记——原型与面向对象
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#HTML5-1-14个新特性"><span class="toc-number">1.</span> <span class="toc-text">HTML5.1 14个新特性</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-防止网络钓鱼攻击"><span class="toc-number">1.1.</span> <span class="toc-text">1. 防止网络钓鱼攻击</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-灵活处理图片标题"><span class="toc-number">1.2.</span> <span class="toc-text">2. 灵活处理图片标题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-拼写检查"><span class="toc-number">1.3.</span> <span class="toc-text">3. 拼写检查</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-空选项"><span class="toc-number">1.4.</span> <span class="toc-text">4. 空选项</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-支持-Frame-的全屏"><span class="toc-number">1.5.</span> <span class="toc-text">5. 支持 Frame 的全屏</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-嵌入-header-和-footer"><span class="toc-number">1.6.</span> <span class="toc-text">6. 嵌入 header 和 footer</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-图片零宽度"><span class="toc-number">1.7.</span> <span class="toc-text">7. 图片零宽度</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-校验表单"><span class="toc-number">1.8.</span> <span class="toc-text">8. 校验表单</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-浏览器的上下文菜单"><span class="toc-number">1.9.</span> <span class="toc-text">9. 浏览器的上下文菜单</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-在脚本和样式上使用加密随机数"><span class="toc-number">1.10.</span> <span class="toc-text">10. 在脚本和样式上使用加密随机数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#11-反序链接关系"><span class="toc-number">1.11.</span> <span class="toc-text">11. 反序链接关系</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#12-显示-隐藏信息"><span class="toc-number">1.12.</span> <span class="toc-text">12. 显示/隐藏信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#13-更多的输入项类型"><span class="toc-number">1.13.</span> <span class="toc-text">13. 更多的输入项类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#14-响应式图像"><span class="toc-number">1.14.</span> <span class="toc-text">14. 响应式图像</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#srcset-图像属性"><span class="toc-number">1.14.1.</span> <span class="toc-text">srcset 图像属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sizes-图像属性"><span class="toc-number">1.14.2.</span> <span class="toc-text">sizes 图像属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#picture-元素"><span class="toc-number">1.14.3.</span> <span class="toc-text">picture 元素</span></a></li></ol></li></ol></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-4 i,
+        .toc-level-4 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"HTML5.1 新特性　| soojade个人空间　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+      <div class="duoshuo" id="comments">
+    <div id="comment-box" ></div>
+    <div class="ds-thread" id="ds-thread" data-thread-key="2017/02/14/HTML5-1新特性/" data-title="HTML5.1 新特性" data-url="http://soojade.github.io/2017/02/14/HTML5-1新特性/"></div>
+    <script>
+        var duoshuoQuery = {short_name:"soojade"};
+        var loadComment = function(){
+            var d = document, s = d.createElement('script');
+            s.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+            s.async = true; s.charset = 'UTF-8';
+            (d.head || d.body).appendChild(s);
+        }
+
+        
+    </script>
+    
+    <script> loadComment(); </script>
+
+</div>
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2017/02/09/JavaScript忍者秘籍笔记——原型与面向对象/" title="下一篇: JavaScript 忍者秘籍笔记——原型与面向对象">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/02/14/HTML5-1新特性/">HTML5.1 新特性</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/09/JavaScript忍者秘籍笔记——原型与面向对象/">JavaScript 忍者秘籍笔记——原型与面向对象</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/07/JavaScript忍者秘籍笔记——闭包/">JavaScript 忍者秘籍笔记——闭包</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/07/JavaScript忍者秘籍笔记——挥舞函数/">JavaScript忍者秘籍笔记——挥舞函数</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/06/JavaScript忍者秘籍笔记————函数是根基/">JavaScript 忍者秘籍————函数是根基</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/05/JavaScript忍者秘籍笔记————利用测试和调试武装自己/">JavaScript 忍者秘籍笔记————利用测试和调试武装自己</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/05/JavaScript忍者秘籍笔记————进入忍者世界/">JavaScript 忍者秘籍笔记————进入忍者世界</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/01/angular文档——CLI-快速起步/">angular文档——CLI-快速起步</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/15/angular点-线-面：模板引用变量/">angular.点-线-面：模板引用变量</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/15/javascript坑与技巧：花式交换两个数值/">JavaScript坑与技巧：花式交换两个数值</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/04/javascript坑与技巧：异常/">JavaScript坑与技巧：异常</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/03/javascript坑与技巧：表单/">JavaScript坑与技巧：表单</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/03/javascript坑与技巧：DOM/">JavaScript坑与技巧：DOM</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/02/javascript坑与技巧：this/">JavaScript坑与技巧：this</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/02/javascript坑与技巧：变量作用域/">JavaScript坑与技巧：变量作用域</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/02/javascript坑与技巧：箭头函数/">JavaScript坑与技巧：箭头函数</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/02/javascript坑与技巧：闭包/">JavaScript坑与技巧：闭包</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/02/javascript坑与技巧：sort/">JavaScript坑与技巧：sort</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/01/javascript坑与技巧：filter/">JavaScript坑与技巧：filter</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/01/javascript坑与技巧：map/">JavaScript坑与技巧：map</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/react文档-表单/">react文档--表单</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/react文档-列表和键/">react文档--列表和键</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/react文档-条件渲染/">react文档--条件渲染</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/react文档-事件处理/">react文档--事件处理</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/react文档-state和生命周期/">react文档--state和生命周期</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/react文档-组件和props/">react文档--组件和props</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/react文档-渲染元素/">react文档--渲染元素</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/react文档-介绍JSX/">react文档--介绍JSX</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/react文档-HelloWorld/">react文档--HelloWorld</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/react文档-安装/">react文档--安装</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/20/dart开发命令行工具/">dart开发命令行工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/19/dart语言基础/">dart语言基础</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/19/HTTP/">HTTP</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/19/路由/">路由</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/18/服务/">服务</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/18/多组件/">多组件</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/18/主从结构/">主从结构</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/18/英雄编辑器/">英雄编辑器</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/18/简介/">简介</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/16/模板语法/">模板语法</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/14/依赖注入/">依赖注入</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/13/表单/">表单</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/13/用户输入/">用户输入</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/11/显示数据/">显示数据</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/10/架构/">架构</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/10/学习angular/">学习angular</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/10/搭建开发环境/">搭建开发环境</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/10/概览/">概览</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/10/快速开始/">快速开始</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+  <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i>
+                2016-2017 soojade
+            </div>
+            <div class="footer-right">
+                 Made by soojade <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                Total <span id="busuanzi_value_site_pv"></span> views.
+                欢迎第<span id="busuanzi_value_site_uv"></span>个小伙伴
+                <span id="busuanzi_value_page_pv"></span> Hits
+            </div>
+        
+    </div>
+</footer>
+
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 15;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+    <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+             tags: ".article-tag a", 
+            
+             articleNav: "#article-nav a, #post-nav-button a", 
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>
