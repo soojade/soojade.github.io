@@ -25,7 +25,7 @@ Angular-CLI 是一个命令行工具，使用它可以创建项目、添加文�
 <meta property="og:description" content="CLI 快速起步使用 CLI 工具快速构建 Angular 应用。
 相比手动的做一切事情，好的工具使应用开发更快、更易于维护。
 Angular-CLI 是一个命令行工具，使用它可以创建项目、添加文件，并执行各种开发中的任务，例如——测试、打包、部署。">
-<meta property="og:updated_time" content="2017-02-01T08:46:17.422Z">
+<meta property="og:updated_time" content="2017-03-22T11:43:31.816Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="angular文档——CLI-快速起步">
 <meta name="twitter:description" content="CLI 快速起步使用 CLI 工具快速构建 Angular 应用。
@@ -326,11 +326,11 @@ Angular-CLI 是一个命令行工具，使用它可以创建项目、添加文�
 <p><a href="https://cli.angular.io/" target="_blank" rel="external">Angular-CLI</a> 是一个命令行工具，使用它可以创建项目、添加文件，并执行各种开发中的任务，例如——测试、打包、部署。</p>
 <a id="more"></a>
 <p>在本节，我们的目标是使用 Angular-CLI 并遵循<a href="https://angular.io/docs/ts/latest/guide/style-guide.html" target="_blank" rel="external">风格指南</a>的推荐，构建和运行一个超级简单的 Typescript版的 Angular 应用，这将有益于每一个 Angular 项目。</p>
-<p>本章结束后，你会对使用 CLI 开发有一个基本的理解,并且有为这些文档案例和我们的真实应用的项目基础。</p>
+<p>本章结束后，我们会通过CLI对开发过程有一个最基本的理解，并将其作为其它文档范例以及真实应用的基础。</p>
 <p>要完成目标，包含下面几个主要的步骤：</p>
 <ol>
 <li>配置开发环境</li>
-<li>新建项目及应用架构</li>
+<li>新建项目及应用的骨架</li>
 <li>启动应用服务器</li>
 <li>编辑应用</li>
 </ol>
@@ -340,30 +340,30 @@ Angular-CLI 是一个命令行工具，使用它可以创建项目、添加文�
 <p>通过在命终端/命令行运行<code>node -v</code>和<code>npm -v</code>确保你运行的版本 node 最低<code>4.x.x</code>，npm 最低<code>3.x.x</code>。旧版本会产生错误，但新版本不会。</p>
 </blockquote>
 <p>全局安装 Angular-CLI：</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm <span class="selector-tag">i</span> -g angular-cli</div></pre></td></tr></table></figure>
+<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">npm</span> i -g @angular/cli</div></pre></td></tr></table></figure>
 <h2 id="第二步：新建项目"><a href="#第二步：新建项目" class="headerlink" title="第二步：新建项目"></a>第二步：新建项目</h2><p>打开终端窗口。</p>
-<p>通过运行下面的命令生成新的项目和应用的架构：</p>
+<p>通过运行下面的命令生成新的项目和应用的骨架：</p>
 <figure class="highlight haxe"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ng <span class="keyword">new</span> <span class="type">my</span>-app</div></pre></td></tr></table></figure>
 <blockquote>
-<p>请耐心等待。它需要时间来配置新项目，并花费大量时间安装 npm 包。</p>
+<p>请耐心等待。它需要时间来配置新项目，大多数时间用来安装 npm 包。</p>
 </blockquote>
 <h2 id="第三步：启动应用服务器"><a href="#第三步：启动应用服务器" class="headerlink" title="第三步：启动应用服务器"></a>第三步：启动应用服务器</h2><p>进入项目目录并启动服务器。</p>
 <figure class="highlight stata"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">cd</span> my-<span class="keyword">app</span></div><div class="line">ng serve</div></pre></td></tr></table></figure>
-<p><code>ng serve</code>命令启动服务器，并监视文件，当文件发生改变后重新编译应用。</p>
+<p><code>ng serve</code>命令启动服务器，并监视文件，当文件发生改变后重新构建应用。</p>
 <p>打开浏览器，输入<code>http://localhost:4200/</code>，显示欢迎信息：<code>app works!</code>。</p>
 <h2 id="第四步：编辑我们的第一个-Angular-组件"><a href="#第四步：编辑我们的第一个-Angular-组件" class="headerlink" title="第四步：编辑我们的第一个 Angular 组件"></a>第四步：编辑我们的第一个 Angular 组件</h2><p>CLI 为我们创建第一个 Angular 组件。这就是命名为<code>app-root</code>的根组件。你可以在<code>./src/app/app.component.ts</code>中找到它。</p>
 <p>打开组件文件修改<code>title</code>属性，从<code>app works!</code>改为<code>My First Angular App</code>：</p>
 <figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">AppComponent</span> &#123;</span></div><div class="line">  title = <span class="string">'My First Angular App'</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>浏览器自动重新加载，我们会看到修改后的标题。这很好，但我们可以让它变得更好。</p>
+<p>浏览器自动刷新，我们会看到修改后的标题。这很好，但我们可以让它变得更好看一点。</p>
 <p>打开<code>src/app/cli-quickstart.component.css</code>，给我们的组件设置些样式。</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">h1</span> &#123;</div><div class="line">  <span class="attribute">color</span>: <span class="number">#369</span>;</div><div class="line">  <span class="attribute">font-family</span>: Arial, Helvetica, sans-serif;</div><div class="line">  <span class="attribute">font-size</span>: <span class="number">250%</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="接下来做什么？"><a href="#接下来做什么？" class="headerlink" title="接下来做什么？"></a>接下来做什么？</h2><p>你可以在“Hello，World”应用中做任何你想做的事情。</p>
-<p>你已经学习了<a href="https://angular.io/docs/ts/latest/tutorial" target="_blank" rel="external">英雄之旅教程</a>并且构建了一个小型应用，这是使用 Angular 构建应用的伟大的演示。</p>
-<p>或者你可以花费一段时间来学习新项目中的文件。</p>
-<h2 id="项目文件回顾"><a href="#项目文件回顾" class="headerlink" title="项目文件回顾"></a>项目文件回顾</h2><p>Angular-CLI 项目是快速构建实验和企业解决方案的基础。</p>
+<h2 id="接下来做什么？"><a href="#接下来做什么？" class="headerlink" title="接下来做什么？"></a>接下来做什么？</h2><p>如你所愿，我们完成了这个“Hello, World”应用。</p>
+<p>现在，你可以开始<a href="https://angular.io/docs/ts/latest/tutorial" target="_blank" rel="external">英雄之旅教程</a>，通过构建一个小型应用来学习如何用 Angular 构建各种大型应用了。</p>
+<p>或者，你也可以稍等一会儿，学学在这个新项目中的文件都是干什么用的。</p>
+<h2 id="项目文件概览"><a href="#项目文件概览" class="headerlink" title="项目文件概览"></a>项目文件概览</h2><p>Angular-CLI 项目是快速构建实验和企业解决方案的基础。</p>
 <p>我们查看的第一个文件应该是<code>README.md</code>。它有一些如何使用 CLI 命令的基础信息。无论何时你想要知道更多的关于 Angu-CLI 如何工作的信息，一定要访问<a href="https://github.com/angular/angular-cli" target="_blank" rel="external">Angular-CLI仓库</a>和<a href="https://github.com/angular/angular-cli/wiki" target="_blank" rel="external">Wiki</a>。</p>
-<p>一些生成的文件可能是你不熟悉的。</p>
-<h3 id="src-目录"><a href="#src-目录" class="headerlink" title="src 目录"></a>src 目录</h3><p>你的应用存放在<code>src</code>目录下。所有的 Angular 组件、模板、样式、图片和任何你的应用需要的其他东西都在这里。这个目录之外的任何文件都是为了支持构建你的应用。</p>
+<p>有些生成的文件可能你并不熟悉，接下来我们就讲讲它们。</p>
+<h3 id="src-目录"><a href="#src-目录" class="headerlink" title="src 目录"></a>src 目录</h3><p>你的应用存放在<code>src</code>目录下。所有的 Angular 组件、模板、样式、图片以及你的应用需要的任何东西都在这里。这个目录之外的任何文件都是为了支持构建你的应用。</p>
 <figure class="highlight gherkin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">src/</div><div class="line"> |<span class="string">__app/</span></div><div class="line"> |<span class="string">   </span>|<span class="string">__app.component.css</span></div><div class="line"> |<span class="string">   </span>|<span class="string">__app.component.html</span></div><div class="line"> |<span class="string">   </span>|<span class="string">__app.component.spec.ts</span></div><div class="line"> |<span class="string">   </span>|<span class="string">__app.component.ts</span></div><div class="line"> |<span class="string">   </span>|<span class="string">__app.module.ts</span></div><div class="line"> |<span class="string">__assets/</span></div><div class="line"> |<span class="string">   </span>|<span class="string">__.gitkeep</span></div><div class="line"> |<span class="string">__environments/</span></div><div class="line"> |<span class="string">   </span>|<span class="string">__environment.prod.ts</span></div><div class="line"> |<span class="string">   </span>|<span class="string">__environment.ts</span></div><div class="line"> |<span class="string">__favicon.ico</span></div><div class="line"> |<span class="string">__index.html</span></div><div class="line"> |<span class="string">__main.ts</span></div><div class="line"> |<span class="string">__polyfills.ts</span></div><div class="line"> |<span class="string">__styles.css</span></div><div class="line"> |<span class="string">__test.ts</span></div><div class="line"> |<span class="string">__tsconfig.json</span></div></pre></td></tr></table></figure>
 <table>
 <thead>
@@ -383,31 +383,31 @@ Angular-CLI 是一个命令行工具，使用它可以创建项目、添加文�
 </tr>
 <tr>
 <td><code>assets/*</code></td>
-<td>一个可以存放图片和构建应用程序时需要批量复制的任意东西的目录。</td>
+<td>一个可以存放图片和任何你需要的东西的目录，在构建应用时，它们全部会复制到发布的包中。</td>
 </tr>
 <tr>
 <td><code>environments/*</code></td>
-<td>这个目录包含一个为每个目标环境的配置文件，每一个导出的简单的配置变量用到你的应用中。当你构建应用时，文件会被动态的替换。你可能在开发时使用与生产时不同的后端API。或许可能不同的解析令牌。甚至可能是一些模拟服务。无论哪种方式，CLI 都包括了。</td>
+<td>这个目录包含为每个目标环境准备的配置文件，它们导出了一些应用中要用到的配置变量。 当你构建应用时，文件会被动态的替换。你可能在开发时使用与生产时不同的后端API。或使用不同的统计Token参数。甚至使用一些模拟服务。所有这些，CLI都替你考虑到了。</td>
 </tr>
 <tr>
 <td><code>favicon.ico</code></td>
-<td>每个网站都想在书签栏看起来好看。开始创建你自己的 Angular ico。</td>
+<td>每个网站都想在书签栏看起来好看。请把它换成你自己的图标。</td>
 </tr>
 <tr>
 <td><code>index.html</code></td>
-<td>当有人访问你网站时的主页。大多数时候你永远也不需要编辑它。当构建应用时，CLI会自动地添加所有的 <code>js</code> 和<code>css</code>文件，所以你从来都不需要在这里手动的添加任何的<code>&lt;script&gt;</code>或<code>&lt;link&gt;</code>标签</td>
+<td>这是别人访问你的网站是看到的主页面的HTML文件。大多数时候你永远也不需要编辑它。当构建应用时，CLI会自动地添加所有的 <code>js</code> 和<code>css</code>文件，所以你从来都不需要在这里手动的添加任何的<code>&lt;script&gt;</code>或<code>&lt;link&gt;</code>标签</td>
 </tr>
 <tr>
 <td><code>main.ts</code></td>
-<td>应用的主入口。使用JIT编译器编译应用并引导应用在浏览器中运行。你也可以通过给<code>ng build</code>或<code>ng serve</code>传入<code>--aot</code>参数，而不需要改变任何代码来使用AoT编译器。</td>
+<td>应用的主入口。使用JIT编译器编译应用并启动应用在浏览器中运行。你也可以通过给<code>ng build</code>或<code>ng serve</code>传入<code>--aot</code>参数，而不需要改变任何代码来使用AoT编译器。</td>
 </tr>
 <tr>
 <td><code>polyfills.ts</code></td>
-<td>不同的浏览器对web标准的支持有不同的级别。Polyfills帮助标准化这些不同。你可以非常安全的使用<code>core-js</code>和<code>zone.js</code>，但是一定要查看<a href="https://angular.io/docs/ts/latest/guide/browser-support.html" target="_blank" rel="external">浏览器支持</a>来获取更多的信息。</td>
+<td>不同的浏览器对web标准的支持程度也不同。Polyfills能帮我们把这些不同点进行标准化。你可以非常安全的使用<code>core-js</code>和<code>zone.js</code>，但是一定要查看<a href="https://angular.io/docs/ts/latest/guide/browser-support.html" target="_blank" rel="external">浏览器支持</a>以了解更多的信息。</td>
 </tr>
 <tr>
 <td><code>style.css</code></td>
-<td>你的全局样式在这里。大多数时候你会需要在你的组件中使用局部样式以易于维护，但影响整个应用的样式需要在一个主要的地方。</td>
+<td>你的全局样式在这里。大多数时候你会希望在你的组件中使用局部样式以易于维护，但影响整个应用的样式需要集中放在这里。</td>
 </tr>
 <tr>
 <td><code>test.ts</code></td>
@@ -419,7 +419,7 @@ Angular-CLI 是一个命令行工具，使用它可以创建项目、添加文�
 </tr>
 </tbody>
 </table>
-<h3 id="根目录"><a href="#根目录" class="headerlink" title="根目录"></a>根目录</h3><p><code>src/</code>目录仅仅是项目根目录的一项。其他文件帮助你构建、测试、维护、文档和部署应用。<br>这些文件在根目录中挨着<code>src/</code>。</p>
+<h3 id="根目录"><a href="#根目录" class="headerlink" title="根目录"></a>根目录</h3><p><code>src/</code>目录仅仅是项目根目录之一。其它文件用来帮助你构建、测试、维护、文档和部署应用。<br>它们在根目录下和<code>src/</code>目录平级。</p>
 <figure class="highlight gherkin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">my-app</div><div class="line">  |<span class="string">__e2e/</span></div><div class="line">  |<span class="string">   </span>|<span class="string">__app.e2e-spec.ts</span></div><div class="line">  |<span class="string">   </span>|<span class="string">__app.po.ts</span></div><div class="line">  |<span class="string">   </span>|<span class="string">__tsconfig.json</span></div><div class="line">  |<span class="string">__node_modules/...</span></div><div class="line">  |<span class="string">__src/...</span></div><div class="line">  |<span class="string">__.editorconfig</span></div><div class="line">  |<span class="string">__.gitignore</span></div><div class="line">  |<span class="string">__angular-cli.json</span></div><div class="line">  |<span class="string">__karma.conf.js</span></div><div class="line">  |<span class="string">__package.json</span></div><div class="line">  |<span class="string">__protractor.conf.js</span></div><div class="line">  |<span class="string">__README.md</span></div><div class="line">  |<span class="string">__tslint.json</span></div></pre></td></tr></table></figure>
 <table>
 <thead>
@@ -431,7 +431,7 @@ Angular-CLI 是一个命令行工具，使用它可以创建项目、添加文�
 <tbody>
 <tr>
 <td><code>e2e/*</code></td>
-<td><code>e2e/</code>中存放着端到端测试。它们不在<code>src/</code>里，是因为e2e测试实际上是一个为了测试你的应用的独立的应用。这就是为什么他们甚至有自己的<code>tsconfig.json</code>。</td>
+<td><code>e2e/</code>中存放着端到端测试。它们不在<code>src/</code>里，是因为端到端测试实际上和应用是相互独立的，它只适用于测试你的应用而已。这也是为什么它会拥有自己的<code>tsconfig.json</code>。</td>
 </tr>
 <tr>
 <td><code>node_modules/...</code></td>
@@ -439,15 +439,15 @@ Angular-CLI 是一个命令行工具，使用它可以创建项目、添加文�
 </tr>
 <tr>
 <td><code>.editorconfig</code></td>
-<td>你的编辑器的简单配置，以确保每个使用你项目的人有相同的基本配置。大多数编辑器提供<code>.editorconfig</code>文件，查看 <a href="http://editorconfig.org" target="_blank" rel="external">http://editorconfig.org</a> 获取更多信息。</td>
+<td>给你的编辑器看的一个简单配置文件，它用来确保参与你项目的每个人都具有基本的编辑器配置。大多数编辑器都支持<code>.editorconfig</code>文件，查看 <a href="http://editorconfig.org" target="_blank" rel="external">http://editorconfig.org</a> 获取更多信息。</td>
 </tr>
 <tr>
 <td><code>.gitignore</code></td>
-<td>git的配置来确保自动生成的文件不被提交到源码控制中。</td>
+<td>git的配置文件，用来确保自动生成的文件不被提交到源码控制系统中。</td>
 </tr>
 <tr>
 <td><code>angular-cli.json</code></td>
-<td>Angular-CLI的配置。在这个文件中你可以设置几个默认值，也可以配置当项目构建时所包含的文件。如果你想了解更多，查看官方文档。</td>
+<td>Angular-CLI的配置。在这个文件中你可以设置一系列默认值，还可以配置当项目构建时所包含的文件。如果你想了解更多，查看官方文档。</td>
 </tr>
 <tr>
 <td><code>karma.conf.js</code></td>
@@ -458,19 +458,23 @@ Angular-CLI 是一个命令行工具，使用它可以创建项目、添加文�
 <td>你的项目使用的第三方包的<code>npm</code>配置清单。你也可以在这里添加你自己的自定义脚本。</td>
 </tr>
 <tr>
+<td><code>protractor.conf.js</code></td>
+<td>给<a href="http://www.protractortest.org/" target="_blank" rel="external">Protractor</a>使用的端到端测试配置文件，当运行<code>ng e2e</code>的时候会用到它。</td>
+</tr>
+<tr>
 <td>`README.md</td>
-<td>你的应用的基本文档，预先填写了使用 CLI 的命令信息。确保增加项目文档强化它，以便于任何查看你仓库的人都可以构建你的应用。</td>
+<td>你项目的基本文档，预先写入了 CLI 的命令信息。别忘了用项目文档改进它，以便每个查看此仓库的人都能据此构建出你的应用。</td>
 </tr>
 <tr>
 <td><code>tslint.json</code></td>
-<td>TSlint连同Codelyzer的配置，当运行<code>ng lint</code>时使用。Linting 可以帮助你保持代码风格始终如一。</td>
+<td>TSlint连同Codelyzer的配置，当运行<code>ng lint</code>时使用。 Lint功能可以帮你保持代码风格的统一。</td>
 </tr>
 </tbody>
 </table>
 <blockquote>
 <p><strong>下一步</strong></p>
 <p>如果你是Angular新手，我们推荐继续<a href="https://angular.io/docs/ts/latest/guide/learning-angular.html" target="_blank" rel="external">学习路径</a>。</p>
-<p>你可以跳过“setup”章节，因为你已经使用了Angular-cli。</p>
+<p>你可以跳过“环境配置”这一章，因为你已经在使用 Angular-CLI 配置好了环境。</p>
 </blockquote>
 
       
@@ -483,7 +487,7 @@ Angular-CLI 是一个命令行工具，使用它可以创建项目、添加文�
         <p><span>本文标题:</span><a href="/2017/02/01/angular文档——CLI-快速起步/">angular文档——CLI-快速起步</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">soojade</a></p>
         <p><span>发布时间:</span>2017-02-01, 11:34:36</p>
-        <p><span>最后更新:</span>2017-02-01, 16:46:17</p>
+        <p><span>最后更新:</span>2017-03-22, 19:43:31</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2017/02/01/angular文档——CLI-快速起步/" title="angular文档——CLI-快速起步">http://soojade.github.io/2017/02/01/angular文档——CLI-快速起步/</a>
             <span class="copy-path" data-clipboard-text="原文: http://soojade.github.io/2017/02/01/angular文档——CLI-快速起步/　　作者: soojade" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
@@ -519,7 +523,7 @@ Angular-CLI 是一个命令行工具，使用它可以创建项目、添加文�
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#CLI-快速起步"><span class="toc-number">1.</span> <span class="toc-text">CLI 快速起步</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#第一步：配置开发环境"><span class="toc-number">1.1.</span> <span class="toc-text">第一步：配置开发环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第二步：新建项目"><span class="toc-number">1.2.</span> <span class="toc-text">第二步：新建项目</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第三步：启动应用服务器"><span class="toc-number">1.3.</span> <span class="toc-text">第三步：启动应用服务器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第四步：编辑我们的第一个-Angular-组件"><span class="toc-number">1.4.</span> <span class="toc-text">第四步：编辑我们的第一个 Angular 组件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#接下来做什么？"><span class="toc-number">1.5.</span> <span class="toc-text">接下来做什么？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#项目文件回顾"><span class="toc-number">1.6.</span> <span class="toc-text">项目文件回顾</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#src-目录"><span class="toc-number">1.6.1.</span> <span class="toc-text">src 目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#根目录"><span class="toc-number">1.6.2.</span> <span class="toc-text">根目录</span></a></li></ol></li></ol></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#CLI-快速起步"><span class="toc-number">1.</span> <span class="toc-text">CLI 快速起步</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#第一步：配置开发环境"><span class="toc-number">1.1.</span> <span class="toc-text">第一步：配置开发环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第二步：新建项目"><span class="toc-number">1.2.</span> <span class="toc-text">第二步：新建项目</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第三步：启动应用服务器"><span class="toc-number">1.3.</span> <span class="toc-text">第三步：启动应用服务器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第四步：编辑我们的第一个-Angular-组件"><span class="toc-number">1.4.</span> <span class="toc-text">第四步：编辑我们的第一个 Angular 组件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#接下来做什么？"><span class="toc-number">1.5.</span> <span class="toc-text">接下来做什么？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#项目文件概览"><span class="toc-number">1.6.</span> <span class="toc-text">项目文件概览</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#src-目录"><span class="toc-number">1.6.1.</span> <span class="toc-text">src 目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#根目录"><span class="toc-number">1.6.2.</span> <span class="toc-text">根目录</span></a></li></ol></li></ol></li></ol>
         
     </div>
     <style>
